@@ -25,6 +25,7 @@ const RenderSections: FC<PropsType> = ({
     <section
       className={`${_.isEmpty(customClassName) ? "" : customClassName} `}
       style={{ ...customStyle }}>
+    
       <RenderSectionList
         mergedLayout={mergedLayout}
         rawWidgetList={rawWidgetList}

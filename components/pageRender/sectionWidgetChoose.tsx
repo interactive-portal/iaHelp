@@ -14,7 +14,14 @@ const SectionWidgetChoose: FC<PropsType> = ({ listConfig }) => {
   const myMetaTypeId = widgetConfigNemgoo?.metatypeid || listConfig.metatypeid;
   const myActionType = widgetConfigNemgoo?.actiontype || listConfig.actiontype;
 
-  return <RenderWidget listConfig={listConfig} />;
+  return <>
+  <p>{listConfig.widgetcode}</p>
+  <br/>
+  <p>path: {listConfig.componentpath}</p>
+  <br/>
+  {/* <pre>{JSON.stringify(listConfig,null,4)}</pre> */}
+  {/* <RenderWidget listConfig={listConfig} /> */}
+  </>;
 };
 
 export default SectionWidgetChoose;

@@ -15,7 +15,7 @@ const RenderWidget = ({ listConfig }: { listConfig: any }) => {
   const [dataSrc, dataError, dataMutate, paging, aggregatecolumns] =
     useWidgetData(listConfig);
 
-  // console.log("datasrc", dataSrc);
+  // console.log("widgetnemgooReady", widgetnemgooReady);
   const configReady = {
     ...listConfig,
     metaConfig: [],

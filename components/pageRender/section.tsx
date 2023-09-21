@@ -20,7 +20,7 @@ const Section = (data: any) => {
   return (
     <main>
       <section
-        className={` ${
+        className={`mt-32 ${
           _.isEmpty(customClassName) ? "col-span-12" : customClassName
         }`}
         style={{ ...customStyle }}>
