@@ -55,7 +55,6 @@ export default function ErpSliderBanner() {
             options={options}
           />
         );
-
       case "Right":
         return (
           <RightSlide
@@ -162,10 +161,11 @@ export default function ErpSliderBanner() {
         // }}
         // navigation={true}
         // autoHeight={true}
-        height={600}
+        height={480}
         modules={[Autoplay, Navigation, Pagination]}
         className="mySwiper">
         {readyDatasrc.map((item: any, index: number) => {
+          // console.log('item.texta :>> ', item);
           return (
             <SwiperSlide key={index}>
               {renderContent(item.textalign, item)}
@@ -210,11 +210,13 @@ const LeftSlide = ({
   options: any;
 }) => {
   const { t } = useTranslation("translate");
+
+  // console.log('backgroundimage :>> ', background);
   return (
     <div
-      className="flex  w-full md:h-[600px] h-auto relative"
+      className="flex  w-full md:h-[460px] h-auto relative"
       style={{
-        backgroundImage: `url('https://dev.veritech.mn/${background}')`,
+        backgroundImage: `url(${background})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

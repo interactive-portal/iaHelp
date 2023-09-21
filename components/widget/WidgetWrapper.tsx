@@ -64,12 +64,14 @@ export const WidgetWrapper = ({
   );
 
   const otherStyle = jsonParse(config.widgetnemgoo);
+  const customStyle = widgetnemgooReady?.design?.style || widgetnemgooReady?.style || {}
+
   return (
     <div
       className={`
        ${widgetnemgooReady?.design?.className || ""}
         ${otherStyle?.sectionClassName}`}
-      style={widgetnemgooReady?.design?.style || widgetnemgooReady?.style}
+      style={customStyle}
       attr-data={config.widgetcode}
       attr-code={config.code}>
       <WidgetWrapperContext.Provider
@@ -80,6 +82,7 @@ export const WidgetWrapper = ({
           positionConfig,
         }}>
         <RenderComponent />
+        {/* {config.componentpath} */}
       </WidgetWrapperContext.Provider>
     </div>
   );
