@@ -82,7 +82,6 @@ export const WidgetWrapper = ({
           positionConfig,
         }}>
         <RenderComponent />
-        {/* {config.componentpath} */}
       </WidgetWrapperContext.Provider>
     </div>
   );

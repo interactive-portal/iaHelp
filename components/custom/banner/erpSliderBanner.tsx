@@ -161,11 +161,10 @@ export default function ErpSliderBanner() {
         // }}
         // navigation={true}
         // autoHeight={true}
-        height={480}
+        height={520}
         modules={[Autoplay, Navigation, Pagination]}
         className="mySwiper">
         {readyDatasrc.map((item: any, index: number) => {
-          // console.log('item.texta :>> ', item);
           return (
             <SwiperSlide key={index}>
               {renderContent(item.textalign, item)}
@@ -210,18 +209,17 @@ const LeftSlide = ({
   options: any;
 }) => {
   const { t } = useTranslation("translate");
-
-  // console.log('backgroundimage :>> ', background);
+  
   return (
     <div
-      className="flex  w-full md:h-[460px] h-auto relative"
+      className="flex  w-full md:h-[520px] h-auto relative"
       style={{
         backgroundImage: `url(${background})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}>
-      <div className="flex flex-col md:flex-row container mx-auto justify-between  md:pt-[150px] md:pb-[120px] xs:pt-16">
+      <div className="flex flex-col md:flex-row container mx-auto justify-between  md:pt-[90px] md:pb-[120px] xs:pt-16">
         <div className="flex flex-col w-full md:w-[50%] justify-center gap-10 transition duration-150 ease-in-out">
           <div className="emergeny">
             {logo && (

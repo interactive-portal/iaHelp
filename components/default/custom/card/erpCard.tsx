@@ -91,7 +91,7 @@ export default function ErpCard({
 
   const media = (image: any) => {
     const ddd = process.env.IMAGEROOTURL || "https://dev.veritech.mn/";
-    let imgSrc = image.value;
+    let imgSrc = image?.value;
     if (imgSrc?.startsWith("storage/")) {
       imgSrc = `${ddd}${imgSrc}`;
     }
@@ -223,10 +223,8 @@ export default function ErpCard({
     switch (options?.cardType) {
       case "grid":
         return <Grid data={readyDatasrc} options={options} />;
-
       case "masonry":
         return <Masonry data={readyDatasrc} options={options} />;
-
       case "right":
         return (
           <div className="z-5 absolute text-[#0C529D] pt-[20px] w-full h-full flex flex-col gap-y-[35px] items-center justify-center bg">
