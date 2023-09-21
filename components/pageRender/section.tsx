@@ -6,10 +6,8 @@ import RenderSections from "./renderSections";
 import { jsonParse } from "@/utils/helper";
 
 const Section = (data: any) => {
-  // const pageObject: any = preparePageList(data.data);
-  // console.log("configList", data.configList);
+  
   const pageObject: any = data.configList;
-  const rawMainSection = _.values(pageObject.meta_hdr_bp_layout_section);
   let headerSection: any = [];
   let footer: any = [];
   headerSection.push(_.find(pageObject.layouthdr, ["sectionCode", "header"]));
