@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import _ from "lodash";
-import { jsonParse } from "@/utils/helper";
+import { jsonParse, listToTree } from "@/utils/helper";
 import CardItem from "./item";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -10,17 +10,15 @@ type PropsType = {
   data?: any;
 };
 
-const Grid: FC<PropsType> = ({ options, data }) => {
+const Category: FC<PropsType> = ({ options, data }) => {
   const [active, setActive] = useState(0);
   const [filterItem, setFilterItem]: any = useState(
     options?.custom?.defualt || ""
-  );
-  console.log('data :>> ', data);
-  console.log('options :>> ', options);
-  const selectdata = _.filter(data, {
+  ); 
+  const readyData = listToTree(data, "parentid");
+  const selectdata = _.filter(readyData, {
     categorydesc: filterItem,
   });
-
   let newArr = _.map(selectdata, (o) => _.pick(o, ["categorydesc"]));
 
   let grouped = _.keys(_.mapValues(_.groupBy(newArr, "categorydesc")));
@@ -35,7 +33,7 @@ const Grid: FC<PropsType> = ({ options, data }) => {
     setFilterItem(item);
   };
 
-  let dataSrc: any = grouped.length > 2 ? selectdata : data;
+  let dataSrc: any = grouped.length > 2 ? selectdata : readyData;
   const moreButton = options?.custom?.moreButton;
   const { t } = useTranslation("translate");
   return (
@@ -77,15 +75,15 @@ const Grid: FC<PropsType> = ({ options, data }) => {
           )}
         </div>
       )}
-      <div className="grid 8xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 gap-6 z-10 8xl:px-0 lg:px-2 xs:px-2">
-        {selectdata
-          ?.slice(0, options?.custom?.viewPerCount || "3")
+      <div className="grid 8xl:grid-cols-4 lg:grid-cols-4 grid-cols-1 gap-6 z-10 8xl:px-0 lg:px-2 xs:px-2">
+        {readyData
+          ?.slice(0, options?.custom?.viewPerCount || "4")
           ?.map((item: any, index: number) => {
-            return <CardItem key={index} data={item} options={options} />;
+            return <CardItem key={index} data={item} options={options} dataIndex={index}/>;
           })}
       </div>
     </>
   );
 };
 
-export default Grid;
+export default Category;

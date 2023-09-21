@@ -7,7 +7,10 @@ export async function getLayout(pathname: string) {
     filterslug: pathname,
   };
 
+
   let result = await runService("layoutHdr_004_cozy", parameters, "");
+  // console.log('result :>> ', result);
+
 
   const myApiStatus = result?.status;
   const myApiResult = result?.result;

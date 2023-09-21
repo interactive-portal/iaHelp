@@ -8,12 +8,15 @@ import Section from "@/components/pageRender/section";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import nextI18NextConfig from '../next-i18next.config.js'
 export default function Page(props: any) {
+
   return <Section configList={props?.layout} />;
 }
 
 export async function getServerSideProps(context: any) {
   const pathname = _.join(context?.params.slug, "/");
   const pageConfig = await getLayout(pathname || "home");
+
+
   if (pageConfig?.status == "notFound") {
     return {
       props: {

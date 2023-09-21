@@ -7,11 +7,12 @@ import { useRouter } from "next/router";
 import moment from "moment";
 import AtomImage from "@/components/common/atom/atomImage";
 type PropsType = {
+  dataIndex?: any;
   options?: any;
   data?: any;
 };
 
-const CardItem: FC<PropsType> = ({ options, data }) => {
+const CardItem: FC<PropsType> = ({ dataIndex,options, data }) => {
   const router = useRouter();
 
   const onClickOther = async (e: any, item: any) => {
@@ -22,8 +23,33 @@ const CardItem: FC<PropsType> = ({ options, data }) => {
 
   const settings = options?.custom;
 
+  const { backgroundImage } = settings;
+
   const content = () => {
     switch (settings?.style) {
+      case "top": return (<>     <div
+        className="col-span-1 w-auto h-[305px] rounded-lg p-5 cursor-pointer"
+        style={{
+          backgroundImage: `url(${backgroundImage[dataIndex]})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPositionX: "center",
+        }}
+        onClick={() =>
+          router.push({
+            pathname: "/category",
+            query: {
+              fparentid: data?.id,
+            },
+          })
+        }
+      >
+        <p className="text-[22px] font-medium text-[#585858]">
+          {data?.name}
+        </p>
+        <p className="text-[18px] text-[#67748E]">{data?.cnt} мэдлэг</p>
+      </div>
+      </>);
       case "news":
         return (
           <div className=" transition-all animate-fade-in-up">
@@ -85,7 +111,6 @@ const CardItem: FC<PropsType> = ({ options, data }) => {
             </div>
           </div>
         );
-
       case "masonrySlider":
         return (
           <div className=" transition-all animate-fade-in-up asdfvg">

@@ -10,6 +10,7 @@ import AtomImage from "@/components/common/atom/atomImage";
 import Link from "next/link";
 import Masonry from "./masonry";
 import { useTranslation } from "next-i18next";
+import Category from "./category";
 
 export default function ErpCard({
   pDataSrc,
@@ -223,6 +224,8 @@ export default function ErpCard({
     switch (options?.cardType) {
       case "grid":
         return <Grid data={readyDatasrc} options={options} />;
+      case "category":
+        return <Category data={readyDatasrc} options={options} />;
       case "masonry":
         return <Masonry data={readyDatasrc} options={options} />;
       case "right":
