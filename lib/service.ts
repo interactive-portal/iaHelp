@@ -11,7 +11,9 @@ export const runService = async (
     request: {
       command: pCommand,
       languageCode: lang || "mn",
-      userToken: process.env.USER_TOKEN,
+      // userToken: process.env.USER_TOKEN,
+      username: "admin",
+      password: "Pass789*456",
       returnByStandartJson: "1",
       parameters: bodys,
     },
