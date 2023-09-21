@@ -1,8 +1,8 @@
 "use client";
 import { FC } from "react";
 import _ from "lodash";
-
 import RenderSection from "./renderSection";
+import { motion } from "framer-motion";
 
 type PropsType = {
   mergedLayout: [];
@@ -22,7 +22,12 @@ const RenderSections: FC<PropsType> = ({
   sectionNemgoo,
 }) => {
   return (
-    <section
+    <motion.div layout
+    // animate={{ opacity: 0.5 }}
+    transition={{
+      opacity: { ease: "linear" },
+      layout: { duration: 0.2 }
+    }}
       className={`${_.isEmpty(customClassName) ? "" : customClassName} `}
       style={{ ...customStyle }}>
       <RenderSectionList
@@ -30,7 +35,7 @@ const RenderSections: FC<PropsType> = ({
         rawWidgetList={rawWidgetList}
         processSection={processSection}
       />
-    </section>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import _ from "lodash";
 import preparePageList from "@/utils/preparePage";
 import RenderSections from "./renderSections";
 import { jsonParse } from "@/utils/helper";
+import Skeleton from "../common/skeleton/Skeleton";
 
 const Section = (data: any) => {
   
@@ -15,10 +16,12 @@ const Section = (data: any) => {
   let customClassName = "";
   let customStyle = {};
 
+  if(!pageObject)return <><Skeleton type="card" /></>
+
   return (
-    <main>
+    <main className="min-h-[520px] mt-[70px]">
       <section
-        className={`mt-32 ${
+        className={` ${
           _.isEmpty(customClassName) ? "col-span-12" : customClassName
         }`}
         style={{ ...customStyle }}>

@@ -43,7 +43,6 @@ export const WidgetWrapper = ({
     () => preparePositionAllArray(datasrc, positionConfig),
     [datasrc]
   );
-  // console.log("object positionConfig :>> ", datasrc);
 
   const readyDatasrc = readyDatasrcTemp;
   const RenderComponent: any = useMemo(
@@ -59,10 +58,9 @@ export const WidgetWrapper = ({
           loading: () => <span></span>,
         }
       ),
-
     []
   );
-
+// console.log('HelpKnowledgeListCard :>> ', config.componentpath);
   const otherStyle = jsonParse(config.widgetnemgoo);
   const customStyle = widgetnemgooReady?.design?.style || widgetnemgooReady?.style || {}
 
