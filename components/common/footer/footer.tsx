@@ -9,6 +9,7 @@ import InteractiveJoin from "@/components/project/interactivev2/interactive-home
 import Subscribe from "./subscribe";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type PropsType = {
   data: any;
@@ -19,229 +20,102 @@ const Footer: FC<PropsType> = ({ data }) => {
     data?.layout?.readyMergedLayoutConfig?.meta_hdr_bp_layout_section || {};
   let headerSection: any = [];
   const { t } = useTranslation("translate");
-  headerSection.push(_.find(headDataSrc, ["code", "104"]));
-  const nemgoo = jsonParse(headerSection[0]?.widgetnemgoo) || {};
-  const ddddd = _.values(nemgoo?.data) || [];
-  const options = nemgoo?.options || [];
+  headerSection.push(_.find(headDataSrc, ["code", "105"]));
+  const widgetnemgooReady = jsonParse(headerSection[0]?.widgetnemgoo) || {};
+  headerSection.push(_.find(headDataSrc, ["code", "105"]));
+  const otherSettings = widgetnemgooReady?.otherSettings;
+  const readyData = widgetnemgooReady?.data;
 
-  const staticItem1: any = ddddd[0] || [];
-  const staticItem2: any = ddddd[1] || [];
-  const staticItem3: any = ddddd[2] || [];
-  const staticItem4 = [
-    "fa-brands fa-facebook-f",
-    "fa-brands fa-instagram",
-    "fa-brands fa-twitter",
-  ];
-  const subData = {
-    title: "Бидэнтэй <b className='text-[#0C529D]'>нэгдээрэй</b>",
-    description:
-      "Та өөрийн имэйл хаягаа бүртгүүлэн хүссэн мэдээллээ цаг тухайд нь аваарай.",
-    placeholder: "Таны и-мэйл хаяг",
-    button: "Бүртгүүлэх",
-  };
   // tur ashiglav
 
-  switch (options) {
-    case "1":
-      return (
-        <>
-          <div className="w-full md:max-h-[450px] sm:h-auto xs:h-auto bg-[#4A86FF]">
-            <div className="mx-auto container w-full md:flex flex-row justify-between overflow-x-auto pt-10">
-              <div>
-                <Image
-                  src={staticItem3[0]?.logo}
-                  width={200}
-                  quality={100}
-                  height={40}
-                  alt="footer"
+  return (
+    <footer className="relative bg-black px-0 lg:px-10">
+      <div className={`py-16 ${otherSettings?.theme}`}>
+        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8  z-10 relative">
+          {readyData.map((item: any, index: number) => {
+            const footerTitle = () => {
+              if (_.isEmpty(item?.title)) {
+                return <img src={item?.logo} className="h-16 p-2 text-white" />;
+              }
+              return (
+                <RenderAtom
+                  item={{ value: item?.title }}
+                  renderType="title"
+                  customClassName="text-lg text-white font-bold pt-6 pb-6 px-3"
                 />
-                <div className="pt-8">
-                  <RenderAtom
-                    item={{ value: staticItem3[0]?.locationDes }}
-                    renderType="text"
-                    customClassName={"text-[14px] text-white "}
-                  />
-                </div>
-              </div>
-              <div className="md:w-1/2 items-center justify-center">
-                <div className="flex flex-col pt-8 xs:pt-2 sm:pt-2 gap-y-2">
-                  {staticItem2?.map((row: any, index: number) => {
-                    return (
-                      <div key={index} className="flex items-center gap-6">
-                        <div className="flex-none">
-                          <RenderAtom
-                            renderType="image"
-                            item={{ value: row.iconImage }}
-                            customClassName={
-                              "w-full max-w-[60px] h-auto object-contain"
-                            }
-                          />
-                        </div>
-                        <RenderAtom
-                          renderType="text"
-                          item={{ value: row.desc }}
-                          customClassName="break-words font-bold text-xl leading-6 text-[14px] text-white"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div>
-                <div className="gap-x-4 flex flex-col xs:pt-2 sm:pt-2 gap-y-2">
-                  {staticItem4?.map((item: any, index: number) => {
-                    return (
-                      // eslint-disable-next-line react/jsx-key
-                      <div
-                        className="w-[50px] h-[50px] flex items-center justify-center rounded-full border border-white p-2"
-                        key={item?.id || index}
-                      >
-                        <RenderAtom
-                          item={{ value: item }}
-                          renderType="icon"
-                          customClassName={"text-2xl text-white"}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="mx-auto container py-5">
-              <div className="border-t-4 border-[#FF9339] w-full justify-between pb-10">
-                <div className="pt-5 text-center">
-                  <span className="flex flex-col mx-auto gap-y-2 text-[18px] font-medium text-white">
-                    Privacy | Terms | © 2023
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      );
+              );
+            };
 
-    default:
-      return (
-        <>
-          <Subscribe />
-          <div className=" w-full md:h-[450px] sm:h-auto xs:h-auto bg-[url('https://res.cloudinary.com/dzih5nqhg/image/upload/v1673252763/Community/Group_21981_lnb5lh.png')]">
-            <div className="mx-auto container w-full md:flex flex-row justify-between pt-20 sm:py-16 xs:py-14 overflow-x-auto">
-              {/* col-1 */}
-              <div className="md:w-72 xs:w-full text-white">
-                <Image
-                  src={staticItem3[0]?.logo}
-                  width={200}
-                  quality={100}
-                  height={40}
-                  alt="footer"
-                />
-                <div className="pt-8">
-                  <RenderAtom
-                    item={{ value: t(staticItem3[0]?.locationDes) }}
-                    renderType="text"
-                    customClassName={"text-[14px] text-white "}
-                  />
-                  {/* {t(staticItem3[0]?.locationDes)} */}
-                </div>
-              </div>
-              {/* col-2 */}
-              <div>
+            return (
+              <div className={` item-col ${index}`} key={item?.id || index}>
+                {footerTitle()}
                 <RenderAtom
-                  item={{ value: t("WPD_0064") }}
+                  item={{ value: item?.description }}
                   renderType="title"
-                  customClassName={"text-[20px] xs:pt-10 sm:pt-10  text-white"}
+                  customClassName=" text-white p-3 mt-3 text-sm font-normal text-opacity-80 "
                 />
-                <div className="flex flex-col pt-10 xs:pt-2 sm:pt-2 gap-y-2">
-                  {staticItem1?.map((item: any, index: number) => {
-                    return (
-                      // eslint-disable-next-line react/jsx-key
-                      <div
-                        key={index}
-                        onClick={() =>
-                          router.push(`${item?.link}`, undefined, {
-                            shallow: false,
-                          })
-                        }
+                {item?.link?.map((item1: any, i: number) => {
+                  return (
+                    <div key={i} className="my-2">
+                      <Link
+                        href={item1?.url}
+                        className="text-white text-opacity-80 p-3 "
                       >
-                        <RenderAtom
-                          item={{ value: t(item?.title) }}
-                          renderType="text"
-                          customClassName="text-[14px] text-white cursor-pointer hover:text-gray-200"
-                          key={item?.id || index}
-                        />
+                        {item1?.name}
+                      </Link>
+                    </div>
+                  );
+                })}
+                <div className="flex jusitfy-between  gap-6 xs:hidden">
+                  {item?.applink?.map((item2: any, index: number) => {
+                    return (
+                      <div key={item2?.id || index} className="my-1">
+                        <Link href={item2?.url}>
+                          <img
+                            src={item2?.imgpath}
+                            alt={item2?.name}
+                            className="w-full cursor-pointer"
+                          />
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex jusitfy-between  gap-8 mt-8 xs:hidden lg:flex">
+                  {item?.social?.map((item3: any, index: number) => {
+                    return (
+                      <div
+                        key={item3?.id || index}
+                        className="w-10 h-10 bg-blue-800 text-center pt-2  rounded-full cursor-pointer hover:opacity-80"
+                      >
+                        <Link href={item3?.url} className="text-white">
+                          <i
+                            className={`fa-brands fa-${item3?.name} text-white `}
+                          ></i>
+                        </Link>
                       </div>
                     );
                   })}
                 </div>
               </div>
-              {/* col-3 */}
-              <div className="md:block xs:hidden">
-                <RenderAtom
-                  item={{ value: t("WPD_0068") }}
-                  renderType="title"
-                  customClassName={"text-[20px] xs:pt-10 sm:pt-10 text-white"}
-                />
-                <div className="flex flex-col pt-10 xs:pt-2 sm:pt-2 gap-y-2">
-                  {staticItem2?.map((item: any, index: number) => {
-                    return (
-                      <RenderAtom
-                        item={{ value: t(item?.title) }}
-                        renderType="text"
-                        customClassName="text-[14px] text-white cursor-pointer hover:text-gray-200"
-                        key={item?.id || index}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-              {/* col-4 */}
-              <div className="md:block xs:hidden">
-                <RenderAtom
-                  item={{ value: t("WPD_0072") }}
-                  renderType="title"
-                  customClassName={"text-[20px] xs:pt-10 sm:pt-10 text-white"}
-                />
-                <div className="flex flex-row justify-center gap-x-[28px] pt-[30px]">
-                  <RenderAtom
-                    item={{
-                      value:
-                        "https://res.cloudinary.com/dhxf8xlsi/image/upload/v1674702539/IntractiveV2/image_44091_v2qgkl.png",
-                    }}
-                    renderType="image"
-                    customClassName={"w-auto h-[50px]"}
-                  />
-                  <RenderAtom
-                    item={{
-                      value:
-                        "https://res.cloudinary.com/dhxf8xlsi/image/upload/v1674702539/IntractiveV2/image_44090_siayaj.png",
-                    }}
-                    renderType="image"
-                    customClassName={"w-auto h-[50px]"}
-                  />
-                </div>
-                <div className="flex flex-row pt-10 gap-x-4">
-                  {staticItem4?.map((item: any, index: number) => {
-                    return (
-                      // eslint-disable-next-line react/jsx-key
-                      <div
-                        className="w-[50px] h-[50px] flex items-center justify-center rounded-full border border-white"
-                        key={item?.id || index}
-                      >
-                        <RenderAtom
-                          item={{ value: item }}
-                          renderType="icon"
-                          customClassName={"text-2xl text-white"}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      );
-  }
+            );
+          })}
+        </div>
+      </div>
+      {otherSettings?.bg1 && (
+        <img
+          src={otherSettings?.bg1}
+          className="absolute inset-0 w-full h-full object-cover object-bottom"
+        />
+      )}
+      {otherSettings?.bg2 && (
+        <img
+          src={otherSettings?.bg2}
+          className="absolute  object-right right-0 bottom-0 hidden md:block transition ease-in-out delay-150 "
+        />
+      )}
+    </footer>
+  );
 };
 
 export default Footer;

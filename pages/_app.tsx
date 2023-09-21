@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
 import { SWRConfig } from "swr";
 import { appWithTranslation } from "next-i18next";
+import { SessionProvider } from "next-auth/react";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,12 +23,15 @@ function App({ Component, pageProps }: AppProps) {
           refreshInterval: 0,
           fetcher: (resource, init) =>
             fetch(resource, init).then((res) => res.json()),
-        }}>
-        <main className={`${roboto.className}  overflow-x-hidden `}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </main>
+        }}
+      >
+        <SessionProvider>
+          <main className={`${roboto.className}  overflow-x-hidden `}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </main>
+        </SessionProvider>
       </SWRConfig>
     </>
   );

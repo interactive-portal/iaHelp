@@ -7,6 +7,7 @@ import ErpHeader from "@/components/custom/header/erpHeader";
 import FeadbackHeader from "@/components/custom/header/feadbackHeader";
 import useWidgetData from "@/components/widget/useData";
 import { jsonParse } from "@/utils/helper";
+import HelpHeader from "@/components/custom/header/helpHeader";
 
 type PropsType = {
   data?: any;
@@ -21,7 +22,7 @@ const Header: FC<PropsType> = ({ data }) => {
     headDataSrc?.readyMergedLayoutConfig?.meta_hdr_bp_layout_section;
 
   const sectionList = _.filter(headSection, {
-    widgetcode: "erpHeader",
+    widgetcode: "helpHeader",
   });
   const nemgoo = jsonParse(sectionList[0]?.widgetnemgoo);
   const styleType = nemgoo?.options?.type;
@@ -31,7 +32,8 @@ const Header: FC<PropsType> = ({ data }) => {
   if (styleType === "2") {
     return (
       <header
-        className={`${nemgoo?.sectionClassName}  top-0 z-50 fixed bg-white`}>
+        className={`${nemgoo?.sectionClassName}  top-0 z-50 fixed bg-white`}
+      >
         <FeadbackHeader
           dataSrc={dataSrc}
           config={sectionList[0]}
@@ -42,8 +44,13 @@ const Header: FC<PropsType> = ({ data }) => {
   } else {
     return (
       <header
-        className={`${nemgoo?.sectionClassName}  top-0 z-50 fixed  bg-opacity-0 w-full`}>
-        <ErpHeader dataSrc={dataSrc} config={sectionList[0]} options={nemgoo} />
+        className={`${nemgoo?.sectionClassName}  top-0 z-50 fixed  bg-opacity-0 w-full`}
+      >
+        <HelpHeader
+          dataSrc={dataSrc}
+          config={sectionList[0]}
+          options={nemgoo}
+        />
       </header>
     );
   }
