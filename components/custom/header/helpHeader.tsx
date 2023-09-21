@@ -1,19 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { DefaultHandler } from "htmlparser2";
+
 import { FC, useState } from "react";
 import _ from "lodash";
-import RenderSections from "@/components/pageRender/renderSections";
-import RenderWidget from "@/components/widget/renderWidget";
-import ErpHeader from "@/components/custom/header/erpHeader";
-import FeadbackHeader from "@/components/custom/header/feadbackHeader";
-import useWidgetData from "@/components/widget/useData";
-import { jsonParse } from "@/utils/helper";
 import { Popover, Modal } from "antd";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
 import RenderAtom from "@/components/common/atom/renderAtom";
-import AtomAvatar from "@/components/common/atom/atomAvatar";
-import Image from "next/image";
 import MegaHelpMenu from "@/components/custom/menu/megaHelpMenu";
 import HelpTopMenu from "@/components/custom/menu/helpTopMenu";
 
@@ -23,7 +15,7 @@ type PropsType = {
   options?: any;
 };
 
-const Header: FC<PropsType> = ({ dataSrc, config, options }) => {
+const HelpHeader: FC<PropsType> = ({ dataSrc, config, options }) => {
   const { data: session }: any = useSession();
   const router = useRouter();
   let headDataSrc = dataSrc?.layout;
@@ -32,8 +24,6 @@ const Header: FC<PropsType> = ({ dataSrc, config, options }) => {
   const [show, setShow] = useState(false);
 
   headerSection.push(_.find(headDataSrc, ["sectionCode", "header"]));
-  const headSection =
-    headDataSrc?.readyMergedLayoutConfig?.meta_hdr_bp_layout_section;
 
   const widgetnemgooReady = options;
   const logo =
@@ -76,11 +66,9 @@ const Header: FC<PropsType> = ({ dataSrc, config, options }) => {
       </ul>
     </div>
   );
-
   if (!dataSrc) {
     return;
   }
-
   return (
     <>
       <div className=" w-full fixed top-0" style={{ background: "#fff" }}>
@@ -323,4 +311,4 @@ const Header: FC<PropsType> = ({ dataSrc, config, options }) => {
   );
 };
 
-export default Header;
+export default HelpHeader;

@@ -11,6 +11,7 @@ import Link from "next/link";
 import Masonry from "./masonry";
 import { useTranslation } from "next-i18next";
 import Category from "./category";
+import HelpGrid from "./helpGrid";
 
 export default function ErpCard({
   pDataSrc,
@@ -50,7 +51,6 @@ export default function ErpCard({
   const gridCount = options?.gridCount || 3;
   const dark = options?.dark || "";
 
-  // console.log("options :>> ", options);
   const renderExternalData = () => {
     return (
       <>
@@ -222,6 +222,8 @@ export default function ErpCard({
 
   const content = () => {
     switch (options?.cardType) {
+      case "helpGrid":
+        return <HelpGrid data={readyDatasrc} options={options} />;
       case "grid":
         return <Grid data={readyDatasrc} options={options} />;
       case "category":

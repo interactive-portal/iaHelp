@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { useWindowSize } from "react-use";
 import { motion } from "framer-motion";
 import { useTranslation } from "next-i18next";
+import _ from "lodash";
 
 export default function ErpArticle({
   pDataSrc,
@@ -24,6 +25,9 @@ export default function ErpArticle({
   //   title.classList.add("emerged");
   // });
   // console.log("staticData :>> ", staticData);
+  if (_.isEmpty(widgetnemgooReady)) {
+    return;
+  }
 
   const renderContent = () => {
     switch (options?.type) {
