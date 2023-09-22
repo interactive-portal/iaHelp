@@ -20,12 +20,14 @@ const CardItem: FC<PropsType> = ({ dataIndex,options, data }) => {
     const href = `${options?.custom?.jumpUrl}?id=` + item?.id;
     router.push(href, undefined, { shallow: false });
   };
+
   const settings = options?.custom;
+
   const { backgroundImage } = settings;
 
   const content = () => {
     switch (settings?.style) {
-      case "top": return (<><div
+      case "top": return (<>     <div
         className="col-span-1 w-auto h-[305px] rounded-lg p-5 cursor-pointer"
         style={{
           backgroundImage: `url(${backgroundImage[dataIndex]})`,
