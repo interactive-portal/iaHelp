@@ -9,7 +9,10 @@ export default function useWidgetData(listConfig: any) {
   let mutate: any = {};
   let aggregatecolumns: string = "";
   let paging: any = {};
-  // console.log("result widgetCode", listConfig);
+  if(listConfig.widgetCode =="HelpKnowledgeListCard"){
+    console.log("result HelpKnowledgeListCard", listConfig);
+
+  }
 
   return useWidgetDataSWR(listConfig);
 
