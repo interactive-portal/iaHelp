@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import Grid from "./grid";
 import { useRouter } from "next/router";
 import _ from "lodash";
-import { TabsProps, Tabs } from "antd";
+import { TabsProps, Tabs, Rate } from "antd";
 import AtomImage from "@/components/common/atom/atomImage";
 import Link from "next/link";
 import Masonry from "./masonry";
@@ -23,6 +23,8 @@ export default function ErpCard({
   const { t } = useTranslation("translate");
   const { config, readyDatasrc, positionConfig, widgetnemgooReady } =
     useContext(WidgetWrapperContext);
+
+  console.log(readyDatasrc);
 
   const staticItem = readyDatasrc[0] || (pDataSrc && pDataSrc[0]);
   const externalData = staticItem?.externalData;
@@ -722,7 +724,106 @@ export default function ErpCard({
             })}
           </div>
         );
+      case "gridColsShadow":
+        return (
+          <div className="grid 2xl:grid-cols-6 xl:grid-cols-5  lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4 pt-2 pb-10">
+            {readyDatasrc?.map((item: any, index: number) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    boxShadow: "5x 10px black",
+                  }}
+                  className="col-span-1 w-full cursor-pointer shadow-[5px_5px_5px] shadow-black/20 h-auto rounded-l-lg"
+                >
+                  <div
+                    className={`bg-[${
+                      item?.bookcolorcode || "#EE6763"
+                    }] h-[270px] `}
+                    style={{
+                      background: item?.bookcolorcode || "#EE6763",
+                    }}
+                  >
+                    <div className=" h-[120px] relative">
+                      <img
+                        src={item?.logo}
+                        className="absolute top-4 right-5 w-auto h-[26px] object-cover"
+                      />
+                      <i
+                        className={`${item?.bookicon} text-white absolute -top-[65px] -left-4 opacity-5 text-[150px] z-5`}
+                      />
+                      {/* <img
+            src="https://res.cloudinary.com/dzih5nqhg/image/upload/v1682926988/Icon_wtk9fr.png"
+            className="absolute -top-4 -left-4 opacity-5 w-[150px] h-[150px]"
+          /> */}
+                    </div>
+                    <div className="px-5">
+                      <div className="h-[75px] flex justify-end flex-col">
+                        <RenderAtom
+                          item={item?.position1 || { value: "гарчиг оруулах" }}
+                          renderType="text"
+                          customClassName="font-black text-white text-[20px] "
+                          customStyle={{ lineHeight: "24px" }}
+                        />
+                      </div>
 
+                      <div className="h-[3px] w-[40px] bg-white my-2"></div>
+                      <RenderAtom
+                        item={
+                          item?.position40 || { value: "Ангилал оруулна уу" }
+                        }
+                        renderType="text"
+                        customClassName="text-white font-medium text-[14px]"
+                        customProps={{
+                          truncateRow: 3,
+                        }}
+                        customDivNumber={"BlogTitle"}
+                      />
+                    </div>
+                  </div>
+                  <div className="p-[15px] h-[75px] bg-white">
+                    <div className="flex items-center mb-[5px]">
+                      <Rate
+                        value={Number(item?.stars)}
+                        className="mr-[5px]"
+                        disabled
+                      />
+                      <p className="text-[14px] text-[#A0A0A0]">
+                        ({item?.stars}) <span>{item?.cnt}</span>
+                      </p>
+                    </div>
+                    {item?.bookprice && (
+                      <div className="">
+                        <RenderAtom
+                          item={{ value: item?.bookprice + "₮" }}
+                          renderType="currency"
+                          customClassName="text-[16px] text-[#585858] font-semibold leading-[18px] font-roboto"
+                        />
+                        {/* <p className="text-[16px] text-[#585858] font-semibold leading-[18px] font-roboto">
+              {item?.bookprice}₮
+              <span className="text-[#A0A0A0] line-through ml-1 font-normal text-[14px]">
+                {" "}
+                40,000₮
+              </span>
+            </p> */}
+                      </div>
+                    )}
+                  </div>
+                  <style>
+                    {`
+			.ant-rate-star{
+				margin-right:0px !important
+			}
+      .ant-rate {
+        font-size:16px;
+      }
+		`}
+                  </style>
+                </div>
+              );
+            })}
+          </div>
+        );
       default:
         return (
           <>

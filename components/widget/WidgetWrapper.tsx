@@ -43,7 +43,7 @@ export const WidgetWrapper = ({
     () => preparePositionAllArray(datasrc, positionConfig),
     [datasrc]
   );
-  // console.log("object positionConfig :>> ", datasrc);
+  console.log("object positionConfig :>> ", readyDatasrcTemp);
 
   const readyDatasrc = readyDatasrcTemp;
   const RenderComponent: any = useMemo(
@@ -64,7 +64,8 @@ export const WidgetWrapper = ({
   );
 
   const otherStyle = jsonParse(config.widgetnemgoo);
-  const customStyle = widgetnemgooReady?.design?.style || widgetnemgooReady?.style || {}
+  const customStyle =
+    widgetnemgooReady?.design?.style || widgetnemgooReady?.style || {};
 
   return (
     <div
@@ -73,14 +74,16 @@ export const WidgetWrapper = ({
         ${otherStyle?.sectionClassName}`}
       style={customStyle}
       attr-data={config.widgetcode}
-      attr-code={config.code}>
+      attr-code={config.code}
+    >
       <WidgetWrapperContext.Provider
         value={{
           config,
           readyDatasrc,
           widgetnemgooReady,
           positionConfig,
-        }}>
+        }}
+      >
         <RenderComponent />
       </WidgetWrapperContext.Provider>
     </div>
