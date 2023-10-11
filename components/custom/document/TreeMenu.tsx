@@ -39,9 +39,9 @@ export default function TreeMenu() {
   return (
     <>
       <BlockDiv
-        customClassName="p-0  rounded-[10px] px-2 py-2"
+        customClassName=" rounded-[10px] px-2 py-6"
         divNumber="TreeMenuDiv">
-        <h2 className="pb-3 text-xl">Шүүлт</h2>
+        <h2 className="pb-3 text-[20px] text-[#585858] font[500]">Хайлт</h2>
         <div className="h-full mt-2">
           <Search />
           <div className="overflow-y-auto p-4 rounded-[10px] shadow-xl bg-white scrollbar-thumb-gray-500 scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-700 scrollbar-thumb-rounded-full">

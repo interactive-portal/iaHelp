@@ -30,7 +30,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>ИНТЕРАКТИВ | Програм хангамж & Систем интеграцчилал </title>
+        <title>Help | Програм хангамж & Систем интеграцчилал </title>
         <meta name="description" content="Интерактив грүп" />
         <meta
           name="keywords"

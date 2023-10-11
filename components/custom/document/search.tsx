@@ -61,7 +61,7 @@ export default function Search() {
     <>
       <span className="relative">
         <>
-          <div className="w-full  shadow-xl bg-white border-gray-300 rounded-lg mb-4">
+          <div className="w-full  border bg-white border-gray-300 rounded-lg mb-4">
             <div className="relative px-2">
               <input
                 className="w-full   py-2 px-4 text-[14px]   focus:ring-0 focus:ring-gray-300 focus:outline-none border-gray-300 focus:border-gray-300 text-[#585858] opacity-60"

@@ -39,8 +39,15 @@ const TreeItem: FC<PropsTypeItem> = ({
   const handlerChange = async (e: any, item: any) => {
     e.preventDefault();
     let linkPath = item?.position1?.positionnemgoo.url;
-    router.push({ ...linkPath }, undefined, { scroll: false });
-    // console.log("onClickOther", item);
+    // router.push({ ...linkPath }, undefined, { scroll: false });
+      router.push({
+        pathname: "/category",
+        query: {
+          fparentid: item?.id,
+        },
+      }, undefined, { scroll: false })
+
+    console.log("onClickOther", linkPath);
   };
 
   return (

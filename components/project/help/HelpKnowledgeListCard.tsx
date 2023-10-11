@@ -9,12 +9,16 @@ const HelpKnowledgeListCard = () => {
   const { widgetnemgooReady, readyDatasrc } = useContext(WidgetWrapperContext);
   const { cardType, viewList } = widgetnemgooReady?.options;
 
+  console.log('cardType :>> ', cardType);
+  console.log('readyDatasrc :>> ', readyDatasrc);
+
   const cardContent = (item: any, index: number) => {
     switch (cardType) {
       case "horizantal":
         return <Horizantal item={item} index={index} />;
     }
   };
+  
 
   return (
     <div className="pl-5 pr-10 sm:pr-5 md:pr-5">
