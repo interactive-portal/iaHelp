@@ -7,7 +7,6 @@ import HelpFaq from "./helpFaq";
 
 export default function ErpFaq() {
   const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
-  console.log(widgetnemgooReady);
   const type = widgetnemgooReady?.options?.type;
 
   switch (type) {
