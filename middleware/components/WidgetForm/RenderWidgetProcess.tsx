@@ -1,12 +1,12 @@
-import { runExpression } from "@util/expression";
+import { runExpression } from "@/util/expression";
 import { Tabs } from "antd";
 import axios from "axios";
 import { FormMetaContextProvider as MetaStore } from "context/Meta/FormMetaContext";
 import _ from "lodash";
 import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
-import { jsonParse } from "util/helper";
-import { processTransform } from "util/processTransform";
+import { jsonParse } from "@/util/helper";
+import { processTransform } from "@/util/processTransform";
 import WidgetCustomRenderProcess from "../WidgetStandardProcess/WidgetCustomRenderProcess";
 import FormWrapper from "./FormWrapper";
 import Header from "./Header/Header";
@@ -96,7 +96,8 @@ const RenderWidgetProcess: FC<PropsType> = ({
         <FormWrapper
           dialog={dialog}
           title={`${processConfigState?.result?.metadataname || ""}`}
-          settings={listConfig?.otherattr}>
+          settings={listConfig?.otherattr}
+        >
           <Header
             header={header}
             processParams={processParams}
@@ -150,7 +151,8 @@ const RenderWidgetProcess: FC<PropsType> = ({
     <MetaStore
       formInitData={formDataInitDataState || {}}
       formExpression={processExpression || {}}
-      processConfig={processParams}>
+      processConfig={processParams}
+    >
       {renderTypeView()}
     </MetaStore>
   );

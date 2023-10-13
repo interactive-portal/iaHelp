@@ -1,5 +1,5 @@
-import Skeleton from "@components/common/Skeleton/Skeleton";
-import { runExpression } from "@util/expression";
+import Skeleton from "@/components/common/Skeleton/Skeleton";
+import { runExpression } from "@/util/expression";
 import { Tabs } from "antd";
 import axios from "axios";
 import { FormMetaContextProvider as MetaStore } from "context/Meta/FormMetaContext";
@@ -8,8 +8,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import { loadProcessConfig } from "lib/api-config";
-import { jsonParse } from "util/helper";
-import { processTransform } from "util/processTransform";
+import { jsonParse } from "@/util/helper";
+import { processTransform } from "@/util/processTransform";
 import WidgetCustomRenderProcess from "../WidgetStandardProcess/WidgetCustomRenderProcess";
 import FormWrapper, { FormSectionWrapper } from "./FormWrapper";
 import Header from "./Header/Header";

@@ -11,12 +11,12 @@ export default function SectionWidgetChoose({
   const widgetConfigNemgoo = widgetnemgooReady?.widget;
   const myMetaTypeId = widgetConfigNemgoo?.metatypeid || listConfig.metatypeid;
   const myActionType = widgetConfigNemgoo?.actiontype || listConfig.actiontype;
-  console.log("myMetaTypeId :>> ", myMetaTypeId);
-  return (
-    <>
-      <pre>{JSON.stringify(listConfig, null, 4)}</pre>
-    </>
-  );
+  // console.log("myMetaTypeId :>> ", myMetaTypeId);
+  // return (
+  //   <>
+  //     <pre>{JSON.stringify(listConfig, null, 4)}</pre>
+  //   </>
+  // );
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй

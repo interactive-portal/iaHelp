@@ -1,12 +1,7 @@
 import React, { FC } from "react";
-import {
-  renderKpiJson,
-  renderKpiHeaderJson,
-} from "util/helper";
+import { renderKpiJson, renderKpiHeaderJson } from "@/util/helper";
 
-
-
-import RenderAtom from "@components/common/Atom/RenderAtom";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 import Table from "./tableData";
 type PropsType = {
   dataSrc: any;

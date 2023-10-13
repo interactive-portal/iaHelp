@@ -42,7 +42,6 @@ const RenderBody = ({
         rawWidgetList={meta_bp_layout_section}
         customClassName="mb-0 flex flex-col min-h-screen"
       />
-      {/* <pre>{JSON.stringify(widgetList, null, 4)}</pre> */}
     </main>
   );
 };

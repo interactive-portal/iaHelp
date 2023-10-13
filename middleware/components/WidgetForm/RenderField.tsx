@@ -18,9 +18,9 @@ import {
   Atom_password,
   Atom_labelstring,
   Atom_range_slider_maxmin,
-} from "@components/common/Atom/Form";
-import { getRowItems, dtlToSectionDtl, isEmpty } from "util/helper";
-import RenderDetail from "@middleware/components/WidgetForm/RenderDetail";
+} from "@/components/common/Atom/Form";
+import { getRowItems, dtlToSectionDtl, isEmpty } from "@/util/helper";
+import RenderDetail from "@/middleware/components/WidgetForm/RenderDetail";
 import RenderWidgetUniversal from "../WidgetStandart/RenderWidgetUniversal";
 
 type PropsType = {

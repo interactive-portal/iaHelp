@@ -2,7 +2,7 @@ import { getDataView, getLayout } from "@/service/serverFunctions";
 // import * as Constants from "@constants/metaConstants";
 import _ from "lodash";
 import { jsonParse } from "@/util/helper";
-// import logger from "@util/logglyUtilServerBunyan";
+// import logger from "@/util/logglyUtilServerBunyan";
 
 /* ------------------- prepareWithBody ------------------ */
 //*jagaa

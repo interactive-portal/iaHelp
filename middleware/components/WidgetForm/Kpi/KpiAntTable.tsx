@@ -1,10 +1,7 @@
 import { FC } from "react";
-import {
-  renderKpiJson,
-  renderKpiHeaderJson,
-} from "util/helper";
+import { renderKpiJson, renderKpiHeaderJson } from "@/util/helper";
 import { Table } from "antd";
-import RenderAtom from "@components/common/Atom/RenderAtom";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 type PropsType = {
   dataSrc: any;
   config?: any;

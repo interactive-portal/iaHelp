@@ -2,10 +2,10 @@ import _ from "lodash";
 import { FC } from "react";
 
 import { twMerge } from "tailwind-merge";
-import { jsonParse } from "util/helper";
+import { jsonParse } from "@/util/helper";
 import SectionWidgetChoose from "./sectionWidgetChoose";
 
-// import Jaak from "@components//cloud/Project/Cozy/jaak";
+// import Jaak from "@/components//cloud/Project/Cozy/jaak";
 
 type PropsType = {
   sectionnemgoo: any;
