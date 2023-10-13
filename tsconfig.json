@@ -1,31 +1,28 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-
     "paths": {
-      "@/*": ["./*"],
-      "@/fonts": ["./styles/fonts"],
-      "@/styles": ["./styles/*"],
-      "@/config": ["./config/*"],
-      "@/components": ["./components/*"],
-      "@/utils": ["./utils/*"],
-      "@/context": ["./context/*"],
-      "@/widget": ["./components/widget/*"]
+      "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "util/preparePageListData.js"
+  ],
+  "exclude": ["node_modules", ".next"]
 }
