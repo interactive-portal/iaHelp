@@ -43,6 +43,12 @@ export async function getDataView(param: any, lang: any) {
   };
 
   const { response } = await runService("PL_MDVIEW_004", parameters, lang);
+
+  if (response?.status == "success") {
+    delete response.aggregatecolumns;
+    delete response.paging;
+    return response;
+  }
   return response;
 }
 export async function get(command: any) {
@@ -58,6 +64,9 @@ export async function postProcess(command: any, param: any) {
   };
   let { response } = await runService(command, parameters, "");
   if (response?.result) {
+    // delete response.aggregatecolumns;
+    // delete response.paging;
+    console.log("object :>> ", response);
     return response;
   }
 }

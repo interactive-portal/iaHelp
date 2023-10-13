@@ -59,7 +59,7 @@ const useCallDataview = () => {
     // console.log("--------------useCallDataview myParams", myParams);
 
     const result: any = await callApi({
-      api: `/api/get-data-v2?metaid=${myParams.metaid}&metacode=${myParams.metacode}&criteria=${myParams.criteria}&paging=${myParams.paging}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
+      api: `/api/get-data?metaid=${myParams.metaid}&metacode=${myParams.metacode}&criteria=${myParams.criteria}&paging=${myParams.paging}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
       resultConfig: resultConfig,
       event: event,
       notificationMessage: notificationMessage,

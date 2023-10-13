@@ -68,11 +68,11 @@ export default function useWidgetDataSWR({
   /*                        CALL API                        */
   /* ------------------------------------------------------ */
   // let { data, error, mutate } = useSWR(
-  //   `/api/get-data-v2?metaid=${myParams.metaid}&metacode=${myParams.metacode}&criteria=${myParams.criteria}&paging=${myParams.paging}&${dvOptions}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`
+  //   `/api/get-data?metaid=${myParams.metaid}&metacode=${myParams.metacode}&criteria=${myParams.criteria}&paging=${myParams.paging}&${dvOptions}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`
   // );
   //jagaa fixed - remove dvOptions and debug
   let { data, error, mutate } = useSWR(
-    `/api/get-data-v2?${prepareQueryString(myParams)}`
+    `/api/get-data?${prepareQueryString(myParams)}`
   );
 
   /* ------------------------------------------------------ */
