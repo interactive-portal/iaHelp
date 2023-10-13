@@ -9,7 +9,7 @@ import parseHtml from "html-react-parser";
 import fetchJson from "lib/fetchJson";
 import _ from "lodash";
 import Router from "next/router";
-import { runExpressionEndAfter } from "@/util/expression";
+// import { runExpressionEndAfter } from "@/util/expression";
 
 type PropsContextType = {
   formDataInitData?: any;
@@ -139,13 +139,7 @@ export const FormMetaContextProvider: FC<PropsType> = ({
 
     if (!Object.keys(valid).length) {
       // console.log(`formDataInitData save:: `, formdata)
-      let resExp = await runExpressionEndAfter(
-        processConfig,
-        "endAfterSave",
-        formdata,
-        processExpression,
-        setFormExternalData
-      );
+      let resExp = "";
 
       if (resExp) {
         const { data } = await axios.post(`/api/post-process`, {
