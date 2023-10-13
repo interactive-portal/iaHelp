@@ -290,32 +290,36 @@ export const WidgetUniversalWrapper = ({
   /* ------------------------------------------------------ */
   // console.log("WidgetUniversalWrapper config", config);
 
-  // const RenderComponent: any = useMemo(
-  //   () =>
-  //     dynamic(
-  //       () =>
-  //         import(
-  //           `@/components/cloud/${config.componentpath}/${config.widgetcode}`
-  //         ),
-  //       {
-  //         ssr: false,
-  //         suspense: true,
-  //         // loading: () => <></>,
-  //         // loading: () => (
-  //         //   <>
-  //         //     <div className="w-full max-w-[250px] animate-pulse">
-  //         //       <div className="h-2 rounded bg-[#fbfbfc] text-[#f3f4f6]">
-  //         //         Widget ачааааааалж байна
-  //         //       </div>
-  //         //     </div>
-  //         //   </>
-  //         // ),
-  //       }
-  //     ),
-  //   // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
-  //   // [datasrc]
-  //   []
-  // );
+  const RenderComponent: any = useMemo(
+    () =>
+      dynamic(
+        () =>
+          import(
+            `@/components/cloud/${config.componentpath}/${config.widgetcode}`
+          ),
+        {
+          // ssr: false,
+          // suspense: true,
+          // loading: () => <></>,
+          loading: () => (
+            <>
+              <div className="w-full max-w-[250px] ">
+                <div className=" rounded bg-blue-400 text-[#f3f4f6]">
+                  Widget path buruu
+                  {config.componentpath}
+                  <br />
+                  {config.widgetcode}
+                  <br />
+                </div>
+              </div>
+            </>
+          ),
+        }
+      ),
+    // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
+    // [datasrc]
+    []
+  );
 
   return (
     <WidgetWrapperContext.Provider
@@ -357,11 +361,11 @@ export const WidgetUniversalWrapper = ({
         nemgooDatasrc={nemgooDatasrc}
         isDataLoading={isDataLoading}
       >
-        {/* <RenderComponent /> */}
-        <span className="flex flex-col">
+        <RenderComponent />
+        {/* <span className="flex flex-col">
           path:{config.componentpath}
           name:{config.widgetcode}
-        </span>
+        </span> */}
 
         {/* <WidgetFold
           foldObject={widgetnemgooReady?.fold}
