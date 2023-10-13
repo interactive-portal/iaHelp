@@ -8,7 +8,9 @@ import type { GetServerSideProps } from "next";
 import { motion, AnimatePresence } from "framer-motion";
 // import Footer from "../common/footer/footer";
 // import Header from "../common/header/header";
-// import Custom404 from "@/pages/404";
+import Custom404 from "@/pages/404";
+import Navbar from "./navbar";
+import Footer from "./footer";
 
 type LayoutProps = {
   children?: any;
@@ -20,14 +22,16 @@ export default function Layout({ children }: LayoutProps) {
     enter: { opacity: 1, x: 0, y: 0 },
     exit: { opacity: 0, x: 0, y: -100 },
   };
-  // console.log("meta_bp_layout_param :>> ", children);
-  //   if (children.props.notFound) {
-  //     return (
-  //       <>
-  //         <Custom404 />
-  //       </>
-  //     );
-  //   }
+  const { props } = children;
+
+  // if (children.props.notFound) {
+  //   return (
+  //     <>
+  //       <Custom404 />
+  //     </>
+  //   );
+  // }
+
   return (
     <>
       <Head>
@@ -39,9 +43,9 @@ export default function Layout({ children }: LayoutProps) {
         />
         <link rel="icon" href="https://www.interactive.mn/images/favicon.ico" />
       </Head>
-      {/* <Header data={children?.props} /> */}
+      <Navbar options={props} />
       {children}
-      {/* <Footer data={children?.props} /> */}
+      <Footer options={props} />
     </>
   );
 }

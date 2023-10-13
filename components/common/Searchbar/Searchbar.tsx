@@ -1,25 +1,24 @@
-import { FC, memo, useEffect } from 'react'
-import cn from 'classnames'
-import s from './Searchbar.module.css'
-import { useRouter } from 'next/router'
+import { FC, memo, useEffect } from "react";
+import cn from "classnames";
+import { useRouter } from "next/router";
 
 interface Props {
-  className?: string
-  id?: string
+  className?: string;
+  id?: string;
 }
 
-const Searchbar: FC<Props> = ({ className, id = 'search' }) => {
-  const router = useRouter()
+const Searchbar: FC<Props> = ({ className, id = "search" }) => {
+  const router = useRouter();
 
   useEffect(() => {
-    router.prefetch('/search')
-  }, [router])
+    router.prefetch("/search");
+  }, [router]);
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (e.key === 'Enter') {
-      const q = e.currentTarget.value
+    if (e.key === "Enter") {
+      const q = e.currentTarget.value;
 
       router.push(
         {
@@ -28,24 +27,23 @@ const Searchbar: FC<Props> = ({ className, id = 'search' }) => {
         },
         undefined,
         { shallow: true }
-      )
+      );
     }
-  }
+  };
 
   return (
-    <div className={cn(s.root, className)}>
+    <div className={`dd`}>
       <label className="hidden" htmlFor={id}>
         Search
       </label>
       <input
         id={id}
-        className={s.input}
         placeholder="Search for products..."
         defaultValue={router.query.q}
         onKeyUp={handleKeyUp}
       />
-      <div className={s.iconContainer}>
-        <svg className={s.icon} fill="currentColor" viewBox="0 0 20 20">
+      <div>
+        <svg fill="currentColor" viewBox="0 0 20 20">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -54,7 +52,7 @@ const Searchbar: FC<Props> = ({ className, id = 'search' }) => {
         </svg>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default memo(Searchbar)
+export default memo(Searchbar);

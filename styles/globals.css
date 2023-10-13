@@ -36,3 +36,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.main {
+  min-height: calc(100vh - 220px);
+}

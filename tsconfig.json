@@ -16,14 +16,13 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"]
-      // "@/middleware/*": ["./middleware"]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "@/util/preparePageListData.js"
+    "util/preparePageListData.js"
   ],
   "exclude": ["node_modules", ".next"]
 }
