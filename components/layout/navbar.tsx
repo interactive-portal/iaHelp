@@ -36,7 +36,7 @@ export default function Navbar({ options }: NavbarProps) {
             }`
           ),
         {
-          loading: () => <span>loader</span>,
+          loading: () => <span>{headerWidget.componentpath}</span>,
         }
       ),
 

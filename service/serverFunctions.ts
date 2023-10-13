@@ -66,7 +66,6 @@ export async function postProcess(command: any, param: any) {
   if (response?.result) {
     // delete response.aggregatecolumns;
     // delete response.paging;
-    console.log("object :>> ", response);
     return response;
   }
 }
