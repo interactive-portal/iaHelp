@@ -26,14 +26,11 @@ const RenderBody = ({
   //     pageHeadMeta,
   //   });
 
-  // console.log("object :>> ", hostObject);
   if (ouchError) return "no data";
 
   const bodyDefault = masterPageNemgooConfig?.bodyDefault || {};
   const readyPagenemgoo = readyMergedPageConfig?.readyPagenemgoo;
   const widgetList = _.find(mergedPageNemgoo, { sectionCode: "body" });
-  // console.log("widgetList :>> ", widgetList.children);
-  // console.log("mergedPageNemgoo :>> ", masterPageNemgooConfig);
 
   return (
     <main className={bodyDefault?.className || "main"}>

@@ -1,5 +1,6 @@
 import _ from "lodash";
 import RenderWidgetUniversal from "./WidgetStandart/RenderWidgetUniversal";
+import WidgetNoMeta from "./WidgetStandart/WidgetNoMeta";
 
 export default function SectionWidgetChoose({
   listConfig,
@@ -15,30 +16,39 @@ export default function SectionWidgetChoose({
   // console.log("myMetaTypeId :>> ", myMetaTypeId);
 
   var itemSection = _.omit(listConfig, ["otherattr", "widgetnemgoo"]);
-  // console.log("sssss :>> ", itemSection);
   // return (
   //   <div className="h-96">
   //     <pre>{JSON.stringify(itemSection, null, 2)}</pre>
   //   </div>
   // );
 
-  return (
-    <div data-widgetName={itemSection?.widgetcode}>
-      <RenderWidgetUniversal listConfig={itemSection} />
-    </div>
-  );
+  // return (
+  //   <div
+  //     className={`${itemSection.widgetnemgooReady?.className}`}
+  //     data-wname={itemSection?.widgetcode}
+  //   >
+  //     <RenderWidgetUniversal listConfig={itemSection} />
+
+  //   </div>
+  // );
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй
-      return <RenderWidgetUniversal listConfig={itemSection} />; //belong Jargal
-    default: //belong Toogii, Ulaankhuu
       return (
         <div
-          className={`w-full h-full new item  ${
-            widgetnemgooReady?.className || ""
-          }`}
+          className={`${itemSection.widgetnemgooReady?.className}`}
+          data-wname={itemSection?.widgetcode}
         >
-          test
+          <RenderWidgetUniversal listConfig={itemSection} />
+        </div>
+      );
+    default:
+      return (
+        <div
+          className={`${itemSection.widgetnemgooReady?.className}`}
+          data-wname={itemSection?.widgetcode}
+        >
+          <WidgetNoMeta listConfig={listConfig} />
         </div>
       );
   }

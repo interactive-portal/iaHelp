@@ -20,7 +20,7 @@ export default function WidgetBlocker({
 }: {
   widgetnemgooReady: any;
   gridJsonConfig: any;
-  onReadyDatasrcSearch: any;
+  onReadyDatasrcSearch?: any;
   readyDatasrc: any;
   headerData: any;
   nemgooDatasrc: any;

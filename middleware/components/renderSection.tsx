@@ -22,22 +22,35 @@ const RenderSection: FC<PropsType> = ({
 }) => {
   if (_.isEmpty(sectionList)) return null;
 
-  const temp = sectionList.length > 1 && { gridGap: "2%" };
+  // const temp = sectionList.length > 1 && { gridGap: "2%" };
+  // const itemClassName = sectionnemgoo?.className || "";
+
+  const dataAttrs = {
+    "data-sectioncode": sectionCode,
+    sectioncode: sectionCode,
+    widgetname: _.isEmpty(sectionList)
+      ? "Process render section"
+      : sectionList[0]["widgetcode"],
+  };
+  const gridClass = sectionnemgoo?.gridClass || "";
+
+  const temp = sectionList.length > 1 && {
+    gridGap: gridClass ? "none" : "none",
+  };
   const itemClassName = sectionnemgoo?.className || "";
-  console.log("sectionnemgoo :>> ", sectionList);
+  const itemBgUrl = sectionList[0]?.widgetnemgooReady?.sectionBg || "";
+  const bgHide =
+    sectionList[0]?.widgetnemgooReady?.sectionBg?.sectionBgHide || false;
 
   return (
     <div
-      data-type="section"
-      data-code={sectionCode}
-      // {...dataAttrs}
-      data-widgetName={sectionList[0]?.widgetcode}
-      className={twMerge(
-        `w-full ${sectionList.length > 1 ? "grid grid-cols-12" : ""} ${
-          sectionnemgoo?.SectionInside?.className
-        }`
-      )}
-      style={{ ...sectionnemgoo?.style }}
+      {...dataAttrs}
+      className={`${itemClassName} sectionAnimate ${
+        itemBgUrl ? "relative" : ""
+      } ${sectionList.length > 1 ? gridClass || "grid grid-cols-12" : ""} ${
+        sectionnemgoo?.SectionInside?.className
+      }  `}
+      style={{ ...temp, ...sectionnemgoo?.style }}
     >
       {sectionList.map((sectionItem: any, index: number) => {
         return (

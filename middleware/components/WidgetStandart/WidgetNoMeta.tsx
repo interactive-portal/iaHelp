@@ -1,13 +1,12 @@
 import _ from "lodash";
 import { useRouter } from "next/router";
+import { toBoolean } from "util/helper";
 
-import DebugWidget from "@/components/cloud/Custom/Default/DebugWidget";
-import { WidgetUniversalWrapper } from "@/engineBox/Wrapper/WidgetUniversalWrapper";
-import { prepareRawUrlQueryToCriteria } from "@/engineBox/@/util/urlHelper";
-import { toBoolean } from "@/util/helper";
-import useCallExternalAPI from "../dataHook/useCallExternalAPI";
-import useCallListMetaverse from "../dataHook/useCallListMetaverse";
 import { useEffect, useState } from "react";
+import useCallExternalAPI from "@/middleware/dataHook/useCallExternalAPI";
+import useCallListMetaverse from "@/middleware/dataHook/useCallListMetaverse";
+import { prepareRawUrlQueryToCriteria } from "@/components/common/engineBox/util/urlHelper";
+import { WidgetUniversalWrapper } from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 
 const WidgetNoMeta = ({ listConfig }: { listConfig: any }) => {
   // if (_.isEmpty(listConfig)) return null;
@@ -66,25 +65,15 @@ const WidgetNoMeta = ({ listConfig }: { listConfig: any }) => {
   };
   // console.log("🚀 ~ configReady", configReady);
 
-  //jagaa - url-д layout=raw гэсэн байвал бүх widget-ийг хэвлэхгүй
-  if (router?.query?.layout === "raw") {
-    return (
-      <DebugWidget
-        listConfig={listConfig}
+  return (
+    <>
+      <WidgetUniversalWrapper
         config={configReady}
         widgetnemgooReady={widgetnemgooReady}
         datasrc={datasrc}
+        dataMutate={mutateAPI}
       />
-    );
-  }
-
-  return (
-    <WidgetUniversalWrapper
-      config={configReady}
-      widgetnemgooReady={widgetnemgooReady}
-      datasrc={datasrc}
-      dataMutate={mutateAPI}
-    />
+    </>
   );
 };
 

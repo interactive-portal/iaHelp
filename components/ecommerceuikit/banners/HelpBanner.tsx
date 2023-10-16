@@ -14,6 +14,7 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 
 const HelpBanner = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
+  console.log("readyDatasrc :>> ", readyDatasrc);
 
   const pagination: any = {
     clickable: true,

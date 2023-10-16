@@ -2,11 +2,8 @@ import _ from "lodash";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useMemo, useState } from "react";
-
 import { useSession } from "next-auth/react";
-
 import toBoolean from "@/lib/booleanFunction";
-// import useWidgetHookForm from "@/middleware/components/dataHook/useWidgetHookForm";
 import { useCloud } from "hooks/use-cloud";
 import { usePage } from "hooks/use-page";
 import { useUpdateEffect } from "react-use";
@@ -15,6 +12,7 @@ import { preparePositionAllArray } from "@/util/widgetHelper";
 import WidgetBlocker from "./WidgetBlocker";
 import WidgetFold from "./WidgetFold";
 import useWidgetHookForm from "@/middleware/dataHook/useWidgetHookForm";
+import Skeleton from "../../Skeleton/Skeleton";
 
 type PropsContextType = {
   config?: any;
@@ -153,59 +151,59 @@ export const WidgetUniversalWrapper = ({
   /*                   WIDGET ДУУДАХ ХЭСЭГ                  */
   /* ------------------------------------------------------ */
   // console.log("WidgetUniversalWrapper config", config);
-
-  // const RenderComponent: any = useMemo(
-  //   () =>
-  //     dynamic(
-  //       () =>
-  //         import(
-  //           `@/components/${config.componentpath.toLowerCase()}/${
-  //             config.widgetcode
-  //           }`
-  //         ),
-  //       {
-  //         // ssr: false,
-  //         // suspense: true,
-  //         // loading: () => <></>,
-  //         // loading: () => (
-  //         //   <>
-  //         //     <div className="w-full max-w-[250px] ">
-  //         //       <div className=" rounded bg-blue-400 text-[#f3f4f6]">
-  //         //         Widget path buruu
-  //         //         {config.componentpath}
-  //         //         <br />
-  //         //         {config.widgetcode}
-  //         //         <br />
-  //         //       </div>
-  //         //     </div>
-  //         //   </>
-  //         // ),
-  //       }
-  //     ),
-  //   // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
-  //   // [datasrc]
-  //   []
-  // );
-
-  const DynamicWidget = dynamic(
+  // .toLowerCase()
+  const RenderComponent: any = useMemo(
     () =>
-      import(
-        `@/components/${config.componentpath.toLowerCase()}/${
-          config.widgetcode
-        }`
+      dynamic(
+        () =>
+          import(
+            `@/components/${config.componentpath.toLowerCase()}/${
+              config.widgetcode
+            }`
+          ),
+        {
+          ssr: false,
+          suspense: true,
+          loading: () => (
+            <>
+              <Skeleton type="card" />
+              <div className="w-full h-[80px] ">
+                <div className=" rounded bg-blue-400 text-[#f3f4f6]">
+                  Widget path buruu
+                  {config.componentpath}
+                  <br />
+                  {config.widgetcode}
+                  <br />
+                </div>
+              </div>
+            </>
+          ),
+        }
       ),
-    {
-      loading: () => (
-        <p>
-          <span className="flex flex-col">
-            path:{config.componentpath.toLowerCase()}
-            <br />
-            name:{config.widgetcode}
-          </span>
-        </p>
-      ),
-    }
+    // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
+    // [datasrc]
+    []
   );
+
+  // const DynamicWidget = dynamic(
+  //   () =>
+  //     import(
+  //       `@/components/${config.componentpath.toLowerCase()}/${
+  //         config.widgetcode
+  //       }`
+  //     ),
+  //   {
+  //     loading: () => (
+  //       <p>
+  //         <span className="flex flex-col">
+  //           path:{config.componentpath.toLowerCase()}
+  //           <br />
+  //           name:{config.widgetcode}
+  //         </span>
+  //       </p>
+  //     ),
+  //   }
+  // );
 
   return (
     <WidgetWrapperContext.Provider
@@ -240,16 +238,15 @@ export const WidgetUniversalWrapper = ({
       {/* <WidgetBlocker
         widgetnemgooReady={widgetnemgooReady}
         gridJsonConfig={gridJsonConfig}
-        onReadyDatasrcSearch={onReadyDatasrcSearch}
+        // onReadyDatasrcSearch={}
         readyDatasrc={readyDatasrc}
         headerData={headerData}
         nemgooDatasrc={nemgooDatasrc}
         isDataLoading={isDataLoading}
-      >
-
-        {children}
-      </WidgetBlocker> */}
-      <DynamicWidget />
+      > */}
+      {children}
+      <RenderComponent />
+      {/* </WidgetBlocker> */}
     </WidgetWrapperContext.Provider>
   );
 };
