@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import WidgetWrapperContext from "@engineBox/Wrapper/WidgetUniversalWrapper";
-import RenderAtom from "@components/common/Atom/RenderAtom";
-import BlockDiv from "@components/common/Block/BlockDiv";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 const Banner4 = () => {
   const {

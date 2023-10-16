@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import WidgetWrapperContext from "@engineBox/Wrapper/WidgetUniversalWrapper";
-import BlockDiv from "@components/common/Block/BlockDiv";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation, Pagination, Autoplay } from "swiper";
 
-import { SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper";
-import { Swiper } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
-import RenderAtom from "@components/common/Atom/RenderAtom";
-import useSwiperRef from "@components/common/Atom/useSwiperRef";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import useSwiperRef from "@/components/common/Atom/useSwiperRef";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 const HelpBanner = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);

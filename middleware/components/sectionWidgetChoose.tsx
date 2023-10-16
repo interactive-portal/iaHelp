@@ -22,7 +22,11 @@ export default function SectionWidgetChoose({
   //   </div>
   // );
 
-  return <RenderWidgetUniversal listConfig={itemSection} />;
+  return (
+    <div data-widgetName={itemSection?.widgetcode}>
+      <RenderWidgetUniversal listConfig={itemSection} />
+    </div>
+  );
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй

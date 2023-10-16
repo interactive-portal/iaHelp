@@ -24,43 +24,32 @@ const RenderSection: FC<PropsType> = ({
 
   const temp = sectionList.length > 1 && { gridGap: "2%" };
   const itemClassName = sectionnemgoo?.className || "";
-  //   console.log("sectionnemgoo :>> ", sectionnemgoo);
+  console.log("sectionnemgoo :>> ", sectionList);
 
   return (
     <div
       data-type="section"
       data-code={sectionCode}
       // {...dataAttrs}
+      data-widgetName={sectionList[0]?.widgetcode}
       className={twMerge(
-        `${_.isEmpty(itemClassName) ? "w-full" : itemClassName}`
+        `w-full ${sectionList.length > 1 ? "grid grid-cols-12" : ""} ${
+          sectionnemgoo?.SectionInside?.className
+        }`
       )}
       style={{ ...sectionnemgoo?.style }}
     >
-      <div
-        className={twMerge(
-          `w-full ${sectionList.length > 1 ? "grid grid-cols-12" : ""} ${
-            sectionnemgoo?.SectionInside?.className
-          }`
-        )}
-        style={{
-          ...temp,
-          ...sectionnemgoo?.SectionInside?.style,
-        }}
-      >
-        {sectionList.map((sectionItem: any, index: number) => {
-          // console.log("sectionItem :>> ", sectionItem);
-
-          return (
-            <SectionWidgetChoose
-              listConfig={sectionItem}
-              key={sectionItem?.id || index}
-            />
-            // <span key={index} className="bg-red-400 my-6 mx-auto">
-            //   widgetcode :{sectionItem.widgetcode}
-            // </span>
-          );
-        })}
-      </div>
+      {sectionList.map((sectionItem: any, index: number) => {
+        return (
+          <SectionWidgetChoose
+            listConfig={sectionItem}
+            key={sectionItem?.id || index}
+          />
+          // <span key={index} className="bg-red-400 my-6 mx-auto">
+          //   widgetcode :{sectionItem.widgetcode}
+          // </span>
+        );
+      })}
     </div>
   );
 };

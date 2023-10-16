@@ -2,8 +2,8 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 
 import DebugWidget from "@/components/cloud/Custom/Default/DebugWidget";
-import { WidgetUniversalWrapper } from "@engineBox/Wrapper/WidgetUniversalWrapper";
-import { prepareRawUrlQueryToCriteria } from "@engineBox/@/util/urlHelper";
+import { WidgetUniversalWrapper } from "@/engineBox/Wrapper/WidgetUniversalWrapper";
+import { prepareRawUrlQueryToCriteria } from "@/engineBox/@/util/urlHelper";
 import { toBoolean } from "@/util/helper";
 import useCallExternalAPI from "../dataHook/useCallExternalAPI";
 import useCallListMetaverse from "../dataHook/useCallListMetaverse";
