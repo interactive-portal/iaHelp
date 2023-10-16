@@ -290,35 +290,57 @@ export const WidgetUniversalWrapper = ({
   /* ------------------------------------------------------ */
   // console.log("WidgetUniversalWrapper config", config);
 
-  const RenderComponent: any = useMemo(
+  // const RenderComponent: any = useMemo(
+  //   () =>
+  //     dynamic(
+  //       () =>
+  //         import(
+  //           `@/components/${config.componentpath.toLowerCase()}/${
+  //             config.widgetcode
+  //           }`
+  //         ),
+  //       {
+  //         // ssr: false,
+  //         // suspense: true,
+  //         // loading: () => <></>,
+  //         // loading: () => (
+  //         //   <>
+  //         //     <div className="w-full max-w-[250px] ">
+  //         //       <div className=" rounded bg-blue-400 text-[#f3f4f6]">
+  //         //         Widget path buruu
+  //         //         {config.componentpath}
+  //         //         <br />
+  //         //         {config.widgetcode}
+  //         //         <br />
+  //         //       </div>
+  //         //     </div>
+  //         //   </>
+  //         // ),
+  //       }
+  //     ),
+  //   // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
+  //   // [datasrc]
+  //   []
+  // );
+
+  const DynamicWidget = dynamic(
     () =>
-      dynamic(
-        () =>
-          import(
-            `@/components/cloud/${config.componentpath}/${config.widgetcode}`
-          ),
-        {
-          // ssr: false,
-          // suspense: true,
-          // loading: () => <></>,
-          loading: () => (
-            <>
-              <div className="w-full max-w-[250px] ">
-                <div className=" rounded bg-blue-400 text-[#f3f4f6]">
-                  Widget path buruu
-                  {config.componentpath}
-                  <br />
-                  {config.widgetcode}
-                  <br />
-                </div>
-              </div>
-            </>
-          ),
-        }
+      import(
+        `@/components/${config.componentpath.toLowerCase()}/${
+          config.widgetcode
+        }`
       ),
-    // [config, datasrc, widgetnemgooReady, dataMutate, paging, aggregatecolumns]
-    // [datasrc]
-    []
+    {
+      loading: () => (
+        <p>
+          {" "}
+          <span className="flex flex-col">
+            path:{config.componentpath.toLowerCase()}
+            name:{config.widgetcode}
+          </span>
+        </p>
+      ),
+    }
   );
 
   return (
@@ -361,11 +383,7 @@ export const WidgetUniversalWrapper = ({
         nemgooDatasrc={nemgooDatasrc}
         isDataLoading={isDataLoading}
       >
-        <RenderComponent />
-        {/* <span className="flex flex-col">
-          path:{config.componentpath}
-          name:{config.widgetcode}
-        </span> */}
+        <DynamicWidget />
 
         {/* <WidgetFold
           foldObject={widgetnemgooReady?.fold}
