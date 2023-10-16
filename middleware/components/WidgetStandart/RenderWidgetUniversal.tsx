@@ -14,9 +14,6 @@ export default function RenderWidgetUniversal({
 }: {
   listConfig: any;
 }) {
-  const cloudContext = useCloud();
-  const router = useRouter();
-
   /* ----------------------- consts ----------------------- */
   const widgetnemgooReady = listConfig.widgetnemgooReady;
 
@@ -39,8 +36,6 @@ export default function RenderWidgetUniversal({
           virtualWidgetnemgooReady,
         });
 
-  const themeConfigs = {};
-
   /* -------------------- config useSWR ------------------- */
 
   // const [metaConfigAll, metaConfigError, metaConfigMutate = {}] =
@@ -56,7 +51,6 @@ export default function RenderWidgetUniversal({
 
   const configReady = {
     ...listConfig,
-    // metaConfig: metaConfigAll,
     widgetnemgooReady: widgetnemgooReady,
     bpsectiondtl: _.values(listConfig.bpsectiondtl),
   };
@@ -65,7 +59,6 @@ export default function RenderWidgetUniversal({
     <WidgetUniversalWrapper
       config={configReady}
       widgetnemgooReady={virtualWidgetnemgooReady}
-      // themeConfigs={themeConfigs}
       setVirtualWidgetnemgooReady={setVirtualWidgetnemgooReady}
       datasrc={dataSrc}
       headerData={null}

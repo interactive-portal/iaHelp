@@ -9,6 +9,7 @@ import { SWRConfig } from "swr";
 import { appWithTranslation } from "next-i18next";
 import Layout from "@/components/layout";
 import { CloudStore } from "@/components/common/engineBox/Context/CloudContext";
+import RouteLoader from "@/components/routeLoader";
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -19,7 +20,7 @@ function App({ Component, pageProps }: AppProps) {
         height={5}
         // showOnShallow={true}
       />
-      <span className="bg-blue-400 col-span-12 container "></span>
+      <RouteLoader />
       <SessionProvider
         session={pageProps.session}
         // basePath="https://www.motoddd.mn/api/auth"
@@ -34,7 +35,6 @@ function App({ Component, pageProps }: AppProps) {
               fetch(resource, init).then((res) => res.json()),
           }}
         >
-          {" "}
           <CloudStore>
             <Layout>
               <Component {...pageProps} />

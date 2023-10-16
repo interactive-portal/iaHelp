@@ -1,3 +1,4 @@
+import _ from "lodash";
 import RenderWidgetUniversal from "./WidgetStandart/RenderWidgetUniversal";
 
 export default function SectionWidgetChoose({
@@ -12,56 +13,30 @@ export default function SectionWidgetChoose({
   const myMetaTypeId = widgetConfigNemgoo?.metatypeid || listConfig.metatypeid;
   const myActionType = widgetConfigNemgoo?.actiontype || listConfig.actiontype;
   // console.log("myMetaTypeId :>> ", myMetaTypeId);
+
+  var itemSection = _.omit(listConfig, ["otherattr", "widgetnemgoo"]);
+  // console.log("sssss :>> ", itemSection);
   // return (
-  //   <>
-  //     <pre>{JSON.stringify(listConfig, null, 4)}</pre>
-  //   </>
+  //   <div className="h-96">
+  //     <pre>{JSON.stringify(itemSection, null, 2)}</pre>
+  //   </div>
   // );
+
+  return <RenderWidgetUniversal listConfig={itemSection} />;
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй
-      return <RenderWidgetUniversal listConfig={listConfig} />; //belong Jargal
-    // case "200101010000011": //BusinessProcess гэсэн төрөлтэй
-    //   switch (myActionType) {
-    //     case "universalInsert":
-    //       console.log("Universal Insert ажиллаж байна. dddd");
-    //       return <WidgetInsertProcess listConfig={listConfig} />; //belong Jargal
-    //     // case "create":
-    //     //   return null;
-    //     // case "exist":
-    //     //   return null;
-    //     // case "console":
-    //     //   return null;
-    //     // case "update":
-    //     //   return null;
-    //     case "get":
-    //       return <RenderWidgetGetProcess listConfig={listConfig} />; //belong Jargal
-    //     // case "consolidate":
-
-    //     //   return null;
-    //     // case "view":
-    //     //   return (
-    //     //     <WidgetViewProcess key={item?.id || index} listConfig={sectionItem} />
-    //     //   );
-    //     // case "list":
-    //     //   return null;
-    //     // case "delete":
-    //     //   return null;
-
-    //     default: //belong Toogii, Ulaankhuu
-    //       return (
-    //         <div
-    //           className={`w-full h-full new item  ${
-    //             widgetnemgooReady?.className || ""
-    //           }`}
-    //         >
-    //           <RenderWidgetProcess
-    //             listConfig={listConfig}
-    //             headerType={widgetConfigNemgoo}
-    //           />
-    //         </div>
-    //       );
-    //   }
+      return <RenderWidgetUniversal listConfig={itemSection} />; //belong Jargal
+    default: //belong Toogii, Ulaankhuu
+      return (
+        <div
+          className={`w-full h-full new item  ${
+            widgetnemgooReady?.className || ""
+          }`}
+        >
+          test
+        </div>
+      );
   }
   //     default:
   //       //metatypeid байхгүй буюу Meta холбоогүй үед..

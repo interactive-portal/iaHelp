@@ -15,13 +15,13 @@ export default function Page(props: any) {
   return (
     <>
       <RenderBody {...props} />
+      {/* lang */}
     </>
   );
 }
 
 export async function getServerSideProps(context: any) {
   const pathname = _.join(context?.params.slug, "/");
-
   const locale = context?.locale || "mn";
   const config = {
     i18n: {

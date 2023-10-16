@@ -11,12 +11,7 @@ import { useCloud } from "hooks/use-cloud";
 import { usePage } from "hooks/use-page";
 import { useUpdateEffect } from "react-use";
 import { positionToPath, renderPositionType } from "@/util/helper";
-import {
-  prepareDefaultReady,
-  prepareDefaults,
-  preparePositionAllArray,
-  runWidgetDebug,
-} from "@/util/widgetHelper";
+import { preparePositionAllArray } from "@/util/widgetHelper";
 import WidgetBlocker from "./WidgetBlocker";
 import WidgetFold from "./WidgetFold";
 import useWidgetHookForm from "@/middleware/dataHook/useWidgetHookForm";
@@ -92,17 +87,10 @@ export const WidgetUniversalWrapper = ({
   const customerReady2 = cloudContext?.customerReady2;
   const customerReadyFull = cloudContext?.customerReadyFull;
 
-  // theme
-  const isDefaultTheme: boolean =
-    toBoolean(widgetnemgooReady?.isDefaultTheme) || false;
-  const globalThemeNemgoo = cloudContext?.masterPageNemgooConfig?.theme;
-  const globalDesignNemgoo = cloudContext?.masterPageNemgooConfig?.design;
-  const widgetDesignNemgoo = widgetnemgooReady?.design;
-
   const positionConfig = positionToPath(config.bpsectiondtl);
   const metaConfig = config?.metaConfig || {};
-  // console.log("🚀 ~ config.widgetcode:", config.widgetcode);
   const { gridJsonConfig, pathConfig } = metaConfig;
+
   const [isWorking, setIsWorking] = useState(false); //button байлаа гэхэд дарахаар ажиллаж буй төлөвт орох
   const [isDataLoading, setIsDataLoading] = useState(true); //Data авчирч буйг мэдээлэх
 
@@ -119,7 +107,6 @@ export const WidgetUniversalWrapper = ({
   /* ------------------------------------------------------ */
   /* ------------ also filernemgoo, valuenemgoo ----------- */
 
-  //datasrc - undefined байвал loading pulse харуулна.
   useEffect(() => {
     if (datasrc) {
       setIsDataLoading(false);
@@ -143,141 +130,18 @@ export const WidgetUniversalWrapper = ({
 
   //Make Filter, Search
 
-  //Widget-ийн дата-д Хайх зэргээр Filter тавьж шүүх үед ажиллана.
-  const onReadyDatasrcSearch = ({
-    pathName,
-    value,
-  }: {
-    pathName: any;
-    value: any;
-  }) => {
-    const searchedRows =
-      _.filter(readyDatasrcTemp, (item: any) => {
-        return _.includes(_.lowerCase(item?.[pathName]), _.lowerCase(value));
-      }) || [];
-    setReadyDatasrc(searchedRows);
-  };
-
-  //Widget-ийн дата-д Fold тавьж хумих үед ажиллана.
-  const onReadyDatasrcFold = ({
-    isFold = false,
-    truncateRow = 7,
-  }: {
-    isFold: boolean;
-    truncateRow: number | string;
-  }) => {
-    // console.log("ddddddd", { isFold, truncateRow });
-
-    const foldedRows = _.slice(
-      readyDatasrcTemp,
-      0,
-      isFold ? Number(truncateRow) : readyDatasrcTemp.length
-    );
-
-    // console.log("ddddddd foldedRows", foldedRows);
-
-    setReadyDatasrc((prevState: any) => {
-      // return [..._.slice(prevState, 0, 3)];
-      return [...foldedRows];
-    });
-  };
-
   /* ------------------------------------------------------ */
   /*                         GLOBAL                         */
   /* ------------------------------------------------------ */
-  //context руу Widget-ийн mutate зэрэг чухал зүйлсийг хадгална. Бусад widget тэрийг нь дуудах хэрэгцээ гарч байна.
-  const widgetId = config?.id;
-  const pageContext = usePage();
-  const widgetNemgooGlobal = widgetnemgooReady?.global || {
-    data: false,
-    dataMutate: false,
-  };
 
-  useEffect(() => {
-    if (widgetNemgooGlobal?.data) {
-      const myIndex = widgetNemgooGlobal?.indexFromReadyDatasrc
-        ? _.get(readyDatasrc, widgetNemgooGlobal?.indexFromReadyDatasrc)
-        : widgetId;
-
-      if (
-        !_.isEqual(readyDatasrc, pageContext.kkk[myIndex]?.readyDatasrc) &&
-        pageContext.kkk[myIndex]?.dataMutate === undefined &&
-        dataMutate !== undefined
-        // !_.isEqual(dataMutate, pageContext.kkk[myIndex]?.dataMutate)
-      ) {
-        pageContext.setKkk((prevState: any) => ({
-          ...prevState,
-          [myIndex]: {
-            ...pageContext.kkk[myIndex],
-            readyDatasrc: readyDatasrc || [],
-            headerData: headerData || {},
-            dataMutate: dataMutate || {},
-          },
-        }));
-      } else if (
-        !_.isEqual(readyDatasrc, pageContext.kkk[myIndex]?.readyDatasrc)
-      ) {
-        pageContext.setKkk((prevState: any) => ({
-          ...prevState,
-          [myIndex]: {
-            ...pageContext.kkk[myIndex],
-            readyDatasrc: readyDatasrc || [],
-            headerData: headerData || {},
-            dataMutate: dataMutate || {},
-          },
-        }));
-      } else if (
-        pageContext.kkk[myIndex]?.dataMutate === undefined &&
-        dataMutate !== undefined
-      ) {
-        pageContext.setKkk((prevState: any) => ({
-          ...prevState,
-          [myIndex]: {
-            ...pageContext.kkk[myIndex],
-            readyDatasrc: readyDatasrc || [],
-            headerData: headerData || {},
-            dataMutate: dataMutate || {},
-          },
-        }));
-      }
-    }
-  }, [
-    dataMutate,
-    readyDatasrc,
-    headerData,
-    session?.readyProfile?.profileLastReady,
-  ]);
-
-  /* ------------------------------------------------------ */
-  /*                      NEMGOODATASRC                     */
-  /* ------------------------------------------------------ */
-  // const nemgooDatasrc = (widgetnemgooReady?.data || []).map((item: any) => {
-  //   return preparePositions(item, positionConfig);
-  // });
   const nemgooDatasrc = preparePositionAllArray(
     widgetnemgooReady?.data,
     positionConfig
   );
 
-  //
-
   /* ------------------------------------------------------ */
-  /*                DEBUG-ТАЙ ХОЛБООТОЙ ХЭСЭГ               */
-  /* ------------------------------------------------------ */
-
-  runWidgetDebug(widgetnemgooReady, config, readyDatasrc);
-
-  /* ------------------------------------------------------ */
-  /*            DEFAULT VALUE-ТАЙ ХОЛБООТОЙ ХЭСЭГ           */
-  /* ------------------------------------------------------ */
-  const defaultValue = prepareDefaults(widgetnemgooReady, router);
-  const defaultReady = prepareDefaultReady(widgetnemgooReady, router);
-
-  /* ------------------------------------------------------ */
-  /*               RESPONSIVE ХОЛБООТОЙ ХЭСЭГ               */
-  /* ------------------------------------------------------ */
-  // const [isOpen, setIsOpen] = useState<boolean>(true);
-  // const responsiveNemgoo = widgetnemgooReady?.responsive || {};
+  // const defaultValue = prepareDefaults(widgetnemgooReady, router);
+  // const defaultReady = prepareDefaultReady(widgetnemgooReady, router);
 
   /* ------------------------------------------------------ */
   /*               HOOKFORM БОЛОВСРУУЛАХ ХЭСЭГ              */
@@ -333,9 +197,9 @@ export const WidgetUniversalWrapper = ({
     {
       loading: () => (
         <p>
-          {" "}
           <span className="flex flex-col">
             path:{config.componentpath.toLowerCase()}
+            <br />
             name:{config.widgetcode}
           </span>
         </p>
@@ -357,9 +221,8 @@ export const WidgetUniversalWrapper = ({
         themeConfigs,
         paging,
         aggregatecolumns,
-        defaultValue,
-        defaultReady,
-        onReadyDatasrcSearch,
+        // defaultValue,
+        // defaultReady,
         dataMutate,
         widgetnemgooReady,
         setVirtualWidgetnemgooReady,
@@ -374,7 +237,7 @@ export const WidgetUniversalWrapper = ({
         infinite,
       }}
     >
-      <WidgetBlocker
+      {/* <WidgetBlocker
         widgetnemgooReady={widgetnemgooReady}
         gridJsonConfig={gridJsonConfig}
         onReadyDatasrcSearch={onReadyDatasrcSearch}
@@ -383,14 +246,10 @@ export const WidgetUniversalWrapper = ({
         nemgooDatasrc={nemgooDatasrc}
         isDataLoading={isDataLoading}
       >
-        <DynamicWidget />
 
-        {/* <WidgetFold
-          foldObject={widgetnemgooReady?.fold}
-          onReadyDatasrcFold={onReadyDatasrcFold}
-        /> */}
         {children}
-      </WidgetBlocker>
+      </WidgetBlocker> */}
+      <DynamicWidget />
     </WidgetWrapperContext.Provider>
   );
 };

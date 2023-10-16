@@ -49,6 +49,7 @@ const RenderSection: FC<PropsType> = ({
       >
         {sectionList.map((sectionItem: any, index: number) => {
           // console.log("sectionItem :>> ", sectionItem);
+
           return (
             <SectionWidgetChoose
               listConfig={sectionItem}
