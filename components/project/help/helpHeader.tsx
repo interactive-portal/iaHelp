@@ -74,7 +74,7 @@ export default function HelpComment() {
 
   return (
     <>
-      <div className=" w-full fixeds " style={{ background: "#fff" }}>
+      <div className=" w-full fixed z-50" style={{ background: "#fff" }}>
         <div
           className=" w-full mx-auto  md:px-10 xs:px-2"
           style={{ background: "#fff" }}
