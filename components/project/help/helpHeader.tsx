@@ -6,6 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useContext, useState } from "react";
 import { useToggle } from "react-use";
+import MegaHelpMenu from "@/components/custom/menu/MegaHelpMenu";
+import HelpTopMenu from "@/components/custom/menu/helpTopMenu";
+import HelpSearch from "./helpSearch";
 
 type PropsType = {
   data?: any;
@@ -21,7 +24,6 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
   const { widgetnemgooReady } = options || {};
 
   // console.log("data :>> ", data);
-  // console.log("widgetnemgooReady :>> ", widgetnemgooReady);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
@@ -90,18 +92,17 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
               />
               <div className=" py-1 justify-between flex items-center mx-auto md:px-10 xs:px-2">
                 <div className="h-full flex items-center gap-4">
-                  {/* <MegaHelpMenu
+                  <MegaHelpMenu
                     color={widgetnemgooReady?.HeaderTitle?.className}
-                    menuItem={readyDatasrc}
+                    menuItem={data || []}
                   />
-
-                  <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
-                  top menu
+                  <HelpTopMenu Menu={widgetnemgooReady?.Menu} />
+                  {/* top menu */}
                 </div>
               </div>
             </div>
             <div className="hidden md:flex items-center gap-10  w-full xl:w-2/5 justify-end ">
-              {/* <HelpSearch /> */} search
+              <HelpSearch />
               {/* <div className="flex items-center ">
                 <div className="xs:block lg:hidden">
                   <RenderAtom
@@ -269,11 +270,11 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                 </div>
                 <div className="py-1 justify-between items-center mx-2">
                   <div className="items-center gap-4">
-                    {/* <MegaHelpMenu
+                    <MegaHelpMenu
                       color={widgetnemgooReady?.HeaderTitle?.className}
-                      menuItem={readyDatasrc}
+                      menuItem={data || []}
                     />
-                    <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
+                    <HelpTopMenu Menu={widgetnemgooReady?.Menu} />
                   </div>
                 </div>
 

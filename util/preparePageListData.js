@@ -155,7 +155,7 @@ export default async function preparePageListData({ pageid, hostObject }) {
   //ERP-аас тухайн Page Layout-ийн бүх тохиргоо ирнэ. Том JSON байгаа.
 
   const thisPageConfig = (
-    await getLayout("eShoplayoutHdr_004_cozy", {
+    await getLayout("layoutHdr_004_cozy", {
       filtermetadataid: pageid || "",
       filterdomain: hostObject?.pageDomain,
       filterslug: hostObject?.pageSlug,

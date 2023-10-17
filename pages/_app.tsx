@@ -10,6 +10,9 @@ import { appWithTranslation } from "next-i18next";
 import Layout from "@/components/layout";
 import { CloudStore } from "@/components/common/engineBox/Context/CloudContext";
 import RouteLoader from "@/components/routeLoader";
+import "public/icon/css/all.css";
+import "styles/globals.css";
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -20,7 +23,7 @@ function App({ Component, pageProps }: AppProps) {
         height={5}
         // showOnShallow={true}
       />
-      <RouteLoader />
+      {/* <RouteLoader /> */}
       <SessionProvider
         session={pageProps.session}
         // basePath="https://www.motoddd.mn/api/auth"

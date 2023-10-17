@@ -1,5 +1,6 @@
 import _ from "lodash";
 import RenderSection from "./renderSection";
+import { twMerge } from "tailwind-merge";
 
 const RenderSections = ({
   mergedLayout = [],
@@ -16,9 +17,7 @@ const RenderSections = ({
   processSection?: any;
   sectionNemgoo?: any;
 }) => {
-  function twMerge(arg0: string): string | undefined {
-    throw new Error("Function not implemented.");
-  }
+  //  const twMerge: (...classLists: import("./tw-join").ClassNameValue[]) => string;
 
   return (
     <div

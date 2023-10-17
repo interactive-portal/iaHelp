@@ -5,7 +5,7 @@ import { inherit } from "tailwindcss/colors";
 import BlockDiv from "../Block/BlockDiv";
 // import BlockDiv from "@/Block/BlockDiv";
 
-export default function AtomTitleV2({
+export default function AtomTitle({
   item,
   color = "cozy",
   theme,

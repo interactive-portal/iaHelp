@@ -13,6 +13,10 @@ import _ from "lodash";
 import useResponsiveBreakpoint from "@/hooks/custom/useResponsiveBreakpoint";
 import { getColorTailwind, toBoolean } from "../engineBox/util/atomHelper";
 import RenderAtomPosition from "./RenderAtomPosition";
+import AtomLink from "@/components/common/Atom/atomLink";
+import AtomLabel from "@/components/common/Atom/atomLabel";
+import AtomSpin from "@/components/common/Atom/atomSpin";
+import AtomTooltip from "@/components/common/Atom/atomTooltip";
 
 export default function RenderAtom({
   item,
@@ -187,7 +191,9 @@ export default function RenderAtom({
   };
 
   const atomList: any = {
-    title: "AtomTitleV2",
+    title: "atomTitle",
+    text: "atomText",
+    image: "atomImage",
   };
 
   const RenderComponent = useMemo(
@@ -242,7 +248,30 @@ export default function RenderAtom({
   };
 
   return (
-    <>renderAtom nemeh</>
+    // <>renderAtom nemeh</>
+    <>
+      {/* <>{atom?.type}</> */}
+      <AtomLabel label={positionnemgoo?.label || label}>
+        <AtomSpin
+          spinning={isAtomWorking || pageLoading}
+          delay={0}
+          tip=""
+          indicator="default"
+        >
+          <AtomLink
+            url={positionnemgoo?.url || url}
+            color={atomProps?.color}
+            isPageLoadingShow={isPageLoadingShow}
+            setPageLoading={setPageLoading}
+          >
+            <AtomTooltip item={positionnemgoo?.tooltip || tooltip}>
+              {RenderComponentWithFallback(atomProps, children)}
+            </AtomTooltip>
+          </AtomLink>
+        </AtomSpin>
+      </AtomLabel>
+    </>
+
     // <AtomLabelV2 label={positionnemgoo?.label || label}>
     //   <AtomSpinV2
     //     spinning={isAtomWorking || pageLoading}

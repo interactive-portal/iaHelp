@@ -1,6 +1,8 @@
 import preparePageListData from "./preparePageListData";
 
 export async function preparePageObject(hostObject: any) {
+  // console.log(" hostObject?.pageSlug", hostObject);
+
   const mySlugList = hostObject?.pageSlug.split("/");
   const pageid = mySlugList.at(-2) === "pageid" ? mySlugList.at(-1) : "";
 

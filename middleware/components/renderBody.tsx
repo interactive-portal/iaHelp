@@ -34,11 +34,12 @@ const RenderBody = ({
 
   return (
     <main className={bodyDefault?.className || "main"}>
-      <RenderSections
-        mergedLayout={widgetList.children}
+      {JSON.stringify(meta_bp_layout_section)}
+      {/* <RenderSections
+        mergedLayout={widgetList?.children}
         rawWidgetList={meta_bp_layout_section}
         customClassName="h-full"
-      />
+      /> */}
     </main>
   );
 };

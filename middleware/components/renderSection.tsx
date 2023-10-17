@@ -47,7 +47,7 @@ const RenderSection: FC<PropsType> = ({
       {...dataAttrs}
       className={`${itemClassName} sectionAnimate ${
         itemBgUrl ? "relative" : ""
-      } ${sectionList.length > 1 ? gridClass || "grid grid-cols-12" : ""} ${
+      } ${sectionList.length > 1 ? gridClass || "" : ""} ${
         sectionnemgoo?.SectionInside?.className
       }  `}
       style={{ ...temp, ...sectionnemgoo?.style }}
