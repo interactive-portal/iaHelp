@@ -1,40 +1,80 @@
-// @ts-check
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: "./",
+  images: {
+    domains: ["dev.veritech.mn", "res.cloudinary.com", "localhost"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "3000",
+        pathname: "/image/**",
+      },
+    ],
+    minimumCacheTTL: 60,
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
+    disableStaticImages: true,
+  },
+
   swcMinify: true,
+  trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
   },
-  experimental: {
-    // turbo: {
-    //   rules: {
-    //     // Option format
-    //     "*.md": [
-    //       {
-    //         loader: "@mdx-js/loader",
-    //         options: {
-    //           format: "md",
-    //         },
-    //       },
-    //     ],
-    //     // Option-less format
-    //     "*.mdx": ["@mdx-js/loader"],
-    //   },
-    // },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 
-  // typedRoutes: true,
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.resolve.fallback = {
-  //       fs: false,
-  //     };
-  //   }
-
-  //   return config;
+  // experimental: {
+  //   runtime: "edge",
+  //   serverComponents: true,
+  //   swcMinifyDebugOptions: {
+  //     compress: {
+  //       defaults: true,
+  //       side_effects: false,
+  //     },
+  //   },
+  // },
+  // localePath: path.resolve("_next"),
+  experimental: {
+    turbo: {
+      loaders: {
+        // Option format
+        ".md": [
+          {
+            loader: "@mdx-js/loader",
+            options: {
+              format: "md",
+            },
+          },
+        ],
+        // Option-less format
+        ".mdx": ["@mdx-js/loader"],
+      },
+    },
+  },
+  // async headers() {
+  //   return [
+  //     {
+  //       // matching all API routes
+  //       source: "/",
+  //       headers: [
+  //         { key: "Access-Control-Allow-Origin", value: "*" },
+  //         {
+  //           key: "Access-Control-Allow-Methods",
+  //           value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+  //         },
+  //         {
+  //           key: "Access-Control-Allow-Headers",
+  //           value:
+  //             "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+  //         },
+  //       ],
+  //     },
+  //   ];
   // },
 };
 

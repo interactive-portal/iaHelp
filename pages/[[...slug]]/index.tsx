@@ -41,6 +41,8 @@ export async function getServerSideProps(context: any) {
 
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
+
+  console.log("pathname :>> ", pathname);
   //   console.log("pageObjectpageObject :>> ", pageObject);
 
   context.res.setHeader(
