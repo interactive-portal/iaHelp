@@ -14,7 +14,6 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 
 const HelpBanner = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
-  console.log("readyDatasrc :>> ", readyDatasrc);
 
   const pagination: any = {
     clickable: true,
@@ -126,8 +125,8 @@ const HelpBanner = () => {
               bottom: 10px;
               z-index: 5000;
               margin: 0 auto;
-              // transform: translate(50%, 0);
               left: 50%;
+              transform: translateX(-50px);
           }
           .swiper-slide {
               width: unset;

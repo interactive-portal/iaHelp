@@ -1,28 +1,20 @@
 import RenderAtom from "@/components/common/Atom/RenderAtom";
-import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { Modal, Popover } from "antd";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { useToggle } from "react-use";
+import { PropsType } from "./helpHeader";
 
-type PropsType = {
-  data?: any;
-  options?: any;
-};
-
-const HelpComment: FC<PropsType> = ({ data, options }) => {
+export const HelpComment: FC<PropsType> = ({ data, options }) => {
   const [loginModalShow, setLoginModalShow] = useToggle(false);
   const [signupModalShow, setSignupModalShow] = useToggle(false);
   const { data: session, status }: any = useSession();
   const URL = process.env.url;
   const logo = "/icon/helpLogo.png";
-  const { widgetnemgooReady } = options || {};
 
-  // console.log("data :>> ", data);
-  // console.log("widgetnemgooReady :>> ", widgetnemgooReady);
-
+  // console.log("readyDatasrc :>> ", widgetnemgooReady);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
 
@@ -81,21 +73,21 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
               widgetnemgooReady?.insideDiv?.className || ""
             }`}
           >
-            <div className="h-full flex items-center py-2">
-              <img
-                src={widgetnemgooReady?.siteLogo || logo}
-                className="flex items-center pl-0 h-full"
-                width={220}
-                // link={`/`} //${router.query?.detect[0]} алдаа шалгах
-              />
+            <div className="h-full flex items-center py-1">
+              {/* <AtomImage
+              item={widgetnemgooReady?.siteLogo || logo}
+              customClassName="flex items-center pl-0 h-full"
+              link={`/`} //${router.query?.detect[0]} алдаа шалгах
+            /> */}
+              Logo
               <div className=" py-1 justify-between flex items-center mx-auto md:px-10 xs:px-2">
                 <div className="h-full flex items-center gap-4">
                   {/* <MegaHelpMenu
-                    color={widgetnemgooReady?.HeaderTitle?.className}
-                    menuItem={readyDatasrc}
-                  />
+              color={widgetnemgooReady?.HeaderTitle?.className}
+              menuItem={readyDatasrc}
+            />
 
-                  <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
+            <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
                   top menu
                 </div>
               </div>
@@ -103,15 +95,15 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
             <div className="hidden md:flex items-center gap-10  w-full xl:w-2/5 justify-end ">
               {/* <HelpSearch /> */} search
               {/* <div className="flex items-center ">
-                <div className="xs:block lg:hidden">
-                  <RenderAtom
-                    item={{ value: "fa-solid fa-bars" }}
-                    renderType="icon"
-                    customClassName={""}
-                    onClick={() => setShow(!show)}
-                  />
-                </div>
-              </div> */}
+              <div className="xs:block lg:hidden">
+                <RenderAtom
+                  item={{ value: "fa-solid fa-bars" }}
+                  renderType="icon"
+                  customClassName={""}
+                  onClick={() => setShow(!show)}
+                />
+              </div>
+            </div> */}
               <div className="hidden xl:flex items-center">
                 <div className="ml-6 relative">
                   <div className="flex  gap-3 items-center relative">
@@ -168,10 +160,10 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
         footer={false}
       >
         {/* <ModalLogin
-          iscustomer={false}
-          handlerTypeEvent={handlerTypeEvent}
-          setIsModalVisible={setIsModalVisible}
-        /> */}
+              iscustomer={false}
+              handlerTypeEvent={handlerTypeEvent}
+              setIsModalVisible={setIsModalVisible}
+            /> */}
         login
       </Modal>
       {/* Login Modal */}
@@ -235,10 +227,10 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
                       {/* <AtomImage
-                        item={widgetnemgooReady?.siteLogo || logo}
-                        customClassName="h-[30px] mr-5"
-                        link={`/`}
-                      /> */}
+              item={widgetnemgooReady?.siteLogo || logo}
+              customClassName="h-[30px] mr-5"
+              link={`/`}
+            /> */}
                     </div>
                     <div
                       id="cross"
@@ -270,10 +262,10 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                 <div className="py-1 justify-between items-center mx-2">
                   <div className="items-center gap-4">
                     {/* <MegaHelpMenu
-                      color={widgetnemgooReady?.HeaderTitle?.className}
-                      menuItem={readyDatasrc}
-                    />
-                    <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
+              color={widgetnemgooReady?.HeaderTitle?.className}
+              menuItem={readyDatasrc}
+            />
+            <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
                   </div>
                 </div>
 
@@ -302,4 +294,3 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
     </>
   );
 };
-export default HelpComment;

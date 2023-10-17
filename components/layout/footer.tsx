@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import FooterDefault from "../common/default/footerDefault";
 import { json } from "stream/consumers";
+import useWidgetData from "../common/engineBox/util/useWidgetData";
 
 type FooterProps = {
   options?: any;
@@ -24,6 +25,17 @@ export default function Footer({ options }: FooterProps) {
   if (_.isEmpty(footerWidget)) {
     return <FooterDefault />;
   }
+
+  let optionsWidget = _.omit(footerWidget, [
+    "layoutnemgoo",
+    "otherattr",
+    "layouthdr",
+    "rdebugconfig",
+    "borderstyle",
+    "rdebugdata",
+    "rdebugshowposition",
+  ]);
+
   const RenderFooter: any = useMemo(
     () =>
       dynamic(
@@ -40,11 +52,12 @@ export default function Footer({ options }: FooterProps) {
 
     []
   );
+  const [dataSrc, error] = useWidgetData(optionsWidget);
 
   return (
     <>
       {/* {JSON.stringify(footerWidget.componentpath)} */}
-      <RenderFooter />
+      <RenderFooter data={dataSrc} options={optionsWidget} />
     </>
   );
 }
