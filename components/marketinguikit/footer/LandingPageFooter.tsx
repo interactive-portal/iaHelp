@@ -1,13 +1,17 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import _ from "lodash";
 import Link from "next/link";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 
-const LandingPageFooter = () => {
-  const { config, readyDatasrc, widgetnemgooReady, pathConfig } =
-    useContext(WidgetWrapperContext);
-  const otherSettings = widgetnemgooReady?.otherSettings;
+type PropsType = {
+  data?: any;
+  options?: any;
+};
+
+const LandingPageFooter: FC<PropsType> = ({ data, options }) => {
+  const readyDatasrc = data;
+  const otherSettings = options?.widgetnemgooReady?.otherSettings;
   const readyData =
     window.innerWidth < 600 ? readyDatasrc.slice(0, 1) : readyDatasrc;
   return (
