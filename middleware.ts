@@ -1,6 +1,7 @@
 import type { JWT } from "next-auth/jwt";
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { prepareHostObjectMiddleware } from "./util/middlewareHelp";
 
 export default async function middleware(
   request: NextRequest & { nextauth: { token: JWT | null } },
@@ -12,31 +13,22 @@ export default async function middleware(
     url.pathname.includes(".") || // exclude all files in the public folder
     url.pathname.startsWith("/api") || // exclude all API routes
     url.pathname.startsWith("/login") || // exclude all login
-    url.pathname.startsWith("/page") // page-ийг бас орхих хэрэгтэй.
+    url.pathname.startsWith("/category]") // page-ийг бас орхих хэрэгтэй.
   ) {
     return;
   }
 
-  if (url.pathname.startsWith(`/_sites`)) {
-    return new Response(null, { status: 404 });
-  }
-  // console.log("url :>> ", url);
-  /* ------------------------------------------------------ */
-  /*                   PREPARE HOSTOBJECT                   */
-  /* ------------------------------------------------------ */
+  const hostObjectMiddleware = await prepareHostObjectMiddleware({
+    hostname: request.headers.get("host") || "",
+    pathname: url.pathname.substring(1),
+  });
 
+  // console.log("hostObjectMiddleware :>> ", hostObjectMiddleware);
+
+  if (url.pathname.startsWith(`/404`)) {
+    return new Response("/404", { status: 404 });
+  }
+
+  url.pathname = `/${hostObjectMiddleware.toDetectPath}`;
   return NextResponse.rewrite(url);
 }
-
-// Даваад ирээд энийг шалгаад, ажиллуулах ёстой.
-
-// const staticSiteDomainList = ["cozy", "moto", "infor", "cloudnew"];
-// const staticSiteSlugList = [
-//   { slug: "product/detaaaa", query: "filterid" },
-//   { slug: "product/detaaaass", query: "filterid" },
-//   { slug: "product/detaaaassss", query: "filterid" },
-//   { slug: "product/detail", query: "id" },
-//   { slug: "products/detail11", query: "id" },
-//   { slug: "checkoutcomplete", query: "id" },
-//   { slug: "product/detasdsdaaass", query: "filterid" },
-// ];

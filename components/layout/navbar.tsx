@@ -49,7 +49,7 @@ export default function Navbar({ options }: NavbarProps) {
       dynamic(
         () =>
           import(
-            `@/components/${headerWidget.componentpath.toLowerCase()}/${
+            `@/components/${headerWidget.componentpath?.toLowerCase()}/${
               headerWidget.widgetcode
             }`
           ),
@@ -78,8 +78,8 @@ export default function Navbar({ options }: NavbarProps) {
 
   return (
     <>
-      {/* <RenderWidget data={dataSrc} options={optionsWidget} /> */}
-      <DynamicHeader />
+      <RenderWidget data={dataSrc} options={optionsWidget} />
+      {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
     </>
   );
 }

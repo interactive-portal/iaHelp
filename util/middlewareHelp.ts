@@ -1,4 +1,4 @@
-import detectChoosePathListV2 from "config/detectChoosePathListV2.json";
+import detectPathList from "config/detectPathList.json";
 
 // Main cases
 
@@ -17,7 +17,7 @@ import detectChoosePathListV2 from "config/detectChoosePathListV2.json";
 // community.veritech.mn                    → SUB | community, home
 // developer.veritech.mn/about              → SUB | developer, about
 
-export const prepareHostObjectMiddlewareV2 = async ({
+export const prepareHostObjectMiddleware = async ({
   hostname = "",
   pathname,
 }: {
@@ -25,7 +25,7 @@ export const prepareHostObjectMiddlewareV2 = async ({
   pathname: string;
 }) => {
   const defaultPageDomain =
-    process.env.HOSTOBJECTV2_DEFAULT_PAGEDOMAIN || "cloudnew";
+    process.env.HOSTOBJECTV2_DEFAULT_PAGEDOMAIN || "help";
 
   // console.log("---------------------- \n");
   // console.log("01 prepareHostObjectV2 hostname: ", hostname);
@@ -34,11 +34,10 @@ export const prepareHostObjectMiddlewareV2 = async ({
 
   if (pathname === "") pathname = "home";
 
-  const hostObjectConfig: any = detectChoosePathListV2.find(
+  const hostObjectConfig: any = detectPathList.find(
     (item: any) => item?.hostname == hostname
   );
 
-  // const rawDomain = `${hostname}/${pathname}`;
   const rawDomain = [hostname, pathname].filter((item) => item).join("/"); //хооронд /-ээр залгана. Хоосон байвал / нэмэхгүй.
   const domainType = process.env.HOSTOBJECTV2_DOMAINTYPE || "DEFAULT";
   const metaNameV2 = process.env.HOSTOBJECTV2_METANAMEV2 || "PROD";
@@ -65,7 +64,7 @@ export const prepareHostObjectMiddlewareV2 = async ({
     pageDomain,
     pageSlug,
     renderStatic,
-    toDetectPath: [pageDomain, pageSlug].join("/"),
+    toDetectPath: [pageSlug].join("/"),
   };
 
   return hostObjectMiddleware;

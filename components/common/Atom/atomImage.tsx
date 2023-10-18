@@ -51,7 +51,7 @@ export default function AtomImageV2({
   //       : metaNameV2 === "UAT"
   //       ? process.env.NEXT_PUBLIC_METAHOST_UAT_IMAGEROOTURL
   //       : process.env.NEXT_PUBLIC_METAHOST_PROD_IMAGEROOTURL;
-  const imageRootUrl = process.env.NEXT_PUBLIC_METAHOST_DEV_IMAGEROOTURL;
+  const imageRootUrl = process.env.IMAGEROOTURL || "https://dev.veritech.mn/";
 
   // const imageRootUrl =
   //   process.env?.[`NEXT_PUBLIC_METAHOST_${metaNameV2}_IMAGEROOTURL`] || "";
