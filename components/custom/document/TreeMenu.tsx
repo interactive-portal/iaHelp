@@ -1,3 +1,4 @@
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import TreeMain from "@/components/custom/tree/TreeMain";
@@ -52,6 +53,14 @@ export default function TreeMenu() {
         divNumber="TreeMenuDiv"
       >
         <div className="h-full ">
+          <RenderAtom
+            item={{ value: widgetnemgooReady?.title?.title }}
+            renderType="title"
+            customClassName={"text-[#585858] font-medium py-3 px-4"}
+            customStyle={{
+              fontSize: "20px",
+            }}
+          />
           <span className="">{/* <AtomSearch item={readyDatasrc} /> */}</span>
 
           <div className="overflow-y-auto scrollbar-thumb-gray-500 scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-700 scrollbar-thumb-rounded-full">

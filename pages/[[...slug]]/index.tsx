@@ -36,7 +36,7 @@ export async function getServerSideProps(context: any) {
     domainType: process.env.HOSTOBJECTV2_DOMAINTYPE || "DEFAULT",
     metaNameV2: process.env.HOSTOBJECTV2_METANAMEV2 || "PROD",
     pageDomain: "help", //эхний үгийг авна.
-    pageSlug: pathname, //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
+    pageSlug: pathname || "home", //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
   };
 
   //   const pageObject: any = {};

@@ -1,3 +1,4 @@
+import * as CryptoJS from "crypto-js";
 import _ from "lodash";
 
 export function parseBoolInt(str) {
