@@ -9,9 +9,10 @@ export default function prepareUrlInternal(
   // console.log("hahaha🚀 ~ hostObject:", hostObject);
   // console.log("hahaha🚀 ~ urlObject:", urlObject);
 
-  const { path = "", query = {} } = urlObject;
+  const { path = "", pathname, query = {} } = urlObject;
 
   let myPath = "";
+  let mPath = path ? path : pathname;
   let myQuery = keepQuery
     ? _.omit(
         router?.query,
@@ -22,7 +23,7 @@ export default function prepareUrlInternal(
   const domainType = hostObject?.domainType;
 
   //Энэ кодыг цаашдаа сайжруулах ёстой.
-  if (_.isEmpty(path)) {
+  if (_.isEmpty(mPath)) {
     switch (domainType) {
       case "DEFAULT":
         myPath = "/" + hostObject?.pageSlug || "";
@@ -43,13 +44,13 @@ export default function prepareUrlInternal(
     if (path.startsWith("/")) {
       switch (domainType) {
         case "DEFAULT":
-          myPath = path;
+          myPath = mPath;
           break;
         case "SUB":
-          myPath = "/" + path;
+          myPath = "/" + mPath;
           break;
         case "LOCAL":
-          myPath = "/" + hostObject?.pageDomain + path;
+          myPath = "/" + hostObject?.pageDomain + mPath;
           break;
         default:
           break;
@@ -65,15 +66,15 @@ export default function prepareUrlInternal(
     }
   }
 
-  // console.log("myPath02 :>> ", myPath);
   // console.log("hostObject", hostObject);
   // console.log("myQuery :>> ", myQuery);
   // console.log("router :>> ", router);
 
   const queryReady = _.pickBy(myQuery, _.identity); //undefined гэсэн утга байвал устгана.
+  console.log("myPath02 :>> ", myQuery);
 
   return {
-    pathname: myPath,
+    pathname: mPath,
     query: queryReady,
     // query: new URLSearchParams(queryReady).toString(),
   };

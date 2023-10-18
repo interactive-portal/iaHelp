@@ -207,7 +207,6 @@ export default function RenderAtom({
           }),
         {
           ssr: false,
-          suspense: true,
           // loading: () => <></>,
           // loading: () => (
           //   <>
@@ -247,6 +246,7 @@ export default function RenderAtom({
     }
   };
 
+  // console.log("positionnemgoo :>> ", positionnemgoo);
   return (
     // <>renderAtom nemeh</>
     <>
