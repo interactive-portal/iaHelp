@@ -18,7 +18,7 @@ export const runService = async (
   };
 
   var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json;charset=UTF-8");
+  myHeaders.append("Content-Type", "application/json");
 
   var requestOptions = {
     method: "POST",

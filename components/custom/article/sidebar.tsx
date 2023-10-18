@@ -55,8 +55,8 @@ const SideBar: FC<PropsType> = ({ options }) => {
 
   return (
     <div className="md:col-span-2 lg:col-span-3 xl:col-span-2 3xl:col-span-2  p-4 h-full">
-      <h3 className="xl:text-3xl lg:text-2xl xs:text-xl"> Хайлт</h3>
-      <div className="w-full border bg-white border-gray-300 rounded-lg mb-4">
+      <h3 className="text-[20px] text-[#585858] font-medium"> Хайлт</h3>
+      {/* <div className="w-full border bg-white border-gray-300 rounded-lg mb-4">
         <button
           type="button"
           className="flex justify-between text-gray-600 items-center pl-4 hover:text-gray-600 transition-colors duration-200 w-full py-1 cursor-pointer"
@@ -77,7 +77,7 @@ const SideBar: FC<PropsType> = ({ options }) => {
             ></path>
           </svg>
         </button>
-      </div>
+      </div> */}
       <CustomMenu
         rawDatasrc={treeReadyDatasrc}
         color="#699BF7"

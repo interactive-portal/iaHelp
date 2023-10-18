@@ -197,7 +197,7 @@ const HelpSearch: FC<PropsType> = ({
         <div className="flex items-center justify-center">
           <div className="relative w-full  bg-white  ">
             <div className="flex relative flex-col items-center justify-center bg-white py-2 rounded-[10px] z-30 bg-inherit">
-              <div className=" z-10 rounded-xl flex items-center w-full ">
+              <div className=" z-10 rounded-xl flex items-center w-full bg-gray-100">
                 <i className="fa-regular fa-magnifying-glass px-3 text-[#A0A0A0]"></i>
                 <input
                   className=" bg-gray-100 md:block rounded-[30px] focus-visible:outline-0  text-citizen-description w-full  py-2.5 text-[16px] font-bold"

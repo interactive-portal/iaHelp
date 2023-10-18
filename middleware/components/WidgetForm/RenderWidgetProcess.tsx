@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
 import { jsonParse } from "@/util/helper";
 import { processTransform } from "@/util/processTransform";
-import WidgetCustomRenderProcess from "../WidgetStandardProcess/WidgetCustomRenderProcess";
+import WidgetCustomRenderProcess from "@/components/WidgetStandartProcess/WidgetCustomRenderProcess";
 import FormWrapper from "./FormWrapper";
 import Header from "./Header/Header";
 import RenderField from "./RenderField";
@@ -44,10 +44,10 @@ const RenderWidgetProcess: FC<PropsType> = ({
     otherattr: jsonParse(listConfig?.otherattr),
   };
 
-  useEffect(() => {
-    if (!_.isEmpty(userData) || _.isNull(userData))
-      runExpressionAsync(userData);
-  }, [userData]);
+  // useEffect(() => {
+  //   if (!_.isEmpty(userData) || _.isNull(userData))
+  //     // runExpressionAsync(userData);
+  // }, [userData]);
 
   const runExpressionAsync = async (userData: any) => {
     let processParamsvar: any = {},

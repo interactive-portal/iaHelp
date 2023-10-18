@@ -73,25 +73,24 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
 
   return (
     <>
-      <div className=" w-full fixed z-50" style={{ background: "#fff" }}>
+      <div className=" w-full fixed z-50 " style={{ background: "#fff" }}>
         <div
-          className=" w-full mx-auto  md:px-10 xs:px-2"
+          className=" w-full mx-auto  md:px-10 xs:px-2 h-[90px] py-4"
           style={{ background: "#fff" }}
         >
           <div
-            className={`justify-between h-14 flex items-center  ${
+            className={`justify-between h-14 flex items-center   ${
               widgetnemgooReady?.insideDiv?.className || ""
             }`}
           >
             <div className="h-full flex items-center py-2">
-              <Link href="/">
-                <img
-                  src={widgetnemgooReady?.siteLogo || logo}
-                  className="flex items-center pl-0 h-full"
-                  width={220}
-                  // link={`/`} //${router.query?.detect[0]} алдаа шалгах
-                />
-              </Link>
+              <img
+                src={widgetnemgooReady?.siteLogo || logo}
+                className="flex items-center pl-0 h-full cursor-pointer"
+                width={220}
+                onClick={() => router.push("/")}
+                // link={`/`} //${router.query?.detect[0]} алдаа шалгах
+              />
               <div className=" py-1 justify-between flex items-center mx-auto md:px-10 xs:px-2">
                 <div className="h-full flex items-center gap-4">
                   <MegaHelpMenu
@@ -124,7 +123,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                           className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858]"
                           onClick={() =>
                             router.push(
-                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=https://help.veritech.mn`
+                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=http://localhost:3000/`
                             )
                           }
                         >
@@ -136,7 +135,14 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                       <>
                         <Popover content={useProfile} placement="bottom">
                           <div className="flex items-center cursor-pointer ">
-                            <div className="text-right pr-1 ">
+                            <RenderAtom
+                              item={{ value: session?.profileImg }}
+                              renderType="image"
+                              customClassName={
+                                "w-20 h-12 rounded-full object-cover mr-4"
+                              }
+                            />
+                            <div className="text-right pr-1 text-[#585858] font-medium">
                               <span className="p-0 m-0 inline-block te">
                                 {session?.username}
                               </span>

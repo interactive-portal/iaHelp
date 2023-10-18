@@ -32,7 +32,7 @@ export default function SectionWidgetChoose({
 
   //   </div>
   // );
-  console.log("myMetaTypeId", myMetaTypeId);
+  // console.log("myMetaTypeId", myMetaTypeId);
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй
