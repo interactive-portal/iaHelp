@@ -53,7 +53,7 @@ const TreeItem: FC<PropsTypeItem> = ({
 
   return (
     <div
-      className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative  ${customClassName}`}
+      className={`flex w-full justify-between text-gray-800 group leading-none group-hover:text-[${color}] cursor-pointer items-center relative  ${customClassName}`}
       onClick={(e) => handlerChangeEvent(e, item)}
     >
       {item.icon && (
@@ -61,16 +61,16 @@ const TreeItem: FC<PropsTypeItem> = ({
           // item={item.icon}
           item={` ${item?.icon}` || item?.profilephoto}
           color="weekly"
-          customClassName={` ml-1 fa-light w-8 hover:text-[${color}] ${
+          customClassName={` ml-1 fa-light w-8 group-hover:text-[${color}] ${
             selected ? `text-[${color}]` : "text-[#585858]"
           } `}
         />
       )}
-      <div className="w-full">
+      <div className={`w-full group-hover:text-[${color}]`}>
         <RenderAtom
           item={item?.position1}
           renderType="title"
-          customClassName={`text-sm w-full justify-start p-0 font-normal hover:text-[${color}] ${
+          customClassName={`text-sm w-full justify-start p-0 font-normal group-hover:text-[${color}] ${
             item.icon && "pl-3"
           } ${selected ? `text-[${color}] font-semibold` : "text-gray-800"}`}
         />

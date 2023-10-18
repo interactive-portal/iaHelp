@@ -45,10 +45,10 @@ const TreeMain: FC<PropsType> = ({
 
   const toggleIsOpen = (item: any, itemIndex: number) => {
     const tempArray = [...readyDatasrc];
-    // tempArray[itemIndex] = {
-    //   ...item,
-    //   isOpen: !item?.isOpen,
-    // };
+    tempArray[itemIndex] = {
+      ...item,
+      isOpen: !item?.isOpen,
+    };
     setDatasrc([...tempArray]);
 
     return null;
@@ -66,7 +66,7 @@ const TreeMain: FC<PropsType> = ({
           selectedId === renderPositionType(item, "position0", positionConfig);
         if (selectedId === item?.id) {
           if (item.children) {
-            item.isOpen = !item.isOpen;
+            item.isOpen = true;
           }
         }
         return (
@@ -111,7 +111,7 @@ const TreeMain: FC<PropsType> = ({
               }}
             />
             {!_.isEmpty(item?.children) && item?.isOpen && (
-              <span className="submenu">
+              <div className="submenu ml-6">
                 <TreeMain
                   // config={config}
                   color={color}
@@ -123,7 +123,7 @@ const TreeMain: FC<PropsType> = ({
                   onClickItem={onClickItem}
                   itemStyle={itemStyle}
                 />
-              </span>
+              </div>
             )}
           </li>
         );
