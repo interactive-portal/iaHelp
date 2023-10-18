@@ -71,7 +71,6 @@ export default function prepareUrlInternal(
   // console.log("router :>> ", router);
 
   const queryReady = _.pickBy(myQuery, _.identity); //undefined гэсэн утга байвал устгана.
-  console.log("myPath02 :>> ", myQuery);
 
   return {
     pathname: mPath,
