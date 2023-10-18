@@ -24,6 +24,7 @@ export default function Layout({ children }: LayoutProps) {
   };
   const { props } = children;
 
+  // console.log("children :>> ", props);
   // if (children.props.notFound) {
   //   return (
   //     <>
@@ -35,7 +36,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>Help </title>
+        <title>Hel ddp </title>
         <meta name="description" content="Интерактив грүп" />
         <meta
           name="keywords"

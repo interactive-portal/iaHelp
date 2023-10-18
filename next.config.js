@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -18,7 +19,9 @@ const nextConfig = {
     minimumCacheTTL: 60,
     disableStaticImages: true,
   },
-
+  compiler: {
+    // removeConsole: true,
+  },
   swcMinify: true,
   trailingSlash: true,
   typescript: {
@@ -27,6 +30,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  compress: true,
 
   // experimental: {
   //   runtime: "edge",
@@ -39,23 +43,7 @@ const nextConfig = {
   //   },
   // },
   // localePath: path.resolve("_next"),
-  experimental: {
-    turbo: {
-      loaders: {
-        // Option format
-        ".md": [
-          {
-            loader: "@mdx-js/loader",
-            options: {
-              format: "md",
-            },
-          },
-        ],
-        // Option-less format
-        ".mdx": ["@mdx-js/loader"],
-      },
-    },
-  },
+  experimental: {},
   // async headers() {
   //   return [
   //     {

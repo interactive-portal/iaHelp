@@ -39,7 +39,7 @@ function App({ Component, pageProps }: AppProps) {
           }}
         >
           <CloudStore>
-            <Layout>
+            <Layout {...pageProps}>
               <Component {...pageProps} />
             </Layout>
           </CloudStore>

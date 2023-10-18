@@ -84,12 +84,14 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
             }`}
           >
             <div className="h-full flex items-center py-2">
-              <img
-                src={widgetnemgooReady?.siteLogo || logo}
-                className="flex items-center pl-0 h-full"
-                width={220}
-                // link={`/`} //${router.query?.detect[0]} алдаа шалгах
-              />
+              <Link href="/">
+                <img
+                  src={widgetnemgooReady?.siteLogo || logo}
+                  className="flex items-center pl-0 h-full"
+                  width={220}
+                  // link={`/`} //${router.query?.detect[0]} алдаа шалгах
+                />
+              </Link>
               <div className=" py-1 justify-between flex items-center mx-auto md:px-10 xs:px-2">
                 <div className="h-full flex items-center gap-4">
                   <MegaHelpMenu

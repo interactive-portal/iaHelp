@@ -22,6 +22,7 @@ export default function Page(props: any) {
 
 export async function getServerSideProps(context: any) {
   const pathname = _.join(context?.params.slug, "/");
+  console.log("children :>>  :>> ", context?.params);
   const locale = context?.locale || "mn";
   const config = {
     i18n: {
@@ -36,13 +37,13 @@ export async function getServerSideProps(context: any) {
     domainType: process.env.HOSTOBJECTV2_DOMAINTYPE || "DEFAULT",
     metaNameV2: process.env.HOSTOBJECTV2_METANAMEV2 || "PROD",
     pageDomain: "help", //эхний үгийг авна.
-    pageSlug: pathname, //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
+    pageSlug: pathname || "home", //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
   };
 
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
 
-  console.log("pathname :>> ", pathname);
+  // console.log("pathname :>> ", pathname);
   //   console.log("pageObjectpageObject :>> ", pageObject);
 
   context.res.setHeader(

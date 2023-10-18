@@ -19,7 +19,7 @@ export default function Navbar({ options }: NavbarProps) {
     readyMergedPageConfig,
     masterPageNemgooConfig,
     meta_bp_layout_section,
-  } = options;
+  } = options || {};
 
   let headerWidget = _.find(meta_bp_layout_section, { code: "header" }) || "";
 
@@ -33,9 +33,9 @@ export default function Navbar({ options }: NavbarProps) {
     "rdebugshowposition",
   ]);
 
-  if (_.isEmpty(headerWidget)) {
-    return <Header />;
-  }
+  // if (_.isEmpty(headerWidget)) {
+  //   return <Header />;
+  // }
 
   const widgetConfigNemgoo = optionsWidget?.widget;
   const myMetaTypeId =
@@ -61,12 +61,25 @@ export default function Navbar({ options }: NavbarProps) {
     []
   );
 
+  const DynamicHeader = dynamic(
+    () =>
+      import(
+        `@/components/${headerWidget?.componentpath?.toLowerCase()}/${
+          headerWidget.widgetcode
+        }`
+      ),
+    {
+      ssr: false,
+    }
+  );
+
   const [dataSrc, error] = useWidgetData(optionsWidget);
-  // console.log("object :>> ", optionsWidget);
+  // console.log("object :>> ", optionsWidget);ss
 
   return (
     <>
-      <RenderWidget data={dataSrc} options={optionsWidget} />
+      {/* <RenderWidget data={dataSrc} options={optionsWidget} /> */}
+      <DynamicHeader />
     </>
   );
 }
