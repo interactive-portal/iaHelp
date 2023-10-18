@@ -19,7 +19,7 @@ const RenderWidgetProcessField: FC<PropsType> = ({
     filterdomain: "help",
   })}`;
   const { data } = useSWR(
-    `/api/get-process-v2?processcode=layoutHdr_004_cozy${parameters}`
+    `/api/get-process?processcode=layoutHdr_004_cozy${parameters}`
   );
   const listConfigParse = {
     ...listConfig,

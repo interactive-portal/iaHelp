@@ -4,7 +4,7 @@ const usePostDataSWR = (comand?: any, param?: any) => {
   const parameters = `&parameters=${JSON.stringify(param)}`;
 
   let { data, error, mutate } = useSWR(
-    `/api/get-process-v2?processcode=${comand}&${parameters}`
+    `/api/get-process?processcode=${comand}&${parameters}`
   );
   /* -------------------- prepare Data -------------------- */
   let aggregatecolumns: string = "";

@@ -25,7 +25,7 @@ const useGetProcessC009 = (item: any, configName: string) => {
     error,
     mutate: dvListMutate,
   } = useSWR(
-    `/api/get-process-v2?processcode=${processCode}&parameters=${JSON.stringify(
+    `/api/get-process?processcode=${processCode}&parameters=${JSON.stringify(
       criteria
     )}`
   );

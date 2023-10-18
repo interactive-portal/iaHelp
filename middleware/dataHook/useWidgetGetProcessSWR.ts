@@ -1,4 +1,4 @@
-import { toBoolean } from "@/util/helper";
+import { jsonParse, toBoolean } from "@/util/helper";
 import { useCloud } from "hooks/use-cloud";
 import _ from "lodash";
 import { useMemo } from "react";
@@ -35,7 +35,7 @@ const useWidgetGetProcessSWR = (listConfig?: any) => {
 
   /* --------------------- Call useSWR -------------------- */
   const { data, error, mutate } = useSWR(
-    `/api/get-process-v2?command=${myParams.command}&parameter=${myParams.parameter}&debug=${myParams.debug}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`
+    `/api/get-process?command=${myParams.command}&parameters=${myParams.parameter}`
   );
 
   // console.log("🚀 ~ useWidgetGetProcessSWR ~ data:", data);

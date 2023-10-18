@@ -150,8 +150,7 @@ export const WidgetUniversalWrapper = ({
   /* ------------------------------------------------------ */
   /*                   WIDGET ДУУДАХ ХЭСЭГ                  */
   /* ------------------------------------------------------ */
-  // console.log("WidgetUniversalWrapper config", config);
-  // .toLowerCase()
+
   const RenderComponent: any = useMemo(
     () =>
       dynamic(

@@ -34,7 +34,7 @@ const useWidgetConfigSWR = ({
   };
 
   const { data, error, mutate } = useSWR(
-    `/api/get-process-v2?${prepareQueryString(myParams)}`
+    `/api/get-process?${prepareQueryString(myParams)}`
   );
 
   let dataReady = data;

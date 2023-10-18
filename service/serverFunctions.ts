@@ -31,7 +31,8 @@ export async function getProcessData(command: any, param: any) {
   let parameters = {
     ...param,
   };
-  let { response } = await runService(command, parameters, "");
+  let response = await runService(command, parameters, "");
+
   if (response?.result) {
     return response;
   }

@@ -1,6 +1,7 @@
 import _ from "lodash";
 import RenderWidgetUniversal from "./WidgetStandart/RenderWidgetUniversal";
 import WidgetNoMeta from "./WidgetStandart/WidgetNoMeta";
+import RenderWidgetGetProcess from "./WidgetStandartProcess/RenderWidgetGetProcess";
 
 export default function SectionWidgetChoose({
   listConfig,
@@ -31,6 +32,7 @@ export default function SectionWidgetChoose({
 
   //   </div>
   // );
+  console.log("myMetaTypeId", myMetaTypeId);
 
   switch (myMetaTypeId) {
     case "200101010000016": //MetaGroup гэсэн төрөлтэй
@@ -42,6 +44,15 @@ export default function SectionWidgetChoose({
           <RenderWidgetUniversal listConfig={itemSection} />
         </div>
       );
+    // case "200101010000011":
+    //   return (
+    //     <div
+    //       className={`${itemSection.widgetnemgooReady?.className}`}
+    //       data-wname={itemSection?.widgetcode}
+    //     >
+    //       <RenderWidgetGetProcess listConfig={listConfig} />
+    //     </div>
+    //   );
     default:
       return (
         <div

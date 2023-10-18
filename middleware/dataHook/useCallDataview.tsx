@@ -89,7 +89,7 @@ const useCallDataview = () => {
     // });
 
     // const result2 = await callApi({
-    //   api: `/api/get-process-v2?command=META_DATA_MOBILE_004&parameter=${parameters2}&metaName=${metaName}`,
+    //   api: `/api/get-process?command=META_DATA_MOBILE_004&parameter=${parameters2}&metaName=${metaName}`,
     //   silent: false,
     // });
 

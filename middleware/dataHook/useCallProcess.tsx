@@ -63,7 +63,7 @@ export default function useCallProcess() {
       result =
         type !== "post"
           ? await callApi({
-              api: `/api/get-process-v2?command=${myParams.command}&parameter=${myParams.parameter}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
+              api: `/api/get-process?command=${myParams.command}&parameter=${myParams.parameter}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
               resultConfig,
               event,
               notificationMessage,
@@ -71,7 +71,7 @@ export default function useCallProcess() {
               silent,
             })
           : await callApiPost({
-              api: `/api/get-process-v2?command=${myParams.command}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
+              api: `/api/get-process?command=${myParams.command}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
               resultConfig,
               event,
               notificationMessage,

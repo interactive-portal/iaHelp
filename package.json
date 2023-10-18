@@ -32,6 +32,7 @@
     "react-hook-form": "^7.47.0",
     "react-markdown": "^9.0.0",
     "react-number-format": "^5.3.1",
+    "react-qr-code": "^2.0.12",
     "react-select": "^5.7.7",
     "react-use": "^17.4.0",
     "rehype-raw": "^7.0.0",
