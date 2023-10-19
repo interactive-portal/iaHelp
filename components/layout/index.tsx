@@ -23,14 +23,14 @@ export default function Layout({ children }: LayoutProps) {
   };
   const { props } = children;
 
-  // console.log("children :>> ", props);
-  // if (children.props.notFound) {
-  //   return (
-  //     <>
-  //       <Custom404 />
-  //     </>
-  //   );
-  // }
+  // console.log("props :>> ", props);
+  if (props.notFound == true) {
+    return (
+      <>
+        <Custom404 />
+      </>
+    );
+  }
 
   return (
     <>

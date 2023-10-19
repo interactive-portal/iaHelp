@@ -44,7 +44,7 @@ const nextConfig = {
   // },
   // localePath: path.resolve("_next"),
   experimental: {
-    runtime: "edge",
+    runtime: "node",
     typedRoutes: true,
     serverComponents: true,
   },

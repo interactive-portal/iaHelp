@@ -44,15 +44,15 @@ export default function SectionWidgetChoose({
           <RenderWidgetUniversal listConfig={itemSection} />
         </div>
       );
-    // case "200101010000011":
-    //   return (
-    //     <div
-    //       className={`${itemSection.widgetnemgooReady?.className}`}
-    //       data-wname={itemSection?.widgetcode}
-    //     >
-    //       <RenderWidgetGetProcess listConfig={listConfig} />
-    //     </div>
-    //   );
+    case "200101010000011":
+      return (
+        <div
+          className={`${itemSection.widgetnemgooReady?.className}`}
+          data-wname={itemSection?.widgetcode}
+        >
+          <RenderWidgetGetProcess listConfig={listConfig} />
+        </div>
+      );
     default:
       return (
         <div

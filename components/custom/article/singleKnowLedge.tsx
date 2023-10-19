@@ -30,6 +30,7 @@ const SingleKnowLedge = () => {
     dataMutate,
   } = useContext(WidgetWrapperContext);
   const router = useRouter();
+  console.log("readyDatasrc :>> ", readyDatasrc);
   const { data: session } = useSession();
   //   const { callProcess } = useCallProcess();
   const [openEdit, setOpenEdit] = useState(false);

@@ -7,9 +7,13 @@ const getProcess = async (req: any, res: any) => {
   let parameters = jsonParse(req.query?.parameters) || "{}";
   const debug = req.query?.debug || false;
 
+  console.log("object :>> ", processcode);
+
   delete parameters.slug;
 
   const result = await getProcessData(processcode, parameters);
+
+  console.log("result :>> ", result);
 
   res.status(200).json(result);
 };
