@@ -1,5 +1,5 @@
 import { FC } from "react";
-import RenderField from "../RenderField";
+import RenderField from "@/middleware/components/WidgetForm/RenderField";
 
 type PropsType = {
   processConfig: any;

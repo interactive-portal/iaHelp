@@ -6,11 +6,10 @@ import { FC } from "react";
 import _ from "lodash";
 import type { GetServerSideProps } from "next";
 import { motion, AnimatePresence } from "framer-motion";
-// import Footer from "../common/footer/footer";
-// import Header from "../common/header/header";
+
 import Custom404 from "@/pages/404";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 type LayoutProps = {
   children?: any;

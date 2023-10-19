@@ -2,9 +2,12 @@ import { useContext } from "react";
 // import { motion } from "framer-motion";
 import { useCloud } from "hooks/use-cloud";
 import { useMemo } from "react";
-import WidgetWrapperContext from "../engineBox/Wrapper/WidgetUniversalWrapper";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import useResponsiveBreakpoint from "@/hooks/custom/useResponsiveBreakpoint";
-import { toBoolean, twMergeUtil } from "../engineBox/util/atomHelper";
+import {
+  toBoolean,
+  twMergeUtil,
+} from "@/components/common/engineBox/util/atomHelper";
 
 export default function BlockDiv({
   divNumber,

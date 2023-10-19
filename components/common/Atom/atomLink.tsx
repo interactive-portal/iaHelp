@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { twMerge } from "tailwind-merge";
 import _ from "lodash";
-
-// import { useCloudEngine } from "../../engineBox/hooks/useCloudEngine";
 import {
   toBoolean,
   twMergeUtil,
@@ -70,8 +68,11 @@ export default function AtomLinkV2({
     }
   };
 
+<<<<<<< HEAD
   // console.log("link:", urlObject);
 
+=======
+>>>>>>> 6197593fff694d5a97f3a8949b09358963a12495
   return (
     <Link
       href={urlObject}

@@ -58,10 +58,6 @@ export default function useWidgetDataSWR({
     metacode: metadatacode,
     paging: JSON.stringify(myParametersV2?.paging) || myPaging,
     criteria: JSON.stringify(myParametersV2?.criteria) || myCriteria,
-    moreRequest: undefined,
-    standard: JSON.stringify(standard),
-    customProps: JSON.stringify(customProps),
-    metaNameV2: metaNameV2,
   };
 
   /* ------------------------------------------------------ */

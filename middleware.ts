@@ -25,10 +25,14 @@ export default async function middleware(
 
   // console.log("hostObjectMiddleware :>> ", hostObjectMiddleware);
 
-  if (url.pathname.startsWith(`/404`)) {
+  if (url.pathname.startsWith("./undefined")) {
     return new Response("/404", { status: 404 });
   }
 
   url.pathname = `/${hostObjectMiddleware.toDetectPath}`;
+
+  if (url.pathname.startsWith("./undefined")) {
+    return new Response("/home", { status: 404 });
+  }
   return NextResponse.rewrite(url);
 }

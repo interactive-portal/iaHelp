@@ -10,7 +10,7 @@ export const useCloudEngine = () => {
         setMyContextState(module.default);
       })
       .catch((err) => {
-        console.log("Алдаа гарчихлөө, CloudContext олдохгүй байна.", err);
+        console.log(" CloudContext олдохгүй байна.", err);
       });
   }, []);
 

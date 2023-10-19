@@ -1,6 +1,6 @@
 import { FC } from "react";
 import RenderAtom from "../Atom/RenderAtom";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 type PropsType = {
   item?: any;

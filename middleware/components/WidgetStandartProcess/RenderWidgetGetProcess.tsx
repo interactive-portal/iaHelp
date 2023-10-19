@@ -46,16 +46,6 @@ const RenderWidgetGetProcess: FC<PropsType> = ({ listConfig }) => {
     return (
       <div>Get процессийн Meta тохиргоо дуудаж чадсангүй. Алдаа өгч байна.</div>
     );
-  if (!metaConfigAll)
-    return (
-      <RenderNotice
-        renderType="skeleton"
-        customProps={{
-          type: "SkeletonSimple",
-          title: { title: "loading getProcess metaConfig" },
-        }}
-      />
-    );
 
   //! Энийг яаралтай устгана. breadcrumb гэх мэт ашигласан ганц нэг газраа яаралтай засна.
   /* ----- 009 гэсэн кодтой процессын тусгай ажиллагаа ---- */

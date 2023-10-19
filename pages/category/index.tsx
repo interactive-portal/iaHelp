@@ -8,7 +8,6 @@ import _ from "lodash";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { preparePageObject } from "@/util/prepareDetect";
 import RenderBody from "@/middleware/components/renderBody";
-// import nextI18NextConfig from '../next-i18next.config.js'
 export default function Page(props: any) {
   const { mergedPageNemgoo } = props;
 

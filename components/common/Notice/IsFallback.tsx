@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { FC, useMemo } from "react";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 type PropsType = {
   item?: any;

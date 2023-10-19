@@ -25,7 +25,7 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -43,7 +43,11 @@ const nextConfig = {
   //   },
   // },
   // localePath: path.resolve("_next"),
-  experimental: {},
+  experimental: {
+    runtime: "edge",
+    typedRoutes: true,
+    serverComponents: true,
+  },
   // async headers() {
   //   return [
   //     {

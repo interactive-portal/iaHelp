@@ -179,22 +179,7 @@ export function prepareParametersV2(parameters) {
       ...(parameters?.paging?.sortColumnNames || tempSorting),
     },
   };
-  // console.log("prepareParametersV2 ~ myPaging", myPaging);
 
-  /* ---------------------- criteria ---------------------- */
-  //URL-аас ирж байгаа бүх query-г авах эсэх. ignoreUrlQuery гээгүй бол авахаар хийгдсэн байгаа.
-  // const urlQueryAll = !toBoolean(criteriaNemgoo?.ignoreUrlQuery || false)
-  //   ? cloudContext.cloudURL.query
-  //   : {};
-
-  //fromurl гэсэн тохиргооны дагуу авах query. ERP-аас ирнэ.
-  // const fromUrlQuery = criteriaNemgoo?.fromurl || {};
-
-  //ERP-аас цаанаас өгсөн Query-үүд
-  // const defaultQuery = criteriaNemgoo?.defaultQuery || {};
-
-  //* сүүлд нэмэгдсэн departmentId хэрвээ page-ийн тохиргоо дотор ирсэн байвал бүх meta Dataview-д тэрийг шууд хүчээр нэмнэ.
-  //* filterDepartmentId: "{departmentId}" гэсэн байдалтай байх ёстой.
   const defaultDepartmentId = {
     filterDepartmentId: _.isEmpty(cloudContext?.thisPageConfig?.departmentid)
       ? undefined

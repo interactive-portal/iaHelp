@@ -16,19 +16,18 @@ import "styles/globals.css";
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NextNProgress
+      {/* <NextNProgress
         color="#0346F2"
         startPosition={0.1}
         stopDelayMs={60}
         height={5}
         // showOnShallow={true}
-      />
-      {/* <RouteLoader /> */}
+      /> */}
+      <RouteLoader />
       <SessionProvider
         session={pageProps.session}
-        // basePath="https://www.motoddd.mn/api/auth"
         // clientMaxAge={0}
-        refetchInterval={15 * 60 * 60} //15 минут тутамд user login шалгана.
+        refetchInterval={60 * 60 * 60} //15 минут тутамд user login шалгана.
         refetchOnWindowFocus={false} //цонх focus-лах үед refetch хийх эсэх
       >
         <SWRConfig

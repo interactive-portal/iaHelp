@@ -12,7 +12,7 @@ import { preparePositionAllArray } from "@/util/widgetHelper";
 import WidgetBlocker from "./WidgetBlocker";
 import WidgetFold from "./WidgetFold";
 import useWidgetHookForm from "@/middleware/dataHook/useWidgetHookForm";
-import Skeleton from "../../Skeleton/Skeleton";
+import Skeleton from "@/components/common/Skeleton/Skeleton";
 
 type PropsContextType = {
   config?: any;

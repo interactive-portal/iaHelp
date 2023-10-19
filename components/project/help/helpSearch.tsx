@@ -33,7 +33,7 @@ const HelpSearch: FC<PropsType> = ({
 
   const getData = async () => {
     const result = await callDataview({
-      metacode: "KM_SEARCH",
+      metaid: "1681459432395324",
       criteria: {
         name: [
           {

@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { twMerge } from "tailwind-merge";
-import RenderAtom from "../../Atom/RenderAtom";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 
 export default function WidgetTitle({
   customClassName,
