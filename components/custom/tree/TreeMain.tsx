@@ -53,11 +53,14 @@ const TreeMain: FC<PropsType> = ({
 
     return null;
   };
-  // console.log("datasrc TreeeMneiu", readyDatasrc);
   // console.log("selceted", selectedId);
-  // useEffect(() => {
-  //   setDatasrc(prepareIsOpen(rawDatasrc, selectedId, positionConfig)[0] || []);
-  // }, [selectedId]);
+  useEffect(() => {
+    setDatasrc(
+      prepareIsOpen(readyDatasrc, selectedId, positionConfig)[0] || []
+    );
+  }, [selectedId]);
+
+  console.log("readyDatasrc", readyDatasrc);
 
   return (
     <ul className={`${customClassName} `} style={{ ...customStyle }}>
@@ -66,7 +69,7 @@ const TreeMain: FC<PropsType> = ({
           selectedId === renderPositionType(item, "position0", positionConfig);
         if (selectedId === item?.id) {
           if (item.children) {
-            item.isOpen = true;
+            item.isOpen = !item?.isOpen;
           }
         }
         return (
@@ -75,7 +78,7 @@ const TreeMain: FC<PropsType> = ({
             className={`relative ${
               item.icon || item?.profilephoto ? " pl-0 " : `pr-2`
             } `}
-            onClick={() => toggleIsOpen(item, index)}
+            // onClick={() => toggleIsOpen(item, index)}
           >
             {/* {item.icon && (
               // <img

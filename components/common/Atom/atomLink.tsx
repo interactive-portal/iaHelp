@@ -70,7 +70,7 @@ export default function AtomLinkV2({
     }
   };
 
-  console.log("link:", urlObject);
+  // console.log("link:", urlObject);
 
   return (
     <Link
