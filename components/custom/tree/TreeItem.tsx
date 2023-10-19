@@ -35,7 +35,7 @@ const TreeItem: FC<PropsTypeItem> = ({
   const router = useRouter();
   const handlerChangeEvent = (e: any, i: any) => {
     let linkPaths = item?.position1?.positionnemgoo.url;
-
+    onArrowClickItem(item, itemIndex);
     const path = {
       pathname: linkPaths?.path,
       query: linkPaths?.query,
@@ -44,11 +44,11 @@ const TreeItem: FC<PropsTypeItem> = ({
     // console.log("path :>> ", linkPath);
     // console.log("path :>> ", path);
     // console.log("s :>> ", i);
-    if (withChildren) {
-      onArrowClickItem(item, itemIndex);
-    } else {
-      // onClickItem(item);
-    }
+    // if (withChildren) {
+    //   onArrowClickItem(item, itemIndex);
+    // } else {
+    //   // onClickItem(item);
+    // }
   };
 
   return (

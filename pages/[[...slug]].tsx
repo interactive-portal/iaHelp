@@ -42,7 +42,7 @@ export async function getServerSideProps(context: any) {
   const hostObjectV2 = {
     domainType: process.env.HOSTOBJECTV2_DOMAINTYPE || "DEFAULT",
     metaNameV2: process.env.HOSTOBJECTV2_METANAMEV2 || "DEV",
-    pageDomain: "help", //эхний үгийг авна.
+    pageDomain: process.env.DOMAIN_NAME, //эхний үгийг авна.
     pageSlug: pathname || "home", //дараагийн үгүүдийг /-ээр нийлүүлнэ. тэгээд -neo гэснээс хойшхийг устгана.
   };
 

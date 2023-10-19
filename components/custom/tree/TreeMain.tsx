@@ -44,6 +44,7 @@ const TreeMain: FC<PropsType> = ({
   );
 
   const toggleIsOpen = (item: any, itemIndex: number) => {
+    setSelectedId(item?.id);
     const tempArray = [...readyDatasrc];
     tempArray[itemIndex] = {
       ...item,
@@ -59,8 +60,6 @@ const TreeMain: FC<PropsType> = ({
       prepareIsOpen(readyDatasrc, selectedId, positionConfig)[0] || []
     );
   }, [selectedId]);
-
-  console.log("readyDatasrc", readyDatasrc);
 
   return (
     <ul className={`${customClassName} `} style={{ ...customStyle }}>

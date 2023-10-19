@@ -61,7 +61,7 @@ const MegaHelpMenu: FC<PropsType> = ({
         // style={{ top: 16, left: -95, padding: 0 }}
         width={1120}
       >
-        <MegaMenuSub data={tree} />
+        <MegaMenuSub data={tree} setOpen={setOpen} />
       </Modal>
       <style>
         {`
