@@ -1,9 +1,9 @@
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import { message } from "antd";
 import { useForm } from "react-hook-form";
-import BlockDiv from "../common/Block/BlockDiv";
-import RenderAtom from "../common/Atom/RenderAtom";
-import AtomFormItemWrapper from "../common/Atom/HookForm/AtomFormItemWrapper";
+import BlockDiv from "@/components/common/Block/BlockDiv";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
+import AtomFormItemWrapper from "@/components/common/Atom/HookForm/AtomFormItemWrapper";
 
 export default function CommunitySingupModal({
   setLoginModalShow,

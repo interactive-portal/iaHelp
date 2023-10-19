@@ -7,7 +7,7 @@ import { FC } from "react";
 import { useCloud } from "hooks/use-cloud";
 import { jsonParse, toBoolean } from "util/helper";
 import { replaceTemplateV2 } from "util/widgetHelper";
-import WidgetUniversalWrapper from "../common/engineBox/Wrapper/WidgetUniversalWrapper";
+import WidgetUniversalWrapper from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 
 type PropsType = {
   listConfig: any;

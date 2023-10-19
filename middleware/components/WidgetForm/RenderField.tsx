@@ -21,7 +21,7 @@ import {
 } from "@/components/common/Atom/Form";
 import { getRowItems, dtlToSectionDtl, isEmpty } from "@/util/helper";
 import RenderDetail from "@/middleware/components/WidgetForm/RenderDetail";
-import RenderWidgetUniversal from "../WidgetStandart/RenderWidgetUniversal";
+import RenderWidgetUniversal from "@/middleware/components/WidgetStandart/RenderWidgetUniversal";
 
 type PropsType = {
   field: any;

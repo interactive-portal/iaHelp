@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useContext } from "react";
 import { twMergeUtil } from "@/components/common/engineBox/util/atomHelper";
 import { processCloudinaryImage } from "@/components/common/engineBox/util/imageHelper";
-import WidgetWrapperContext from "../engineBox/Wrapper/WidgetUniversalWrapper";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 
 export default function AtomImageV2({
   item,

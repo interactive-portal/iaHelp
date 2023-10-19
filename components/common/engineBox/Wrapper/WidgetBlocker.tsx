@@ -2,11 +2,10 @@ import _ from "lodash";
 
 import { Empty } from "antd";
 
-import BlockDiv from "../../Block/BlockDiv";
-import WidgetButton from "./WidgetButton";
-import WidgetSearch from "./WidgetSearch";
-import WidgetTitle from "./WidgetTitle";
-import RenderNotice from "@/components/common/Notice/RenderNotice";
+import BlockDiv from "@/components/common/Block/BlockDiv";
+import WidgetButton from "@/components/common/engineBox/Wrapper/WidgetButton";
+import WidgetSearch from "@/components/common/engineBox/Wrapper/WidgetSearch";
+import WidgetTitle from "@/components/common/engineBox/Wrapper/WidgetTitle";
 
 export default function WidgetBlocker({
   widgetnemgooReady,
@@ -79,20 +78,7 @@ export default function WidgetBlocker({
             }
             divNumber="SkeletonContainer"
           >
-            <RenderNotice
-              renderType={skeletonNemgoo?.type || "loading"}
-              props={{
-                RenderNoticeOuter: {
-                  className:
-                    "w-full h-full flex items-center justify-center pt-32",
-                },
-              }}
-              title={{ value: "Loading" }}
-              customProps={{
-                type: "1",
-              }}
-              {...skeletonNemgoo}
-            />
+            loader
           </BlockDiv>
         )}
 

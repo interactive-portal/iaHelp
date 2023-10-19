@@ -3,7 +3,7 @@ import _ from "lodash";
 import { decode } from "html-entities";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 export default function AtomTextV2({
   item,

@@ -1,4 +1,4 @@
-import AtomSlider7 from "../common/Atom/atomSlider";
+import AtomSlider7 from "@/components/common/Atom/atomSlider";
 
 export default function Banner1({
   defaultStyle = {},

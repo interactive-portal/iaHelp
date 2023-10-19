@@ -4,7 +4,10 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
-import { callLoginProcess, callLoginProcessV2 } from "./callLoginPorcessV2";
+import {
+  callLoginProcess,
+  callLoginProcessV2,
+} from "@/pages/api/auth/callLoginPorcessV2";
 // import nextauthMetaverseCustomerLogin from "./nextauthMetaverseCustomerLogin";
 // import AppleProvider from "next-auth/providers/apple";
 // import EmailProvider from "next-auth/providers/email";

@@ -1,14 +1,9 @@
-import { Suspense, useMemo } from "react";
-import Image from "next/image";
-import useSWR, { SWRConfig } from "swr";
-import { FC } from "react";
+import { useMemo } from "react";
 import _ from "lodash";
-import { motion, AnimatePresence } from "framer-motion";
 
 import dynamic from "next/dynamic";
-import FooterDefault from "../common/default/footerDefault";
-import { json } from "stream/consumers";
-import useWidgetData from "../common/engineBox/util/useWidgetData";
+import FooterDefault from "@/components/common/default/footerDefault";
+import useWidgetData from "@/components/common/engineBox/util/useWidgetData";
 
 type FooterProps = {
   options?: any;

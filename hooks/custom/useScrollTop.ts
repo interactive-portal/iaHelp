@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { toBoolean } from "../../@/util/helper";
+import { toBoolean } from "@/util/helper";
 
 const useScrollTop = (init: any = true) => {
   const [isTop, setIsTop] = useState(toBoolean(init));

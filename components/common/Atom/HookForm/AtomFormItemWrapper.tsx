@@ -2,9 +2,8 @@ import { useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Controller, useWatch } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-
-import BlockDiv from "../../Block/BlockDiv";
-import RenderAtom from "../RenderAtom";
+import BlockDiv from "@/components/common/Block/BlockDiv";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
 
 export default function AtomFormItemWrapper({
   renderType = "input",

@@ -2,8 +2,8 @@ import _ from "lodash";
 import { Controller } from "react-hook-form";
 
 import { twMerge } from "tailwind-merge";
-import { useCloudEngine } from "../../engineBox/hooks/useCloudEngine";
-import { twMergeUtil } from "../../engineBox/util/atomHelper";
+import { useCloudEngine } from "@/components/common/engineBox/hooks/useCloudEngine";
+import { twMergeUtil } from "@/components/common/engineBox/util/atomHelper";
 
 const AtomFormCheckButtonV2 = ({
   fieldName,

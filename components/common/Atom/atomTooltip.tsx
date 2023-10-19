@@ -1,6 +1,6 @@
 import { Tooltip } from "antd";
 import _ from "lodash";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 export default function AtomTooltipV2({
   item = {},

@@ -1,6 +1,5 @@
 import RenderAtom from "../Atom/RenderAtom";
-import BlockDiv from "../Block/BlockDiv";
-import { ObjectLight } from "../Types/widgetType";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 import Error500 from "./Error500";
 import ErrorNotice from "./ErrorNotice";
 import InfoNotice from "./InfoNotice";
@@ -33,7 +32,7 @@ export default function RenderNotice({
     | "error500"
     | "urgent"
     | "required";
-  title?: ObjectLight;
+  title?: "";
   className?: string;
   customClassName?: string;
   style?: any;

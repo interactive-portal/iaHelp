@@ -3,16 +3,17 @@ import { useRouter } from "next/router";
 import { ReactNode, useContext, useMemo } from "react";
 import { useToggle } from "react-use";
 
-// import { useCloudEngine } from "../engineBox/hooks/useCloudEngine";
-// import { useWidgetEngine } from "../engineBox/hooks/useWidgetEngine";
-import WidgetWrapperContext from "../engineBox/Wrapper/WidgetUniversalWrapper";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 
 // import useResponsiveBreakpoint from "@customhook/useResponsiveBreakpoint";
 import { useCloud } from "hooks/use-cloud";
 import _ from "lodash";
 import useResponsiveBreakpoint from "@/hooks/custom/useResponsiveBreakpoint";
-import { getColorTailwind, toBoolean } from "../engineBox/util/atomHelper";
-import RenderAtomPosition from "./RenderAtomPosition";
+import {
+  getColorTailwind,
+  toBoolean,
+} from "@/components/common/engineBox/util/atomHelper";
+import RenderAtomPosition from "@/components/common/Atom/RenderAtomPosition";
 import AtomLink from "@/components/common/Atom/atomLink";
 import AtomLabel from "@/components/common/Atom/atomLabel";
 import AtomSpin from "@/components/common/Atom/atomSpin";

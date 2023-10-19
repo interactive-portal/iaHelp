@@ -1,8 +1,8 @@
 import _ from "lodash";
 import { FC } from "react";
 import useSWR from "swr";
-import RenderField from "./RenderField";
-import RenderSections from "../Layout/RenderSections";
+import RenderField from "@/middleware/components/WidgetForm/RenderField";
+import RenderSections from "@/middleware/components/renderSections";
 import { jsonParse } from "@/util/helper";
 
 type PropsType = {

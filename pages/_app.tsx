@@ -26,9 +26,8 @@ function App({ Component, pageProps }: AppProps) {
       <RouteLoader />
       <SessionProvider
         session={pageProps.session}
-        // basePath="https://www.motoddd.mn/api/auth"
         // clientMaxAge={0}
-        refetchInterval={15 * 60 * 60} //15 минут тутамд user login шалгана.
+        refetchInterval={60 * 60 * 60} //15 минут тутамд user login шалгана.
         refetchOnWindowFocus={false} //цонх focus-лах үед refetch хийх эсэх
       >
         <SWRConfig

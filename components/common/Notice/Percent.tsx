@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 
 export default function Percent({
   item,

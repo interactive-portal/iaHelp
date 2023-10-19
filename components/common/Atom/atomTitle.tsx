@@ -2,7 +2,7 @@ import { decode } from "html-entities";
 import parseHtml from "html-react-parser";
 import _ from "lodash";
 import { inherit } from "tailwindcss/colors";
-import BlockDiv from "../Block/BlockDiv";
+import BlockDiv from "@/components/common/Block/BlockDiv";
 // import BlockDiv from "@/Block/BlockDiv";
 
 export default function AtomTitle({

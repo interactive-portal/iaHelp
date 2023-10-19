@@ -1,5 +1,5 @@
 import { FC } from "react";
-import RenderField from "../RenderField";
+import RenderField from "@/middleware/components/WidgetForm/RenderField";
 import { fieldHideShow } from "@/util/helper";
 
 type PropsType = {
