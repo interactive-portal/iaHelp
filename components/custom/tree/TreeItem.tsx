@@ -44,11 +44,11 @@ const TreeItem: FC<PropsTypeItem> = ({
     // console.log("path :>> ", linkPath);
     // console.log("path :>> ", path);
     // console.log("s :>> ", i);
-    // if (withChildren) {
-    //   onArrowClickItem(item, itemIndex);
-    // } else {
-    //   // onClickItem(item);
-    // }
+    if (withChildren) {
+      onArrowClickItem(item, itemIndex);
+    } else {
+      // onClickItem(item);
+    }
   };
 
   return (

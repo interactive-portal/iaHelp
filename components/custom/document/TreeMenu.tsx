@@ -4,7 +4,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import TreeMain from "@/components/custom/tree/TreeMain";
 // import { AtomSearch } from "@components/common/Atom";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { listToTree, prepareIsOpen } from "util/helper";
 
 export default function TreeMenu() {
@@ -45,6 +45,14 @@ export default function TreeMenu() {
       }
     }
   }
+
+  useEffect(() => {
+    setSelectedId(
+      router.query?.[widgetnemgooReady?.listconfig?.fieldid || "item"]
+    );
+  }, [router]);
+
+  // console.log("selectedId", selectedId);
 
   return (
     <>
