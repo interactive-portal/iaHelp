@@ -23,7 +23,7 @@ const SideBar: FC<PropsType> = ({ options }) => {
   const criteria = JSON.stringify(myCriteria);
 
   const { data: menuList } = useSWR(
-    `/api/get-data?metaid=1663726686344310&metaNameV2=${metaNameV2}&criteria=${criteria}`
+    `/api/get-data?metaid=1663726686344310&criteria=${criteria}`
   );
   const readyDatasrc: any = _.values(menuList?.result) || [];
   const widgetnemgooReady: any = options;

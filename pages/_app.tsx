@@ -16,14 +16,14 @@ import "styles/globals.css";
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NextNProgress
+      {/* <NextNProgress
         color="#0346F2"
         startPosition={0.1}
         stopDelayMs={60}
         height={5}
         // showOnShallow={true}
-      />
-      {/* <RouteLoader /> */}
+      /> */}
+      <RouteLoader />
       <SessionProvider
         session={pageProps.session}
         // basePath="https://www.motoddd.mn/api/auth"

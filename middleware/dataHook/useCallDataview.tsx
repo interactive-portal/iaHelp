@@ -59,7 +59,7 @@ const useCallDataview = () => {
     // console.log("--------------useCallDataview myParams", myParams);
 
     const result: any = await callApi({
-      api: `/api/get-data?metaid=${myParams.metaid}&metacode=${myParams.metacode}&criteria=${myParams.criteria}&paging=${myParams.paging}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
+      api: `/api/get-data?metaid=${myParams.metaid}&criteria=${myParams.criteria}&paging=${myParams.paging}`,
       resultConfig: resultConfig,
       event: event,
       notificationMessage: notificationMessage,
@@ -79,33 +79,6 @@ const useCallDataview = () => {
       resultPaging = result?.result?.paging;
       dataReady = _.values(_.omit(dataReady, ["aggregatecolumns", "paging"]));
     }
-
-    //CONFIG авчирч, position тавих ажил эхэлж байна. Дараа нь янзлах ажил гарч магадгүй.
-
-    //! Энийг түр орхиё.
-
-    // const parameters2 = JSON.stringify({
-    //   id: metaid,
-    // });
-
-    // const result2 = await callApi({
-    //   api: `/api/get-process?command=META_DATA_MOBILE_004&parameter=${parameters2}&metaName=${metaName}`,
-    //   silent: false,
-    // });
-
-    // console.log("XXXXXXXXXXXX", result2);
-
-    // const bpsectiondtl = _.values(listConfig.bpsectiondtl);
-
-    // const positionConfig = positionToPath(bpsectiondtl);
-
-    // const readyDatasrc = useMemo(
-    //   () =>
-    //     (dataReady || []).map((item: any) => {
-    //       return preparePositions(item, positionConfig);
-    //     }),
-    //   [dataReady]
-    // );
 
     setIsWorking(false);
 
