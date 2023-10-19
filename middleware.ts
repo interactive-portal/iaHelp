@@ -7,6 +7,7 @@ export default async function middleware(
   request: NextRequest & { nextauth: { token: JWT | null } },
   event: NextFetchEvent
 ) {
+  // console.log("ffffff s", request.url);
   const url = request.nextUrl.clone();
 
   if (
@@ -23,16 +24,15 @@ export default async function middleware(
     pathname: url.pathname.substring(1),
   });
 
-  // console.log("hostObjectMiddleware :>> ", hostObjectMiddleware);
-
   if (url.pathname.startsWith("./undefined")) {
     return new Response("/404", { status: 404 });
   }
 
   url.pathname = `/${hostObjectMiddleware.toDetectPath}`;
 
-  if (url.pathname.startsWith("./undefined")) {
-    return new Response("/home", { status: 404 });
+  // console.log("hostObject Middleware :>> ", url.pathname);
+  if (url.pathname.startsWith("./_next")) {
+    return NextResponse.rewrite("/home");
   }
   return NextResponse.rewrite(url);
 }

@@ -25,6 +25,20 @@ export async function getServerSideProps(context: any) {
     },
   };
 
+  // console.log("pageObjectpageObject :>> ", pathname);
+  // if (url.pathname.startsWith("./undefined")) {
+  //   return new Response("/404", { status: 404 });
+  // }
+
+  if (pathname.startsWith("_next/")) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   const hostObjectV2 = {
     domainType: process.env.HOSTOBJECTV2_DOMAINTYPE || "DEFAULT",
     metaNameV2: process.env.HOSTOBJECTV2_METANAMEV2 || "DEV",
@@ -36,7 +50,6 @@ export async function getServerSideProps(context: any) {
   const pageObject: any = await preparePageObject(hostObjectV2);
 
   // console.log("pathname :>> ", pathname);
-  console.log("pageObjectpageObject :>> ", pathname);
 
   context.res.setHeader(
     "Cache-Control",
