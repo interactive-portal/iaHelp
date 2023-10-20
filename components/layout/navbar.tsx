@@ -61,7 +61,7 @@ export default function Navbar({ options }: NavbarProps) {
     []
   );
 
-  const DynamicHeader = dynamic(
+  const DynamicHeader: any = dynamic(
     () =>
       import(
         `@/components/${headerWidget?.componentpath?.toLowerCase()}/${
@@ -78,7 +78,7 @@ export default function Navbar({ options }: NavbarProps) {
 
   return (
     <>
-      <RenderWidget data={dataSrc} options={optionsWidget} />
+      <DynamicHeader data={dataSrc} options={optionsWidget} />
       {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
     </>
   );

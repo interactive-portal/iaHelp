@@ -166,15 +166,14 @@ export const WidgetUniversalWrapper = ({
           loading: () => (
             <>
               <Skeleton type="card" />
-              <div className="w-full h-[80px] ">
+              {/* <div className="w-full h-[80px] ">
                 <div className=" rounded bg-blue-400 text-[#f3f4f6]">
-                  Widget path buruu
                   {config.componentpath}
                   <br />
                   {config.widgetcode}
                   <br />
                 </div>
-              </div>
+              </div> */}
             </>
           ),
         }
