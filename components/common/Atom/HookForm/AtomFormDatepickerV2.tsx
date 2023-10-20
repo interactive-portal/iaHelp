@@ -23,14 +23,15 @@ const AtomFormDatepickerV2 = ({
         const myValueProp = field.value ? { value: moment(field.value) } : {};
         return (
           <>
-            <DatePicker
+            date
+            {/* <DatePicker
               className="w-full z-10 border-gray-300 hover:border-gray-300/[.6]"
               {...myValueProp}
               showToday
               allowClear
               placeholder="Өдрөө сонгоно уу"
               onChange={(date, dateString) => field.onChange(dateString)}
-            />
+            /> */}
           </>
         );
       }}

@@ -9,6 +9,7 @@ const useGetProcessC009 = (item: any, configName: string) => {
   //   filterStructureId: "1446625832826", //Тогтмол дугаар
   //   filterRecordId: item?.id, //item ID
   // };
+  let config: any = {};
 
   //2022.04.08 баасан гариг
   let criteria = replaceTemplateV2(

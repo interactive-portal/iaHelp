@@ -28,9 +28,9 @@ function Faq1() {
   const ref = useRef();
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setOpenValue(false);
-      }
+      // if (ref.current && !ref.current.contains<>(event.target)) {
+      setOpenValue(false);
+      // }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -184,7 +184,7 @@ function Faq1() {
                     ></button>
                     {searchValue && openValue && (
                       <div
-                        ref={ref}
+                        data-ref={ref}
                         className="absolute top-0 max-h-[500px] w-[100%] rounded-[10px] left-0 right-0 -z-10 bg-white mt-6 overflow-hidden -thumb-gray-300 border scrollbar-track-gray-100 scrollbar-thin hover:scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full shadow pt-[45px] px-3"
                         id="searchValue"
                       >

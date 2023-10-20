@@ -30,12 +30,12 @@ export default function AtomSpinV2({
         style={label?.style}
         divNumber="AtomLabelInner"
       >
-        <ReactMarkdown
+        {/* <ReactMarkdown
           children={label?.title}
           rehypePlugins={[rehypeRaw]}
           components={{ p: React.Fragment }}
-        />
-        {/* {label?.title} */}
+        /> */}
+        {label?.title}
       </BlockDiv>
       {children}
     </BlockDiv>

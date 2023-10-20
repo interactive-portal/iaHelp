@@ -69,26 +69,7 @@ const Atom_range_slider_maxmin: FC<PropsType> = ({
         onChange={handlerChange}
         className={twMerge(`  ${className}`)}
       />
-      <NumberFormat
-        thousandsGroupStyle="thousand"
-        value={
-          typeof inputValue === "number"
-            ? inputValue
-            : getAtomValue(config, formDataInitData, processConfig, rowIndex)
-        }
-        prefix=""
-        decimalSeparator="."
-        displayType={processConfig.actiontype === "view" ? "text" : "input"}
-        type="text"
-        thousandSeparator={true}
-        allowNegative={true}
-        style={{ ...style }}
-        className={twMerge(
-          `rounded border-gray-400 focus:ring-0 focus:border-black text-center flex items-end  w-28  p-1 ${className}`
-        )}
-        fixedDecimalScale={false}
-        disabled={fieldDisableEnable(config, processExpression)}
-      />
+      <>Atom_range_slider_maxmin</>
     </div>
   );
 };

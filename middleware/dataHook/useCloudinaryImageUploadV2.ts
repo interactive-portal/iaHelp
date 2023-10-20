@@ -57,12 +57,12 @@ export default function useCloudinaryImageUploadV2() {
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         formData,
         {
-          onUploadProgress: (progressEvent) => {
-            const progress = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setUploadProgress(progress);
-          },
+          // onUploadProgress: (progressEvent) => {
+          //   const progress = Math.round(
+          //     (progressEvent.loaded * 100) / progressEvent.total
+          //   );
+          //   setUploadProgress(progress);
+          // },
           // auth: {
           //   username: apiKey,
           //   password: apiSecret,
