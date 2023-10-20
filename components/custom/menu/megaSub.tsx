@@ -8,9 +8,16 @@ type PropsType = {
   showType?: any;
   onClick?: any;
   customClass?: any;
+  setOpen?: any;
 };
 
-const MegaSub: FC<PropsType> = ({ data, showType, onClick, customClass }) => {
+const MegaSub: FC<PropsType> = ({
+  data,
+  showType,
+  onClick,
+  customClass,
+  setOpen,
+}) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
   return (
@@ -42,6 +49,7 @@ const MegaSub: FC<PropsType> = ({ data, showType, onClick, customClass }) => {
                       filterid: item?.id,
                     },
                   });
+                  setOpen;
                 }}
               >
                 {item.itemname || item?.name}
@@ -55,6 +63,7 @@ const MegaSub: FC<PropsType> = ({ data, showType, onClick, customClass }) => {
                     redirect={true}
                     customClass="py-2 leading-[16px] font-normal text-wrap hover:text-[#699BF7] "
                     menuChild={data}
+                    setOpen={setOpen}
                   />
                 );
               })}

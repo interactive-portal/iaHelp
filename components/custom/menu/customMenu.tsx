@@ -85,10 +85,6 @@ const CustomMenu: FC<PropsType> = ({
     return null;
   };
 
-  // console.log("selectedID", selectedId);
-
-  // console.log("datasrc TreeeMneiu", readyDatasrc);
-  // console.log("selceted", selectedId);
   useEffect(() => {
     setDatasrc(prepareIsOpen(rawDatasrc, selectedId)[0] || []);
   }, [selectedId]);
@@ -103,10 +99,11 @@ const CustomMenu: FC<PropsType> = ({
             item.isOpen = !item.isOpen;
           }
         }
+
         return (
           <li
             key={item?.id || index}
-            className={`relative ${
+            className={`relative font-normal text-lg ${
               item.icon || item?.profilephoto ? " pl-0 " : `pr-2`
             } `}
           >
@@ -129,7 +126,7 @@ const CustomMenu: FC<PropsType> = ({
               }}
             />
             {!_.isEmpty(item?.children) && item?.isOpen && (
-              <span className="submenu">
+              <span className="submenu relative left-4">
                 <CustomMenu
                   // config={config}
                   color={color}

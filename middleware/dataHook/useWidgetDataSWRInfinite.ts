@@ -98,7 +98,7 @@ export default function useWidgetDataSWRInfinite({
 
     console.log("🚀 ~ getKey ~ myParams:", myParams);
 
-    return `/api/get-data?${prepareQueryString(myParams)}`;
+    return `${process.env.URL}/api/get-data?${prepareQueryString(myParams)}`;
   };
 
   const { data, error, mutate, size, setSize }: any = useSWRInfinite(

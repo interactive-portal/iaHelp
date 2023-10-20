@@ -22,6 +22,8 @@ const SideBar: FC<PropsType> = ({ options }) => {
   };
   const criteria = JSON.stringify(myCriteria);
 
+  const URL = process?.env?.URL;
+
   const { data: menuList } = useSWR(
     `/api/get-data?metaid=1663726686344310&criteria=${criteria}`
   );

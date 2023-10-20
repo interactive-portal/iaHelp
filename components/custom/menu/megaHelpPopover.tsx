@@ -14,6 +14,7 @@ type PropsType = {
   activeIndex?: any;
   setActiveIndex?: any;
   index?: any;
+  setOpen?: any;
 };
 
 const MegaHelpPopover: FC<PropsType> = ({
@@ -27,6 +28,7 @@ const MegaHelpPopover: FC<PropsType> = ({
   activeIndex,
   setActiveIndex,
   index,
+  setOpen,
 }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
@@ -50,6 +52,7 @@ const MegaHelpPopover: FC<PropsType> = ({
             fparentid: data?.id,
           },
         });
+        setOpen;
       }}
     >
       {data.icon && (

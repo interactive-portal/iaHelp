@@ -4,6 +4,7 @@ import { listToTree } from "util/helper";
 import { Modal } from "antd";
 import MegaHelpPopover from "./megaHelpPopover";
 import MegaSub from "./megaSub";
+import { useRouter } from "next/router";
 
 type PropsType = {
   menuItem?: any;
@@ -18,6 +19,7 @@ const MegaHelpMenu: FC<PropsType> = ({
   menuItem,
   customClass,
 }) => {
+  const router = useRouter();
   const [show, setShow] = useState(false);
   const tree = listToTree(menuItem, "parentid");
   const [open, setOpen] = useState(false);
@@ -29,6 +31,8 @@ const MegaHelpMenu: FC<PropsType> = ({
   const onClose = () => {
     setOpen(false);
   };
+
+  router.events.on("routeChangeStart", onClose);
 
   return (
     <div className=" flex flex-col w-full h-full sm:flex md:flex">
@@ -61,7 +65,7 @@ const MegaHelpMenu: FC<PropsType> = ({
         // style={{ top: 16, left: -95, padding: 0 }}
         width={1120}
       >
-        <MegaMenuSub data={tree} setOpen={setOpen} />
+        <MegaMenuSub data={tree} setOpen={() => setOpen(false)} />
       </Modal>
       <style>
         {`
@@ -86,7 +90,7 @@ const MegaHelpMenu: FC<PropsType> = ({
   );
 };
 
-const MegaMenuSub = (data: any) => {
+const MegaMenuSub = (data: any, setOpen: any) => {
   const [menuChild, setMenuChild] = useState<any>(data?.data[0] || {});
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -111,6 +115,7 @@ const MegaMenuSub = (data: any) => {
             {data.data.map((item: any, index: any) => {
               return (
                 <MegaHelpPopover
+                  setOpen={setOpen}
                   key={item?.id || index}
                   submenu={setMenuChild}
                   setActiveIndex={setActiveIndex}
@@ -132,6 +137,7 @@ const MegaMenuSub = (data: any) => {
           }}
         >
           <MegaSub
+            setOpen={setOpen}
             data={menuChild}
             showType={false}
             customClass="py-1 opacity-2"
