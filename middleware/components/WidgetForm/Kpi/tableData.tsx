@@ -60,21 +60,9 @@ const Table: FC<PropsType> = ({ columns, data, tableOptions }) => {
     getTableBodyProps,
     headerGroups,
     rows,
-    selectedFlatRows,
     prepareRow,
-    page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    visibleColumns,
-    preGlobalFilteredRows,
-    setGlobalFilter,
-    state: { selectedRowIds, pageIndex, pageSize },
+
+    state: {},
   } = useTable(
     {
       columns,
@@ -124,8 +112,8 @@ const Table: FC<PropsType> = ({ columns, data, tableOptions }) => {
               </tr>
             ))}
           </thead>
-          <tbody className="w-full" {...getTableBodyProps()}>
-            {page.map((row: any, index) => {
+          {/* <tbody className="w-full" {...getTableBodyProps()}>
+            {page.map((row: any, index: any) => {
               // console.log("cle", row);
               prepareRow(row);
               return (
@@ -153,7 +141,7 @@ const Table: FC<PropsType> = ({ columns, data, tableOptions }) => {
                 </tr>
               );
             })}
-          </tbody>
+          </tbody> */}
         </table>
       </div>
     </>

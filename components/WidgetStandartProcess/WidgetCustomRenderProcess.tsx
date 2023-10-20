@@ -90,14 +90,7 @@ const WidgetCustomRenderProcess: FC<PropsType> = ({
   //     );
   //   }
 
-  return (
-    <WidgetUniversalWrapper
-      config={killerObj}
-      widgetnemgooReady={killerObj.widgetnemgooReady}
-      datasrc={data}
-      dataMutate=""
-    />
-  );
+  return <>custom render</>;
 };
 
 export default WidgetCustomRenderProcess;

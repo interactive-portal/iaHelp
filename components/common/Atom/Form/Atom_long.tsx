@@ -68,7 +68,8 @@ const Atom_long: FC<PropsType> = ({
               className={`far ${config.iconname} absolute w-6 h-5 text-[14px] text-center top-[7px] pl-3`}
             ></span>
           )}
-          <NumberFormat
+          <>number</>
+          {/* <NumberFormat
             thousandsGroupStyle="thousand"
             value={getAtomValue(
               config,
@@ -96,7 +97,7 @@ const Atom_long: FC<PropsType> = ({
             onValueChange={handlerChange}
             fixedDecimalScale={false}
             // disabled={fieldDisableEnable(config, processExpression)}
-          />
+          /> */}
           {config.isEmpty && <span>{config.errorText}</span>}
         </div>
       </div>

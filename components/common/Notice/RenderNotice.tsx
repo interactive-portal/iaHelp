@@ -83,19 +83,7 @@ export default function RenderNotice({
           divNumber="RenderNoticeTitleBlock"
         >
           {/* //widget-ийн isLoading дээр асуудал үүссэн тул түүхий div-ээр явав. */}
-          <div
-            className={title?.className || customProps?.title?.className}
-            style={title?.style || customProps?.title?.style}
-          >
-            {title?.value || customProps?.title?.title || ""}
-          </div>
-
-          <div
-            className={customProps?.description?.className}
-            style={customProps?.description?.style}
-          >
-            {customProps?.description?.title || ""}
-          </div>
+          <div>notice</div>
         </BlockDiv>
         <RenderComponent />
       </BlockDiv>

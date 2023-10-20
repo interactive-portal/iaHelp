@@ -94,7 +94,7 @@ const HelpSearch: FC<PropsType> = ({
     );
   };
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement | undefined>(null);
   const [openList, setOpenList] = useState(false);
 
   useEffect(() => {
@@ -193,7 +193,7 @@ const HelpSearch: FC<PropsType> = ({
 
   return (
     <>
-      <div className="w-full  my-4" ref={ref}>
+      <div className="w-full  my-4" data-ref={ref}>
         <div className="flex items-center justify-center">
           <div className="relative w-full  bg-white  ">
             <div className="flex relative flex-col items-center justify-center bg-white py-2 rounded-[10px] z-30 bg-inherit">

@@ -90,7 +90,6 @@ export default function BlockDiv({
     ["div-name"]: myDivNumber,
     className: twMergeUtil(
       globalThemeNemgoo, //солих утгууд
-      ObjectLight?.className,
       customClassName || className || "",
       myDivNumber === "divouterblock"
         ? isDefaultTheme
@@ -103,7 +102,6 @@ export default function BlockDiv({
         ""
     ),
     style: {
-      ...ObjectLight?.style,
       ...customStyle,
       ...style,
       ...(myDivNumber === "divouterblock"

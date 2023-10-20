@@ -8,7 +8,7 @@ export default function Banner1({
   return (
     <AtomSlider7>
       {data.map((item, index) => (
-        <div key={item?.id || index} className="bg-yellow-700 h-screen">
+        <div key={index} className="bg-yellow-700 h-screen">
           <div className="relative w-full h-full">
             <img
               className={`object-center object-cover w-full h-full`}

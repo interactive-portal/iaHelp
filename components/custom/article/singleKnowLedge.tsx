@@ -30,7 +30,7 @@ const SingleKnowLedge = () => {
     dataMutate,
   } = useContext(WidgetWrapperContext);
   const router = useRouter();
-  console.log("readyDatasrc :>> ", readyDatasrc);
+  // console.log("readyDatasrc :>> ", readyDatasrc);
   const { data: session } = useSession();
   //   const { callProcess } = useCallProcess();
   const [openEdit, setOpenEdit] = useState(false);
@@ -58,14 +58,14 @@ const SingleKnowLedge = () => {
 
   const [srcTitle, setTitleData] = useState<any>([]);
 
-  //   const fetchDataHeader = async () => {
-  //     const data = await fetchJson(
-  //       `/api/get-data-v2?metaid=1682912998334502&metaNameV2=${metaNameV2}&criteria=${criteria}`
-  //     );
-  //     if (data?.status == "success") {
-  //       setTitleData(_.values(data?.result));
-  //     }
-  //   };
+  const fetchDataHeader = async () => {
+    const data = await fetchJson(
+      `/api/get-data?metaid=1682912998334502&metaNameV2=${metaNameV2}&criteria=${criteria}`
+    );
+    if (data?.status == "success") {
+      setTitleData(_.values(data?.result));
+    }
+  };
 
   const location = window.location.href;
   const copyUrl = () => {
@@ -77,9 +77,9 @@ const SingleKnowLedge = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     if (_.isEmpty(srcTitle)) fetchDataHeader();
-  //   }, []);
+  useEffect(() => {
+    if (_.isEmpty(srcTitle)) fetchDataHeader();
+  }, []);
 
   // console.log("srcTitle :>> ", srcTitle);
   const Submit = async () => {

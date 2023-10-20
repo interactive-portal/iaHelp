@@ -5,7 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import { useToggle } from "react-use";
-import { PropsType } from "./helpHeader";
+// import { PropsType } from "./helpHeader";
+
+type PropsType = {
+  data: any;
+  options?: any;
+};
 
 export const HelpComment: FC<PropsType> = ({ data, options }) => {
   const [loginModalShow, setLoginModalShow] = useToggle(false);
@@ -13,6 +18,7 @@ export const HelpComment: FC<PropsType> = ({ data, options }) => {
   const { data: session, status }: any = useSession();
   const URL = process.env.url;
   const logo = "/icon/helpLogo.png";
+  const widgetnemgooReady: any = {};
 
   // console.log("readyDatasrc :>> ", widgetnemgooReady);
   const [isModalVisible, setIsModalVisible] = useState(false);

@@ -12,11 +12,11 @@ export default function authorization() {
   const { data: session } = useSession();
 
   // console.log("ro :>> ", ro);
+  let strData: any = query?.user;
 
   useEffect(() => {
     if (!router.isReady) return;
 
-    const strData = query?.user;
     // const userStr = query.user;
     const decryptobject = strData.replaceAll("tttnmhttt", "+");
     const decryptobjects = decryptobject.replaceAll("ttttntsuttt", "=");
@@ -25,7 +25,7 @@ export default function authorization() {
     setUser((user: any) => [...user, parameter]);
   }, [router]);
 
-  console.log("sessionsession", session);
+  // console.log("sessionsession", session);
 
   if (session) {
     window.location.href = "/";

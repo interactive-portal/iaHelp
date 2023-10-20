@@ -1,5 +1,5 @@
-import useCallProcess from "@/middleware/components/dataHook/useCallProcess";
-import useWidgetConfigSWR from "@/middleware/components/dataHook/useWidgetConfigSWR";
+import useCallProcess from "@/middleware/dataHook/useCallProcess";
+import useWidgetConfigSWR from "@/middleware/dataHook/useWidgetConfigSWR";
 import { usePage } from "hooks/use-page";
 import _ from "lodash";
 import { useEffect, useState } from "react";
@@ -48,23 +48,23 @@ export default function useErpFormReadyWrapper({
   const [getItem, setGetItem] = useState({});
 
   useEffect(() => {
-    if (processMode === "edit") {
-      async function fetchItem() {
-        const result = await callProcess({
-          command: processCodeGet,
-          parameter: {
-            id: item?.id,
-          },
-          silent: true,
-        });
-        console.log("result", result);
-        setGetItem(result?.result);
-      }
-      fetchItem();
-    } else {
-      setGetItem({});
-      onReset();
-    }
+    // if (processMode === "edit") {
+    // async function fetchItem() {
+    //     const result = await callProcess({
+    //       command: processCodeGet,
+    //       parameter: {
+    //         id: item?.id,
+    //       },
+    //       silent: true,
+    //     });
+    //     console.log("result", result);
+    //     setGetItem(result?.result);
+    //   }
+    //   fetchItem();
+    // } else {
+    //   setGetItem({});
+    //   onReset();
+    // }
   }, [formConfig]);
 
   useEffect(() => {

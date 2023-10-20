@@ -50,7 +50,7 @@ export async function getServerSideProps(context: any) {
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
 
-  console.log("pageObject :>> ", pageObject);
+  // console.log("pageObject :>> ", pageObject);
 
   context.res.setHeader(
     "Cache-Control",

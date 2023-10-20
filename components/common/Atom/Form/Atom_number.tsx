@@ -61,7 +61,8 @@ const Atom_number: FC<PropsType> = ({
       />
 
       <div>
-        <NumberFormat
+        <>atom Number</>
+        {/* <NumberFormat
           thousandsGroupStyle="thousand"
           value={getAtomValue(
             config,
@@ -85,7 +86,7 @@ const Atom_number: FC<PropsType> = ({
           onValueChange={handlerChange}
           fixedDecimalScale={false}
           disabled={fieldDisableEnable(config, processExpression)}
-        />
+        /> */}
         {config.isEmpty && <span>{config.errorText}</span>}
       </div>
     </div>
