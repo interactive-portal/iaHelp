@@ -233,13 +233,13 @@ export default async function preparePageListData({ pageid, hostObject }) {
     "thisPageConfig.meta_bp_layout_param_size",
   ]);
 
-  const pageObject = {
+  let pageObject = {
     mergedPageNemgoo,
     readyMergedPageConfig,
     meta_bp_layout_section,
     masterPageNemgooConfig,
+    notFound: mergedPageNemgoo != "" ? false : true,
   };
 
-  // console.log("masterPageNemgooConfig :>> ", readyMergedPageConfig);
   return pageObject;
 }

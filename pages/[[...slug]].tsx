@@ -3,6 +3,7 @@ import _ from "lodash";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { preparePageObject } from "@/util/prepareDetect";
 import RenderBody from "@/middleware/components/renderBody";
+
 export default function Page(props: any) {
   const { mergedPageNemgoo } = props;
   return (
@@ -49,7 +50,7 @@ export async function getServerSideProps(context: any) {
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
 
-  // console.log("pathname :>> ", pathname);
+  console.log("pageObject :>> ", pageObject);
 
   context.res.setHeader(
     "Cache-Control",
