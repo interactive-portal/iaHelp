@@ -35,7 +35,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>Hel ddp </title>
+        <title>Help.veritech.mn </title>
         <meta name="description" content="Интерактив грүп" />
         <meta
           name="keywords"

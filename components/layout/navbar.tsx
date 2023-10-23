@@ -9,6 +9,7 @@ import Custom404 from "@/pages/404";
 
 import useWidgetData from "@/components/common/engineBox/util/useWidgetData";
 import dynamic from "next/dynamic";
+import Header from "@/components/common/default/header";
 
 type NavbarProps = {
   options?: any;
@@ -44,22 +45,22 @@ export default function Navbar({ options }: NavbarProps) {
     widgetConfigNemgoo?.actiontype || optionsWidget.actiontype;
   optionsWidget;
 
-  const RenderWidget: any = useMemo(
-    () =>
-      dynamic(
-        () =>
-          import(
-            `@/components/${headerWidget.componentpath?.toLowerCase()}/${
-              headerWidget.widgetcode
-            }`
-          ),
-        {
-          loading: () => <span>{headerWidget.componentpath}</span>,
-        }
-      ),
+  // const RenderWidget: any = useMemo(
+  //   () =>
+  //     dynamic(
+  //       () =>
+  //         import(
+  //           `@/components/${headerWidget.componentpath?.toLowerCase()}/${
+  //             headerWidget.widgetcode
+  //           }`
+  //         ),
+  //       {
+  //         loading: () => <span>{headerWidget.componentpath}</span>,
+  //       }
+  //     ),
 
-    []
-  );
+  //   []
+  // );
 
   const DynamicHeader: any = dynamic(
     () =>
@@ -74,12 +75,10 @@ export default function Navbar({ options }: NavbarProps) {
   );
 
   const [dataSrc, error] = useWidgetData(optionsWidget);
-  // console.log("object :>> ", optionsWidget);ss
 
   return (
     <>
       <DynamicHeader data={dataSrc} options={optionsWidget} />
-      {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
     </>
   );
 }

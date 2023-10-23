@@ -72,7 +72,7 @@ export default function Header() {
 
   return (
     <>
-      <div className=" w-full fixed top-0" style={{ background: "#fff" }}>
+      <div className=" w-full fixeds top-0" style={{ background: "#fff" }}>
         <div
           className="my-2 w-full mx-auto  md:px-10 xs:px-2"
           style={{ background: "#fff" }}
