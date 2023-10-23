@@ -494,7 +494,9 @@ const SingleKnowLedge = () => {
                 renderType="text"
                 customClassName="text-lg text-[#585858]  font-semibold "
               />
-              <p className="pr-2">{commentcount}</p>
+              <p className="pr-2 text-[#585858] font-semibold">
+                {commentcount}
+              </p>
             </a>
           </>
           <BlockDiv customClassName="flex flex-col mt-[20px] justify-start bg-white ">

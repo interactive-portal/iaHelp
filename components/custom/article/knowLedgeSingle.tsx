@@ -13,7 +13,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
-import HelpComment from "@/components/project/help/helpComment";
+import HelpComment from "../../project/help/helpComment";
 import FileViewType from "./fileViewType";
 
 const knowLedgeSingle = () => {
@@ -342,7 +342,9 @@ const knowLedgeSingle = () => {
                     renderType="text"
                     customClassName="text-lg text-[#585858]  font-semibold "
                   />
-                  <p className="pr-2">{commentcount}</p>
+                  <p className="pr-2 text-[#585858] font-semibold">
+                    {commentcount}
+                  </p>
                 </a>
               </>
             </>
