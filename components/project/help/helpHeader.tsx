@@ -123,7 +123,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                           className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858]"
                           onClick={() =>
                             router.push(
-                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=http://localhost:3000/`
+                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=https://help.veritech.mn/`
                             )
                           }
                         >
