@@ -533,7 +533,7 @@ const SingleKnowLedge = () => {
       <style>
         {`
           .htmltext img {
-            width: 100% !important;
+            max-width: 100% !important;
             height: auto !important
           }
           `}

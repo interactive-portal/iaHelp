@@ -362,7 +362,7 @@ const knowLedgeSingle = () => {
             min-height:500px
           }
           .htmltext img{
-            width:600px !important;
+            max-width:600px !important;
           }
           `}
       </style>
