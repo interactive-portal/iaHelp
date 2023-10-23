@@ -162,7 +162,7 @@ export const WidgetUniversalWrapper = ({
           ),
         {
           ssr: false,
-          suspense: true,
+          // suspense: true,
           loading: () => (
             <>
               <Skeleton type="card" />

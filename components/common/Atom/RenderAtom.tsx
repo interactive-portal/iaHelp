@@ -196,6 +196,7 @@ export default function RenderAtom({
     text: "atomText",
     image: "atomImage",
     htmltext: "atomHtmlText",
+    button: "atomButton",
   };
 
   const RenderComponent = useMemo(
