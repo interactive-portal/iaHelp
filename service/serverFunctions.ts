@@ -34,6 +34,8 @@ export async function getProcessData(command: any, param: any) {
 
   let response = await runService(command, parameters, "");
 
+  // console.log("response", response?.response);
+
   if (response?.response?.result) {
     return response?.response;
   }
@@ -64,6 +66,7 @@ export async function postProcess(command: any, param: any) {
   let parameters = {
     ...param,
   };
+
   let { response } = await runService(command, parameters, "");
   if (response?.result) {
     // delete response.aggregatecolumns;

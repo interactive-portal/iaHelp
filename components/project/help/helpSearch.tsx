@@ -197,11 +197,11 @@ const HelpSearch: FC<PropsType> = ({
         <div className="flex items-center justify-center">
           <div className="relative w-full  bg-white  ">
             <div className="flex relative flex-col items-center justify-center bg-white py-2 rounded-[10px] z-30 bg-inherit">
-              <div className=" z-10 rounded-xl flex items-center w-full bg-gray-100">
-                <i className="fa-regular fa-magnifying-glass px-3 text-[#A0A0A0]"></i>
+              <div className=" z-10 rounded-[20px] flex items-center w-full bg-[#F3F4F6]">
+                <i className="fa-regular fa-magnifying-glass px-3 text-[#67748E] font-bold"></i>
                 <input
-                  className=" bg-gray-100 md:block rounded-[30px] focus-visible:outline-0  text-citizen-description w-full  py-2.5 text-[16px] font-bold"
-                  placeholder="Хайлт"
+                  className=" bg-[#F3F4F6] md:block rounded-[30px] focus-visible:outline-0  text-[#67748E] w-full  py-2.5 text-[16px] font-medium text-lg"
+                  placeholder="Хайлт ..."
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   onKeyPress={handleKeyPress}

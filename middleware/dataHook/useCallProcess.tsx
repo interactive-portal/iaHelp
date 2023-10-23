@@ -44,12 +44,12 @@ export default function useCallProcess() {
   }) => {
     setIsProcessWorking(true);
 
-    console.log("--------------useCallProcess command", metaNameV2);
+    // console.log("--------------useCallProcess command", metaNameV2);
     // console.log("--------------useCallProcess parameter", parameter);
 
     const myParams = {
       command: command,
-      parameter: encodeURIComponent(JSON5.stringify(parameter)),
+      parameter: encodeURIComponent(JSON.stringify(parameter)),
       moreRequest: JSON.stringify(moreRequest),
       standard: JSON.stringify(standard),
       customProps: JSON.stringify(customProps),
@@ -63,7 +63,7 @@ export default function useCallProcess() {
       result =
         type !== "post"
           ? await callApi({
-              api: `/api/get-process?command=${myParams.command}&parameter=${myParams.parameter}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
+              api: `/api/post-process?command=${myParams.command}&parameters=${myParams.parameter}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
               resultConfig,
               event,
               notificationMessage,

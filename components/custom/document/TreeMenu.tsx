@@ -72,7 +72,7 @@ export default function TreeMenu() {
           <span className="">{/* <AtomSearch item={readyDatasrc} /> */}</span>
 
           <div className="overflow-y-auto scrollbar-thumb-gray-500 scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-700 scrollbar-thumb-rounded-full">
-            <div className="w-full ">
+            <div className="w-full pl-6">
               <TreeMain
                 rawDatasrc={
                   treeReadyDatasrc.length > 0 ? treeReadyDatasrc : readyDatasrc

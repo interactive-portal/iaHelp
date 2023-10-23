@@ -1,9 +1,23 @@
-export default async (req: any, res: any) => {
-  const processcode = req.body.processcode || "";
-  const parameters = req.body.parameters || {};
-  const config = req.body.headerParam || "";
+import { jsonParse } from "util/jsonParse";
+import { getProcessData } from "@/service/serverFunctions";
 
-  const result = {};
+const postProcess = async (req: any, res: any) => {
+  const metaName: string = req?.query?.metaName || "metaProd";
+  const processcode = req.query?.command || "";
+  let parameter = jsonParse(req.query?.parameters) || "{}";
+  const debug = req.query?.debug || false;
+
+  // console.log("object :>> ", parameter);
+
+  delete parameter.slug;
+
+  const result = await getProcessData(processcode, parameter);
+
+  // console.log("result", result);
+
+  // console.log("result :>> ", result);
 
   res.status(200).json(result);
 };
+
+export default postProcess;

@@ -23,14 +23,17 @@ const pageTitle = () => {
   const pageType = widgetnemgooReady?.listconfig?.pageType;
   const { pathname } = widgetnemgooReady;
 
-  // console.log(readyDatasrc, "readyDatasrc");
+  console.log("readyDatarc", readyDatasrc);
 
   const renderType = () => {
     if (pageType == "single") {
       return <></>;
     } else {
       return (
-        <BlockDiv customClassName={`flex`} divNumber="divGridNumber">
+        <BlockDiv
+          customClassName={`flex max-h-[200px]`}
+          divNumber="divGridNumber"
+        >
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12">
             <p className="text-white flex text-center sm:text-xs xs:text-[8px] md:text-base">
               <span className="opacity-80 hover:text-white cursor-pointer">
@@ -84,10 +87,10 @@ const pageTitle = () => {
               }
               renderType="title"
               customClassName={
-                "text-lg text-white md:pt-4 sm:text-base xs:text-sm md:text-2xl"
+                "text-lg text-white md:pt-4 sm:text-base xs:text-sm md:text-2xl max-w-[]"
               }
             />{" "}
-            <RenderAtom
+            {/* <RenderAtom
               item={{
                 value:
                   parseHtml(decode(readyDatasrc[0]?.position3?.value)) ||
@@ -98,12 +101,12 @@ const pageTitle = () => {
                 truncateRow: 4,
               }}
               customClassName={
-                "md:w-1/2 w-full text-white md:text-[16px] text-[12px]"
+                "md:w-1/2 w-full text-white md:text-[16px] text-[12px] line-clamp-3"
               }
               customStyle={{
                 color: "white !important",
               }}
-            />
+            /> */}
             <div className="flex items-center">
               <Rate
                 allowHalf

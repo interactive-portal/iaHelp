@@ -1,302 +1,257 @@
-import RenderAtom from "@/components/common/Atom/RenderAtom";
-import { Modal, Popover } from "antd";
-import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+// import ModalView from "@components/cloud/Custom/Modal/ModalView";
+// import { AtomText } from "@components/common/Atom";
+import AtomText from "@/components/common/Atom/atomText";
+// import ModalLogin from "@components/Login/ModalLogin";
+import axios from "axios";
+import fetchJson from "lib/fetchJson";
+import _ from "lodash";
+import moment from "moment";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
-import { useToggle } from "react-use";
-// import { PropsType } from "./helpHeader";
+import { FC, useContext, useEffect, useRef, useState } from "react";
+
+import useSWR from "swr";
+import { Modal } from "antd";
+import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import BlockDiv from "@/components/common/Block/BlockDiv";
+import RenderAtom from "@/components/common/Atom/RenderAtom";
+import useCallProcess from "@/middleware/dataHook/useCallProcess";
 
 type PropsType = {
-  data: any;
-  options?: any;
+  commentData?: any;
+  setCommentCount?: any;
 };
 
-export const HelpComment: FC<PropsType> = ({ data, options }) => {
-  const [loginModalShow, setLoginModalShow] = useToggle(false);
-  const [signupModalShow, setSignupModalShow] = useToggle(false);
+const helpComment: FC<PropsType> = ({ commentData, setCommentCount }: any) => {
+  const { config, readyDatasrc, metaConfig, gridJsonConfig, pathConfig } =
+    useContext(WidgetWrapperContext);
   const { data: session, status }: any = useSession();
-  const URL = process.env.url;
-  const logo = "/icon/helpLogo.png";
-  const widgetnemgooReady: any = {};
-
-  // console.log("readyDatasrc :>> ", widgetnemgooReady);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { widgetnemgooReady, positionConfig } =
+    useContext(WidgetWrapperContext);
   const router = useRouter();
+  let selectedId = router.query?.filterid;
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const [commentList, setcommentList] = useState<any>(null);
+  let structureId = widgetnemgooReady?.listconfig?.filterstructureid;
+  const [profile, setProfile] = useState(session);
+  const [comment, setComment] = useState<any>("");
+  const { callProcess } = useCallProcess();
+
+  const parameters = {
+    filterRecordId: selectedId || widgetnemgooReady?.recordId,
+    filterStructureId: "1479204227214",
   };
-  const handlerTypeEvent = (item: boolean) => {
-    setIsModalVisible(item);
+
+  const getComment = async () => {
+    const data = await callProcess({
+      command: "PRTL_MN_GET_COMMENT_004",
+      parameter: parameters,
+      moreRequest: null,
+      resultConfig: null,
+      silent: true,
+    });
+    setcommentList(data?.result?.ecmcommentdtl);
+    if (setCommentCount) {
+      setCommentCount(data?.result?.ecmcommentdtl.length);
+    }
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  useEffect(() => {
+    getComment();
+  }, []);
+
+  const handleFilterData = async (payload: any) => {
+    await callProcess({
+      command: "PRTL_MN_COMMENT_001",
+      parameter: payload,
+      moreRequest: null,
+      resultConfig: null,
+      silent: true,
+    });
+    getComment();
+    setComment("");
   };
 
-  const [sideBar, setsideBar] = useState();
+  let form = useRef<any>();
 
-  const [show, setShow] = useState(false);
-  const [profile, setProfile] = useState(false);
-  const [product, setProduct] = useState(false);
-  const [deliverables, setDeliverables] = useState(false);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const form_data = new FormData(form.current);
+    const payload: any = {};
+    form_data.forEach(function (value: any, key: string) {
+      payload[key] = value;
+    });
+    handleFilterData(payload);
+  };
+  let clecmcommentd: any = _.values(commentList);
+  if (commentData) {
+    clecmcommentd = commentData;
+  }
 
-  const useProfile = (
-    <div>
-      <ul>
-        <li className="hover:text-blue-400">
-          <Link
-            href="https://customer.veritech.mn/nation?page=community/profileAbout&dm=help"
-            className="text-black"
-          >
-            <i className="far fa-user text-sm w-6 "></i>
-            <span className="cursor-pointer pl-1 ">Миний профайл</span>
-          </Link>
-        </li>
-        <li>
-          <i className="far fa-sign-out-alt  text-sm w-6"></i>
-          <button
-            className="cursor-pointer hover:text-blue-400 "
-            onClick={() => signOut()}
-          >
-            Гарах
-          </button>
-        </li>
-      </ul>
-    </div>
-  );
+  const handleUserComment = (e: any) => {
+    setComment(e.target.value);
+  };
+  const EnterClick = (e: any) => {
+    if (e.keyCode === 13 && e.shiftKey == false) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
 
   return (
-    <>
-      <div className=" w-full fixed z-50" style={{ background: "#fff" }}>
-        <div
-          className=" w-full mx-auto  md:px-10 xs:px-2"
-          style={{ background: "#fff" }}
-        >
-          <div
-            className={`justify-between h-14 flex items-center  ${
-              widgetnemgooReady?.insideDiv?.className || ""
-            }`}
+    <BlockDiv customClassName="w-full" divNumber={"div100"}>
+      {!profile && (
+        <div className="py-2 text-center mt-2">
+          <span
+            onClick={() =>
+              router.push(
+                `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=https://help.veritech.mn`
+              )
+            }
+            className="text-tiny cursor-pointer hover:text-blue-400 font-medium"
           >
-            <div className="h-full flex items-center py-1">
-              {/* <AtomImage
-              item={widgetnemgooReady?.siteLogo || logo}
-              customClassName="flex items-center pl-0 h-full"
-              link={`/`} //${router.query?.detect[0]} алдаа шалгах
-            /> */}
-              Logo
-              <div className=" py-1 justify-between flex items-center mx-auto md:px-10 xs:px-2">
-                <div className="h-full flex items-center gap-4">
-                  {/* <MegaHelpMenu
-              color={widgetnemgooReady?.HeaderTitle?.className}
-              menuItem={readyDatasrc}
-            />
-
-            <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
-                  top menu
-                </div>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center gap-10  w-full xl:w-2/5 justify-end ">
-              {/* <HelpSearch /> */} search
-              {/* <div className="flex items-center ">
-              <div className="xs:block lg:hidden">
-                <RenderAtom
-                  item={{ value: "fa-solid fa-bars" }}
-                  renderType="icon"
-                  customClassName={""}
-                  onClick={() => setShow(!show)}
-                />
-              </div>
-            </div> */}
-              <div className="hidden xl:flex items-center">
-                <div className="ml-6 relative">
-                  <div className="flex  gap-3 items-center relative">
-                    {!session && (
-                      <>
-                        <button
-                          className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858]"
-                          onClick={() =>
-                            router.push(
-                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=https://help.veritech.mn`
-                            )
-                          }
-                        >
-                          Нэвтрэх
-                        </button>
-                      </>
-                    )}
-                    {session && (
-                      <>
-                        <Popover content={useProfile} placement="bottom">
-                          <div className="flex items-center cursor-pointer ">
-                            <div className="text-right pr-1 ">
-                              <span className="p-0 m-0 inline-block te">
-                                {session?.username}
-                              </span>
-                              <br />
-                              <RenderAtom
-                                item={{
-                                  value:
-                                    session?.readyProfile?.profile
-                                      ?.positionname,
-                                }}
-                                renderType="text"
-                                customClassName={`capitalize font-semibold text-sm `}
-                              />
-                            </div>
-                          </div>
-                        </Popover>
-                      </>
-                    )}
-                    {/* <AtomAvatar customClassName="border ml-2 border-gray-300 rounded-full object-cover w-11 h-11 p-1 border-solid" /> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            Та хэрэглэгчээр нэвтэрч орно уу
+          </span>{" "}
         </div>
-        <div className="border-t relative"></div>
-      </div>
-      <Modal
-        open={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={false}
-      >
-        {/* <ModalLogin
-              iscustomer={false}
-              handlerTypeEvent={handlerTypeEvent}
-              setIsModalVisible={setIsModalVisible}
-            /> */}
-        login
-      </Modal>
-      {/* Login Modal */}
+      )}
 
-      <nav className="bg-white shadow xl:block hidden"></nav>
-      <nav>
-        <div className="py-4 px-6 w-full flex md:hidden justify-between items-center bg-white fixed top-0 z-40">
-          <div className="w-24">
-            {/* <AtomImage
-              item={widgetnemgooReady?.siteLogo || logo}
-              customClassName="flex items-center pl-0 h-full"
-              link={`/`}
-            /> */}
-          </div>
-          <div className="flex items-center">
-            <div
-              id="menu"
-              className="text-gray-800"
-              onClick={() => setShow(!show)}
-            >
-              {show ? (
-                ""
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-menu-2"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+      {clecmcommentd.length > 0 && (
+        <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
+          <div className="  lg:max-h-sm h-full mt-2">
+            {clecmcommentd.map((item: any, index: number) => {
+              return (
+                <BlockDiv
+                  key={item?.id || index}
+                  customClassName="bg-transparent rounded-lg mt-2 border-b"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <line x1={4} y1={6} x2={20} y2={6} />
-                  <line x1={4} y1={12} x2={20} y2={12} />
-                  <line x1={4} y1={18} x2={20} y2={18} />
-                </svg>
-              )}
-            </div>
-          </div>
-        </div>
-        {/*Mobile responsive sidebar*/}
-        <div
-          className={
-            show
-              ? "w-full md:hidden h-full fixed z-40  transform  translate-x-0 "
-              : "   w-full xl:hidden h-full fixed z-40  transform -translate-x-full"
-          }
-        >
-          <div
-            className="bg-gray-800 opacity-50 w-full h-full"
-            onClick={() => setShow(!show)}
-          />
-          <div className="w-64 h-full fixed overflow-y-auto z-40 top-0 bg-white shadow flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
-            <div className="px-6">
-              <div className="flex flex-col justify-between h-full w-full">
-                <div className="mt-6 flex w-full items-center justify-between">
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                      {/* <AtomImage
-              item={widgetnemgooReady?.siteLogo || logo}
-              customClassName="h-[30px] mr-5"
-              link={`/`}
-            /> */}
-                    </div>
-                    <div
-                      id="cross"
-                      className="text-gray-800"
-                      onClick={() => setShow(!show)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-x"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                  <div className="flex justify-between py-2 px-2 items-center">
+                    <div className="flex">
+                      <div
+                        className=""
+                        style={{
+                          minWidth: "50px",
+                        }}
                       >
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <line x1={18} y1={6} x2={6} y2={18} />
-                        <line x1={6} y1={6} x2={18} y2={18} />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-center w-full">
-                  <div className="relative w-full">{/* <HelpSearch /> */}</div>
-                </div>
-                <div className="py-1 justify-between items-center mx-2">
-                  <div className="items-center gap-4">
-                    {/* <MegaHelpMenu
-              color={widgetnemgooReady?.HeaderTitle?.className}
-              menuItem={readyDatasrc}
-            />
-            <HelpTopMenu Menu={widgetnemgooReady?.Menu} /> */}
-                  </div>
-                </div>
-
-                <div className="w-full pt-4">
-                  <div className="border-t border-gray-300">
-                    <div className="w-full flex items-center justify-between pt-1">
-                      <div className="flex items-center">
                         <img
-                          alt="profile-pic"
-                          src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png"
-                          className="w-8 h-8 rounded-md"
+                          src={`https://dev.veritech.mn/assets/core/global/img/user.png`}
+                          className=" w-10 h-10 mt-1 rounded-full"
                         />
-                        <p className=" text-gray-800 text-base leading-4 ml-2">
-                          Jane Doe
-                        </p>
+                      </div>
+                      <div className="w-full pl-1.5 capitalize">
+                        <RenderAtom
+                          item={{ value: item?.username || "Зочин" }}
+                          renderType="text"
+                          customClassName="text-base text-citizen-title  font-semibold block pt-1"
+                        />
+                        <RenderAtom
+                          item={{
+                            value: item?.departmentname || "Байгууллага",
+                          }}
+                          renderType="text"
+                          customClassName="text-sm text-citizen-title lowercase -mt-1 relative -top-1"
+                          customStyle={{ color: "#67748E" }}
+                        />
                       </div>
                     </div>
+                    <div>
+                      <RenderAtom
+                        item={{
+                          value: moment(item.createdDate).format("h:mm"),
+                        }}
+                        renderType="text"
+                        customClassName="text-[14px] font-semibold  pt-1.5 text-citizen-title  text-right lowercase pr-1 "
+                        customStyle={{ color: "#585858" }}
+                      />
+                    </div>
                   </div>
+                  <div className="mx-3 ">
+                    <p
+                      className="text-[14px] leading-5 font-normal py-4 text-gray-500"
+                      style={{
+                        color: "#67748E",
+                      }}
+                    >
+                      {item?.commenttext}
+                    </p>
+                    {/* <AtomText
+                      item={item?.commenttext}
+                      customClassName="text-[14px] leading-5 font-normal py-4 text-gray-500"
+                      customStyle={{ color: "#67748E" }}
+                    /> */}
+                  </div>
+                </BlockDiv>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {/* CHAT */}
+      {profile && (
+        <div className="w-full py-1 mt-2">
+          <form ref={form} onSubmit={handleSubmit}>
+            <div className="flex z-10 bg-white rounded-lg justify-between items-center w-full border ">
+              <div className="w-full mt-2">
+                <textarea
+                  onKeyDown={(e) => EnterClick(e)}
+                  className="font-medium font-roboto px-2 w-full focus:outline-none focus:shadow-none focus:ring-0 text-gray-700 border-none h-10 active:border-none text-xs"
+                  name="commentText"
+                  placeholder="Сэтгэгдэл үлдээх ..."
+                  value={comment}
+                  onChange={(e: any) => handleUserComment(e)}
+                />
+                <input type="hidden" name="recordId" value={selectedId} />
+                <input
+                  type="hidden"
+                  name="createdCrmUserId"
+                  value={session?.id}
+                />
+                <input
+                  type="hidden"
+                  name="createdCrmUserId"
+                  value={session?.id}
+                />
+                <input type="hidden" name="createdUserId" value={session?.id} />
+                <input
+                  type="hidden"
+                  name="refStructureId"
+                  value={"1479204227214"}
+                />
+              </div>
+              <div className="flex">
+                <div className=" h-full flex items-center justify-end">
+                  <button className="px-2 pt-1 cursor-pointer" type="submit">
+                    <svg
+                      width="27"
+                      height="23"
+                      viewBox="0 0 27 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.833011 22.4197C1.47895 23.0376 2.49271 22.9432 3.68591 22.4369L24.9122 13.3744C25.4863 13.1341 25.9439 12.8681 26.2489 12.5763C26.832 12.0185 26.832 11.332 26.2489 10.7741C25.9439 10.4824 25.4863 10.2163 24.9122 9.97603L3.56928 0.870704C2.5286 0.424449 1.48792 0.304303 0.83301 0.930777C0.00764455 1.72031 0.357528 2.58707 0.958609 3.6598L4.33184 9.70141C4.72658 10.4223 5.05853 10.7055 5.81212 10.7398L24.8404 11.3491C25.0647 11.3577 25.1813 11.5036 25.1992 11.6752C25.1992 11.8469 25.0736 11.9842 24.8494 11.9928L5.80315 12.6707C5.09441 12.6965 4.76247 12.9625 4.33185 13.7005L1.02141 19.5963C0.384443 20.7205 -0.00132605 21.6216 0.833011 22.4197Z"
+                        fill="#699BF7"
+                      />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-      </nav>
-      {/* Code block ends */}
-    </>
+      )}
+      {/* <Modal open={visibleModal} onCancel={handlerCloseClick} footer={false}>
+        <ModalLogin iscustomer={false} setIsModalVisible={setVisibleModal} />
+      </Modal> */}
+      {/* <ModalView
+        open={visibleModal}
+        modalOptions={{
+          width: 500,
+          title: "Нэвтрэх",
+        }}
+        onClose={handlerCloseClick}
+        modelContent={<ModalLogin />}
+      /> */}
+    </BlockDiv>
   );
 };
+export default helpComment;
