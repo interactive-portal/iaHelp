@@ -13,6 +13,8 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
+import HelpComment from "@/components/project/help/helpComment";
+import FileViewType from "./fileViewType";
 
 const knowLedgeSingle = () => {
   const {
@@ -40,6 +42,7 @@ const knowLedgeSingle = () => {
   const relatedknowledge = _.values(readyDatasrc[0]?.relatedknowledge);
   const parentItem = router.query?.lparentid;
   const [menu, setMenu] = useState(relatedknowledge.length == 0 ? false : true);
+  const [commentcount, setCommentCount] = useState<any>();
 
   // console.log("readydata", readyDatasrc);
   // return <SingleKnowLedge />;
@@ -112,12 +115,13 @@ const knowLedgeSingle = () => {
       setOpenEdit(false);
     }
   };
+
   return (
     <>
-      <BlockDiv customClassName="w-d" divNumber="div10">
+      <BlockDiv customClassName="h-auto" divNumber="div10">
         {/* <span className="w-56"></span> */}
         <BlockDiv customClassName={`flex`} divNumber="divGridNumber">
-          <div className=" bg-white 2xl:w-3/4 md:w-[100%] px-6 pb-6 min-h-screen">
+          <div className=" bg-white 2xl:w-3/4 md:w-[100%] px-6 py-2 min-h-screen">
             {" "}
             {
               session?.readyProfile?.clouderp?.positionname == "Менежер" &&
@@ -178,7 +182,7 @@ const knowLedgeSingle = () => {
                       }
                       renderType="title"
                       customClassName={
-                        "xl:text-[25px] lg:text-[20px] xs:text-[16px] pb-6 pt-2"
+                        "xl:text-[25px] lg:text-[20px] xs:text-[16px] pb-6 pt-2 text-[#585858]"
                       }
                     />
                     <RenderAtom
@@ -188,6 +192,14 @@ const knowLedgeSingle = () => {
                         "text-[30px] py-6 bg-red-500 overflow-auto"
                       }
                     />
+                    <div id="comment" className="pt-[70px]">
+                      <div className="mt-8 px-2 py-4 border-t-2 border-gray-300">
+                        <h2 className="text-[#585858] text-xl font-medium">
+                          Сэтгэгдэл
+                        </h2>
+                        <HelpComment setCommentCount={setCommentCount} />
+                      </div>
+                    </div>
                   </>
                 )}
               </div>
@@ -211,7 +223,7 @@ const knowLedgeSingle = () => {
               })}
           </div>
           <BlockDiv
-            customClassName={`col-span-12 p-3 2xl:w-72  xl:w-64 md:w-56`}
+            customClassName={`col-span-12 p-3 2xl:w-1/4  xl:w-64 md:w-56`}
             divNumber="divGridMainSub"
           >
             <>
@@ -223,7 +235,7 @@ const knowLedgeSingle = () => {
                 <RenderAtom
                   item={{ value: "Feautures" }}
                   renderType="text"
-                  customClassName="text-lg text-citizen-title font-semibold"
+                  customClassName="text-lg text-[#585858] font-semibold"
                 />
                 {feautures == true ? (
                   <i className="fa-solid fa-chevron-down"></i>
@@ -261,7 +273,7 @@ const knowLedgeSingle = () => {
                 <RenderAtom
                   item={{ value: "Холбоотой" }}
                   renderType="text"
-                  customClassName="text-lg text-citizen-title font-semibold"
+                  customClassName="text-lg text-[#585858]  font-semibold"
                 />
                 {menu == true ? (
                   <i className="fa-solid fa-chevron-down"></i>
@@ -303,7 +315,7 @@ const knowLedgeSingle = () => {
                 <RenderAtom
                   item={{ value: "Хавсралт" }}
                   renderType="text"
-                  customClassName="text-lg text-citizen-title  font-semibold"
+                  customClassName="text-lg text-[#585858]   font-semibold"
                 />
                 {show == true ? (
                   <i className="fa-solid fa-chevron-down"></i>
@@ -313,32 +325,26 @@ const knowLedgeSingle = () => {
               </div>
               {show == true && (
                 <>
-                  <WidgetWithId widgetId={widgetnemgooReady?.fileId} />
+                  <FileViewType />
+                  {/* <WidgetWithId widgetId={widgetnemgooReady?.fileId} /> */}
                 </>
               )}
             </>
             <>
-              <div
-                className="cursor-pointer flex pt-2 items-center justify-between"
-                onClick={() => setComment((prev) => !prev)}
-              >
-                <RenderAtom
-                  item={{ value: "Сэтгэгдэл" }}
-                  renderType="text"
-                  customClassName="text-lg text-citizen-title  font-semibold "
-                />
-                {comment == true ? (
-                  <i className="fa-solid fa-chevron-down"></i>
-                ) : (
-                  <i className="fa-solid fa-chevron-up"></i>
-                )}
-              </div>
-              {comment && (
-                <>
-                  {/* <WidgetWithId widgetId="16625551068269" /> */}
-                  <WidgetWithId widgetId={widgetnemgooReady?.commentId} />
-                </>
-              )}
+              <>
+                <a
+                  className="cursor-pointer flex pt-2 items-center justify-between"
+                  // onClick={() => )}
+                  href="#comment"
+                >
+                  <RenderAtom
+                    item={{ value: "Сэтгэгдэл" }}
+                    renderType="text"
+                    customClassName="text-lg text-[#585858]  font-semibold "
+                  />
+                  <p className="pr-2">{commentcount}</p>
+                </a>
+              </>
             </>
             {/* <button
               //  onClick={copyToClipboard}
@@ -362,7 +368,7 @@ const knowLedgeSingle = () => {
             min-height:500px
           }
           .htmltext img{
-            max-width:600px !important;
+            width:600px !important;
           }
           `}
       </style>

@@ -17,6 +17,8 @@ import QRCode from "react-qr-code";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
+import HelpComment from "@/components/project/help/helpComment";
+import FileViewType from "./fileViewType";
 
 const SingleKnowLedge = () => {
   const {
@@ -57,6 +59,7 @@ const SingleKnowLedge = () => {
   const criteria = JSON.stringify(myCriteria);
 
   const [srcTitle, setTitleData] = useState<any>([]);
+  const [commentcount, setCommentCount] = useState<any>();
 
   const fetchDataHeader = async () => {
     const data = await fetchJson(
@@ -347,6 +350,14 @@ const SingleKnowLedge = () => {
                       "text-[30px] py-6 bg-red-500 overflow-auto"
                     }
                   />
+                  <div id="comment" className="pt-[70px]">
+                    <div className="mt-8 px-2 py-4 border-t-2 border-gray-300">
+                      <h2 className="text-[#585858] text-xl font-medium">
+                        Сэтгэгдэл
+                      </h2>
+                      <HelpComment setCommentCount={setCommentCount} />
+                    </div>
+                  </div>
                 </>
               )}
             </div>
@@ -379,7 +390,7 @@ const SingleKnowLedge = () => {
               <RenderAtom
                 item={{ value: "Feautures" }}
                 renderType="text"
-                customClassName="text-lg text-citizen-title font-semibold"
+                customClassName="text-lg text-[#585858] font-semibold"
               />
               {feautures == true ? (
                 <i className="fa-solid fa-chevron-down"></i>
@@ -417,7 +428,7 @@ const SingleKnowLedge = () => {
               <RenderAtom
                 item={{ value: "Холбоотой" }}
                 renderType="text"
-                customClassName="text-lg text-citizen-title font-semibold"
+                customClassName="text-lg text-[#585858] font-semibold"
               />
               {menu == true ? (
                 <i className="fa-solid fa-chevron-down"></i>
@@ -459,7 +470,7 @@ const SingleKnowLedge = () => {
               <RenderAtom
                 item={{ value: "Хавсралт" }}
                 renderType="text"
-                customClassName="text-lg text-citizen-title  font-semibold"
+                customClassName="text-lg text-[#585858]  font-semibold"
               />
               {show == true ? (
                 <i className="fa-solid fa-chevron-down"></i>
@@ -468,53 +479,33 @@ const SingleKnowLedge = () => {
               )}
             </div>
             {show == true && (
-              <>{/* <WidgetWithId widgetId={widgetnemgooReady?.fileId} /> */}</>
+              <FileViewType />
+              // <>{/* <WidgetWithId widgetId={widgetnemgooReady?.fileId} /> */}</>
             )}
           </>
           <>
-            <div
+            <a
               className="cursor-pointer flex pt-2 items-center justify-between"
-              onClick={() => setComment((prev) => !prev)}
+              // onClick={() => )}
+              href="#comment"
             >
               <RenderAtom
                 item={{ value: "Сэтгэгдэл" }}
                 renderType="text"
-                customClassName="text-lg text-citizen-title  font-semibold "
+                customClassName="text-lg text-[#585858]  font-semibold "
               />
-              {comment == true ? (
-                <i className="fa-solid fa-chevron-down"></i>
-              ) : (
-                <i className="fa-solid fa-chevron-up"></i>
-              )}
-            </div>
-            {comment && (
-              <>
-                {/* <WidgetWithId widgetId="16625551068269" /> */}
-                {/* <WidgetWithId widgetId={widgetnemgooReady?.commentId} /> */}
-              </>
-            )}
+              <p className="pr-2">{commentcount}</p>
+            </a>
           </>
           <BlockDiv customClassName="flex flex-col mt-[20px] justify-start bg-white ">
-            {/* <RenderAtom
-              item={{ value: "Холбоос" }}
-              renderType="text"
-              customClassName={"text-[18px] font-semibold "}
-              customStyle={{ color: "#585858" }}
-            /> */}
-            {/* <input
-              value={location}
-              onFocus={(event) => event.target.select()}
-              className="border-none px-0  border-[#A0A0A0] p-[12px] rounded-[5px] my-[15px] w-full text-[14px] focus-visible:outline-none"
-            ></input> */}
             <RenderAtom
               item={{ value: "Холбоос хуулах" }}
               renderType="button"
               customClassName={
-                "text-[#0C529D] w-full px-2 py-4 justify-start text-lg text-citizen-title font-semibold "
+                "text-[#0C529D] w-full px-2 py-4 justify-start text-lg text-[#585858] font-semibold "
               }
               onClick={() => copyUrl()}
             />
-            {/* {location} */}
             <QRCode
               size={125}
               style={{
@@ -533,7 +524,7 @@ const SingleKnowLedge = () => {
       <style>
         {`
           .htmltext img {
-            max-width: 100% !important;
+            width: 100% !important;
             height: auto !important
           }
           `}
