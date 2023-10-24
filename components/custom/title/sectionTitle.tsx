@@ -25,7 +25,7 @@ export default function sectionTitle() {
           item={{ value: data?.name }}
           renderType="title"
           customClassName={
-            "text-citizen-title font-medium text-4xl mb-6" ||
+            "text-[#585858] font-medium text-4xl mb-2" ||
             data?.titleClass ||
             "text-lg"
           }
@@ -35,9 +35,7 @@ export default function sectionTitle() {
           item={{ value: data?.subtitle }}
           renderType="text"
           customClassName={
-            "text-citizen-description  text-base " ||
-            data?.titleSubClass ||
-            "text-sm"
+            "text-[#585858]  text-base" || data?.titleSubClass || "text-sm"
           }
           // customStyle={atomStyle}
         />

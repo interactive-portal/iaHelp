@@ -138,16 +138,24 @@ function Faq1() {
               {/* <AtomSearch item={groupByData[0]?.rows} /> */}
               <div className="flex flex-col lg:flex-row flex-wrap">
                 <div className="mt-4 lg:mt-0 lg:w-3/5">
-                  <div>
-                    <RenderAtom
+                  <div className="">
+                    <p
+                      className="text-3xl ml-2 lg:ml-0 lg:text-4xl font-bold text-gray-900 tracking-normal lg:w-11/12 xs:ml-0 my-1 h-auto"
+                      style={{
+                        color: "#585858",
+                      }}
+                    >
+                      Түгээмэл асуултууд
+                    </p>
+                    {/* <RenderAtom
                       item={{ value: "Түгээмэл асуултууд" }}
                       defaultAtom="title"
-                      customClassName=" text-citizen-title text-3xl ml-2 lg:ml-0 lg:text-4xl font-bold text-gray-900 tracking-normal lg:w-11/12 xs:ml-0"
-                      customStyle={{ lineHeight: "40px" }}
+                      customClassName="  text-3xl ml-2 lg:ml-0 lg:text-4xl font-bold text-gray-900 tracking-normal lg:w-11/12 xs:ml-0 my-1 h-auto"
+                      customStyle={{ lineHeight: "40px", color: "#585858" }}
                       customProps={{
                         truncateRow: 3,
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="lg:w-2/5 flex mt-10 lg:ml-0 lg:mt-0 lg:justify-end xs:w-full xs:mx-0 xs:justify-start xs:mt-2">

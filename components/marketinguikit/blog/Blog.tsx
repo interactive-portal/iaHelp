@@ -61,7 +61,7 @@ export default function Blog() {
             <RenderAtom
               item={{ value: settings?.sectionTitle }}
               renderType="title"
-              customClassName=" text-citizen-title xs:ml-2 lg:ml-0"
+              customClassName=" text-[#585858] xs:ml-2 lg:ml-0"
               customStyle={{ lineHeight: "40px" }}
               customProps={{
                 truncateRow: 3,
