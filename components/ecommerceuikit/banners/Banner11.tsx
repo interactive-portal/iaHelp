@@ -57,13 +57,18 @@ const Banner4 = () => {
                 renderType="text"
                 customClassName={"text-white text-[18px] line-clamp-2"}
               />
-              <RenderAtom
-                item={item?.position10}
-                renderType="button"
-                customClassName={
-                  "bg-white text-[#585858] px-4 rounded-[30px] font-roboto font-medium text-lg w-[178px]"
-                }
-              />
+              {item?.position10 && (
+                <RenderAtom
+                  item={item?.position10}
+                  renderType="button"
+                  customClassName={
+                    "bg-white text-[#585858] px-4 rounded-[30px] font-roboto font-medium text-lg w-[178px] flex-row-reverse"
+                  }
+                  customProps={{
+                    icon: "fa-solid fa-arrow-right ml-3 fa-sm relative top-[2px]",
+                  }}
+                />
+              )}
             </div>
           </div>
         </BlockDiv>

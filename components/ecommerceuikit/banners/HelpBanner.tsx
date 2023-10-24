@@ -64,7 +64,7 @@ const HelpBanner = () => {
                     renderType="title"
                     customClassName={`  ${
                       item?.textColor || "text-white"
-                    } lg:text-4xl xs:text-2xl font-bold lg:w-[80%] xs:w-full leading-[58px]`}
+                    } text-[46px] font-bold lg:w-[80%] xs:w-full leading-[58px]`}
                     customProps={{
                       truncateRow: 2,
                     }}
@@ -89,9 +89,12 @@ const HelpBanner = () => {
                     item={item?.position10}
                     renderType="button"
                     customClassName={`
-                      bg-white text-[#585858] font-medium text-[16px] w-[150px] h-[30px] py-6 mt-[40px] rounded-[30px]`}
+                      bg-white text-[#585858] font-medium text-[18px] w-[150px] h-[30px] px-3 py-6 mt-[40px] w-[178px] rounded-[30px] flex-row-reverse`}
                     customDivNumber="LandingPageDivButton"
                     customStyle={item?.buttonStyle}
+                    customProps={{
+                      icon: "fa-solid fa-arrow-right ml-3 fa-sm relative top-[2px]",
+                    }}
                   />
                 </BlockDiv>
                 {/* <div>
