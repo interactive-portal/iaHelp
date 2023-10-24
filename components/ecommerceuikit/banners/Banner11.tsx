@@ -40,12 +40,12 @@ const Banner4 = () => {
 						alt="randeer"
 					/> */}
           <div className="max-w-lpcontainer flex md:flex-col-reverse mx-auto h-full w-full">
-            <div className=" flex flex-col w-[630px] h-full pt-[80px] justify-evenly lg:mb-14 xs:mb-0">
+            <div className=" flex flex-col w-[630px] h-full pt-[80px] justify-between lg:mb-14 xs:mb-0">
               <RenderAtom
                 item={item?.position1}
                 renderType="title"
                 customClassName={
-                  "text-[50px] font-semibold whitespace-normal leading-[52px]"
+                  "text-[46px] font-semibold whitespace-normal leading-[52px]"
                 }
                 customStyle={{ color: "white" }}
                 customProps={{
@@ -55,7 +55,7 @@ const Banner4 = () => {
               <RenderAtom
                 item={item?.position3}
                 renderType="text"
-                customClassName={"text-white"}
+                customClassName={"text-white text-[18px] line-clamp-2"}
               />
               <RenderAtom
                 item={item?.position10}
