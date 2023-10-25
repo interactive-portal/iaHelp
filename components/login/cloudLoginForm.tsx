@@ -93,13 +93,13 @@ export default function CloudLoginForm() {
           expiredate: nowDate.format("YYYY-MM-DD HH:mm:ss"),
         };
 
-        // console.log("usesssssr :>> ", user);
+        console.log("usesssssr :>> ", user);
 
-        const aString = JSON.stringify(user);
-        const messageA = encrypt(aString);
+        // const aString = JSON.stringify(user);
+        // const messageA = encrypt(aString);
 
-        const decryptobject = messageA.replaceAll("+", "tttnmhttt");
-        const decryptobjects = decryptobject.replaceAll("=", "ttttntsuttt");
+        // const decryptobject = messageA.replaceAll("+", "tttnmhttt");
+        // const decryptobjects = decryptobject.replaceAll("=", "ttttntsuttt");
 
         // console.log(
         //   "edirect_uri + decryptobjects :>> ",
@@ -109,7 +109,7 @@ export default function CloudLoginForm() {
         let params = {
           iscustomer: true,
           redirect: false,
-          callbackUrl: "/nation",
+          callbackUrl: "/",
           isHash: 1,
           username: parameters?.username,
           password: userSrc?.passwordhash,
@@ -117,20 +117,24 @@ export default function CloudLoginForm() {
 
         // signIn("credentials", params);
         let res: any = await signIn("credentials", params);
+        console.log("res :>> ", res);
 
         if (res.ok == true) {
-          if (!redirect_uri) {
-            window.location.href = "/nation";
-          } else {
-            window.location.href =
-              redirect_uri + "/login/authorization?user=" + decryptobjects;
-          }
-        } else {
-          notification.open({
-            type: "error",
-            message: res.error,
-          });
+          window.location.href = "/";
         }
+        // if (res.ok == true) {
+        //   if (!redirect_uri) {
+        //     window.location.href = "/nation";
+        //   } else {
+        //     window.location.href =
+        //       redirect_uri + "/login/authorization?user=" + decryptobjects;
+        //   }
+        // } else {
+        //   notification.open({
+        //     type: "error",
+        //     message: res.error,
+        //   });
+        // }
 
         // window.location.href =
         //   redirect_uri + "/login/authorization?user=" + decryptobjects;

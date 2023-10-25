@@ -1,4 +1,4 @@
-import { getProcessData } from "@/service/serverFunctions";
+import { getProcessCustom, getProcessData } from "@/service/serverFunctions";
 
 export default async (req: any, res: any) => {
   const metaName: string = req?.query?.metaName || "metaProd";
@@ -19,9 +19,28 @@ export default async (req: any, res: any) => {
   //   config
   // );
 
-  const jjjjjjjjjjjjjjjj = await getProcessData(processcode, parameters);
+  try {
+    const result = await getProcessCustom(processcode, parameters);
 
-  console.log("jjjjjjjjjjjjjjjj :>> ", jjjjjjjjjjjjjjjj);
+    if (result.status == "success") {
+      let param = {
+        filterCustomerId: result.result.sessioncrmuserid || "",
+      };
+
+      const { result: hash } = await getProcessData(
+        "getCrmCustomerIdDv_004",
+        param
+      );
+      user = {
+        ...hash,
+        ...result,
+      };
+    }
+
+    res.status(200).json(user || result);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 
   // if (result.status == "success") {
   //   console.log("resultresultresult :>> ", result);

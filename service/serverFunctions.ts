@@ -1,4 +1,4 @@
-import { runService, runServiceMetaVerse } from "./service";
+import { runService, runServiceLogin, runServiceMetaVerse } from "./service";
 
 export async function getLayout(command: string, param: any) {
   let parameters = {
@@ -31,13 +31,22 @@ export async function getProcessData(command: any, param: any) {
   let parameters = {
     ...param,
   };
-  console.log("parameters", command);
-  console.log("response", parameters);
+
   let response = await runService(command, parameters, "");
 
   if (response?.response?.result) {
     return response?.response;
   }
+}
+export async function getProcessCustom(command: any, param: any) {
+  let parameters = {
+    ...param,
+  };
+  // console.log("parameters", command);
+  // console.log("response", parameters);
+  let response = await runServiceLogin(command, parameters, "");
+
+  return response?.response;
 }
 
 export async function getDataView(param: any, lang: any) {
