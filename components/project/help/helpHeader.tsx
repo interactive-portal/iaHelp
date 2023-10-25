@@ -28,6 +28,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
 
+  // console.log("object :>> ", router);
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -121,12 +122,9 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                       <>
                         <button
                           className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858]"
-                          onClick={() =>
-                            router.push(
-                              `https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=http://localhost:3000/`
-                            )
-                          }
+                          onClick={() => router.push(`/login`)}
                         >
+                          {/* //https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=http://localhost:3000/ */}
                           Нэвтрэх
                         </button>
                       </>
