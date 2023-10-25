@@ -1,4 +1,10 @@
-import { runService, runServiceMetaVerse, runServiceComment } from "./service";
+import {
+  runService,
+  runServiceMetaVerse,
+  runServiceComment,
+  runServiceLogin,
+} from "./service";
+// import { runService, runServiceLogin, runServiceMetaVerse } from "./service";
 
 export async function getLayout(command: string, param: any) {
   let parameters = {
@@ -34,11 +40,19 @@ export async function getProcessData(command: any, param: any) {
 
   let response = await runService(command, parameters, "");
 
-  // console.log("response", response?.response);
-
   if (response?.response?.result) {
     return response?.response;
   }
+}
+export async function getProcessCustom(command: any, param: any) {
+  let parameters = {
+    ...param,
+  };
+  // console.log("parameters", command);
+  // console.log("response", parameters);
+  let response = await runServiceLogin(command, parameters, "");
+
+  return response?.response;
 }
 
 export async function getDataView(param: any, lang: any) {

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { parseBoolInt, encrypt } from "util/helper";
 import axios from "axios";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import moment from "moment";
 import fetchJson from "lib/fetchJson";
-// import { AtomInput, AtomButton } from "@components/common/Atom";
-import AtomButton from "@/components/common/Atom/atomButton";
-import AtomInput from "@/components/common/Atom/atomInput";
+import { AtomInput, AtomButton } from "@/components/common/Atom";
 // import router from "next/router";
 import { notification } from "antd";
 import { useRouter } from "next/router";
@@ -44,16 +42,17 @@ export default function CloudLoginForm() {
   });
 
   const { data: session } = useSession();
-
+  // console.log("session :>> ", session);/
   // if (session) {
-  //   window.location.href = "/nation";
+  //   // window.location.href = "/nation";
+  //   signOut();
   // }
-  const changeHandler = (e) => {
-    let isChecked = parseBoolInt(e.target.checked);
+  const changeHandler = (e: any) => {
+    const isChecked: any = parseBoolInt(e.target.checked);
     setldap(isChecked);
   };
 
-  const onChange = (e, index) => {
+  const onChange = (e: any, index: any) => {
     e.preventDefault();
     const tempData = [...data.rows];
     tempData[index] = {
@@ -63,9 +62,9 @@ export default function CloudLoginForm() {
     setData({ ...data, rows: tempData });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
-    let parameters = { iscustomer: true };
+    let parameters: any = { iscustomer: true };
     data.rows.map((item, index) => {
       parameters = { ...parameters, [item.path]: item.value };
     });
@@ -78,37 +77,29 @@ export default function CloudLoginForm() {
     // console.log("parameters :>> ", parameters);
 
     try {
-      const { data } = await axios.post(`api/post-process`, {
+      const { data: userSrc } = await axios.post(`/api/sso-auth`, {
         processcode: "login",
         parameters: parameters,
       });
-      // console.log("parameters :>> ", parameters);
-      // console.log("user :>> ", data);
-      if (data.status == "success") {
-        let param = {
-          filterCustomerId: data?.result.sessioncrmuserid || "",
-        };
-        const result = await fetchJson(
-          `/api/get-process?processcode=getCrmCustomerIdDv_004&parameters=${JSON.stringify(
-            param
-          )}`
-        );
-
+      console.log("user :>> ", userSrc);
+      if (userSrc.status == "success") {
         let nowDate = moment();
 
         let user = {
           username: parameters?.username,
           iscustomer: true,
           isHash: 1,
-          password: result?.passwordhash,
+          password: userSrc?.passwordhash,
           expiredate: nowDate.format("YYYY-MM-DD HH:mm:ss"),
         };
 
-        const aString = JSON.stringify(user);
-        const messageA = encrypt(aString);
+        console.log("usesssssr :>> ", user);
 
-        const decryptobject = messageA.replaceAll("+", "tttnmhttt");
-        const decryptobjects = decryptobject.replaceAll("=", "ttttntsuttt");
+        // const aString = JSON.stringify(user);
+        // const messageA = encrypt(aString);
+
+        // const decryptobject = messageA.replaceAll("+", "tttnmhttt");
+        // const decryptobjects = decryptobject.replaceAll("=", "ttttntsuttt");
 
         // console.log(
         //   "edirect_uri + decryptobjects :>> ",
@@ -118,28 +109,32 @@ export default function CloudLoginForm() {
         let params = {
           iscustomer: true,
           redirect: false,
-          callbackUrl: "/nation",
+          callbackUrl: "/",
           isHash: 1,
           username: parameters?.username,
-          password: result?.passwordhash,
+          password: userSrc?.passwordhash,
         };
 
         // signIn("credentials", params);
-        const res = await signIn("credentials", params);
+        let res: any = await signIn("credentials", params);
+        console.log("res :>> ", res);
+
         if (res.ok == true) {
-          if (!redirect_uri) {
-            window.location.href =
-              "https://customer.veritech.mn/nation?page=community%2FprofileAbout";
-          } else {
-            window.location.href =
-              redirect_uri + "/login/authorization?user=" + decryptobjects;
-          }
-        } else {
-          notification.open({
-            type: "error",
-            message: res.error,
-          });
+          window.location.href = "/";
         }
+        // if (res.ok == true) {
+        //   if (!redirect_uri) {
+        //     window.location.href = "/nation";
+        //   } else {
+        //     window.location.href =
+        //       redirect_uri + "/login/authorization?user=" + decryptobjects;
+        //   }
+        // } else {
+        //   notification.open({
+        //     type: "error",
+        //     message: res.error,
+        //   });
+        // }
 
         // window.location.href =
         //   redirect_uri + "/login/authorization?user=" + decryptobjects;
@@ -151,9 +146,10 @@ export default function CloudLoginForm() {
         //   window.location.href = redirect_uri + "?hash=" + decryptobjects;
         // }
       } else {
+        console.log("notification :>> ", userSrc);
         notification.open({
-          type: data.status,
-          message: data.text,
+          type: userSrc.status,
+          message: userSrc.text,
         });
       }
     } catch (err) {
@@ -163,7 +159,7 @@ export default function CloudLoginForm() {
 
   return (
     <>
-      {data.rows.map((item, index) => {
+      {data.rows.map((item: any, index) => {
         return (
           <AtomInput
             key={item?.id || index}
@@ -180,7 +176,7 @@ export default function CloudLoginForm() {
             iconContainer={{
               customClassName: "absolute text-gray-500 flex items-center pl-6",
             }}
-            onChange={(e) => onChange(e, index)}
+            onChange={(e: any) => onChange(e, index)}
           />
         );
       })}
@@ -196,12 +192,11 @@ export default function CloudLoginForm() {
         </div>
         <div>Нууц үг мартсан</div>
       </div>
-      <AtomButton
-        item="Нэвтрэх"
-        type="primary"
+      <button
         color="sso"
-        customClassName="rounded-full mt-6 w-full h-10 bg-blue-400 cursor-pointer text-base text-white font-semibold hover:bg-citizen-dark"
-        onClick={(e) => onSubmit(e)}
+        name="Нэвтрэх"
+        className="rounded-full mt-6 w-full h-10 bg-blue-400 cursor-pointer text-base text-white font-semibold hover:bg-citizen-dark"
+        onClick={(e: any) => onSubmit(e)}
       />
       {ischeck && (
         <div className="bg-orange-400  mt-6 text-center  flex text-white space-x-2 py-2 px-4 rounded-full">

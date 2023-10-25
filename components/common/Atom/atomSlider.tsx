@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-export default function AtomSlider7({
+export default function AtomSlider({
   type = "1",
   color = "sso",
   customStyle = {},

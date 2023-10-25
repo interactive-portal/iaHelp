@@ -1,14 +1,20 @@
-import AtomSlider7 from "@/components/common/Atom/atomSlider";
+import { useState } from "react";
+import AtomSlider from "@/components/common/Atom/atomSlider";
 
-export default function Banner1({
-  defaultStyle = {},
-  defaultClassName = "",
-  fade = true,
-}) {
+export default function Banner(fade: any) {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [visibleModal, setVisibleModal] = useState(false);
+
+  const onClickOpenRegister = () => {
+    setVisibleModal(true);
+  };
+  const onClose = () => {
+    setVisibleModal(false);
+  };
   return (
-    <AtomSlider7>
-      {data.map((item, index) => (
-        <div key={index} className="bg-yellow-700 h-screen">
+    <AtomSlider>
+      {data.map((item: any, index) => (
+        <div key={item?.id || index} className="bg-yellow-700 h-screen">
           <div className="relative w-full h-full">
             <img
               className={`object-center object-cover w-full h-full`}
@@ -40,7 +46,7 @@ export default function Banner1({
           </div>
         </div>
       ))}
-    </AtomSlider7>
+    </AtomSlider>
   );
 }
 
@@ -54,7 +60,7 @@ const data = [
   {
     image:
       "https://res.cloudinary.com/dzih5nqhg/image/upload/v1639277334/weekly/login_aqzmew.png",
-    title: "Welcome to",
+    title: "Welcome to ",
     description: "Veritech Customer Experience Portal",
   },
   {
