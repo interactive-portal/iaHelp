@@ -12,6 +12,7 @@ const AddComment = ({
   // handleUserComment,
   selectedId,
   parentId,
+  mutate,
 }: any) => {
   let form = useRef<any>();
 
@@ -31,7 +32,8 @@ const AddComment = ({
       `/api/post-comment?command=${command}&parameters=${param}`
     );
     if (result?.status == "success") {
-      //   getComment;
+      mutate();
+      setComment("");
     }
   };
 
@@ -80,20 +82,11 @@ const AddComment = ({
             <input
               type="hidden"
               name="createdCrmUserId"
-              value={
-                session?.readyProfile?.clouderp?.sessionvalues?.sessioncrmuserid
-              }
-            />
-            <input
-              type="hidden"
-              name="createdCrmUserId"
-              value={session?.crmuserid}
+              value={session?.readyProfile?.clouderp?.sessioncrmuserid}
             />
             {parentId && (
               <input type="hidden" name="parentId" value={parentId} />
             )}
-
-            <input type="hidden" name="createdUserId" value={session?.id} />
             <input
               type="hidden"
               name="refStructureId"

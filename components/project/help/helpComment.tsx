@@ -34,32 +34,11 @@ const helpComment: FC<PropsType> = ({
   const [commentList, setcommentList] = useState<any>(null);
   let structureId = widgetnemgooReady?.listconfig?.filterstructureid;
   const [profile, setProfile] = useState(session);
-  const { callProcess } = useCallProcess();
 
   const parameters = JSON.stringify({
     filterRecordId: selectedId || widgetnemgooReady?.recordId,
     filterStructureId: "1479204227214",
   });
-
-  // const getComment = async () => {
-
-  //   // const data = await callProcess({
-  //   //   command: "PRTL_MN_GET_COMMENT_004",
-  //   //   parameter: parameters,
-  //   //   moreRequest: null,
-  //   //   resultConfig: null,
-  //   //   silent: true,
-  //   // });
-
-  //   // setcommentList(data?.result?.ecmcommentdtl);
-  //   // if (setCommentCount) {
-  //   //   setCommentCount(data?.result?.ecmcommentdtl.length);
-  //   // }
-  // };
-
-  // useEffect(() => {
-  //   if (selectedId) getComment();
-  // }, []);
 
   const {
     data: comment,
@@ -110,6 +89,7 @@ const helpComment: FC<PropsType> = ({
       {profile && (
         <AddComment
           // form={form}
+          mutate={mutate}
           session={session}
           // getComment={getComment}
           // handleSubmit={handleSubmit}
@@ -122,11 +102,13 @@ const helpComment: FC<PropsType> = ({
         <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
           <div className="  lg:max-h-sm h-full mt-2">
             {tree.map((item: any, index: number) => {
+              console.log("item", item);
               return (
                 <CommentItem
                   key={index}
                   item={item}
                   index={index}
+                  mutate={mutate}
                   session={session}
                   // form={form}
                   // getComment={getComment}

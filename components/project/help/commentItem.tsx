@@ -4,6 +4,7 @@ import moment from "moment";
 import AddComment from "./addComment";
 import { useState } from "react";
 import _ from "lodash";
+import { mutate } from "swr";
 
 const CommentItem = ({
   item,
@@ -32,8 +33,8 @@ const CommentItem = ({
           >
             <img
               src={
-                session?.crmuserid == item?.createdcrmuserid
-                  ? `https://dev.veritech.mn/${session?.profileImg}`
+                item?.profilephoto
+                  ? `https://dev.veritech.mn/${item?.profilephoto}`
                   : `https://dev.veritech.mn/assets/core/global/img/user.png`
               }
               className=" w-10 h-10 mt-1 rounded-full object-cover"
@@ -42,10 +43,7 @@ const CommentItem = ({
           <div className="w-full pl-1.5 capitalize flex items-center gap-2">
             <RenderAtom
               item={{
-                value:
-                  session?.crmuserid == item?.createdcrmuserid
-                    ? session?.user?.name
-                    : item?.username || "Зочин",
+                value: item?.username || "Зочин",
               }}
               renderType="text"
               customClassName="text-base text-[#585858]  font-semibold block pt-1"
@@ -70,7 +68,7 @@ const CommentItem = ({
         </div>
         <i className="fa-regular fa-thumbs-up fa-lg text-[#585858]"></i>
       </div>
-      <div className="relative left-16 ">
+      <div className="pl-16 ">
         <p
           className="text-[16px] leading-5 font-normal text-gray-500"
           style={{
@@ -91,24 +89,29 @@ const CommentItem = ({
               <AddComment
                 //   form={form}
                 session={session}
+                mutate={mutate}
                 //   handleSubmit={handleSubmit}
                 //   EnterClick={EnterClick}
                 selectedId={selectedId}
                 parentId={item?.id}
               />
             </div>
-            {!_.isEmpty(children) && (
-              <CommentItem
-                item={item}
-                index={index}
-                session={session}
-                // form={form}
-                // handleSubmit={handleSubmit}
-                // EnterClick={EnterClick}
-                selectedId={selectedId}
-                children={item?.children}
-              />
-            )}
+            {!_.isEmpty(children) &&
+              children.map((item: any, index: any) => {
+                return (
+                  <CommentItem
+                    item={item}
+                    index={index}
+                    session={session}
+                    mutate={mutate}
+                    // form={form}
+                    // handleSubmit={handleSubmit}
+                    // EnterClick={EnterClick}
+                    selectedId={selectedId}
+                    children={item?.children}
+                  />
+                );
+              })}
           </>
         )}
       </div>

@@ -156,6 +156,7 @@ export const runServiceComment = async (
       parameters: bodys,
     },
   };
+  delete requestBody.request.parameters.dbsessionid;
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -167,7 +168,6 @@ export const runServiceComment = async (
   };
 
   const res = await fetch(pUrl, requestOptions);
-  // console.log("res :>> ", res);
 
   if (!res.ok) {
     const errorCode = res.ok ? false : res.status;
