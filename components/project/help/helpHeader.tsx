@@ -20,7 +20,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
   const [signupModalShow, setSignupModalShow] = useToggle(false);
   const { data: session, status }: any = useSession();
   const URL = process.env.url;
-  const logo = "/icon/helpLogo.png";
+  const logo = "/logo.png";
   const { widgetnemgooReady } = options || {};
 
   // console.log("data :>> ", data);
