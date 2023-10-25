@@ -44,7 +44,7 @@ export default function AtomInput({
       <input
         type={type ? type : "text"}
         className={twMerge(
-          "w-full focus:outline-none outline-none flex items-center",
+          "w-full focus:outline-none outline-none flex items-center py-2",
           isEmpty(icon) ? "pl-5" : "pl-6",
           inputContainer?.customClassName
         )}

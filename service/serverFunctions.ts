@@ -31,10 +31,9 @@ export async function getProcessData(command: any, param: any) {
   let parameters = {
     ...param,
   };
-
+  console.log("parameters", command);
+  console.log("response", parameters);
   let response = await runService(command, parameters, "");
-
-  // console.log("response", response?.response);
 
   if (response?.response?.result) {
     return response?.response;

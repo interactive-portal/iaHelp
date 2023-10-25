@@ -14,7 +14,7 @@ export default function FooterDefault() {
 
   return (
     <>
-      <div className=" w-full bg-slate-950 h-[250px]"> Default Footer</div>
+      {/* <div className=" w-full bg-slate-950 h-[250px]"> Default Footer</div> */}
     </>
   );
 }

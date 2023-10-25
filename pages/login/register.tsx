@@ -1,10 +1,10 @@
 import React, { useState, FC, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import CloudBanner1 from "@/components/Login/Banner1";
+import CloudBanner1 from "@/components/login/banner";
 import Link from "next/link";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
-import CommunitySingupModal from "@/components/Login/SignUp";
+// import CommunitySingupModal from "@/components/Login/SignUp";
 type PropsType = {
   type?: "login" | "register";
   setType?: any;
@@ -79,10 +79,10 @@ const Register: FC<PropsType> = ({ type, setType }) => {
                       </div>
                     </div>
                     <div>
-                      <CommunitySingupModal
+                      {/* <CommunitySingupModal
                         viewTitle={false}
                         afterSignup={() => router.push("/login")}
-                      />
+                      /> */}
                     </div>
                     {/* <Tabs>
                       <Tab
