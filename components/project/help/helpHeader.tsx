@@ -86,7 +86,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
               <img
                 src={widgetnemgooReady?.siteLogo || logo}
                 className="flex items-center pl-0 h-full cursor-pointer"
-                width={220}
+                // width={220}
                 onClick={() => router.push("/")}
                 // link={`/`} //${router.query?.detect[0]} алдаа шалгах
               />

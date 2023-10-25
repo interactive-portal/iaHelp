@@ -98,7 +98,7 @@ const TreeItem: FC<PropsTypeItem> = ({
           <RenderAtom
             item={{ value: item?.taskcount || item?.cnt }}
             renderType="text"
-            customClassName={`text-[12px] rounded-[5px] p-1 ${
+            customClassName={`text-[12px] min-w-[20px] flex items-center justify-center rounded-[5px] p-1 ${
               selected ? `border-[${color}]` : "border-[#E1E1E1]"
             } hover:text-[${color}] border`}
             customStyle={{ color: selected ? color : "#E1E1E1" }}

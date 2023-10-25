@@ -75,7 +75,7 @@ const TreeMain: FC<PropsType> = ({
           <li
             key={item?.id || index}
             className={`relative ${
-              item.icon || item?.profilephoto ? " pl-0 " : `pr-2`
+              item.icon || item?.profilephoto ? " pl-0 " : ``
             } `}
             // onClick={() => toggleIsOpen(item, index)}
           >
