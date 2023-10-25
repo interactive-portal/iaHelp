@@ -52,7 +52,7 @@ const HelpBanner = () => {
               divNumber="LandingPageDiv"
             >
               <BlockDiv
-                customClassName=" max-w-lpcontainer lg:px-10 px-0 mx-auto flex my-auto items-center justify-between lg:mt-0 xs:mt-14 h-full"
+                customClassName="max-w-lpcontainer lg:px-10 px-0 mx-auto flex my-auto items-center justify-between lg:mt-0 xs:mt-14 h-full"
                 divNumber={"LandingPageBannerDiv"}
               >
                 <BlockDiv

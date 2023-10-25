@@ -23,22 +23,6 @@ const Banner4 = () => {
           customStyle={{ backgroundImage: `url('${item?.mainimage}')` }}
           divNumber="LandingBannerDiv"
         >
-          {/* <img
-						className="absolute left-0 top-0 md:block object-center object-fill w-full lg:h-[650px] md:h-full"
-						src={item?.mainimage}
-						alt="randeer"
-					/> */}
-          {/* <img className="hidden md:block object-center object-fill w-full h-48 md:h-full" src="https://i.ibb.co/gWn4wjZ/Rectangle-32-1.png" alt="Background-img" /> */}
-          {/* <img
-						className="md:block lg:hidden hidden  w-full "
-						src="https://tuk-cdn.s3.amazonaws.com/can-uploader/banner_11_ipad.png"
-						alt="randeer"
-					/>
-					<img
-						className="md:hidden w-full "
-						src="https://tuk-cdn.s3.amazonaws.com/can-uploader/banner_11_mobile.png"
-						alt="randeer"
-					/> */}
           <div className="max-w-lpcontainer flex md:flex-col-reverse mx-auto h-full w-full">
             <div className=" flex flex-col w-[630px] h-full pt-[80px] justify-between lg:mb-14 xs:mb-0">
               <RenderAtom

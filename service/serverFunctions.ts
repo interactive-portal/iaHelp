@@ -1,4 +1,4 @@
-import { runService, runServiceMetaVerse } from "./service";
+import { runService, runServiceMetaVerse, runServiceComment } from "./service";
 
 export async function getLayout(command: string, param: any) {
   let parameters = {
@@ -80,6 +80,16 @@ export async function getDataMetaVerse(command: any, param: any) {
     ...param,
   };
   let { response } = await runServiceMetaVerse(command, parameters, "");
+  if (response?.result) {
+    return response;
+  }
+}
+
+export async function postComment(command: any, param: any) {
+  let parameters = {
+    ...param,
+  };
+  let { response } = await runServiceComment(command, parameters, "");
   if (response?.result) {
     return response;
   }

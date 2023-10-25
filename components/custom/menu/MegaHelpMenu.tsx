@@ -35,7 +35,7 @@ const MegaHelpMenu: FC<PropsType> = ({
   router.events.on("routeChangeStart", onClose);
 
   return (
-    <div className=" flex flex-col w-full h-full sm:flex md:flex">
+    <div className="flex flex-col w-full h-full sm:flex md:flex">
       <div className="relative">
         <div
           className={`w-32 ${
@@ -48,8 +48,8 @@ const MegaHelpMenu: FC<PropsType> = ({
           // }}
           onClick={showDrawer}
         >
-          <i className="fa-solid fa-bars text-base "></i>
-          <span className=" text-base cursor:pointer right-auto text-[#fff]">
+          <i className="fa-solid fa-bars text-base"></i>
+          <span className="text-base cursor:pointer right-auto text-[#fff]">
             Ангилал
           </span>
         </div>
@@ -58,7 +58,7 @@ const MegaHelpMenu: FC<PropsType> = ({
         // centered
         open={open}
         wrapClassName="right-auto left-[16%] -top-[83px]"
-        className="bg-[#F3F4F6] p-0 rounded sm:top-0 sm:mx-1 sm-w-full md:top-1 md:mx-2 md:w-full lg:top-2 lg:mx-3 xl:top-4 xl:ml-[10rem]"
+        className="bg-[#F3F4F6] p-0 rounded sm:top-0 sm:mx-1 sm-w-full md:top-1 md:mx-2 md:w-full lg:top-2 lg:mx-3 xl:top-4 xl:ml-[18rem]"
         onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         footer=""

@@ -299,9 +299,9 @@ const SingleKnowLedge = () => {
       </BlockDiv>
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 mx-10 min-h-screen">
         <SideBar options={widgetnemgooReady} />
-        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 px-6 py-4 bg-white">
+        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10">
           {(readyDatasrc[0]?.position22 && (
-            <div className="">
+            <div className="bg-white px-6 py-4">
               {openEdit ? (
                 <>
                   <input
@@ -350,14 +350,6 @@ const SingleKnowLedge = () => {
                       "text-[30px] py-6 bg-red-500 overflow-auto"
                     }
                   />
-                  <div id="comment" className="pt-[70px]">
-                    <div className="mt-8 px-2 py-4 border-t-2 border-gray-300">
-                      <h2 className="text-[#585858] text-xl font-medium">
-                        Сэтгэгдэл
-                      </h2>
-                      <HelpComment setCommentCount={setCommentCount} />
-                    </div>
-                  </div>
                 </>
               )}
             </div>
@@ -379,6 +371,14 @@ const SingleKnowLedge = () => {
                 // />
               );
             })}
+          <div id="comment" className=" bg-white mt-6 px-4">
+            <div className=" ">
+              <HelpComment
+                setCommentCount={setCommentCount}
+                commentcount={commentcount}
+              />
+            </div>
+          </div>
         </div>
         <div className="md:col-span-2 lg:col-span-3 xl:col-span-2 3xl:col-span-2 pl-4 py-4">
           <>

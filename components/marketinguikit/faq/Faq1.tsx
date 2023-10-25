@@ -103,9 +103,6 @@ function Faq1() {
             <p className="font-semibold">
               {Highlighted(item.name, searchValue)}
             </p>
-            {/* <br />
-            <p className="">{Highlighted(item.name, searchValue)}</p> */}
-            {/* {parseHtml(decode(item.dsc))} */}
           </div>
         </li>
       );
