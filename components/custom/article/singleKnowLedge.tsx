@@ -17,7 +17,7 @@ import QRCode from "react-qr-code";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
-import HelpComment from "@/components/project/help/helpComment";
+import HelpComment from "@/components/project/help/HelpCommentfff";
 import FileViewType from "./fileViewType";
 
 const SingleKnowLedge = () => {
