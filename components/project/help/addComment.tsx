@@ -1,6 +1,7 @@
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import fetchJson from "@/util/helper";
 import { useRef, useState } from "react";
+import { Atom_file } from "@/components/common/Atom/Form";
 
 const AddComment = ({
   //   form,
@@ -93,9 +94,16 @@ const AddComment = ({
               value={"1479204227214"}
             />
           </div>
-          <div className="flex gap-3 relative right-4">
-            <i className="fa-light fa-image text-[#67748E] fa-lg cursor-pointer"></i>
-            <i className="fa-light fa-face-smile text-[#67748E] fa-lg cursor-pointer"></i>
+          <div className="flex gap-3 relative right-4 z-10">
+            {/* <Atom_file config={{}} /> */}
+            {/* <label>
+              <i className="fa-light fa-image text-[#67748E] fa-lg cursor-pointer">
+                <input type="file" onChange={(e) => console.log(e)} />
+              </i>
+            </label> */}
+            <label>
+              <i className="fa-light fa-face-smile text-[#67748E] fa-lg cursor-pointer"></i>
+            </label>
           </div>
         </div>
         <div
@@ -123,6 +131,13 @@ const AddComment = ({
           </div>
         </div>
       </form>
+      <style>
+        {`
+        input[type="file"] {
+          display:none;
+        }
+        `}
+      </style>
     </div>
   );
 };

@@ -40,3 +40,30 @@ body {
 .main {
   min-height: calc(100vh - 220px);
 }
+
+.htmltext ul {
+  color: #585858 !important;
+  font-size: 16px !important;
+}
+
+.htmltext p {
+  font-size: 16px !important;
+}
+
+.htmltext span {
+  font-size: 16px !important;
+}
+
+.htmltext img {
+  font-size: 16px !important;
+  max-width: 100% !important;
+}
+
+.htmltext div {
+  font-size: 16px !important;
+  margin: 10px 0px;
+}
+
+.text-lg {
+  font-size: 16px !important;
+}

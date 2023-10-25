@@ -7,9 +7,9 @@ import { twMerge } from "tailwind-merge";
 import { fieldHideShow } from "@/util/helper";
 import Atom_label from "./Atom_label";
 type PropsType = {
-  config: any;
-  className: any;
-  labelClassName: any;
+  config?: any;
+  className?: any;
+  labelClassName?: any;
   style?: any;
   rowIndex?: any;
   sectionConfig?: any;
@@ -106,16 +106,16 @@ const Atom_file: FC<PropsType> = ({
         }`}
       >
         <Atom_label
-          labelName={config.labelname}
-          isrequired={config.isrequired}
+          labelName={config?.labelname}
+          isrequired={config?.isrequired}
           className={`${labelClassName}`}
           labelFor={config.paramrealpath}
           styles=""
           sectionConfig={sectionConfig}
         />
         <Upload
-          name={config.paramrealpath}
-          id={config.paramrealpath}
+          name={config?.paramrealpath}
+          id={config?.paramrealpath}
           listType="picture"
           className={twMerge(`avatar-uploader ${className}`)}
           defaultFileList={defaultFileList}
@@ -133,7 +133,7 @@ const Atom_file: FC<PropsType> = ({
         >
           <span>image title </span>
         </Modal>
-        {config.isEmpty && <span>{config.errorText}</span>}
+        {config.isEmpty && <span>{config?.errorText}</span>}
       </div>
     </>
   );

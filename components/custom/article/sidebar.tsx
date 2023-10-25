@@ -57,7 +57,7 @@ const SideBar: FC<PropsType> = ({ options }) => {
 
   return (
     <div className="md:col-span-2 lg:col-span-3 xl:col-span-2 3xl:col-span-2  p-4 h-full">
-      <h3 className="text-[20px] text-[#585858] font-medium"> Хайлт</h3>
+      <h3 className="text-[20px] text-[#585858] font-medium"> Агуулга</h3>
       {/* <div className="w-full border bg-white border-gray-300 rounded-lg mb-4">
         <button
           type="button"

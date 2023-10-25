@@ -22,7 +22,7 @@ export default function AtomHtmlText({
   if (isEmpty(item)) return null;
 
   return (
-    <span id={id} className="htmltext">
+    <span id={id} className={`htmltext ${customClassName}`}>
       {parseHtml(data)}
     </span>
   );

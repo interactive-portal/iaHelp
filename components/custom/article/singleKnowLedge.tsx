@@ -339,17 +339,16 @@ const SingleKnowLedge = () => {
                     }
                     renderType="text"
                     customClassName={
-                      "xl:text-3xl lg:text-2xl xs:text-xl pb-6 pt-2"
+                      "xl:text-[30px] lg:text-2xl xs:text-xl pb-6 pt-2 text-[#585858] font-medium mb-4"
                     }
                   />
-
-                  <RenderAtom
-                    item={readyDatasrc[0]?.position22}
-                    renderType="htmltext"
-                    customClassName={
-                      "text-[30px] py-6 bg-red-500 overflow-auto"
-                    }
-                  />
+                  <div className="py-4">
+                    <RenderAtom
+                      item={readyDatasrc[0]?.position22}
+                      renderType="htmltext"
+                      customClassName={"my-4"}
+                    />
+                  </div>
                 </>
               )}
             </div>
@@ -512,7 +511,7 @@ const SingleKnowLedge = () => {
               size={125}
               style={{
                 height: "auto",
-                maxWidth: "100%",
+                maxWidth: "70%",
                 width: "100%",
                 padding: "25px",
                 margin: "auto",
@@ -523,14 +522,6 @@ const SingleKnowLedge = () => {
           </BlockDiv>
         </div>
       </div>
-      <style>
-        {`
-          .htmltext img {
-            width: 100% !important;
-            height: auto !important
-          }
-          `}
-      </style>
     </>
   );
 };

@@ -71,7 +71,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
         />
       )}
       <div
-        className={`text-[14px] leading-[16px] ${
+        className={`text-[16px] leading-[16px] ${
           selected ? "text-[#699BF7]" : "text-[#585858]"
         } hover:text-[#699BF7] w-full`}
         // onClick={() => onArrowClickItem(item, itemIndex)}

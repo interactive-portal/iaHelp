@@ -88,8 +88,6 @@ const CustomMenu: FC<PropsType> = ({
   //   setDatasrc(prepareIsOpen(rawDatasrc, selectedId)[0] || []);
   // }, [selectedId]);
 
-  console.log("selectedID", readyDatasrc);
-
   return (
     <ul className={`${customClassName} `} style={{ ...customStyle }}>
       {readyDatasrc.map((item: any, index: number) => {
@@ -112,7 +110,7 @@ const CustomMenu: FC<PropsType> = ({
               item={item}
               positionConfig={positionConfig}
               color={color}
-              customClassName={` hover:bg-gray-100 py-2 pl-4 pr-2 ${itemStyle} ${
+              customClassName={` hover:bg-gray-100 py-2 pr-2 ${itemStyle} ${
                 Number(selectedId) == item?.id
                   ? "text-[#699BF7]"
                   : `text-citizen-blue`

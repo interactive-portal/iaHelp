@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Rate } from "antd";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
+import { useRouter } from "next/router";
 
 type PropsType = {
   item: any;
@@ -8,6 +9,8 @@ type PropsType = {
 };
 
 const Horizantal: FC<PropsType> = ({ item, index }) => {
+  const router = useRouter();
+  console.log(item);
   return (
     <div
       key={index}
@@ -15,11 +18,12 @@ const Horizantal: FC<PropsType> = ({ item, index }) => {
         boxShadow: "5x 10px black",
       }}
       className="col-span-1 w-full cursor-pointer shadow-[5px_5px_5px] shadow-black/20 h-auto rounded-l-lg"
+      onClick={() => router.push(item?.position7?.positionnemgoo?.url)}
     >
       <div
-        className={`bg-[${item?.bookcolorcode || "#EE6763"}] h-[270px] `}
+        className={`bg-[${item?.position7?.value || "#EE6763"}] h-[270px] `}
         style={{
-          background: item?.bookcolorcode || "#EE6763",
+          background: item?.position7?.value || "#EE6763",
         }}
       >
         <div className=" h-[120px] relative">
