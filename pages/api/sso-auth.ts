@@ -36,7 +36,6 @@ export default async (req: any, res: any) => {
         ...result,
       };
     }
-
     res.status(200).json(user || result);
   } catch (error) {
     res.status(500).json({ error });

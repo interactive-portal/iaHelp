@@ -110,7 +110,7 @@ export const authOptions: NextAuthOptions = {
       // console.log("user prfile", user);
 
       user.provider = account?.provider || "unknown";
-      user.profile = profile || user?.profile;
+      // user.profile = profile || user?.profile;
 
       let userMetaverse;
 
@@ -138,19 +138,6 @@ export const authOptions: NextAuthOptions = {
           //     provider: "Facebook",
           //   });
           user.facebook = profile;
-
-          break;
-        case "userMetaverse":
-          user.clouderp = await callLoginProcessV2({
-            user,
-            type: "Google",
-          });
-          break;
-        case "facebook":
-          user.clouderp = await callLoginProcessV2({
-            user,
-            type: "Facebook",
-          });
           break;
 
         default:
@@ -181,20 +168,6 @@ export const authOptions: NextAuthOptions = {
       ]);
       user.userMetaverse = userMetaverse;
 
-      user.profileLastReady = {
-        id: user?.clouderp?.id || user?.clouderp?.crmuserid,
-        name: `${user?.clouderp?.customerfirstname} ${user?.clouderp?.customerlastname}`,
-        email: user?.clouderp?.email,
-        phone: user?.clouderp?.phone,
-        customerid: user?.clouderp?.customerid,
-        crmuserid: user?.clouderp?.sessioncrmuserid,
-        departmentid: user?.clouderp?.departmentid,
-        username: user?.clouderp?.username,
-        test: "Энд гол мэдээллүүдийг оруулдаг шүү",
-        image:
-          user?.clouderp?.emppicture ||
-          "https://res.cloudinary.com/dzih5nqhg/image/upload/o_50/v1655704178/cloud/icons/user_s9lsbr.png",
-      };
       // console.log("user", user);
       return true;
     },
@@ -234,8 +207,8 @@ export const authOptions: NextAuthOptions = {
       session.profileImg = readyToken.image;
 
       //clouderp
-      session.username = readyToken?.clouderp?.username;
-      session.crmuserid = readyToken?.clouderp?.customerid;
+      session.username = readyToken?.username;
+      session.crmuserid = readyToken?.customerid;
       session.sessionCustUserId = readyToken?.clouderp?.crmuserid;
       session.dbsessionid = readyToken?.clouderp?.sessionid;
 

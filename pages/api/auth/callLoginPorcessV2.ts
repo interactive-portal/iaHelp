@@ -47,7 +47,9 @@ export const callLoginProcess = async ({
     delete result.userkeys;
   }
 
-  delete result.sessionvalues;
+  delete result?.result.sessionvalues;
+  console.log("et-process :>> ", result);
+
   return result?.result;
 };
 
@@ -118,6 +120,7 @@ export const callLoginProcessV2 = async ({
       api: `${URL}/api/get-process?command=${myParams.command}&parameter=${myParams.parameter}&morerequest=${myParams.moreRequest}&standard=${myParams.standard}&customProps=${myParams.customProps}&metaNameV2=${myParams.metaNameV2}`,
       silent: true,
     });
+
     if (response && response?.result && response?.result?.result) {
       result = response?.result?.result;
     }
