@@ -55,8 +55,6 @@ const helpComment: FC<PropsType> = ({
 
   const tree = listToTree(ordered, "parentid");
 
-  console.log("tree ", tree);
-
   return (
     <BlockDiv
       customClassName="w-full rounded-lg px-2 py-4 "
@@ -102,7 +100,6 @@ const helpComment: FC<PropsType> = ({
         <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
           <div className="  lg:max-h-sm h-full mt-2">
             {tree.map((item: any, index: number) => {
-              console.log("item", item);
               return (
                 <CommentItem
                   key={index}

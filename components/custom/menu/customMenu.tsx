@@ -49,8 +49,7 @@ const CustomMenu: FC<PropsType> = ({
     let newDatasrc = [...readyDatasrc];
     let found = false;
     readyDatasrc.map((item: any, index: number) => {
-      const selected = selectedId === item?.id;
-
+      const selected = Number(selectedId) === item?.id;
       if (selected) {
         newDatasrc[index].isOpen = selectedIsOpen; //selected node нь default-оор онгойх эсэх
         found = true;
@@ -70,7 +69,7 @@ const CustomMenu: FC<PropsType> = ({
     return [newDatasrc, found];
   }
   const [readyDatasrc, setDatasrc] = useState<any>(
-    prepareIsOpen(rawDatasrc, selectedId)[0] || []
+    prepareIsOpen(rawDatasrc, selectedId, true)[0] || []
   );
 
   const toggleIsOpen = (item: any, itemIndex: number) => {
@@ -85,21 +84,22 @@ const CustomMenu: FC<PropsType> = ({
     return null;
   };
 
-  useEffect(() => {
-    setDatasrc(prepareIsOpen(rawDatasrc, selectedId)[0] || []);
-  }, [selectedId]);
+  // useEffect(() => {
+  //   setDatasrc(prepareIsOpen(rawDatasrc, selectedId)[0] || []);
+  // }, [selectedId]);
+
+  console.log("selectedID", readyDatasrc);
 
   return (
     <ul className={`${customClassName} `} style={{ ...customStyle }}>
       {readyDatasrc.map((item: any, index: number) => {
         // const selected = selectedId === item?.id;
 
-        if (selectedId === item?.id) {
+        if (Number(selectedId) === item?.id) {
           if (item.children) {
-            item.isOpen = !item.isOpen;
+            item.isOpen = true;
           }
         }
-
         return (
           <li
             key={item?.id || index}
@@ -113,9 +113,11 @@ const CustomMenu: FC<PropsType> = ({
               positionConfig={positionConfig}
               color={color}
               customClassName={` hover:bg-gray-100 py-2 pl-4 pr-2 ${itemStyle} ${
-                selectedId == item?.id ? "text-[#699BF7]" : `text-citizen-blue`
+                Number(selectedId) == item?.id
+                  ? "text-[#699BF7]"
+                  : `text-citizen-blue`
               }`}
-              selected={selectedId === item?.id}
+              selected={selectedId == item?.id}
               itemIndex={index}
               setSelectedid={setSelectedId}
               // onClickItem={(e: any) => {

@@ -23,8 +23,6 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
   const logo = "/logo.png";
   const { widgetnemgooReady } = options || {};
 
-  console.log("session :>> ", session);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
 

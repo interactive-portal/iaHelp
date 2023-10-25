@@ -4,17 +4,14 @@ import moment from "moment";
 import AddComment from "./addComment";
 import { useState } from "react";
 import _ from "lodash";
-import { mutate } from "swr";
 
 const CommentItem = ({
   item,
   index,
   session,
-  form,
-  handleSubmit,
-  EnterClick,
   selectedId,
   children,
+  mutate,
 }: any) => {
   const [replyOpen, setReplyOpen] = useState(false);
 
@@ -104,9 +101,6 @@ const CommentItem = ({
                     index={index}
                     session={session}
                     mutate={mutate}
-                    // form={form}
-                    // handleSubmit={handleSubmit}
-                    // EnterClick={EnterClick}
                     selectedId={selectedId}
                     children={item?.children}
                   />
