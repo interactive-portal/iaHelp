@@ -325,7 +325,7 @@ const FaqItem = ({ rowItem, index, filterName }: any) => {
             }
           }
           defaultAtom="text"
-          customClassName="text-md mb-0 text-gray-100 dark:text-gray-900 hover:text-gray-400 font-medium"
+          customClassName="text-md mb-0 text-gray-900 hover:text-gray-400 font-medium"
           // customStyle={{ color: "#009BDE " }}
           customProps={{
             truncateRow: 3,

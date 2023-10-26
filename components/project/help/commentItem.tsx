@@ -41,23 +41,26 @@ const CommentItem = ({
         <div className="bg-gray-100 w-full px-4 rounded-lg pb-4">
           <div className="flex w-full items-center justify-between">
             <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
+              <div className="">
+                <RenderAtom
+                  item={{
+                    value: item?.username || "Зочин",
+                  }}
+                  renderType="text"
+                  customClassName="text-base text-[#585858]  font-semibold block "
+                />
+                <RenderAtom
+                  item={{
+                    value: item?.departmentname || "Байгууллага",
+                  }}
+                  renderType="text"
+                  customClassName="text-xs text-[#585858]/70  font-semibold block "
+                />
+              </div>
+
               <RenderAtom
                 item={{
-                  value: item?.username || "Зочин",
-                }}
-                renderType="text"
-                customClassName="text-base text-[#585858]  font-semibold block pt-1"
-              />
-              {/* <RenderAtom
-                item={{
-                  value: item?.username || "Зочин",
-                }}
-                renderType="text"
-                customClassName="text-base text-[#585858]  font-semibold block pt-1"
-              /> */}
-              <RenderAtom
-                item={{
-                  value: `&#8226; ${moment(item.createdDate).format("h:mm")}`,
+                  value: `&#8226; ${moment(item?.createdDate).format("h:mm")}`,
                 }}
                 renderType="text"
                 customClassName="text-[14px] font-semibold  pt-1.5 text-[#67748E]  text-right lowercase pr-1 "
@@ -66,7 +69,7 @@ const CommentItem = ({
             </div>
             {/* <i className="fa-regular fa-thumbs-up fa-lg text-[#585858]"></i> */}
           </div>
-          <div className=" ">
+          <div className="mt-3">
             <p
               className="text-[16px] leading-5 font-normal text-gray-500"
               style={{
