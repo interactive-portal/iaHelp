@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Rate } from "antd";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 type PropsType = {
   item: any;
@@ -10,10 +11,13 @@ type PropsType = {
 
 const Horizantal: FC<PropsType> = ({ item, index }) => {
   const router = useRouter();
-  console.log(item);
+  // console.log(item);
   return (
-    <div
+    <motion.div
       key={index}
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
       style={{
         boxShadow: "5x 10px black",
       }}
@@ -95,7 +99,7 @@ const Horizantal: FC<PropsType> = ({ item, index }) => {
       }
 		`}
       </style>
-    </div>
+    </motion.div>
   );
 };
 

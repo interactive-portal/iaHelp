@@ -4,6 +4,7 @@ import Horizantal from "./horizantal";
 import _ from "lodash";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
+import { motion } from "framer-motion";
 
 const ErpCard = () => {
   const { widgetnemgooReady, readyDatasrc } = useContext(WidgetWrapperContext);
@@ -43,13 +44,13 @@ const ErpCard = () => {
           ]}
         />
       </div>
-      <div
+      <motion.div
         className={`grid 2xl:grid-cols-6 xl:grid-cols-5  lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4 pt-2 pb-10`}
       >
         {readyDatasrc?.map((item: any, index: number) => {
           return cardContent(item, index);
         })}
-      </div>
+      </motion.div>
       <style>
         {`
 			.ant-tabs-top > .ant-tabs-nav::before {
