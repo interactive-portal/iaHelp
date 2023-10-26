@@ -14,7 +14,7 @@ const LandingPageFooter: FC<PropsType> = ({ data, options }) => {
   const readyData =
     window.innerWidth < 600 ? readyDatasrc.slice(0, 1) : readyDatasrc;
 
-  console.log("readyData :>> ", readyData);
+  // console.log("readyData :>> ", readyData);
   return (
     <footer className="relative bg-[#282828] px-0 lg:px-10">
       <div className={`py-16 ${otherSettings?.theme}`}>
