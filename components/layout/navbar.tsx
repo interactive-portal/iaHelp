@@ -39,6 +39,8 @@ export default function Navbar({ options }: NavbarProps) {
   //   return <Header />;
   // }
 
+  console.log("headerWidget :>> ", headerWidget);
+
   const widgetConfigNemgoo = optionsWidget?.widget;
   const myMetaTypeId =
     widgetConfigNemgoo?.metatypeid || optionsWidget.metatypeid;
@@ -79,8 +81,9 @@ export default function Navbar({ options }: NavbarProps) {
 
   return (
     <>
-      <DynamicHeader data={dataSrc} options={optionsWidget} />
+      {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
       {/* <HelpHeader data={dataSrc} options={optionsWidget} /> */}
+      <Header />
     </>
   );
 }

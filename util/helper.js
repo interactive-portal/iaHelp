@@ -1570,7 +1570,7 @@ export function getSaveExprission(str, type) {
 
 export default async function fetchJson(...args) {
   try {
-    const response = await fetch(...args);
+    const response = await fetch(...args, { cache: "force-cache" });
 
     // if the server replies, there's always some data in json
     // if there's a network error, it will throw at the previous line
