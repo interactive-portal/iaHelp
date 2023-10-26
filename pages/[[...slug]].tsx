@@ -54,7 +54,7 @@ export async function getServerSideProps(context: any) {
 
   context.res.setHeader(
     "Cache-Control",
-    "public, s-maxage=10, stale-while-revalidate=59"
+    "public, s-maxage=11536000, stale-while-revalidate=59"
   );
   //   console.log("pageObject pageObject :>> ", hostObjectV2);
 

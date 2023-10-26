@@ -17,14 +17,14 @@ import ErrorBoundary from "@/components/layout/ErrorBoundary";
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <NextNProgress
+      <NextNProgress
         color="#0346F2"
         startPosition={0.1}
         stopDelayMs={60}
-        height={5}
+        height={2}
         // showOnShallow={true}
-      /> */}
-      <RouteLoader />
+      />
+      {/* <RouteLoader /> */}
       <ErrorBoundary>
         <SessionProvider
           session={pageProps.session}

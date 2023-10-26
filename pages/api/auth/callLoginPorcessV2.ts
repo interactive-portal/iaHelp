@@ -48,7 +48,7 @@ export const callLoginProcess = async ({
   }
 
   delete result?.result.sessionvalues;
-  console.log("et-process :>> ", result);
+  // console.log("et-process :>> ", result);
 
   return result?.result;
 };

@@ -19,20 +19,12 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import HelpComment from "@/components/project/help/helpComment";
 import FileViewType from "./fileViewType";
+import DataLoader from "@/components/dataLoader";
 
 const SingleKnowLedge = () => {
-  const {
-    config,
-    readyDatasrc,
-    positionConfig,
-    gridJsonConfig,
-    pathConfig,
-    widgetnemgooReady,
-    Title,
-    dataMutate,
-  } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady, dataMutate } =
+    useContext(WidgetWrapperContext);
   const router = useRouter();
-  // console.log("readyDatasrc :>> ", readyDatasrc);
   const { data: session } = useSession();
   //   const { callProcess } = useCallProcess();
   const [openEdit, setOpenEdit] = useState(false);
@@ -270,7 +262,8 @@ const SingleKnowLedge = () => {
         <SideBar options={widgetnemgooReady} />
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10">
           {(readyDatasrc[0]?.position22 && (
-            <div className="bg-white px-6 py-4">
+            <div className="bg-white px-6 py-4 relative min-h-[350px] ">
+              <DataLoader />
               {openEdit ? (
                 <>
                   <input
