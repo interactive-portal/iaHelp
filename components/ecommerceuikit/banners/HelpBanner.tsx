@@ -89,7 +89,7 @@ const HelpBanner = () => {
                     item={item?.position10}
                     renderType="button"
                     customClassName={`
-                      bg-white text-[#585858] font-medium text-[18px] w-[150px] h-[30px] px-3 py-6 mt-[40px] w-[178px] rounded-[30px] flex-row-reverse`}
+                      bg-white text-[#585858] font-medium text-[18px] py-[10px] px-[25px] pl-[30px] mt-[40px] w-[178px] rounded-[30px] flex-row-reverse hover:opacity-70`}
                     customDivNumber="LandingPageDivButton"
                     customStyle={item?.buttonStyle}
                     customProps={{

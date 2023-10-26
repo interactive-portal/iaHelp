@@ -40,7 +40,7 @@ const TreeItem: FC<PropsTypeItem> = ({
       pathname: linkPaths?.path,
       query: linkPaths?.query,
     };
-    router.push({ ...path }, undefined, { scroll: false });
+    router.push({ ...path }, undefined, { shallow: true, scroll: false });
     // console.log("path :>> ", linkPath);
     // console.log("path :>> ", path);
     // console.log("s :>> ", i);
@@ -70,7 +70,7 @@ const TreeItem: FC<PropsTypeItem> = ({
         <RenderAtom
           item={item?.position1}
           renderType="title"
-          customClassName={`text-sm w-full justify-start p-0 font-normal group-hover:text-[${color}] ${
+          customClassName={` w-full justify-start p-0 font-normal group-hover:text-[${color}] ${
             item.icon && "pl-3"
           } ${selected ? `text-[${color}] font-semibold` : "text-gray-800"}`}
         />

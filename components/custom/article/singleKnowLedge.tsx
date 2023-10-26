@@ -19,20 +19,12 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import HelpComment from "@/components/project/help/helpComment";
 import FileViewType from "./fileViewType";
+import DataLoader from "@/components/dataLoader";
 
 const SingleKnowLedge = () => {
-  const {
-    config,
-    readyDatasrc,
-    positionConfig,
-    gridJsonConfig,
-    pathConfig,
-    widgetnemgooReady,
-    Title,
-    dataMutate,
-  } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady, dataMutate } =
+    useContext(WidgetWrapperContext);
   const router = useRouter();
-  // console.log("readyDatasrc :>> ", readyDatasrc);
   const { data: session } = useSession();
   //   const { callProcess } = useCallProcess();
   const [openEdit, setOpenEdit] = useState(false);
@@ -264,44 +256,14 @@ const SingleKnowLedge = () => {
               {srcTitle[0]?.lastmodify}
             </span>
           </BlockDiv>
-          <BlockDiv
-            customClassName="md:col-span-1 md:flex md:flex-row-reverse md:h-[130px] col-span-12 h-[50px] sm:self-center xs:self-center md:self-end ml-auto"
-            divNumber={"pageTitleDivRight"}
-          >
-            <RenderAtom
-              item={{ value: srcTitle[1]?.picture }}
-              renderType="image"
-              customClassName={
-                "md:w-[130px] h-full md:rounded-[20px] w-[50px] rounded[10px]"
-              }
-            />
-            <BlockDiv customClassName="flex flex-col items-end justify-end mr-4 mb-4 text-right">
-              {/* <RenderAtom
-                item={readyDatasrc[0]?.position25 || { value: "Менежер" }}
-                renderType="text"
-                customStyle={{
-                  width: "auto",
-                }}
-              /> */}
-              <RenderAtom
-                item={{ value: srcTitle[1]?.fullname }}
-                renderType="title"
-                customClassName={
-                  "sm:text-base xs:text-sm md:text-2xl text-white"
-                }
-                customStyle={{
-                  width: "auto",
-                }}
-              />
-            </BlockDiv>
-          </BlockDiv>
         </BlockDiv>
       </BlockDiv>
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 mx-10 min-h-screen">
         <SideBar options={widgetnemgooReady} />
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10">
           {(readyDatasrc[0]?.position22 && (
-            <div className="bg-white px-6 py-4">
+            <div className="bg-white px-6 py-4 relative min-h-[350px] ">
+              <DataLoader />
               {openEdit ? (
                 <>
                   <input

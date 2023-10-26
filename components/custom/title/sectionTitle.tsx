@@ -18,7 +18,7 @@ export default function sectionTitle() {
     <>
       <div
         className={`${
-          widgetnemgooReady.customClassName || "text-center w-full"
+          widgetnemgooReady.customClassName || "text-center w-full "
         }`}
       >
         <RenderAtom
@@ -35,7 +35,7 @@ export default function sectionTitle() {
           item={{ value: data?.subtitle }}
           renderType="text"
           customClassName={
-            "text-[#585858]  text-base" || data?.titleSubClass || "text-sm"
+            "text-[#585858]  text-base" || data?.titleSubClass || "text-sm "
           }
           // customStyle={atomStyle}
         />

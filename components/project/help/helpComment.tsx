@@ -61,7 +61,7 @@ const helpComment: FC<PropsType> = ({
       divNumber={"div100"}
     >
       <div className="flex justify-between items-center w-full">
-        <p className="text-[#585858] text-[30px] font-medium leading-[32px]">
+        <p className="text-[#585858] text-[18px] font-medium leading-[32px]">
           {commentcount != 0 && commentcount} Сэтгэгдэл
         </p>
         <Select

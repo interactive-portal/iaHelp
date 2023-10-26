@@ -52,6 +52,7 @@ export default function Footer({ options }: FooterProps) {
   return (
     <>
       {/* {JSON.stringify(footerWidget.componentpath)} */}
+      <span className="max-w-[760px] pb-16 "></span>
       <RenderFooter data={dataSrc} options={optionsWidget} />
     </>
   );

@@ -10,6 +10,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Custom404 from "@/pages/404";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import Header from "../common/default/header";
+import HelpHeader from "../project/help/helpHeader";
+import useWidgetData from "../common/engineBox/util/useWidgetData";
 
 type LayoutProps = {
   children?: any;
@@ -22,8 +25,9 @@ export default function Layout({ children }: LayoutProps) {
     exit: { opacity: 0, x: 0, y: -100 },
   };
   const { props } = children;
-
-  // console.log("props :>> ", props);
+  const isHeader = _.isEmpty(children.props) ? true : false;
+  // console.log("children.props :>> ", children.props);
+  // return <>dddd</>;
   if (props.notFound == true) {
     return (
       <>
@@ -31,6 +35,21 @@ export default function Layout({ children }: LayoutProps) {
       </>
     );
   }
+
+  const { meta_bp_layout_section } = props || {};
+
+  let headerWidget = _.find(meta_bp_layout_section, { code: "header" }) || "";
+
+  let optionsWidget = _.omit(headerWidget, [
+    "layoutnemgoo",
+    "otherattr",
+    "layouthdr",
+    "rdebugconfig",
+    "borderstyle",
+    "rdebugdata",
+    "rdebugshowposition",
+  ]);
+  const [dataSrc, error] = useWidgetData(optionsWidget);
 
   return (
     <>
@@ -43,7 +62,9 @@ export default function Layout({ children }: LayoutProps) {
         />
         <link rel="icon" href="https://www.interactive.mn/images/favicon.ico" />
       </Head>
-      <Navbar options={props} />
+      {/* <Navbar options={props} /> */}
+      {/* <Header /> */}
+      {!isHeader && <HelpHeader data={dataSrc} options={optionsWidget} />}
       {children}
       <Footer options={props} />
     </>

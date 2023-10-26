@@ -46,7 +46,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
         lparentid: parentid,
       },
     };
-    router.push({ ...path }, undefined, { shallow: false });
+    router.push({ ...path }, undefined, { shallow: false, scroll: false });
     // console.log("path :>> ", path);
     // console.log("s :>> ", i);
     // if (withChildren) {

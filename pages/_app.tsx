@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { roboto } from "@/styles/fonts";
 // import "public/icon/css/all.css";
 // import { roboto } from "@/fonts";
 // import Layout from "@/components/layout";
@@ -17,14 +18,14 @@ import ErrorBoundary from "@/components/layout/ErrorBoundary";
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <NextNProgress
+      <NextNProgress
         color="#0346F2"
         startPosition={0.1}
         stopDelayMs={60}
-        height={5}
+        height={2}
         // showOnShallow={true}
-      /> */}
-      <RouteLoader />
+      />
+      {/* <RouteLoader /> */}
       <ErrorBoundary>
         <SessionProvider
           session={pageProps.session}

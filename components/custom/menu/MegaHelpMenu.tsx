@@ -19,7 +19,7 @@ const MegaHelpMenu: FC<PropsType> = ({
   menuItem,
   customClass,
 }) => {
-  const router = useRouter();
+  let router = useRouter();
   const [show, setShow] = useState(false);
   const tree = listToTree(menuItem, "parentid");
   const [open, setOpen] = useState(false);
@@ -32,7 +32,7 @@ const MegaHelpMenu: FC<PropsType> = ({
     setOpen(false);
   };
 
-  router.events.on("routeChangeStart", onClose);
+  router.events?.on("routeChangeStart", onClose);
 
   return (
     <div className="flex flex-col w-full h-full sm:flex md:flex">

@@ -15,7 +15,7 @@ type PropsType = {
   options?: any;
 };
 
-const HelpComment: FC<PropsType> = ({ data, options }) => {
+const HelpHeader: FC<PropsType> = ({ data, options }) => {
   const [loginModalShow, setLoginModalShow] = useToggle(false);
   const [signupModalShow, setSignupModalShow] = useToggle(false);
   const { data: session, status }: any = useSession();
@@ -46,7 +46,7 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
   const [deliverables, setDeliverables] = useState(false);
 
   const useProfile = (
-    <div>
+    <div className="relative z-[1000]">
       <ul>
         <li className="hover:text-blue-400">
           <Link
@@ -72,13 +72,13 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
 
   return (
     <>
-      <div className=" w-full fixed z-50 " style={{ background: "#fff" }}>
+      <div className=" w-full fixed z-[999] " style={{ background: "#fff" }}>
         <div
-          className=" w-full mx-auto  md:px-10 xs:px-2 h-[90px] py-4"
+          className=" w-full mx-auto  md:px-10 xs:px-2 h-[90px]  py-4"
           style={{ background: "#fff" }}
         >
           <div
-            className={`justify-between h-14 flex items-center   ${
+            className={`justify-between h-14 flex items-center ${
               widgetnemgooReady?.insideDiv?.className || ""
             }`}
           >
@@ -101,43 +101,31 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                 </div>
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-10  w-full xl:w-2/5 justify-end ">
+            <div className="hidden md:flex items-center  gap-10 md:w-2/5 justify-between    ">
               <HelpSearch />
-              {/* <div className="flex items-center ">
-                <div className="xs:block lg:hidden">
-                  <RenderAtom
-                    item={{ value: "fa-solid fa-bars" }}
-                    renderType="icon"
-                    customClassName={""}
-                    onClick={() => setShow(!show)}
-                  />
-                </div>
-              </div> */}
               <div className="hidden xl:flex items-center">
                 <div className="ml-6 relative">
                   <div className="flex  gap-3 items-center relative">
                     {!session && (
                       <>
-                        <button
-                          className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858]"
+                        <span
+                          className="hover:text-blue-900 text-base font-bold cursor-pointer text-[#585858] flex gap-3 justify-items-center items-center"
                           onClick={() => router.push(`/login`)}
                         >
                           {/* //https://customer.veritech.mn/login?domain=help&iscustomer=1&redirect_uri=http://localhost:3000/ */}
                           Нэвтрэх
-                        </button>
+                          <img
+                            alt="profile-pic"
+                            src="/awatar.png"
+                            className="w-10 h-10 rounded-md"
+                          />
+                        </span>
                       </>
                     )}
                     {session && (
                       <>
                         <Popover content={useProfile} placement="bottom">
-                          <div className="flex items-center cursor-pointer ">
-                            <RenderAtom
-                              item={{ value: session?.profileImg }}
-                              renderType="image"
-                              customClassName={
-                                "w-20 h-12 rounded-full object-cover mr-4"
-                              }
-                            />
+                          <div className="flex items-center cursor-pointer gap-4 ">
                             <div className="text-right pr-1 text-[#585858] font-medium">
                               <span className="p-0 m-0 inline-block te">
                                 {session?.username}
@@ -153,6 +141,15 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
                                 customClassName={`capitalize font-semibold text-sm `}
                               />
                             </div>
+                            <RenderAtom
+                              item={{
+                                value: session?.profileImg || "/awatar.png",
+                              }}
+                              renderType="image"
+                              customClassName={
+                                "w-10 h-10 border rounded-full object-cover mr-4"
+                              }
+                            />
                           </div>
                         </Popover>
                       </>
@@ -172,11 +169,6 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
         onCancel={handleCancel}
         footer={false}
       >
-        {/* <ModalLogin
-          iscustomer={false}
-          handlerTypeEvent={handlerTypeEvent}
-          setIsModalVisible={setIsModalVisible}
-        /> */}
         login
       </Modal>
       {/* Login Modal */}
@@ -307,4 +299,4 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
     </>
   );
 };
-export default HelpComment;
+export default HelpHeader;
