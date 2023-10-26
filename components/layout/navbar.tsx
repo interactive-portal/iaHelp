@@ -79,10 +79,8 @@ export default function Navbar({ options }: NavbarProps) {
 
   return (
     <>
-      {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
-
-      {/* tur  */}
-      <HelpHeader data={dataSrc} options={optionsWidget} />
+      <DynamicHeader data={dataSrc} options={optionsWidget} />
+      {/* <HelpHeader data={dataSrc} options={optionsWidget} /> */}
     </>
   );
 }
