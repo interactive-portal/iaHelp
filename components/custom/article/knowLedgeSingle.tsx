@@ -194,7 +194,7 @@ const knowLedgeSingle = () => {
                     />
                     <div id="comment" className="pt-[70px]">
                       <div className="mt-8 px-2 py-4 border-t-2 border-gray-300">
-                        <h2 className="text-[#585858] text-xl font-medium">
+                        <h2 className="text-[#585858] text-lg font-medium">
                           Сэтгэгдэл
                         </h2>
                         <HelpComment setCommentCount={setCommentCount} />

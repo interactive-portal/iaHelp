@@ -193,14 +193,14 @@ const HelpSearch: FC<PropsType> = ({
 
   return (
     <>
-      <div className="w-full  my-4" data-ref={ref}>
+      <div className="w-3/5 " data-ref={ref}>
         <div className="flex items-center justify-center">
           <div className="relative w-full  bg-white  ">
-            <div className="flex relative flex-col items-center justify-center bg-white py-2 rounded-full z-30 bg-inherit">
-              <div className=" z-10 rounded-[70px] flex items-center w-full bg-[#F3F4F6] ">
+            <div className="flex relative flex-col items-center justify-center bg-white  rounded-full z-30 bg-inherit">
+              <div className=" z-10 rounded-[70px] flex items-center w-full bg-[#F3F4F6] px-2 ">
                 <i className="fa-regular fa-magnifying-glass px-3 text-[#67748E] font-bold"></i>
                 <input
-                  className=" bg-[#F3F4F6] md:block rounded-[30px] focus-visible:outline-0  text-[#67748E] w-full  py-2.5 text-[16px] font-medium text-lg"
+                  className=" bg-[#F3F4F6] md:block rounded-[30px] focus-visible:outline-0  text-[#67748E] w-full  py-1.5 text-[16px] font-medium text-lg"
                   placeholder="Хайлт ..."
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
