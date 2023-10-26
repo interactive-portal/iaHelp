@@ -32,7 +32,7 @@ const MegaHelpMenu: FC<PropsType> = ({
     setOpen(false);
   };
 
-  // router.events.on("routeChangeStart", onClose);
+  router.events.on("routeChangeStart", onClose);
 
   return (
     <div className="flex flex-col w-full h-full sm:flex md:flex">
