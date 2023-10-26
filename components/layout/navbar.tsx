@@ -10,6 +10,7 @@ import Custom404 from "@/pages/404";
 import useWidgetData from "@/components/common/engineBox/util/useWidgetData";
 import dynamic from "next/dynamic";
 import Header from "@/components/common/default/header";
+import HelpHeader from "../project/help/helpHeader";
 
 type NavbarProps = {
   options?: any;
@@ -78,7 +79,10 @@ export default function Navbar({ options }: NavbarProps) {
 
   return (
     <>
-      <DynamicHeader data={dataSrc} options={optionsWidget} />
+      {/* <DynamicHeader data={dataSrc} options={optionsWidget} /> */}
+
+      {/* tur  */}
+      <HelpHeader data={dataSrc} options={optionsWidget} />
     </>
   );
 }

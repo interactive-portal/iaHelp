@@ -15,7 +15,7 @@ type PropsType = {
   options?: any;
 };
 
-const HelpComment: FC<PropsType> = ({ data, options }) => {
+const HelpHeader: FC<PropsType> = ({ data, options }) => {
   const [loginModalShow, setLoginModalShow] = useToggle(false);
   const [signupModalShow, setSignupModalShow] = useToggle(false);
   const { data: session, status }: any = useSession();
@@ -74,11 +74,11 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
     <>
       <div className=" w-full fixed z-[999] " style={{ background: "#fff" }}>
         <div
-          className=" w-full mx-auto  md:px-10 xs:px-2 h-[90px] py-4"
+          className=" w-full mx-auto  md:px-10 xs:px-2 h-[90px]  py-4"
           style={{ background: "#fff" }}
         >
           <div
-            className={`justify-between h-14 flex items-center   ${
+            className={`justify-between h-14 flex items-center ${
               widgetnemgooReady?.insideDiv?.className || ""
             }`}
           >
@@ -299,4 +299,4 @@ const HelpComment: FC<PropsType> = ({ data, options }) => {
     </>
   );
 };
-export default HelpComment;
+export default HelpHeader;

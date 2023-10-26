@@ -26,14 +26,8 @@ const TreeMain: FC<PropsType> = ({
   itemStyle,
   onClickItem = () => null,
 }) => {
-  const {
-    config,
-    widgetnemgooReady,
-    positionConfig,
-    metaConfig,
-    gridJsonConfig,
-    pathConfig,
-  } = useContext(WidgetWrapperContext);
+  const { widgetnemgooReady, positionConfig } =
+    useContext(WidgetWrapperContext);
 
   // console.log(defaultSelectedId, "asdasdasd");
   if (_.isEmpty(rawDatasrc)) return null;

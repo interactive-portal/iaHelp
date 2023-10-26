@@ -40,7 +40,7 @@ const TreeItem: FC<PropsTypeItem> = ({
       pathname: linkPaths?.path,
       query: linkPaths?.query,
     };
-    router.push({ ...path }, undefined, { scroll: false });
+    router.push({ ...path }, undefined, { shallow: true, scroll: false });
     // console.log("path :>> ", linkPath);
     // console.log("path :>> ", path);
     // console.log("s :>> ", i);
