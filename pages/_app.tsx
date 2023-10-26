@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { roboto } from "@/styles/fonts";
 // import "public/icon/css/all.css";
 // import { roboto } from "@/fonts";
 // import Layout from "@/components/layout";
