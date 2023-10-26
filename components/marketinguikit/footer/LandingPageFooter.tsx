@@ -1,7 +1,6 @@
 import { FC, useContext } from "react";
 import _ from "lodash";
 import Link from "next/link";
-import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 
 type PropsType = {
@@ -14,8 +13,10 @@ const LandingPageFooter: FC<PropsType> = ({ data, options }) => {
   const otherSettings = options?.widgetnemgooReady?.otherSettings;
   const readyData =
     window.innerWidth < 600 ? readyDatasrc.slice(0, 1) : readyDatasrc;
+
+  console.log("readyData :>> ", readyData);
   return (
-    <footer className="relative bg-black px-0 lg:px-10">
+    <footer className="relative bg-[#282828] px-0 lg:px-10">
       <div className={`py-16 ${otherSettings?.theme}`}>
         <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8  z-10 relative">
           {readyData?.map((item: any, index: number) => {
@@ -25,7 +26,7 @@ const LandingPageFooter: FC<PropsType> = ({ data, options }) => {
               }
               return (
                 <RenderAtom
-                  item={item?.position1}
+                  item={item?.position1 || { value: item?.title }}
                   renderType="title"
                   customClassName="text-lg text-white font-bold pt-6 pb-6 px-3"
                 />
@@ -38,14 +39,14 @@ const LandingPageFooter: FC<PropsType> = ({ data, options }) => {
                 <RenderAtom
                   item={{ value: item?.description }}
                   renderType="title"
-                  customClassName=" text-white p-3 mt-3 text-sm font-normal text-opacity-80 "
+                  customClassName=" text-white p-3 mt-3 text-[14px] font-normal text-opacity-80  "
                 />
                 {item?.link?.map((item1: any, i: number) => {
                   return (
                     <div key={i} className="my-2">
                       <Link
                         href={item1?.url}
-                        className="text-white text-opacity-80 p-3 "
+                        className="text-white text-[14px]  text-opacity-80 p-3 "
                       >
                         {item1?.name}
                       </Link>
