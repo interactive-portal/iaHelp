@@ -4,6 +4,7 @@ import moment from "moment";
 import AddComment from "./addComment";
 import { useState } from "react";
 import _ from "lodash";
+import { Image } from "antd";
 
 const CommentItem = ({
   item,
@@ -14,75 +15,139 @@ const CommentItem = ({
   mutate,
 }: any) => {
   const [replyOpen, setReplyOpen] = useState(false);
+  const [isPreviewVisible, setPreviewVisible] = useState(false);
 
   return (
     <BlockDiv
       key={item?.id || index}
-      customClassName="bg-transparent rounded-lg mt-2"
+      customClassName="bg-transparent rounded-lg mt-2 w-full py-2"
     >
-      <div className="flex justify-between py-2 px-2 items-center">
-        <div className="flex items-center">
-          <div
-            className=""
-            style={{
-              minWidth: "50px",
-            }}
-          >
-            <img
-              src={
-                item?.profilephoto
-                  ? `https://dev.veritech.mn/${item?.profilephoto}`
-                  : `https://dev.veritech.mn/assets/core/global/img/user.png`
-              }
-              className=" w-10 h-10 mt-1 rounded-full object-cover"
-            />
-          </div>
-          <div className="w-full pl-1.5 capitalize flex items-center gap-2">
-            <RenderAtom
-              item={{
-                value: item?.username || "Зочин",
-              }}
-              renderType="text"
-              customClassName="text-base text-[#585858]  font-semibold block pt-1"
-            />
-            <RenderAtom
-              item={{
-                value: `&#8226; ${moment(item.createdDate).format("h:mm")}`,
-              }}
-              renderType="text"
-              customClassName="text-[14px] font-semibold  pt-1.5 text-[#67748E]  text-right lowercase pr-1 "
-              customStyle={{ color: "#67748E" }}
-            />
-            {/* <RenderAtom
-                          item={{
-                            value: item?.departmentname || "Байгууллага",
-                          }}
-                          renderType="text"
-                          customClassName="text-sm text-citizen-title lowercase -mt-1 relative -top-1"
-                          customStyle={{ color: "#67748E" }}
-                        /> */}
-          </div>
-        </div>
-        <i className="fa-regular fa-thumbs-up fa-lg text-[#585858]"></i>
-      </div>
-      <div className="pl-16 ">
-        <p
-          className="text-[16px] leading-5 font-normal text-gray-500"
+      <div className="flex justify-between w-full">
+        <div
+          className=""
           style={{
-            color: "#585858",
+            minWidth: "50px",
           }}
         >
-          {item?.commenttext}
-        </p>
-        <button
-          className="left-2 top-2 relative text-base font-bold text-[#585858] leading-[18px]"
+          <img
+            src={
+              item?.profilephoto
+                ? `https://dev.veritech.mn/${item?.profilephoto}`
+                : `https://dev.veritech.mn/assets/core/global/img/user.png`
+            }
+            className=" w-10 h-10 mt-1 rounded-full object-cover"
+          />
+        </div>
+        <div className="bg-gray-100 w-full px-4 rounded-lg pb-4">
+          <div className="flex w-full items-center justify-between">
+            <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
+              <RenderAtom
+                item={{
+                  value: item?.username || "Зочин",
+                }}
+                renderType="text"
+                customClassName="text-base text-[#585858]  font-semibold block pt-1"
+              />
+              {/* <RenderAtom
+                item={{
+                  value: item?.username || "Зочин",
+                }}
+                renderType="text"
+                customClassName="text-base text-[#585858]  font-semibold block pt-1"
+              /> */}
+              <RenderAtom
+                item={{
+                  value: `&#8226; ${moment(item.createdDate).format("h:mm")}`,
+                }}
+                renderType="text"
+                customClassName="text-[14px] font-semibold  pt-1.5 text-[#67748E]  text-right lowercase pr-1 "
+                customStyle={{ color: "#67748E" }}
+              />
+            </div>
+            {/* <i className="fa-regular fa-thumbs-up fa-lg text-[#585858]"></i> */}
+          </div>
+          <div className=" ">
+            <p
+              className="text-[16px] leading-5 font-normal text-gray-500"
+              style={{
+                color: "#585858",
+              }}
+            >
+              {item?.commenttext}
+            </p>
+            {!_.isEmpty(item.commentfile) && (
+              <Image.PreviewGroup
+                preview={{
+                  visible: isPreviewVisible,
+                  onVisibleChange: (visible, prevVisible) =>
+                    setPreviewVisible(visible),
+                }}
+              >
+                <div className="flex items-center mt-5">
+                  {item?.commentfile.map((obj: any, index: number) => {
+                    switch (obj?.fileextension) {
+                      case "png" || "jpg" || "jpeg":
+                        if (index == 1) {
+                          return (
+                            <div className="relative ">
+                              <Image
+                                // width={240}
+
+                                // height={300}
+                                src={`https://dev.veritech.mn/${obj?.physicalpath}`}
+                                className="object-cover"
+                                sizes="cover"
+                                wrapperClassName="object-cover rounded-lg"
+                                style={{
+                                  maxWidth: "300px",
+                                }}
+                              />
+                              {/* <div
+                                className="flex items-center justify-center rounded-lg absolute top-0 bg-black/20 w-full h-[98%] text-white cursor-pointer"
+                                onClick={() => setPreviewVisible(true)}
+                              >
+                                <p className="text-[70px] font-bold">
+                                  +{item?.commentfile?.length - 2}
+                                </p>
+                              </div> */}
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div className="relative">
+                              <Image
+                                // width={240}
+                                // height={300}
+                                src={`https://dev.veritech.mn/${obj?.physicalpath}`}
+                                className="object-cover rounded-lg"
+                                sizes="cover"
+                                wrapperClassName="object-cover rounded-lg"
+                              />
+                            </div>
+                          );
+                        }
+                    }
+                  })}
+                </div>
+              </Image.PreviewGroup>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center pl-[55px] text-[12px] text-[#585858]">
+        <p className="hover:text-[#699BF7] cursor-pointer">Like</p>
+        <p className="px-4">|</p>
+        <p
+          className="hover:text-[#699BF7] cursor-pointer"
           onClick={() => setReplyOpen(!replyOpen)}
         >
           Хариулах
-        </button>
+        </p>
+      </div>
+      <div className="pl-[55px] w-full">
         {replyOpen && (
           <>
-            <div className="w-[90%]">
+            <div className="w-full">
               <AddComment
                 //   form={form}
                 session={session}
@@ -109,6 +174,18 @@ const CommentItem = ({
           </>
         )}
       </div>
+      <style>
+        {`
+          .ant-image-img {
+            border-radius:10px;
+            max-width:300px
+          }
+          .ant-image-mask {
+            border-radius:10px
+
+          }
+          `}
+      </style>
     </BlockDiv>
   );
 };

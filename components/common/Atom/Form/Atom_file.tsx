@@ -6,6 +6,7 @@ import { FC, useContext, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { fieldHideShow } from "@/util/helper";
 import Atom_label from "./Atom_label";
+import _ from "lodash";
 type PropsType = {
   config?: any;
   className?: any;
@@ -13,6 +14,8 @@ type PropsType = {
   style?: any;
   rowIndex?: any;
   sectionConfig?: any;
+  fileList?: any;
+  setFileList?: any;
 };
 
 const Atom_file: FC<PropsType> = ({
@@ -22,6 +25,8 @@ const Atom_file: FC<PropsType> = ({
   style,
   rowIndex,
   sectionConfig,
+  fileList,
+  setFileList,
 }) => {
   const [defaultFileList, setDefaultFileList] = useState([]);
   const [progress, setProgress] = useState(0);
@@ -29,11 +34,12 @@ const Atom_file: FC<PropsType> = ({
     useContext(FormMetaContext);
   const { data: session, status }: any = useSession();
   const uploadButton = (
-    <div>
-      <span className="fa-thin fa-arrow-up-from-bracket hover:opacity-80 ">
-        <span className="px-2 cursor-pointer "> File upload</span>
-      </span>{" "}
-    </div>
+    <i className="fa-light fa-image text-[#67748E] fa-lg cursor-pointer"></i>
+    // <div>
+    //   <span className="fa-thin fa-arrow-up-from-bracket hover:opacity-80 ">
+    //     <span className="px-2 cursor-pointer "> File upload</span>
+    //   </span>{" "}
+    // </div>
   );
 
   function beforeUpload(file: any) {
@@ -71,15 +77,32 @@ const Atom_file: FC<PropsType> = ({
 
     try {
       const res = await axios.post(
-        "https://dev.veritech.mn:8181/erp-services/FileServlet",
+        "http://103.85.184.43:8080/erp-services/FileServlet",
         fmData,
         config
       );
       onSuccess("Ok");
-      handleChangeContext({
-        name: filename,
-        value: res.data.response.files,
-      });
+      // handleChangeContext({
+      //   name: filename,
+      //   value: res.data.response.files,
+      // });
+      const firstValue = res.data.response.files.split("storage")[0];
+      const fileValue = res.data.response.files.replace(firstValue, "");
+      const fileExtionsion = options.file.name.split(".").pop();
+
+      let fileInfo = {
+        fileName: options?.file?.name,
+        physicalPath: fileValue,
+        fileSize: JSON.stringify(options?.file?.size),
+        fileExtension: fileExtionsion,
+      };
+
+      if (_.isEmpty(fileList)) {
+        setFileList([fileInfo]);
+      } else {
+        let file = [...fileList, fileInfo];
+        setFileList(file);
+      }
     } catch (err) {
       console.log("Eroor: ", err);
       const error = new Error("Some error");
@@ -87,41 +110,47 @@ const Atom_file: FC<PropsType> = ({
     }
   };
 
-  const handleOnChange = (file: any, fileList: any, event: any) => {
-    // console.log(file, fileList);
-    setDefaultFileList(fileList);
-  };
+  // const handleOnChange = (file: any, fileList: any, event: any) => {
+  //   // console.log(file, fileList);
+  //   setDefaultFileList(fileList);
+  // };
 
   return (
     <>
       <div
-        className={`${
-          sectionConfig?.widgetnemgooReady?.labelPosition == "top"
-            ? `flex flex-col`
-            : `grid grid-cols-2 gap-4`
-        } ${
-          config.isshow == "0"
-            ? "hidden"
-            : fieldHideShow(config, processExpression) && "hidden"
-        }`}
+        className={
+          "relative"
+          //   `
+          // ${
+          //   sectionConfig?.widgetnemgooReady?.labelPosition == "top"
+          //     ? `flex flex-col`
+          //     : `grid grid-cols-2 gap-4`
+          // } ${
+          //   config.isshow == "0"
+          //     ? "hidden"
+          //     : fieldHideShow(config, processExpression) && "hidden"
+          // }`
+        }
       >
-        <Atom_label
+        {/* <Atom_label
           labelName={config?.labelname}
           isrequired={config?.isrequired}
           className={`${labelClassName}`}
           labelFor={config.paramrealpath}
           styles=""
           sectionConfig={sectionConfig}
-        />
+        /> */}
         <Upload
-          name={config?.paramrealpath}
-          id={config?.paramrealpath}
+          name={"image"}
+          id={"image"}
           listType="picture"
           className={twMerge(`avatar-uploader ${className}`)}
           defaultFileList={defaultFileList}
-          showUploadList={true}
+          showUploadList={false}
           customRequest={uploadImage}
           beforeUpload={beforeUpload}
+          // showUploadList={false}
+          // fileList={}
           // onChange={handleOnChange}
         >
           {uploadButton}

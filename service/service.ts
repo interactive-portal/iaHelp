@@ -14,6 +14,7 @@ export const runService = async (
       languageCode: lang || "mn",
       // userToken: process.env.USER_TOKEN,
       username: "admin",
+      // username:""
       password: "Pass789*456",
       returnByStandartJson: "1",
       parameters: bodys,

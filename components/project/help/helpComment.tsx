@@ -70,7 +70,7 @@ const helpComment: FC<PropsType> = ({
           options={[{ value: "Шинэ эхэндээ", label: "Шинэ эхэндээ" }]}
         />
       </div>
-      {!profile && (
+      {/* {!profile && (
         <div className="py-2 text-center mt-2">
           <span
             onClick={() =>
@@ -83,18 +83,16 @@ const helpComment: FC<PropsType> = ({
             Та хэрэглэгчээр нэвтэрч орно уу
           </span>{" "}
         </div>
-      )}
-      {profile && (
-        <AddComment
-          // form={form}
-          mutate={mutate}
-          session={session}
-          // getComment={getComment}
-          // handleSubmit={handleSubmit}
-          // EnterClick={EnterClick}
-          selectedId={selectedId}
-        />
-      )}
+      )} */}
+      <AddComment
+        // form={form}
+        mutate={mutate}
+        session={session}
+        // getComment={getComment}
+        // handleSubmit={handleSubmit}
+        // EnterClick={EnterClick}
+        selectedId={selectedId}
+      />
 
       {tree.length > 0 && (
         <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
