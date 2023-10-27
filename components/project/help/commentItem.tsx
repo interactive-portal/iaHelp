@@ -13,9 +13,14 @@ const CommentItem = ({
   selectedId,
   children,
   mutate,
+  key,
 }: any) => {
   const [replyOpen, setReplyOpen] = useState(false);
   const [isPreviewVisible, setPreviewVisible] = useState(false);
+  const [leading, setLeading] = useState(true);
+
+  const commentLenght: any = document.getElementById(`text${index}`)?.innerText
+    .length;
 
   return (
     <BlockDiv
@@ -38,7 +43,7 @@ const CommentItem = ({
             className=" w-10 h-10 mt-3 rounded-full object-cover"
           />
         </div>
-        <div className="bg-gray-100  rounded-lg p-3 w-[96%]">
+        <div className="bg-gray-100  rounded-lg py-3 px-6  w-[96%]">
           <div className="flex w-full items-center justify-between">
             <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
               <div className="">
@@ -48,7 +53,7 @@ const CommentItem = ({
                       value: item?.username || "Зочин",
                     }}
                     renderType="text"
-                    customClassName="text-base text-[#585858]  font-semibold block "
+                    customClassName="text-base text-[#585858]  font-semibold block leading-[14px]"
                   />
                   <RenderAtom
                     item={{
@@ -66,7 +71,7 @@ const CommentItem = ({
                     value: item?.departmentname || "Байгууллага",
                   }}
                   renderType="text"
-                  customClassName="text-xs text-[#585858]/70  font-semibold block "
+                  customClassName="text-xs text-[#585858]/70  font-semibold block leading-2"
                 />
               </div>
             </div>
@@ -74,13 +79,26 @@ const CommentItem = ({
           </div>
           <div className="mt-3">
             <p
-              className="text-[16px] leading-5 font-normal text-gray-500 line-clamp-3"
+              className={`relative text-[16px] leading-5 font-normal text-gray-500 inline  ${
+                leading && "line-clamp-5"
+              }  text-justify`}
               style={{
                 color: "#585858",
               }}
+              id={`text${index}`}
             >
-              {item?.commenttext}
+              {item?.commenttext} {/* {leading && ( */}
+              {commentLenght >= 350 && leading && (
+                <span
+                  onClick={() => setLeading(!leading)}
+                  className="float-right cursor-pointer text-blue-400 text-sm"
+                >
+                  ...Дэлгэрэнгүй
+                </span>
+              )}
+              {/* )} */}
             </p>
+
             {!_.isEmpty(item.commentfile) && (
               <Image.PreviewGroup
                 preview={{
