@@ -4,7 +4,7 @@ export const runService = async (
   pCommand: string,
   pParameters: any,
   lang: any,
-  pUrl: string = process.env.MAIN_BACKEND_URL as string
+  pUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string
 ) => {
   let bodys = { ...pParameters };
 
@@ -51,7 +51,7 @@ export const runServiceLogin = async (
   pCommand: string,
   pParameters: any,
   lang: any,
-  pUrl: string = process.env.MAIN_BACKEND_URL as string
+  pUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string
 ) => {
   let bodys = { ...pParameters };
 
@@ -141,7 +141,7 @@ export const runServiceComment = async (
   pCommand: string,
   pParameters: any,
   lang: any,
-  pUrl: string = process.env.MAIN_BACKEND_URL as string
+  pUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string
 ) => {
   let bodys = { ...pParameters };
 

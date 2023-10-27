@@ -92,6 +92,7 @@ const CustomMenu: FC<PropsType> = ({
     <ul className={`${customClassName} `} style={{ ...customStyle }}>
       {readyDatasrc.map((item: any, index: number) => {
         // const selected = selectedId === item?.id;
+        let firstClass = "";
 
         if (Number(selectedId) === item?.id) {
           if (item.children) {

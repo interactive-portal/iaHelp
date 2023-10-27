@@ -11,7 +11,7 @@ export default async function middleware(
   const url = request.nextUrl.clone();
 
   if (
-    url.pathname.includes(".") || // exclude all files in the public folder
+    url.pathname.includes("/404") || // exclude all files in the public folder
     url.pathname.startsWith("/api") || // exclude all API routes
     url.pathname.startsWith("/login") // page-ийг бас орхих хэрэгтэй.
   ) {
