@@ -246,21 +246,19 @@ export default function Blog() {
               })}
           </BlockDiv>
         </div>
-        {dataSrc.length > 8 && (
-          <div
-            className="w-full flex items-center justify-center mt-[26px] cursor-pointer"
-            onClick={() =>
-              router.push({
-                pathname: "/video/detail",
-              })
-            }
-          >
-            <button className="bg-transparent border border-[#67748E] text-[#67748E] flex items-center cursor-pointer rounded-[10px] px-[14px] py-[12px]">
-              Бүгдийг харах
-              <i className="fa-light fa-arrow-right ml-3"></i>
-            </button>
-          </div>
-        )}
+        <div
+          className="w-full flex items-center justify-center mt-[26px] cursor-pointer"
+          onClick={() =>
+            router.push({
+              pathname: "/video/detail",
+            })
+          }
+        >
+          <button className="bg-[#699BF7] text-white font-medium flex items-center cursor-pointer rounded-[30px] px-[20px] py-[15px]">
+            Бүгдийг харах
+            <i className="fa-light fa-arrow-right ml-3"></i>
+          </button>
+        </div>
       </div>
       <style>
         {`

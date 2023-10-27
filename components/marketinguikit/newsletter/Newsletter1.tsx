@@ -64,7 +64,7 @@ export default function Newsletter1() {
               type="text"
               onChange={(e: any) => setValue(e.target.value)}
               value={value}
-              className="bg-transparent rounded-lg rounded-r-none text-base leading-none bg-white text-gray-800 p-4 w-full border border-[#E1E1E1] focus:outline-none focus:ring-0 focus:ring-transparent"
+              className="rounded-[30px] rounded-r-none text-base leading-none bg-gray-100 text-gray-800 p-4 w-full border border-[#E1E1E1] focus:outline-none focus:ring-0 focus:ring-transparent"
               placeholder="Таны и-мэйл хаяг?"
             />
             {/* <RenderAtom
@@ -81,7 +81,7 @@ export default function Newsletter1() {
                 }
               }
               renderType="button"
-              customClassName="w-auto hover:bg-[#699BF7] bg-[#699BF7] rounded-r-lg text-[16px] font-medium leading-none text-white p-4  focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-700 cursor-pointer focus:outline-0"
+              customClassName="w-auto hover:bg-[#699BF7] bg-[#699BF7] rounded-r-[30px] text-[16px] font-medium leading-none text-white p-4  focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-700 cursor-pointer focus:outline-0"
               customProps={{
                 icon: "fa-sharp fa-light fa-heart",
               }}

@@ -67,7 +67,7 @@ const helpCategory = () => {
           })
         }
       >
-        <button className="bg-[#699BF7] text-white flex items-center cursor-pointer rounded-[30px] px-[22px] py-[12px]">
+        <button className="bg-[#699BF7] text-white flex items-center cursor-pointer rounded-[30px] font-medium px-[20px] py-[15px]">
           Бүгдийг харах
           <i className="fa-light fa-arrow-right ml-3"></i>
         </button>
