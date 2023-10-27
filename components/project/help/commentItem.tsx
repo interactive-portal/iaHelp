@@ -42,13 +42,25 @@ const CommentItem = ({
           <div className="flex w-full items-center justify-between">
             <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
               <div className="">
-                <RenderAtom
-                  item={{
-                    value: item?.username || "Зочин",
-                  }}
-                  renderType="text"
-                  customClassName="text-base text-[#585858]  font-semibold block "
-                />
+                <div className="flex items-center justify-center">
+                  <RenderAtom
+                    item={{
+                      value: item?.username || "Зочин",
+                    }}
+                    renderType="text"
+                    customClassName="text-base text-[#585858]  font-semibold block "
+                  />
+                  <RenderAtom
+                    item={{
+                      value: `&#8226; ${moment(item?.createdDate).format(
+                        "h:mm"
+                      )}`,
+                    }}
+                    renderType="text"
+                    customClassName="text-[14px] font-semibold  text-[#67748E]  text-right lowercase pl-2 "
+                    customStyle={{ color: "#67748E" }}
+                  />
+                </div>
                 <RenderAtom
                   item={{
                     value: item?.departmentname || "Байгууллага",
@@ -57,21 +69,12 @@ const CommentItem = ({
                   customClassName="text-xs text-[#585858]/70  font-semibold block "
                 />
               </div>
-
-              <RenderAtom
-                item={{
-                  value: `&#8226; ${moment(item?.createdDate).format("h:mm")}`,
-                }}
-                renderType="text"
-                customClassName="text-[14px] font-semibold  pt-1.5 text-[#67748E]  text-right lowercase pr-1 "
-                customStyle={{ color: "#67748E" }}
-              />
             </div>
             {/* <i className="fa-regular fa-thumbs-up fa-lg text-[#585858]"></i> */}
           </div>
           <div className="mt-3">
             <p
-              className="text-[16px] leading-5 font-normal text-gray-500"
+              className="text-[16px] leading-5 font-normal text-gray-500 line-clamp-3"
               style={{
                 color: "#585858",
               }}
