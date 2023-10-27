@@ -33,7 +33,6 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
         };
       }),
     });
-
     const result = await fetchJson(
       `/api/post-comment?command=${command}&parameters=${param}`
     );
@@ -74,6 +73,13 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
     setFileList(newFileList);
   };
 
+  function auto_height(elem: any) {
+    /* javascript */
+    console.log("elem", elem?.target.style.height);
+    elem.target.style.height = "1px";
+    elem.target.style.height = `${elem.target.scrollHeight}px`;
+  }
+
   return (
     <div className="w-full py-1 mt-4">
       <form ref={form} onSubmit={handleSubmit} className=" ">
@@ -93,15 +99,20 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
             <div className="w-full">
               <div className="bg-white rounded-lg border w-full">
                 <div className="w-full z-10  flex items-center ">
-                  <input
+                  <textarea
                     onKeyDown={(e) => {
                       EnterClick(e);
                     }}
-                    className="font-medium rounded-[10px] font-roboto px-2 w-full focus:outline-none focus:shadow-none focus:ring-0 text-gray-700 border-none  active:border-none text-base p-[10px]"
+                    rows={1}
+                    onInput={(elem) => auto_height(elem)}
+                    className="font-medium rounded-[10px] font-roboto min-h-[40px] max-h-[160px] w-full focus:outline-none focus:shadow-none focus:ring-0 text-gray-700 border-none  active:border-none text-base p-[10px] pr-4"
                     name="commentText"
                     placeholder="Сэтгэгдэл үлдээх ..."
                     value={comment}
                     onChange={(e: any) => handleUserComment(e)}
+                    style={{
+                      minWidth: "40px",
+                    }}
                   />
                   <div className="flex gap-3 relative right-4 z-10">
                     <Atom_file

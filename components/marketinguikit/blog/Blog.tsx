@@ -149,7 +149,7 @@ export default function Blog() {
                 // console.log(item?.position2);
                 return (
                   <div
-                    className={` transition-all animate-fade-in-up`}
+                    className={` transition-all animate-fade-in-up bg-gray-100`}
                     key={item?.id || index}
                   >
                     <div className=" bg-cover rounded-lg relative">
@@ -196,7 +196,7 @@ export default function Blog() {
                       )}
                     </div>
                     <BlockDiv
-                      customClassName="pb-2 px-4 pt-5 bg-white border-b-lg border-gray-300 shadow-xl rounded-b-lg max-h-auto"
+                      customClassName="pb-2 px-4 pt-5 border-b-lg border-gray-300 rounded-b-lg max-h-auto"
                       divNumber={"BlogCardContainerDiv"}
                       customStyle={{
                         minHeight: "125px",

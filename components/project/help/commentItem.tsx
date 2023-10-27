@@ -20,9 +20,9 @@ const CommentItem = ({
   return (
     <BlockDiv
       key={item?.id || index}
-      customClassName="bg-transparent rounded-lg mt-2 w-full py-2"
+      customClassName="bg-transparent rounded-lg mt-2 py-2"
     >
-      <div className="flex justify-between w-full">
+      <div className="flex">
         <div
           className=""
           style={{
@@ -35,10 +35,10 @@ const CommentItem = ({
                 ? `https://dev.veritech.mn/${item?.profilephoto}`
                 : `https://dev.veritech.mn/assets/core/global/img/user.png`
             }
-            className=" w-10 h-10 mt-1 rounded-full object-cover"
+            className=" w-10 h-10 mt-3 rounded-full object-cover"
           />
         </div>
-        <div className="bg-gray-100 w-full px-4 rounded-lg pb-4">
+        <div className="bg-gray-100  rounded-lg p-3 w-[96%]">
           <div className="flex w-full items-center justify-between">
             <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
               <div className="">
@@ -146,6 +146,12 @@ const CommentItem = ({
         >
           Хариулах
         </p>
+        {!_.isEmpty(children) && (
+          <>
+            <p className="px-4">|</p>
+            <p className="">{children.length} Replies</p>
+          </>
+        )}
       </div>
       <div className="pl-[55px] w-full">
         {replyOpen && (
