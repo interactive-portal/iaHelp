@@ -57,7 +57,6 @@ const Atom_file: FC<PropsType> = ({
 
   const uploadImage = async (options: any) => {
     const { onSuccess, onError, file, onProgress, filename } = options;
-
     const fmData = new FormData();
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -74,10 +73,11 @@ const Atom_file: FC<PropsType> = ({
     fmData.append(options.file.name, file, options.file.name);
     fmData.append("sessionId", session.dbsessionid);
     fmData.append("fileName", options.file.name);
+    console.log("NEXT_FILE_URL :>> ", process.env.NEXT_PUBLIC_FILE_URL);
 
     try {
       const res = await axios.post(
-        "http://103.85.184.43:8080/erp-services/FileServlet",
+        `${process.env.NEXT_PUBLIC_FILE_URL}`,
         fmData,
         config
       );

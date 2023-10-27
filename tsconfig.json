@@ -17,12 +17,13 @@
     "paths": {
       "@/*": ["./*"],
       "@/util": ["./util/*"],
-      "@/engineBox": ["./components/common/engineBox/*"]
+      "@/engineBox": ["/components/common/engineBox/*"]
     },
     "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
+    "environment.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "util/preparePageListData.js",

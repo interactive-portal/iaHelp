@@ -43,7 +43,7 @@ export default function Newsletter1() {
     }
   };
 
-  console.log("readyData", readyDatasrc);
+  // console.log("readyData", readyDatasrc);
 
   return (
     <>
