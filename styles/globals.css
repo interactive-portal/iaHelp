@@ -48,10 +48,12 @@ body {
 
 .htmltext p {
   font-size: 16px !important;
+  font-family: "Roboto sans-serif " !important;
 }
 
 .htmltext span {
   font-size: 16px !important;
+  font-family: "Roboto sans-serif " !important;
 }
 
 .htmltext img {

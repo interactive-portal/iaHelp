@@ -20,6 +20,7 @@ import RenderAtom from "@/components/common/Atom/RenderAtom";
 import HelpComment from "@/components/project/help/helpComment";
 import FileViewType from "./fileViewType";
 import DataLoader from "@/components/dataLoader";
+import Image from "next/image";
 
 const SingleKnowLedge = () => {
   const { readyDatasrc, widgetnemgooReady, dataMutate } =
@@ -157,15 +158,24 @@ const SingleKnowLedge = () => {
   return (
     <>
       {/* pageTitle test */}
-      <BlockDiv customClassName="w-full  h-full " divNumber="div10">
+      <div className="w-full h-[400px] overflow-hidden ">
         <BlockDiv
-          customClassName={`flex mx-auto px-10 h-full py-10`}
-          divNumber="divGridNumber"
-          customStyle={{
-            backgroundImage:
-              "url(https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png)",
-          }}
+          customClassName={` flex mx-auto px-10  py-12 bg-black/50 h-full relative`}
+          // customStyle={{
+          //   backgroundImage:
+          //     "url(https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png)",
+          // }}
         >
+          <Image
+            src="https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png"
+            layout="fill"
+            // width={100}
+            // height={100}
+            className="object-center object-cover pointer-events-none"
+            quality={100}
+            style={{ objectFit: "cover" }}
+            alt="cover"
+          />
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12 px-2">
             <p className="text-white flex text-center sm:text-xs xs:text-[8px] md:text-base">
               <span className="opacity-80 hover:text-white cursor-pointer">
@@ -175,7 +185,7 @@ const SingleKnowLedge = () => {
                 return (
                   <div key={index}>
                     <p
-                      className="ml-1 cursor-pointer hover:text-white"
+                      className="ml-1 cursor-pointer hover:text-white relative"
                       key={item?.id || index}
                       onClick={() => {
                         if (index > 0) {
@@ -203,7 +213,7 @@ const SingleKnowLedge = () => {
                       }}
                     >
                       {item?.name && <span className="opacity-80">/ </span>}
-                      <span className="opacity-80 hover:opacity-100">
+                      <span className="opacity-80 hover:opacity-100 relative">
                         {item?.name}
                       </span>
                     </p>
@@ -219,7 +229,7 @@ const SingleKnowLedge = () => {
               }
               renderType="title"
               customClassName={
-                "text-lg text-white md:pt-4 sm:text-base xs:text-sm md:text-2xl"
+                "text-lg text-white md:pt-4 sm:text-base xs:text-sm md:text-2xl relative"
               }
             />{" "}
             <RenderAtom
@@ -230,10 +240,10 @@ const SingleKnowLedge = () => {
               }
               renderType="text"
               customProps={{
-                truncateRow: 4,
+                truncateRow: 3,
               }}
               customClassName={
-                "md:w-1/2 lg:w-full xl:w-1/2 text-white md:text-[16px] text-[12px]"
+                "md:w-1/2 lg:w-full xl:w-1/2 text-white md:text-[16px] text-[12px] relative"
               }
               customStyle={{
                 color: "white !important",
@@ -257,7 +267,7 @@ const SingleKnowLedge = () => {
             </span>
           </BlockDiv>
         </BlockDiv>
-      </BlockDiv>
+      </div>
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 mx-10 min-h-screen">
         <SideBar options={widgetnemgooReady} />
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10">

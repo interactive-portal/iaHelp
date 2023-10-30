@@ -8,7 +8,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        port: "3000",
+        port: "4000",
         pathname: "/image/**",
       },
     ],
@@ -31,23 +31,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   compress: true,
-
-  // experimental: {
-  //   runtime: "edge",
-  //   serverComponents: true,
-  //   swcMinifyDebugOptions: {
-  //     compress: {
-  //       defaults: true,
-  //       side_effects: false,
-  //     },
-  //   },
-  // },
-  // localePath: path.resolve("_next"),
   experimental: {
-    runtime: "node",
-    typedRoutes: true,
-    serverComponents: true,
+    // runtime: "edge",
+    // typedRoutes: true,
+    // serverComponents: true,
   },
+  // fontLoaders: [
+  //   { loader: "@next/font/google", options: { subsets: ["latin"] } },
+  // ],
   async headers() {
     return [
       {
@@ -68,9 +59,6 @@ const nextConfig = {
       },
     ];
   },
-  fontLoaders: [
-    { loader: "@next/font/google", options: { subsets: ["latin"] } },
-  ],
 };
 
 module.exports = nextConfig;
