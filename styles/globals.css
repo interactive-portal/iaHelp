@@ -46,6 +46,10 @@ body {
   font-size: 16px !important;
 }
 
+.htmltext span p {
+  font-size: 16px !important;
+  font-family: "Roboto", sans-serif !important;
+}
 .htmltext p {
   font-size: 16px !important;
   /* font-family: "Roboto sans-serif " !important; */
@@ -53,6 +57,7 @@ body {
 
 .htmltext span {
   font-size: 16px !important;
+  font-family: "Roboto", sans-serif !important;
   /* font-family: "Roboto sans-serif " !important; */
 }
 
