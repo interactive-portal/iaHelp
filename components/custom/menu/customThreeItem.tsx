@@ -71,7 +71,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
         />
       )}
       <div
-        className={`text-[16px] leading-[16px] ${
+        className={`text-[16px] leading-[18px] ${
           selected ? "text-[#699BF7]" : "text-[#585858]"
         } hover:text-[#699BF7] w-full`}
         // onClick={() => onArrowClickItem(item, itemIndex)}
@@ -96,7 +96,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
         <AtomIcon
           item={`far fa-chevron-${
             item.isOpen ? "down" : "right"
-          } text-gray-700 relative z-50  w-10 text-right fa-xs`}
+          } text-gray-700 relative z-50  w-10 text-right fa-xs w-10 h-6  py-4 px-1 `}
           color="weekly"
           onClick={() => {
             onArrowClickItem(item, itemIndex);

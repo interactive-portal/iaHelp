@@ -94,16 +94,16 @@ const CustomMenu: FC<PropsType> = ({
         // const selected = selectedId === item?.id;
         let firstClass = "";
 
-        if (Number(selectedId) === item?.id) {
-          if (item.children) {
-            item.isOpen = true;
-          }
-        }
+        // if (Number(selectedId) === item?.id) {
+        //   if (item.children) {
+        //     item.isOpen = true;
+        //   }
+        // }
         return (
           <li
             key={item?.id || index}
             className={`relative font-normal text-lg ${
-              item.icon || item?.profilephoto ? " pl-0 " : `pr-2`
+              item.icon || item?.profilephoto ? " pl-0 " : `pr-0`
             } `}
           >
             <CustomThreeItem
@@ -111,7 +111,7 @@ const CustomMenu: FC<PropsType> = ({
               item={item}
               positionConfig={positionConfig}
               color={color}
-              customClassName={` hover:bg-gray-100 py-2 pr-2 ${itemStyle} ${
+              customClassName={` hover:bg-gray-100 py-1 pr-2 ${itemStyle} ${
                 Number(selectedId) == item?.id
                   ? "text-[#699BF7]"
                   : `text-citizen-blue`
@@ -127,7 +127,7 @@ const CustomMenu: FC<PropsType> = ({
               }}
             />
             {!_.isEmpty(item?.children) && item?.isOpen && (
-              <span className="submenu relative left-4">
+              <div className="submenu relative pl-4">
                 <CustomMenu
                   // config={config}
                   color={color}
@@ -139,7 +139,7 @@ const CustomMenu: FC<PropsType> = ({
                   onClickItem={onClickItem}
                   itemStyle={itemStyle}
                 />
-              </span>
+              </div>
             )}
           </li>
         );
