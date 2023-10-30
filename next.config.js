@@ -44,9 +44,9 @@ const nextConfig = {
     // typedRoutes: true,
     // serverComponents: true,
   },
-  // fontLoaders: [
-  //   { loader: "@next/font/google", options: { subsets: ["latin"] } },
-  // ],
+  fontLoaders: [
+    { loader: "@next/font/google", options: { subsets: ["latin"] } },
+  ],
   async headers() {
     return [
       {
