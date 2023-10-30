@@ -22,6 +22,7 @@ const helpComment: FC<PropsType> = ({
   commentcount,
 }: any) => {
   const { data: session, status }: any = useSession();
+  return <p>Түр засвартай</p>;
   const { widgetnemgooReady, positionConfig } =
     useContext(WidgetWrapperContext);
   const router = useRouter();
