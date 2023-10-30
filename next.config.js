@@ -36,6 +36,14 @@ const nextConfig = {
     // typedRoutes: true,
     // serverComponents: true,
   },
+  experimental: {
+    runtime: "node",
+    typedRoutes: true,
+    serverComponents: true,
+    // runtime: "edge",
+    // typedRoutes: true,
+    // serverComponents: true,
+  },
   // fontLoaders: [
   //   { loader: "@next/font/google", options: { subsets: ["latin"] } },
   // ],
