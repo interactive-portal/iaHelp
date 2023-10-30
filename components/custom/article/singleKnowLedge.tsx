@@ -317,7 +317,7 @@ const SingleKnowLedge = () => {
           )) ||
             readyDatasrc.map((item: any, index: number) => {
               return (
-                <></>
+                <div key={index}></div>
                 // <RenderMolecule
                 //   key={item?.id || index}
                 //   renderType="card"

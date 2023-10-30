@@ -1,13 +1,9 @@
-import fetchJson from "lib/fetchJson";
 import _ from "lodash";
-import moment from "moment";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import BlockDiv from "@/components/common/Block/BlockDiv";
-import RenderAtom from "@/components/common/Atom/RenderAtom";
-import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import { Select } from "antd";
 import AddComment from "./addComment";
 import CommentItem from "./commentItem";
@@ -38,6 +34,10 @@ const helpComment: FC<PropsType> = ({
   const parameters = JSON.stringify({
     filterRecordId: selectedId || widgetnemgooReady?.recordId,
     filterStructureId: "1479204227214",
+    // paging: {
+    //   pageSize: 5,
+    //   offset: 1,
+    // },
   });
 
   const {
@@ -45,7 +45,7 @@ const helpComment: FC<PropsType> = ({
     error,
     mutate,
   } = useSWR(
-    `/api/post-process?command=PRTL_MN_GET_COMMENT_004&parameters=${parameters}`
+    `/api/get-process?command=PRTL_MN_GET_COMMENT_004&parameters=${parameters}`
   );
 
   let clecmcommentd: any = _.values(comment?.result?.ecmcommentdtl);
@@ -55,9 +55,29 @@ const helpComment: FC<PropsType> = ({
 
   const tree = listToTree(ordered, "parentid");
 
+  const [currPage, setCurrPage] = useState(1);
+  let listInnerRef: any = useRef();
+
+  const onScroll = () => {
+    if (listInnerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+
+      if (scrollTop + clientHeight === scrollHeight) {
+        setCurrPage(currPage + 1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!_.isEmpty(tree)) {
+      let list = tree.slice(0, currPage * 5);
+      setcommentList(list);
+    }
+  }, [currPage, tree]);
+
   return (
     <BlockDiv
-      customClassName="w-full rounded-lg px-2 py-4 "
+      customClassName="w-full rounded-lg px-2 py-4"
       divNumber={"div100"}
     >
       <div className="flex justify-between items-center w-full">
@@ -94,10 +114,14 @@ const helpComment: FC<PropsType> = ({
         selectedId={selectedId}
       />
 
-      {tree.length > 0 && (
+      {commentList?.length > 0 && (
         <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
-          <div className="  lg:max-h-sm h-full mt-2">
-            {tree.map((item: any, index: number) => {
+          <div
+            className="  lg:max-h-sm h-full mt-2 max-h-[800px] overflow-y-scroll commentContainer overflow-x-hidden pr-2"
+            ref={listInnerRef}
+            onScroll={onScroll}
+          >
+            {commentList?.map((item: any, index: number) => {
               return (
                 <CommentItem
                   key={index}
@@ -118,6 +142,23 @@ const helpComment: FC<PropsType> = ({
         </div>
       )}
       {/* CHAT */}
+      <style>
+        {`
+          .commentContainer::-webkit-scrollbar {
+            width:3px;
+            padding: 20px 0px;
+            border-radius: 10px;
+          }
+          .commentContainer::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background:#5858584D;
+          }
+          .commentContainer::-webkit-scrollbar-thumb {
+            background:#585858;
+            border-radius: 10px;
+          }
+          `}
+      </style>
     </BlockDiv>
   );
 };

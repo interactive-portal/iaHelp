@@ -43,7 +43,7 @@ const CommentItem = ({
             className=" w-10 h-10 mt-3 rounded-full object-cover"
           />
         </div>
-        <div className="bg-gray-100  rounded-lg py-3 px-6  w-[96%]">
+        <div className="bg-gray-100  rounded-lg py-3 px-6  w-[96%] overflow-hidden">
           <div className="flex w-full items-center justify-between">
             <div className="w-full capitalize flex items-center gap-2 min-h-[40px]">
               <div className="">
