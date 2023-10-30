@@ -1,4 +1,6 @@
 //Энд Жава-тай холбогдох функцуудыг байлгая, Логин, жагсаалт, процесс дуудах г.м
+import axios from "axios";
+import https from "https";
 
 export const runService = async (
   pCommand: string,
@@ -6,6 +8,10 @@ export const runService = async (
   lang: any,
   pUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string
 ) => {
+  const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+
   let bodys = { ...pParameters };
 
   let requestBody: any = {
@@ -30,20 +36,28 @@ export const runService = async (
     body: JSON.stringify(requestBody),
   };
 
-  const res = await fetch(pUrl, requestOptions);
-  // console.log("res :>> ", res);
+  const response = await axios
+    .post(pUrl, requestBody, {
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false, // set to false
+      }),
+    })
+    .then((res) => res.data)
+    .catch((err) => console.log(`err: `, err));
 
-  if (!res.ok) {
-    const errorCode = res.ok ? false : res.status;
-    throw new Error("Failed to fetch data");
-  }
+  // const res = await fetch(pUrl, requestOptions);
 
-  const response = await res.json();
+  // if (!res.ok) {
+  //   const errorCode = res.ok ? false : res.status;
+  //   throw new Error("Failed to fetch data");
+  // }
 
-  if (response && response.status === "error") {
-    console.log("SERVICE_ERROR :", response.data.response.text);
-    throw new Error(response.data.response.text);
-  }
+  // const response = await res.json();
+
+  // if (response && response.status === "error") {
+  //   console.log("SERVICE_ERROR :", response.data.response.text);
+  //   throw new Error(response.data.response.text);
+  // }
 
   return response;
 };
