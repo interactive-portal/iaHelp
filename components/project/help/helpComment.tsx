@@ -57,8 +57,6 @@ const helpComment: FC<PropsType> = ({
 
   const tree = listToTree(ordered, "parentid");
 
-  console.log("comment :>> ", tree);
-
   const [currPage, setCurrPage] = useState(1);
   let listInnerRef: any = useRef();
 
