@@ -98,7 +98,10 @@ export default function CommunitySingupModal({
   };
 
   return (
-    <BlockDiv customClassName="p-[40px]" divNumber="CommunitySingupModalOuter">
+    <BlockDiv
+      customClassName="px-[40px] py-[20px]"
+      divNumber="CommunitySingupModalOuter"
+    >
       <BlockDiv
         customClassName="flex flex-col items-center"
         divNumber="CozyLoginModalInside"

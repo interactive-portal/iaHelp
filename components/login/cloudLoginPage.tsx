@@ -17,8 +17,8 @@ export default function CloudLoginPage() {
   };
   return (
     <div className="h-full w-full flex flex-col pt-16">
-      <div className="bg-white w-full h-full p-8 pb-0 flex flex-col items-center justify-center">
-        <img src="/logo.png" className="w-3/5 h-auto block mx-auto mb-10" />
+      <div className="bg-white w-full h-full p-8 pb-0 flex flex-col items-center">
+        <img src="/logo.png" className="w-auto h-auto block mx-auto mb-10" />
         <div className="w-full">
           <div className="text-[#699BF7] text-2xl font-semibold">
             Сайн байна уу?

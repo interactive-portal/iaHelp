@@ -17,7 +17,6 @@ export default function AtomFormInputV2({
   hookForm: any;
   field: any;
 }) {
-  // console.log("🚀 ~ field", field);
   return (
     <input
       type={input?.type || "text"}
@@ -29,7 +28,7 @@ export default function AtomFormInputV2({
             : ""
         }`
       )}
-      // {...hookForm?.register(fieldName, { ...validation })}
+      {...hookForm?.register(fieldName, { ...validation })}
       placeholder={placeholder}
       {...field}
     />
