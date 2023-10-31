@@ -15,7 +15,7 @@ import {
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
-    maxAge: 30 * 60,
+    maxAge: 2 * 60 * 60,
     secret: process.env.NEXTAUTH_SECRET,
   },
 

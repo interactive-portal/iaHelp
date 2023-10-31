@@ -3,6 +3,7 @@ import _ from "lodash";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { preparePageObject } from "@/util/prepareDetect";
 import RenderBody from "@/middleware/components/renderBody";
+import { getSession } from "next-auth/react";
 
 export default function Page(props: any) {
   const { mergedPageNemgoo } = props;
@@ -50,7 +51,18 @@ export async function getServerSideProps(context: any) {
   //   const pageObject: any = {};
   const pageObject: any = await preparePageObject(hostObjectV2);
 
-  // console.log("pageObject :>> ", pageObject);
+  const isUser = await getSession(context);
+
+  if (!isUser) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  // console.log("pageObject :>> ", isUser);
 
   context.res.setHeader(
     "Cache-Control",

@@ -29,8 +29,8 @@ function App({ Component, pageProps }: AppProps) {
       <ErrorBoundary>
         <SessionProvider
           session={pageProps.session}
-          // clientMaxAge={0}
-          refetchInterval={60 * 60 * 60} //15 минут тутамд user login шалгана.
+          // clientMaxAge={ 2 * 60 * 60}
+          // refetchInterval={60 * 60 * 60} //15 минут тутамд user login шалгана.
           refetchOnWindowFocus={false} //цонх focus-лах үед refetch хийх эсэх
         >
           <SWRConfig
