@@ -47,7 +47,7 @@ const Register: FC<PropsType> = ({ type, setType }) => {
           <CloudBanner1 />
         </div>
         <div className="shrink-0 w-full md:w-1/4 overflow-y-auto  scrollbar-thumb-citizen scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-citizen-dark scrollbar-thumb-rounded-full">
-          <div className="w-full  flex flex-col items-center bg-white relative px-[30px] h-full pt-20">
+          <div className="w-full  flex flex-col items-center bg-white relative px-[30px] h-full justify-center ">
             <img
               src="/logo.png"
               className="w-auto h-auto block mx-auto mb-10"
