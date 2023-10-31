@@ -40,7 +40,7 @@ export async function getProcessData(command: any, param: any) {
 
   let response = await runService(command, parameters, "");
 
-  if (response?.response?.result) {
+  if (response?.response?.status == "success") {
     return response?.response;
   }
 }
