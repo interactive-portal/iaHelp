@@ -16,7 +16,7 @@ export default function CloudLoginPage() {
     setVisibleModal(false);
   };
   return (
-    <div className="h-full w-full flex flex-col pt-16">
+    <div className="w-full flex flex-col  justify-center items-center">
       <div className="bg-white w-full h-full p-8 pb-0 flex flex-col items-center">
         <img src="/logo.png" className="w-auto h-auto block mx-auto mb-10" />
         <div className="w-full">
