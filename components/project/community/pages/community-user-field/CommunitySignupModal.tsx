@@ -127,6 +127,7 @@ export default function CommunitySingupModal({
                 fieldName={item?.fieldName}
                 defaultValue={item?.defaultValue || ""}
                 hookForm={hookForm}
+                input={item?.input}
               />
             );
           })}
@@ -208,6 +209,9 @@ const fields = [
     label: {
       title: "Гар утас",
     },
+    input: {
+      type: "number",
+    },
     validation: {
       required: {
         value: false,
@@ -222,6 +226,9 @@ const fields = [
     label: {
       title: "Нууц үг",
     },
+    input: {
+      type: "password",
+    },
     validation: {
       required: {
         value: true,
@@ -235,6 +242,9 @@ const fields = [
   {
     label: {
       title: "Нууц үг давтах",
+    },
+    input: {
+      type: "password",
     },
     validation: {
       required: {

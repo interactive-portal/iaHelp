@@ -158,9 +158,9 @@ const SingleKnowLedge = () => {
   return (
     <>
       {/* pageTitle test */}
-      <div className="w-full h-[400px] overflow-hidden ">
+      <div className="w-full h-[300px] overflow-hidden ">
         <BlockDiv
-          customClassName={` flex mx-auto px-10  py-16 bg-black/50 h-full relative`}
+          customClassName={` flex mx-auto p-10 bg-black/50 h-full relative`}
           // customStyle={{
           //   backgroundImage:
           //     "url(https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png)",
