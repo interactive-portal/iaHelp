@@ -197,7 +197,9 @@ export default function CloudLoginForm() {
         name="Нэвтрэх"
         className="rounded-full mt-6 w-full h-10 bg-blue-400 cursor-pointer text-base text-white font-semibold hover:bg-citizen-dark"
         onClick={(e: any) => onSubmit(e)}
-      />
+      >
+        Нэвтрэх
+      </button>
       {ischeck && (
         <div className="bg-orange-400  mt-6 text-center  flex text-white space-x-2 py-2 px-4 rounded-full">
           <i className="fa-solid fa-rotate-exclamation"></i>
