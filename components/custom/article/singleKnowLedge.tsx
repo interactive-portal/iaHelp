@@ -160,7 +160,7 @@ const SingleKnowLedge = () => {
       {/* pageTitle test */}
       <div className="w-full h-[400px] overflow-hidden ">
         <BlockDiv
-          customClassName={` flex mx-auto px-10  py-12 bg-black/50 h-full relative`}
+          customClassName={` flex mx-auto px-10  py-16 bg-black/50 h-full relative`}
           // customStyle={{
           //   backgroundImage:
           //     "url(https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png)",
@@ -177,7 +177,7 @@ const SingleKnowLedge = () => {
             alt="cover"
           />
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12 px-2">
-            <p className="text-white flex text-center sm:text-xs xs:text-[8px] md:text-base">
+            <div className="text-white flex text-center sm:text-xs xs:text-[8px] md:text-base">
               <span className="opacity-80 hover:text-white cursor-pointer">
                 Нүүр{" "}
               </span>
@@ -220,7 +220,7 @@ const SingleKnowLedge = () => {
                   </div>
                 );
               })}
-            </p>
+            </div>
             <RenderAtom
               item={
                 srcTitle[0]?.mainname || {
@@ -231,7 +231,7 @@ const SingleKnowLedge = () => {
               customClassName={
                 "text-lg text-white md:pt-4 sm:text-base xs:text-sm md:text-2xl relative"
               }
-            />{" "}
+            />
             <RenderAtom
               item={
                 srcTitle[0]?.description || {
@@ -258,7 +258,6 @@ const SingleKnowLedge = () => {
                 style={{ color: "#FFBB00" }}
               />
               <span className="text-white pl-2">
-                {" "}
                 {srcTitle[0]?.starval} / {srcTitle[0]?.viewcount}
               </span>
             </div>

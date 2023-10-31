@@ -81,14 +81,14 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
   }
 
   return (
-    <div className="w-full py-1 mt-4">
+    <div className="w-full pt-1 pb-4 mt-4 rounded">
       <form ref={form} onSubmit={handleSubmit} className=" ">
         <div className="flex items-center">
           <div className="w-full flex  justify-between ">
             <div className="min-w-[50px]">
               <RenderAtom
                 item={{
-                  value: `https://dev.veritech.mn/${session?.profileImg}`,
+                  value: `${session?.profileImg}`,
                 }}
                 renderType="image"
                 customClassName={
@@ -103,7 +103,7 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
                     onKeyDown={(e) => {
                       EnterClick(e);
                     }}
-                    rows={1}
+                    rows={2}
                     onInput={(elem) => auto_height(elem)}
                     className="font-medium rounded-[10px] font-roboto min-h-[40px] max-h-[160px] w-full focus:outline-none focus:shadow-none focus:ring-0 text-gray-700 border-none  active:border-none text-base p-[10px] pr-4"
                     name="commentText"

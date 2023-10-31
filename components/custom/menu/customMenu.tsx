@@ -36,9 +36,9 @@ const CustomMenu: FC<PropsType> = ({
     pathConfig,
   } = useContext(WidgetWrapperContext);
 
-  // console.log(defaultSelectedId, "asdasdasd");
-  if (_.isEmpty(rawDatasrc)) return null;
+  if (_.isEmpty(rawDatasrc)) return <span>no data</span>;
 
+  // console.log(defaultSelectedId, "asdasdasd");
   const [selectedId, setSelectedId] = useState<any>(defaultSelectedId);
 
   function prepareIsOpen(
