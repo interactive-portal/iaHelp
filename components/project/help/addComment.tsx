@@ -75,7 +75,6 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
 
   function auto_height(elem: any) {
     /* javascript */
-    console.log("elem", elem?.target.style.height);
     elem.target.style.height = "1px";
     elem.target.style.height = `${elem.target.scrollHeight}px`;
   }

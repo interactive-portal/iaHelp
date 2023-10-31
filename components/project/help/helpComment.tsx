@@ -23,15 +23,11 @@ const helpComment: FC<PropsType> = ({
 }: any) => {
   const { data: session, status }: any = useSession();
   // return <p>Түр засвартай</p>;
-  const [commentList, setcommentList] = useState<any>();
 
   const { widgetnemgooReady, positionConfig } =
     useContext(WidgetWrapperContext);
   const router = useRouter();
   let selectedId = router.query?.filterid;
-
-  let structureId = widgetnemgooReady?.listconfig?.filterstructureid;
-  const [profile, setProfile] = useState(session);
 
   const parameters = JSON.stringify({
     filterRecordId: selectedId || widgetnemgooReady?.recordId,
@@ -57,8 +53,6 @@ const helpComment: FC<PropsType> = ({
 
   const tree = listToTree(ordered, "parentid");
 
-  console.log("comment :>> ", tree);
-
   const [currPage, setCurrPage] = useState(1);
   let listInnerRef: any = useRef();
 
@@ -71,13 +65,6 @@ const helpComment: FC<PropsType> = ({
       }
     }
   };
-
-  // useEffect(() => {
-  //   // if (!_.isEmpty(tree)) {
-  //   //   // let list = tree.slice(0, currPage * 5);
-  //   //   setcommentList();
-  //   // }
-  // }, []);
 
   return (
     <BlockDiv
@@ -95,24 +82,15 @@ const helpComment: FC<PropsType> = ({
         />
       </div>
 
-      <AddComment
-        // form={form}
-        mutate={mutate}
-        session={session}
-        // getComment={getComment}
-        // handleSubmit={handleSubmit}
-        // EnterClick={EnterClick}
-        selectedId={selectedId}
-      />
-      {/* <pre>{JSON.stringify(comments, null, 4)}</pre> */}
+      <AddComment mutate={mutate} session={session} selectedId={selectedId} />
       {tree?.length > 0 && (
         <div className="chat-container pb-2 mt-2 max-h-112 overflow-y-auto mb-2 scrollbar-thumb-gray-300  scrollbar-track-gray-200 scrollbar-thin hover:scrollbar-thumb-gray-300 -dark scrollbar-thumb-rounded-full lg:max-h-sm h-full">
           <div
-            className="  lg:max-h-sm h-full mt-2 max-h-[800px] overflow-y-scroll commentContainer overflow-x-hidden pr-2"
+            className="  lg:max-h-sm h-full mt-2 max-h-[700px] overflow-y-scroll commentContainer overflow-x-hidden pr-2"
             ref={listInnerRef}
             onScroll={onScroll}
           >
-            {tree?.slice(0, 5).map((item: any, index: number) => {
+            {tree?.slice(0, currPage * 5).map((item: any, index: number) => {
               return (
                 <CommentItem
                   key={index}
@@ -120,10 +98,6 @@ const helpComment: FC<PropsType> = ({
                   index={index}
                   mutate={mutate}
                   session={session}
-                  // form={form}
-                  // getComment={getComment}
-                  // handleSubmit={handleSubmit}
-                  // EnterClick={EnterClick}
                   selectedId={selectedId}
                   children={item?.children}
                 />
