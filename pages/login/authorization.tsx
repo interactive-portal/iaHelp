@@ -32,9 +32,9 @@ export default function authorization() {
     setUser((user: any) => [...user, parameter]);
   }, [router]);
 
-  // if (session) {
-  //   window.location.href = "/";
-  // }
+  if (session) {
+    window.location.href = "/";
+  }
 
   if (_.isEmpty(user)) return <div>Хэрэглэгчийн мэдээлэлээ шалгана уу</div>;
 
