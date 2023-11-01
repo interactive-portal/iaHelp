@@ -18,7 +18,7 @@ const ErpCard = () => {
   };
 
   return (
-    <div className="pl-5 pr-10 sm:pr-5 md:pr-5">
+    <div className="pl-5 pr-10">
       <div className="w-full flex justify-between items-center py-[10px]">
         <RenderAtom
           item={{ value: readyDatasrc[0]?.parentname || "Бүгд" }}

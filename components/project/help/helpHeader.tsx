@@ -56,13 +56,10 @@ const HelpHeader: FC<PropsType> = ({ data, options }) => {
             <span className="cursor-pointer pl-1 ">Миний профайл</span>
           </Link>
         </li>
-        <li>
+        <li className="hover:text-blue-400">
           <i className="far fa-sign-out-alt  text-sm w-6"></i>
-          <button
-            className="cursor-pointer hover:text-blue-400 "
-            onClick={() => signOut()}
-          >
-            Гарах
+          <button className="cursor-pointer " onClick={() => signOut()}>
+            <span className="cursor-pointer pl-1 ">Гарах</span>
           </button>
         </li>
       </ul>

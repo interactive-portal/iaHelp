@@ -301,17 +301,17 @@ const FaqItem = ({ rowItem, index, filterName }: any) => {
   return (
     <>
       <div
-        className="flex items-start pb-2 dark:border-gray-700 cursor-pointer w-full space-x-3 hover::text-gray-300"
+        className="flex pb-2 dark:border-gray-700 items-baseline cursor-pointer w-full space-x-3 hover::text-gray-300"
         key={index}
       >
         {open ? (
           <i
-            className="fa-solid fa-chevron-down"
+            className="fa-solid fa-chevron-down fa-xs"
             onClick={() => setOpen(!open)}
           ></i>
         ) : (
           <i
-            className="fa-solid fa-chevron-right"
+            className="fa-solid fa-chevron-right fa-xs"
             onClick={() => setOpen(!open)}
           ></i>
         )}
