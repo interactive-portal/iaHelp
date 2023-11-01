@@ -42,6 +42,7 @@ export default function authorization() {
   const param = _.values(user);
 
   const JsonObject = JSON.parse(param[0]);
+  console.log("JsonObject :>> ", JsonObject);
 
   const loginProcess = async () => {
     const result = await fetchJson(
@@ -49,6 +50,7 @@ export default function authorization() {
         JsonObject
       )}`
     );
+    console.log("result :>> ", result);
     if (result?.status == "success") {
       let parameters = {
         isHash: 1,
@@ -67,8 +69,9 @@ export default function authorization() {
       }
     } else {
       notification.open({
-        type: "error",
-        message: "нэвтрэх үед алдаа гарлаа",
+        type: result?.status || "error",
+        message: result?.text,
+        duration: 25,
       });
     }
   };

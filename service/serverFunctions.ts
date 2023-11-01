@@ -39,17 +39,17 @@ export async function getProcessData(command: any, param: any) {
   };
 
   let response = await runService(command, parameters, "");
+  console.log("response", response);
 
-  if (response?.response?.status == "success") {
-    return response?.response;
-  }
+  // if (response?.response?.status == "success") {
+  return response?.response;
+  // }
 }
 export async function getProcessCustom(command: any, param: any) {
   let parameters = {
     ...param,
   };
   // console.log("parameters", command);
-  // console.log("response", parameters);
   let response = await runServiceLogin(command, parameters, "");
 
   return response?.response;
