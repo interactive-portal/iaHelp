@@ -42,7 +42,7 @@ export default function authorization() {
   const param = _.values(user);
 
   const JsonObject = JSON.parse(param[0]);
-  console.log("JsonObject :>> ", JsonObject);
+  console.log("JsonObject :>> ", session);
 
   const loginProcess = async () => {
     const result = await fetchJson(
@@ -50,7 +50,6 @@ export default function authorization() {
         JsonObject
       )}`
     );
-    console.log("result :>> ", result);
     if (result?.status == "success") {
       let parameters = {
         isHash: 1,
@@ -58,9 +57,10 @@ export default function authorization() {
         redirect: false,
         // callbackUrl: "/",
         username: result?.result?.username,
-        password: result?.result?.password,
-        passwordhash: result?.result?.passwordhash,
+        password: result?.result?.passwordhash,
       };
+
+      console.log("result :>> ", parameters);
 
       let res: any = await signIn("credentials", parameters);
 
@@ -78,7 +78,7 @@ export default function authorization() {
 
   if (user) {
     loginProcess();
-    // console.log("param :>> ", param);
+    // console.log("param :>> ", user);
     // signIn("credentials", parameters);
     // delete data.aggregatecolumns;
     // delete data.paging;
