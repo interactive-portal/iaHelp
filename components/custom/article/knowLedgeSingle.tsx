@@ -188,9 +188,7 @@ const knowLedgeSingle = () => {
                     <RenderAtom
                       item={readyDatasrc[0]?.position22}
                       renderType="htmltext"
-                      customClassName={
-                        "text-[30px] py-6 bg-red-500 overflow-auto"
-                      }
+                      customClassName={"text-[30px] py-6 overflow-auto"}
                     />
                     <div id="comment" className="pt-[70px]">
                       <div className="mt-8 px-2 py-4 border-t-2 border-gray-300">

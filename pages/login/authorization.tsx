@@ -60,6 +60,8 @@ export default function authorization() {
       };
 
       const res = await signIn("credentials", parameters);
+
+      console.log("res", res);
     }
   };
 
