@@ -32,9 +32,9 @@ export default function authorization() {
     setUser((user: any) => [...user, parameter]);
   }, [router]);
 
-  if (session) {
-    window.location.href = "/";
-  }
+  // if (session) {
+  //   window.location.href = "/";
+  // }
 
   if (_.isEmpty(user)) return <div>Хэрэглэгчийн мэдээлэлээ шалгана уу</div>;
 
@@ -75,9 +75,9 @@ export default function authorization() {
   }
 
   return (
-    <>
-      Түр хүлээнэ үү ... {}
-      <pre>{JSON.stringify(JsonObject, null, 4)}</pre>
-    </>
+    <div className="fixed top-0 left-0 w-screen h-screen z-[99999999999999] flex items-center justify-center bg-black/50 flex-col">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+      <h1> Түр хүлээнэ үү ... </h1>
+    </div>
   );
 }
