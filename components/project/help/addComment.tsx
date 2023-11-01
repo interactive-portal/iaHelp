@@ -7,9 +7,7 @@ import { notification } from "antd";
 
 const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
   const [fileList, setFileList] = useState([]);
-
   let form = useRef<any>();
-
   const [comment, setComment] = useState("");
   const handleUserComment = (e: any) => {
     setComment(e.target.value);
@@ -28,7 +26,7 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
             physicalPath: obj?.physicalPath,
             fileSze: obj?.fileSize,
             fileExtension: obj?.fileExtension,
-            createdUserid: session?.readyProfile?.clouderp?.sessioncrmuserid,
+            createdUserid: session?.crmuserid,
           },
         };
       }),
@@ -133,7 +131,7 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
                 <input
                   type="hidden"
                   name="createdCrmUserId"
-                  value={session?.readyProfile?.clouderp?.sessioncrmuserid}
+                  value={session?.crmuserid}
                 />
                 {parentId && (
                   <input type="hidden" name="parentId" value={parentId} />

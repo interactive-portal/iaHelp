@@ -39,7 +39,6 @@ export async function getProcessData(command: any, param: any) {
   };
 
   let response = await runService(command, parameters, "");
-  console.log("response", response);
 
   // if (response?.response?.status == "success") {
   return response?.response;
@@ -104,7 +103,7 @@ export async function postComment(command: any, param: any) {
     ...param,
   };
   let { response } = await runServiceComment(command, parameters, "");
-  if (response?.result) {
+  if (response?.status == "success") {
     return response;
   }
 }

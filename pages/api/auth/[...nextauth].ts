@@ -8,6 +8,7 @@ import {
   callLoginProcess,
   callLoginProcessV2,
 } from "@/pages/api/auth/callLoginPorcessV2";
+import { read } from "fs";
 // import nextauthMetaverseCustomerLogin from "./nextauthMetaverseCustomerLogin";
 // import AppleProvider from "next-auth/providers/apple";
 // import EmailProvider from "next-auth/providers/email";
@@ -48,6 +49,11 @@ export const authOptions: NextAuthOptions = {
             email: result?.email,
             phone: result?.phone,
             username: result?.username,
+            departmentid: result?.departmentid,
+            departmentname:
+              result?.departmentname ||
+              credentials?.parameter?.departmentcode ||
+              "Байгууллагын нэр",
             image:
               result?.emppicture ||
               "https://res.cloudinary.com/dzih5nqhg/image/upload/o_50/v1655704178/cloud/icons/user_s9lsbr.png",
@@ -109,14 +115,15 @@ export const authOptions: NextAuthOptions = {
       }
       // console.log("user prfile", user);
 
-      user.provider = account?.provider || "unknown";
-      // user.profile = profile || user?.profile;
+      // user.provider = account?.provider || "unknown";
+      user.profile = profile || user?.profile;
 
       let userMetaverse;
 
       switch (user?.provider) {
         case "credentials":
-          user.clouderp = user.profile;
+          // user.clouderp = user.profile;
+
           break;
         case "googleMoto":
           // user.clouderp = await callLoginProcessV2({
@@ -202,19 +209,22 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, user, token }) {
       const readyToken: any = token;
+
       //standart user
       session.id = readyToken.id;
       session.profileImg = readyToken.image;
 
       //clouderp
+      // session.departmentid =
       session.username = readyToken?.username;
-      session.crmuserid = readyToken?.customerid;
-      session.sessionCustUserId = readyToken?.clouderp?.crmuserid;
-      session.dbsessionid = readyToken?.clouderp?.sessionid;
+      session.crmuserid = readyToken?.profile?.sessioncrmuserid;
+      session.dbsessionid = readyToken?.profile?.sessionid;
+      session.profile = readyToken?.profile;
+      // session.departmentname = readyToken?.departmentname;
 
       //token info
       //? цаашдаа систем даяар readyProfile-ийг л хэрэглэх хэрэгтэй. Энэ дотор л бэлтгэсэн дата явна.
-      session.readyProfile = readyToken;
+      // session.readyProfile = readyToken;
 
       // console.log("session", session);
 
