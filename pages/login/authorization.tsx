@@ -6,6 +6,7 @@ import { signIn, useSession } from "next-auth/react";
 import fetchJson from "@/lib/fetchJson";
 import useSWR from "swr";
 import moment from "moment";
+import { notification } from "antd";
 
 export default function authorization() {
   const router = useRouter();
@@ -59,9 +60,16 @@ export default function authorization() {
         passwordhash: result?.result?.passwordhash,
       };
 
-      const res = await signIn("credentials", parameters);
+      let res: any = await signIn("credentials", parameters);
 
-      console.log("res", res);
+      if (res.ok == true) {
+        window.location.href = "/";
+      }
+    } else {
+      notification.open({
+        type: "error",
+        message: "нэвтрэх үед алдаа гарлаа",
+      });
     }
   };
 
