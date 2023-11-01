@@ -7,6 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { fieldHideShow } from "@/util/helper";
 import Atom_label from "./Atom_label";
 import _ from "lodash";
+import https from "https";
 type PropsType = {
   config?: any;
   className?: any;
@@ -59,7 +60,12 @@ const Atom_file: FC<PropsType> = ({
     const { onSuccess, onError, file, onProgress, filename } = options;
     const fmData = new FormData();
     const config = {
-      headers: { "content-type": "multipart/form-data" },
+      headers: {
+        "content-type": "multipart/form-data",
+        // httpsAgent: new https.Agent({
+        //   rejectUnauthorized: false, // set to false
+        // }),
+      },
       onUploadProgress: (event: any) => {
         const percent = Math.floor((event.loaded / event.total) * 100);
         setProgress(percent);
