@@ -315,8 +315,12 @@ const SingleKnowLedge = () => {
                     }
                   />
                   <motion.div
-                    initial={{ opacity: 0 }}
+                    layout
                     animate={{ opacity: 1 }}
+                    transition={{
+                      opacity: { ease: "linear" },
+                      layout: { duration: 0.3 },
+                    }}
                     className="py-4"
                   >
                     <RenderAtom
