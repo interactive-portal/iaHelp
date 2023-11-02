@@ -37,7 +37,7 @@ const nextConfig = {
     // serverComponents: true,
   },
   experimental: {
-    runtime: "node",
+    runtime: "edge",
     typedRoutes: true,
     serverComponents: true,
     // runtime: "edge",

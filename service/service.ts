@@ -36,28 +36,29 @@ export const runService = async (
     body: JSON.stringify(requestBody),
   };
 
-  const response = await axios
-    .post(pUrl, requestBody, {
-      httpsAgent: new https.Agent({
-        rejectUnauthorized: false, // set to false
-      }),
-    })
-    .then((res) => res.data)
-    .catch((err) => console.log(`err: `, err));
+  // const response = await axios
+  //   .post(pUrl, requestBody, {
+  //     httpsAgent: new https.Agent({
+  //       rejectUnauthorized: false, // set to false
+  //     }),
+  //   })
+  //   .then((res) => res.data)
+  //   .catch((err) => console.log(`err: `, err));
 
-  // const res = await fetch(pUrl, requestOptions);
+  const res = await fetch(pUrl, requestOptions);
+  const response = await res.json();
 
-  // if (!res.ok) {
-  //   const errorCode = res.ok ? false : res.status;
-  //   throw new Error("Failed to fetch data");
-  // }
+  if (!res.ok) {
+    const errorCode = res.ok ? false : res.status;
+    throw new Error("Failed to fetch data");
+  }
 
   // const response = await res.json();
 
-  // if (response && response.status === "error") {
-  //   console.log("SERVICE_ERROR :", response.data.response.text);
-  //   throw new Error(response.data.response.text);
-  // }
+  if (response && response.status === "error") {
+    console.log("SERVICE_ERROR :", response.data.response.text);
+    throw new Error(response.data.response.text);
+  }
 
   return response;
 };
