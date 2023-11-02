@@ -23,16 +23,17 @@ const MegaHelpMenu: FC<PropsType> = ({
   const [show, setShow] = useState(false);
   const tree = listToTree(menuItem, "parentid");
   const [open, setOpen] = useState(false);
-  // console.log("list main", readyDatasrc);
   const showDrawer = () => {
     setOpen(true);
   };
 
-  const onClose = () => {
-    setOpen(false);
-  };
+  console.log("list main", tree);
 
-  router.events?.on("routeChangeStart", onClose);
+  // const onClose = () => {
+  //   setOpen(false);
+  // };
+
+  // router.events?.on("routeChangeStart", onClose);
 
   return (
     <div className="flex flex-col w-full h-full sm:flex md:flex">

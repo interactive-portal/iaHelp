@@ -38,7 +38,6 @@ const MegaSub: FC<PropsType> = ({
               // onMouseLeave={() => setShow(false)}
             >
               {item.icon && <i className={`${item.icon} mr-2`} />}
-
               <span
                 className="font-bold my-[10px]  hover:text-[#699BF7] text-[16px] text-[#3C3C3C]"
                 onClick={() => {

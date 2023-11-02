@@ -77,7 +77,6 @@ const MegaHelpPopover: FC<PropsType> = ({
             href={`/category?fparentid=${data.id}`}
             className="text-[#585858] hover:text-[#699BF7]"
           >
-            {" "}
             {data?.itemname || data?.name}
           </Link>
         )}
