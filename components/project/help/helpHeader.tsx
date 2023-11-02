@@ -36,8 +36,6 @@ const HelpHeader: FC<PropsType> = ({ data, options }) => {
     setIsModalVisible(false);
   };
 
-  console.log("object :>> ", session);
-
   const [sideBar, setsideBar] = useState();
 
   const [show, setShow] = useState(false);

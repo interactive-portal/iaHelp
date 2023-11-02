@@ -53,7 +53,7 @@ const TreeItem: FC<PropsTypeItem> = ({
 
   return (
     <div
-      className={`flex w-full justify-between text-gray-800 group leading-none group-hover:text-[${color}] cursor-pointer items-center relative  ${customClassName}`}
+      className={`flex w-full justify-between text-gray-800 group  group-hover:text-[${color}] cursor-pointer items-center relative   px-3 leading-[16px]  ${customClassName}`}
       onClick={(e) => handlerChangeEvent(e, item)}
     >
       {item.icon && (
@@ -61,7 +61,7 @@ const TreeItem: FC<PropsTypeItem> = ({
           // item={item.icon}
           item={` ${item?.icon}` || item?.profilephoto}
           color="weekly"
-          customClassName={` ml-1 fa-light w-8 group-hover:text-[${color}] ${
+          customClassName={` ml-1 fa-light w-6 group-hover:text-[${color}] ${
             selected ? `text-[${color}]` : "text-[#585858]"
           } `}
         />
@@ -71,8 +71,9 @@ const TreeItem: FC<PropsTypeItem> = ({
           item={item?.position1}
           renderType="title"
           customClassName={` w-full justify-start p-0 font-normal group-hover:text-[${color}] ${
-            item.icon && "pl-3"
+            item.icon && "pl-2"
           } ${selected ? `text-[${color}] font-semibold` : "text-gray-800"}`}
+          customStyle={{ lineHeight: "17px" }}
         />
         {/* {item.name} */}
       </div>
@@ -98,7 +99,7 @@ const TreeItem: FC<PropsTypeItem> = ({
           <RenderAtom
             item={{ value: item?.taskcount || item?.cnt }}
             renderType="text"
-            customClassName={`text-[12px] min-w-[20px] flex items-center justify-center rounded-[5px] p-1 ${
+            customClassName={`text-[12px] min-w-[20px] flex items-center justify-center rounded-[5px] p-1  relative  -right-3 ${
               selected ? `border-[${color}]` : "border-[#E1E1E1]"
             } hover:text-[${color}] border`}
             customStyle={{ color: selected ? color : "#E1E1E1" }}
