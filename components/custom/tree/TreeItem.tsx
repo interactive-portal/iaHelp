@@ -72,7 +72,7 @@ const TreeItem: FC<PropsTypeItem> = ({
           renderType="title"
           customClassName={` w-full justify-start p-0 font-normal group-hover:text-[${color}] ${
             item.icon && "pl-2"
-          } ${selected ? `text-[${color}] font-semibold` : "text-gray-800"}`}
+          } ${selected ? `text-[${color}] ` : "text-gray-800"}`}
           customStyle={{ lineHeight: "17px" }}
         />
         {/* {item.name} */}
