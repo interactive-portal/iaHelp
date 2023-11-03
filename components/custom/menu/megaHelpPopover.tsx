@@ -2,6 +2,7 @@ import { useState, FC } from "react";
 import { isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import _ from "lodash";
 
 type PropsType = {
   data?: any;
@@ -33,6 +34,20 @@ const MegaHelpPopover: FC<PropsType> = ({
   const [show, setShow] = useState(false);
   const router = useRouter();
   // let submenu() => submenu();
+
+  const iconContent = _.startsWith(data?.icon, "storage") ? (
+    <img
+      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${data?.icon}`}
+      className="w-auto h-6 object-cover max-w-6"
+    />
+  ) : (
+    <i
+      className={`fa-light ${data.icon} w-6 text-center ${
+        activeIndex == index ? "text-[#699BF7]" : "text-[#585858]"
+      }`}
+    />
+  );
+
   return (
     <li
       className={`cursor-pointer  text-black  py-2 hover:bg-white text-[14px]  flex items-center gap-2
@@ -55,13 +70,7 @@ const MegaHelpPopover: FC<PropsType> = ({
         setOpen;
       }}
     >
-      {data.icon && (
-        <i
-          className={`fa-light ${data.icon} w-6 text-center ${
-            activeIndex == index ? "text-[#699BF7]" : "text-[#585858]"
-          }`}
-        />
-      )}
+      {data.icon && iconContent}
       <span>
         {!redirect && (
           <span

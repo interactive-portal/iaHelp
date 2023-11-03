@@ -34,6 +34,8 @@ const MegaHelpMenu: FC<PropsType> = ({
 
   router.events?.on("routeChangeStart", onClose);
 
+  // console.log("tree", tree);
+
   return (
     <div className="flex flex-col w-full h-full sm:flex md:flex">
       <div className="relative">

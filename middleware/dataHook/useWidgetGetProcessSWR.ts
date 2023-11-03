@@ -26,6 +26,7 @@ const useWidgetGetProcessSWR = (listConfig?: any) => {
     command: listConfig?.metadatacode,
     parameter: prepareSWR.prepareCriteriaProcess(criteria),
     // metaName: metaName,
+    standard: JSON.stringify(standard),
     moreRequest: null,
     customProps: JSON.stringify(widgetnemgooReady?.apiConfig || {}),
     metaName: metaNameV2,
@@ -33,7 +34,7 @@ const useWidgetGetProcessSWR = (listConfig?: any) => {
 
   /* --------------------- Call useSWR -------------------- */
   const { data, error, mutate } = useSWR(
-    `/api/get-process?command=${myParams.command}&parameters=${myParams.parameter}`
+    `/api/get-process?command=${myParams.command}&parameters=${myParams.parameter}&standard=${myParams.standard}`
   );
 
   // console.log("🚀 ~ useWidgetGetProcessSWR ~ data:", myParams);
