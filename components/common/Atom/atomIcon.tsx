@@ -11,7 +11,7 @@ export default function AtomIcon({
   customStyle,
   onClick,
 }: {
-  item: string;
+  item: any;
   link?: string;
   checked?: boolean;
   color?: string;
@@ -22,7 +22,7 @@ export default function AtomIcon({
 }) {
   if (isEmpty(item)) return null;
 
-  const myIcon = item["value"];
+  const myIcon: any = item?.["value"];
 
   //storage гэсэн замтай ирвэл өмнө нь домэйнийг залгаж өгөх ёстой.
   // if (myIcon?.startsWith("storage/")) {
