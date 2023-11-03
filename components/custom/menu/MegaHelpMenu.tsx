@@ -27,7 +27,9 @@ const MegaHelpMenu: FC<PropsType> = ({
     setOpen(true);
   };
 
+  // console.log("list menuItem", menuItem);
   // console.log("list main", tree);
+  // console.log("treeReadyDatasrc :>> ", treeReadyDatasrc);
 
   const onClose = () => {
     setOpen(false);

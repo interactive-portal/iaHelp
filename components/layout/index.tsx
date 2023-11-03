@@ -56,6 +56,7 @@ export default function Layout({ children }: LayoutProps) {
       <Head>
         <title>Help.veritech.mn </title>
         <meta name="description" content="Интерактив грүп" />
+
         <meta
           name="keywords"
           content="интерактив, интерактив компани, програм хангамж, систем интеграцчилал, software, system, system integration, interactive, interactive company, interactive mongolia, interactive mongol, интерактив монголия, интерактив компания монголия, интерактив компания"

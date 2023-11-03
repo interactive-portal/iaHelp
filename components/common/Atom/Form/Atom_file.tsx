@@ -62,6 +62,8 @@ const Atom_file: FC<PropsType> = ({
     const config = {
       headers: {
         "content-type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+        withCredentials: false,
         // httpsAgent: new https.Agent({
         //   rejectUnauthorized: false, // set to false
         // }),
@@ -79,7 +81,7 @@ const Atom_file: FC<PropsType> = ({
     fmData.append(options.file.name, file, options.file.name);
     fmData.append("sessionId", session.dbsessionid);
     fmData.append("fileName", options.file.name);
-    console.log("NEXT_FILE_URL :>> ", process.env.NEXT_PUBLIC_FILE_URL);
+    // console.log("NEXT_FILE_URL :>> ", process.env.NEXT_PUBLIC_FILE_URL);
 
     try {
       const res = await axios.post(

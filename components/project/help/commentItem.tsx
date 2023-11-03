@@ -23,6 +23,7 @@ const CommentItem = ({
   const [edit, setEdit] = useState(false);
   const [userComment, setUserComment] = useState(item?.commenttext);
   const [loadProcess, setLoadProcess] = useState(false);
+  const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
   const commentLenght: any = document.getElementById(`text${index}`)?.innerText
     .length;
@@ -111,8 +112,8 @@ const CommentItem = ({
           <img
             src={
               item?.profilephoto
-                ? `https://dev.veritech.mn/${item?.profilephoto}`
-                : `https://dev.veritech.mn/assets/core/global/img/user.png`
+                ? `${imgUrl}${item?.profilephoto}`
+                : `${imgUrl}assets/core/global/img/user.png`
             }
             className=" w-10 h-10 mt-3 rounded-full object-cover"
           />

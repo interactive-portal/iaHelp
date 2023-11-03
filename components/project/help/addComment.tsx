@@ -7,8 +7,10 @@ import { notification } from "antd";
 
 const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
   const [fileList, setFileList] = useState([]);
+
   let form = useRef<any>();
   const [comment, setComment] = useState("");
+  const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const handleUserComment = (e: any) => {
     setComment(e.target.value);
   };
@@ -149,7 +151,7 @@ const AddComment = ({ session, selectedId, parentId, mutate }: any) => {
                           <div key={index} className="relative">
                             <RenderAtom
                               item={{
-                                value: `https://dev.veritech.mn/${item?.physicalPath}`,
+                                value: `${imgUrl}${item?.physicalPath}`,
                               }}
                               renderType="image"
                               customClassName={
