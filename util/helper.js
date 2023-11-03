@@ -1592,3 +1592,24 @@ export default async function fetchJson(...args) {
     throw error;
   }
 }
+
+export function hexToRgba(hex, alpha) {
+  if (_.isEmpty(hex)) return null;
+
+  // Check if hex color code starts with "#"
+  if (hex[0] !== "#") {
+    console.error("Hex color code must start with '#'.");
+    return null;
+  }
+
+  const r = parseInt(hex.substring(1, 3), 16);
+  const g = parseInt(hex.substring(3, 5), 16);
+  const b = parseInt(hex.substring(5, 7), 16);
+
+  if (isNaN(r) || isNaN(g) || isNaN(b)) {
+    console.error("One or more color channel values are not valid.");
+    return null;
+  }
+
+  return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+}

@@ -26,6 +26,7 @@ const RenderSections = ({
           ? "grid grid-cols-12 w-full gap-x-6"
           : customClassName
       }
+      style={sectionNemgoo?.style}
     >
       {sectionNemgoo?.SectionInside ? (
         <div

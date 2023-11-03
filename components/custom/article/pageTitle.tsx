@@ -23,8 +23,6 @@ const pageTitle = () => {
   const pageType = widgetnemgooReady?.listconfig?.pageType;
   const { pathname } = widgetnemgooReady;
 
-  console.log("readyDatarc", readyDatasrc);
-
   const renderType = () => {
     if (pageType == "single") {
       return <></>;

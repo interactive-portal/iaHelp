@@ -22,30 +22,30 @@ export default function AtomIcon({
 }) {
   if (isEmpty(item)) return null;
 
-  const myIcon = item;
+  const myIcon = item["value"];
 
   //storage гэсэн замтай ирвэл өмнө нь домэйнийг залгаж өгөх ёстой.
-  if (myIcon.startsWith("storage/")) {
-    return (
-      <img
-        src={`https://dev.veritech.mn/${myIcon}`}
-        alt="icon"
-        width="16"
-        height="14"
-        className="absolute left-0 top-2 z-10"
+  // if (myIcon?.startsWith("storage/")) {
+  //   return (
+  //     <img
+  //       src={`https://dev.veritech.mn/${myIcon}`}
+  //       alt="icon"
+  //       width="16"
+  //       height="14"
+  //       className="absolute left-0 top-2 z-10"
+  //     />
+  //   );
+  // } else {
+  return (
+    <AtomLink item={link}>
+      <i
+        className={`${myIcon} ${customClassName} ${
+          checked && `text-${color}`
+        } hover:text-${color} `}
+        style={{ ...customStyle }}
+        onClick={onClick}
       />
-    );
-  } else {
-    return (
-      <AtomLink item={link}>
-        <i
-          className={`${myIcon} ${customClassName} ${
-            checked && `text-${color}`
-          } hover:text-${color} `}
-          style={{ ...customStyle }}
-          onClick={onClick}
-        />
-      </AtomLink>
-    );
-  }
+    </AtomLink>
+  );
+  // }
 }

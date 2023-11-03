@@ -65,7 +65,7 @@ export default function Layout({ children }: LayoutProps) {
       </Head>
       {/* <Navbar options={props} /> */}
       {/* <Header /> */}
-      {!isHeader && <HelpHeader data={dataSrc} options={optionsWidget} />}
+      {headerWidget && <HelpHeader data={dataSrc} options={optionsWidget} />}
       {children}
       <Footer options={props} />
     </>

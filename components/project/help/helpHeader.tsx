@@ -13,9 +13,10 @@ import HelpSearch from "./helpSearch";
 type PropsType = {
   data?: any;
   options?: any;
+  mutate?: any;
 };
 
-const HelpHeader: FC<PropsType> = ({ data, options }) => {
+const HelpHeader: FC<PropsType> = ({ data, options, mutate }) => {
   const [loginModalShow, setLoginModalShow] = useToggle(false);
   const [signupModalShow, setSignupModalShow] = useToggle(false);
   const { data: session, status }: any = useSession();
@@ -48,7 +49,7 @@ const HelpHeader: FC<PropsType> = ({ data, options }) => {
       <ul>
         <li className="hover:text-blue-400">
           <Link
-            href="https://customer.veritech.mn/nation?page=community/profileAbout&dm=help"
+            href="/nation?page=community/profileAbout"
             className="text-black"
           >
             <i className="far fa-user text-sm w-6 "></i>
