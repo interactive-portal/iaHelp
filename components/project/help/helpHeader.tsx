@@ -25,7 +25,6 @@ const HelpHeader: FC<PropsType> = ({ data, options }) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
-  // console.log("object :>> ", router);
   const handleOk = () => {
     setIsModalVisible(false);
   };

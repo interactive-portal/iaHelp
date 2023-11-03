@@ -21,6 +21,7 @@ import HelpComment from "@/components/project/help/helpComment";
 import FileViewType from "./fileViewType";
 import DataLoader from "@/components/dataLoader";
 import Image from "next/image";
+import { MotionConfig, motion } from "framer-motion";
 
 const SingleKnowLedge = () => {
   const { readyDatasrc, widgetnemgooReady, dataMutate } =
@@ -269,9 +270,9 @@ const SingleKnowLedge = () => {
       </div>
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 mx-10 min-h-screen">
         <SideBar options={widgetnemgooReady} />
-        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10">
+        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative">
           {(readyDatasrc[0]?.position22 && (
-            <div className="bg-white px-6 py-4 relative min-h-[350px] ">
+            <motion.div className="bg-white px-6 py-4 relative min-h-[350px] ">
               <DataLoader />
               {openEdit ? (
                 <>
@@ -301,7 +302,7 @@ const SingleKnowLedge = () => {
                   </button>
                 </>
               ) : (
-                <>
+                <MotionConfig transition={{ duration: 1 }}>
                   <RenderAtom
                     item={
                       readyDatasrc[0]?.position1 || {
@@ -313,16 +314,24 @@ const SingleKnowLedge = () => {
                       "xl:text-[30px] lg:text-2xl xs:text-xl pb-6 pt-2 text-[#585858] font-medium mb-4"
                     }
                   />
-                  <div className="py-4">
+                  <motion.div
+                    layout
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      opacity: { ease: "linear" },
+                      layout: { duration: 0.3 },
+                    }}
+                    className="py-4"
+                  >
                     <RenderAtom
                       item={readyDatasrc[0]?.position22}
                       renderType="htmltext"
                       customClassName={"my-4"}
                     />
-                  </div>
-                </>
+                  </motion.div>
+                </MotionConfig>
               )}
-            </div>
+            </motion.div>
           )) ||
             readyDatasrc.map((item: any, index: number) => {
               return (

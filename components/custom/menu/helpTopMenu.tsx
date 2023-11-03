@@ -13,7 +13,6 @@ const HelpTopMenu: FC<PropsType> = ({ Menu }) => {
   const { data: session } = useSession();
 
   const cloudContext = useCloud();
-  const rootDomain = cloudContext?.hostObject?.pageDomain;
   let data = Menu || [];
   return (
     <div className="h-full items-center md:flex sm:flex">

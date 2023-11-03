@@ -42,7 +42,6 @@ export default function authorization() {
   const param = _.values(user);
 
   const JsonObject = JSON.parse(param[0]);
-  console.log("JsonObject :>> ", session);
 
   const loginProcess = async () => {
     const result = await fetchJson(
@@ -59,8 +58,6 @@ export default function authorization() {
         username: result?.result?.username,
         password: result?.result?.passwordhash,
       };
-
-      console.log("result :>> ", parameters);
 
       let res: any = await signIn("credentials", parameters);
 

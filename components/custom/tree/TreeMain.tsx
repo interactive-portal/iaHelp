@@ -69,7 +69,7 @@ const TreeMain: FC<PropsType> = ({
           <li
             key={item?.id || index}
             className={`relative ${
-              item.icon || item?.profilephoto ? " pl-0 " : ``
+              item.icon || item?.profilephoto ? "  " : ``
             } `}
             // onClick={() => toggleIsOpen(item, index)}
           >
@@ -94,7 +94,7 @@ const TreeMain: FC<PropsType> = ({
               item={item}
               positionConfig={positionConfig}
               color={color}
-              customClassName={`text-[16px] hover:bg-gray-100 py-2 pl-4 pr-2 ${itemStyle} ${
+              customClassName={`text-[16px] hover:bg-gray-100  ${itemStyle} ${
                 selected ? "text-[#699BF7]" : `text-citizen-blue`
               }`}
               selected={selected}

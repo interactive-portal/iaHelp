@@ -48,7 +48,7 @@ const Horizantal: FC<PropsType> = ({ item, index }) => {
             <RenderAtom
               item={item?.position1 || { value: "гарчиг оруулах" }}
               renderType="text"
-              customClassName="font-black text-white text-[20px] "
+              customClassName="font-bold text-white text-[20px] "
               customStyle={{ lineHeight: "24px" }}
             />
           </div>

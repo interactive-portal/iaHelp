@@ -23,10 +23,11 @@ const MegaHelpMenu: FC<PropsType> = ({
   const [show, setShow] = useState(false);
   const tree = listToTree(menuItem, "parentid");
   const [open, setOpen] = useState(false);
-  // console.log("list main", readyDatasrc);
   const showDrawer = () => {
     setOpen(true);
   };
+
+  // console.log("list main", tree);
 
   const onClose = () => {
     setOpen(false);
