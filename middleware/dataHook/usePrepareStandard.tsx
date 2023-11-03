@@ -36,9 +36,9 @@ export default function usePrepareStandard() {
   const standard = useMemo(() => {
     return {
       customerid: session?.readyProfile?.clouderp?.customerid,
-      crmuserid: session?.readyProfile?.clouderp?.sessioncrmuserid,
-      custuserid: session?.readyProfile?.clouderp?.sessioncrmuserid,
-      departmentid: session?.readyProfile?.clouderp?.departmentid,
+      crmuserid: session?.crmuserid,
+      custuserid: session?.crmuserid,
+      departmentid: session?.profile?.departmentid,
       companydepartmentid: session?.readyProfile?.clouderp?.companydepartmentid,
       pagedepartmentid: thisPageConfig?.departmentid,
       ...urlQueryReady, //тэр чигт нь Standard дотор тавьж өглөө.

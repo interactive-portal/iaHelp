@@ -1,19 +1,20 @@
 import { getProcessData } from "@/service/serverFunctions";
 import { jsonParse } from "util/jsonParse";
+import { prepareApiStandard } from "@/util/prepareApiStandard";
+// import usePrepareStandard from "@/middleware/dataHook/usePrepareStandard";
 
 const getProcess = async (req: any, res: any) => {
   const metaName: string = req?.query?.metaName || "metaProd";
   const processcode = req.query?.command || "";
   let parameters = jsonParse(req.query?.parameters) || "{}";
   const debug = req.query?.debug || false;
-
-  // console.log("object :>> ", processcode);
+  const standard = jsonParse(req.query?.standard);
 
   delete parameters.slug;
 
-  const result = await getProcessData(processcode, parameters);
+  const readyParameters = prepareApiStandard(parameters, standard);
 
-  // console.log("result :>> ", result);
+  const result = await getProcessData(processcode, readyParameters);
 
   res.status(200).json(result);
 };
