@@ -1,6 +1,7 @@
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import AtomIcon from "@/components/common/Atom/atomIcon";
 import AtomTag from "@/components/common/Atom/atomTag";
+import { Tooltip } from "antd";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import { FC } from "react";
@@ -76,7 +77,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
         />
       )}
       <div
-        className={`text-[16px] leading-[18px] ${
+        className={`text-[16px] leading-[18px] line-clamp-1 ${
           selected ? "text-[#699BF7]" : "text-[#585858]"
         } hover:text-[#699BF7] w-full`}
         // onClick={() => onArrowClickItem(item, itemIndex)}
@@ -89,7 +90,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
             item.icon && "pl-3"
           } ${selected ? `text-[${color}] font-semibold` : "text-gray-800"}`}
         /> */}
-        {item.name}
+        <Tooltip title={item?.name}> {item.name}</Tooltip>
       </div>
       <AtomTag
         item={renderPositionType(item, "position4", positionConfig)}
