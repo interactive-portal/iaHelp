@@ -63,7 +63,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
 
   return (
     <div
-      className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative hover:text-blue-400  ${customClassName}`}
+      className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative hover:text-blue-400 ddd ${customClassName}`}
     >
       {subMenuItem ? "" : ""}
       {item.icon && (

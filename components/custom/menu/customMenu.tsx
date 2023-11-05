@@ -92,7 +92,7 @@ const CustomMenu: FC<PropsType> = ({
   // }, [selectedId]);
 
   return (
-    <ul className={`${customClassName} `} style={{ ...customStyle }}>
+    <ul className={`${customClassName} vmenu`} style={{ ...customStyle }}>
       {readyDatasrc.map((item: any, index: number) => {
         // const selected = selectedId === item?.id;
         let firstClass = "";
@@ -105,7 +105,7 @@ const CustomMenu: FC<PropsType> = ({
         return (
           <li
             key={item?.id || index}
-            className={`relative font-normal text-lg ${
+            className={`relative font-normal text-lg itemmenu-${index} ${
               item.icon || item?.profilephoto ? " pl-0 " : `pr-0`
             } `}
           >
@@ -131,7 +131,7 @@ const CustomMenu: FC<PropsType> = ({
               subMenuItem={subitem}
             />
             {!_.isEmpty(item?.children) && item?.isOpen && (
-              <div className="submenu relative pl-4">
+              <div className="submenu relative ">
                 <CustomMenu
                   // config={config}
                   color={color}

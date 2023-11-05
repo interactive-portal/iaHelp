@@ -76,7 +76,7 @@ body {
   font-size: 16px !important;
 }
 
-.submenu .submenu ul li div::before {
+/* .submenu .submenu ul li div::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -85,4 +85,14 @@ body {
   position: relative;
   left: -7px;
   top: 0;
+} */
+
+.submenu .submenu ul {
+  padding-left: 15px;
+}
+
+.singlesidebar .vmenu .li:first-child div {
+  /* border-radius: 20px 0px 0px 0px;
+  bac */
+  background: #585858;
 }
