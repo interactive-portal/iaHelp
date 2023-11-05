@@ -94,9 +94,11 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
       />
       {withChildren ? (
         <AtomIcon
-          item={`far fa-chevron-${
-            item.isOpen ? "down" : "right"
-          } text-gray-700 relative z-50  w-10 text-right fa-xs w-10 h-6  py-4 px-1 `}
+          item={{
+            value: `far  fa-chevron-${
+              item.isOpen ? "down" : "right"
+            } text-gray-700 relative z-50  w-10 text-right fa-xs w-10 h-6  py-4 px-1'} `,
+          }}
           color="weekly"
           onClick={() => {
             onArrowClickItem(item, itemIndex);
