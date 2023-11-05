@@ -75,3 +75,14 @@ body {
 .text-lg {
   font-size: 16px !important;
 }
+
+.submenu .submenu ul li div::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 86px;
+  position: relative;
+  left: -7px;
+  top: 0;
+}

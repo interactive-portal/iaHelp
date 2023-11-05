@@ -4,6 +4,7 @@ import { FC, useEffect, useState, useContext } from "react";
 import _ from "lodash";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import CustomThreeItem from "./customThreeItem";
+import SubMenu from "antd/es/menu/SubMenu";
 
 type PropsType = {
   rawDatasrc?: any;
@@ -15,6 +16,7 @@ type PropsType = {
   indent?: number;
   onClickItem?: any;
   itemStyle?: any;
+  subitem?: boolean;
 };
 
 const CustomMenu: FC<PropsType> = ({
@@ -25,6 +27,7 @@ const CustomMenu: FC<PropsType> = ({
   defaultSelectedId,
   indent,
   itemStyle,
+  subitem,
   onClickItem = () => null,
 }) => {
   const {
@@ -125,6 +128,7 @@ const CustomMenu: FC<PropsType> = ({
               onArrowClickItem={(item: any, itemIndex: number) => {
                 toggleIsOpen(item, itemIndex);
               }}
+              subMenuItem={subitem}
             />
             {!_.isEmpty(item?.children) && item?.isOpen && (
               <div className="submenu relative pl-4">
@@ -133,11 +137,12 @@ const CustomMenu: FC<PropsType> = ({
                   color={color}
                   rawDatasrc={item?.children}
                   widgetnemgooReady={widgetnemgooReady}
-                  customClassName={`ml-${indent}`}
+                  customClassName={`ml-${indent} `}
                   defaultSelectedId={selectedId}
                   indent={indent}
                   onClickItem={onClickItem}
                   itemStyle={itemStyle}
+                  subitem={true}
                 />
               </div>
             )}

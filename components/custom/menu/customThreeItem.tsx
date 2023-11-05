@@ -16,6 +16,7 @@ type PropsTypeItem = {
   onArrowClickItem?: any;
   itemIndex: number;
   setSelectedid?: any;
+  subMenuItem?: any;
 };
 
 const CustomThreeItem: FC<PropsTypeItem> = ({
@@ -28,6 +29,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
   onArrowClickItem,
   itemIndex,
   setSelectedid,
+  subMenuItem,
 }) => {
   // console.log("item", item);
   let linkPath = jsonParse(positionConfig?.position1?.widgetnemgooReady);
@@ -56,10 +58,13 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
     // }
   };
 
+  console.log("subMenuItem :>> ", subMenuItem);
+
   return (
     <div
       className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative hover:text-blue-400  ${customClassName}`}
     >
+      {subMenuItem ? "" : ""}
       {item.icon && (
         <AtomIcon
           // item={item.icon}

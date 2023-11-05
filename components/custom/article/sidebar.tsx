@@ -86,6 +86,7 @@ const SideBar: FC<PropsType> = ({ options }) => {
         customClassName="w-full"
         defaultSelectedId={selectedId}
         indent={5}
+        subitem={false}
         // itemStyle={widgetnemgooReady?.itemStyle}
       />
     </div>
