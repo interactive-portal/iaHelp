@@ -59,7 +59,7 @@ const TreeItem: FC<PropsTypeItem> = ({
       {item.icon && (
         <AtomIcon
           // item={item.icon}
-          item={` ${item?.icon}` || item?.profilephoto}
+          item={{ value: item?.icon || item?.profilephoto }}
           color="weekly"
           customClassName={` ml-1 fa-light w-6 group-hover:text-[${color}] ${
             selected ? `text-[${color}]` : "text-[#585858]"
