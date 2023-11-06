@@ -59,11 +59,13 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
     // }
   };
 
-  console.log("subMenuItem :>> ", subMenuItem);
+  // console.log("item :>> ", item);
 
   return (
     <div
-      className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative hover:text-blue-400 ddd ${customClassName}`}
+      className={`flex w-full justify-between text-gray-800  leading-none cursor-pointer items-center relative hover:text-blue-400 ddd ${
+        item?.ismain == 0 ? "hidden" : ""
+      } ${customClassName}`}
     >
       {subMenuItem ? "" : ""}
       {item.icon && (
