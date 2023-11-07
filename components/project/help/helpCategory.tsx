@@ -63,7 +63,7 @@ const helpCategory = () => {
         className="w-full flex items-center justify-center mt-[26px] cursor-pointer"
         onClick={() =>
           router.push({
-            pathname: "/category",
+            pathname: "/allcategory",
           })
         }
       >

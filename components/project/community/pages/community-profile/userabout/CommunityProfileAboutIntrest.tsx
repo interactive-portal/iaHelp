@@ -21,7 +21,7 @@ const UserIntrest = () => {
   }, [buttonIndex]);
 
   return (
-    <BlockDiv customClassName="flex flex-col gap-5">
+    <BlockDiv customClassName="flex flex-col gap-5 p-[20px] bg-white rounded-lg">
       <BlockDiv customClassName="w-full flex justify-between items-start">
         <RenderAtom
           renderType="text"

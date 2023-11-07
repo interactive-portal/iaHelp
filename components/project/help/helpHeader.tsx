@@ -48,10 +48,7 @@ const HelpHeader: FC<PropsType> = ({ data, options, mutate }) => {
     <div className="relative z-[1000]">
       <ul>
         <li className="hover:text-blue-400">
-          <Link
-            href="/nation?page=community/profileAbout"
-            className="text-black"
-          >
+          <Link href="/profileAbout" className="text-black">
             <i className="far fa-user text-sm w-6 "></i>
             <span className="cursor-pointer pl-1 ">Миний профайл</span>
           </Link>

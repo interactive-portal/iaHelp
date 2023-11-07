@@ -97,7 +97,7 @@ export default function CommunityHomeSection11() {
           >
             {UsersData.map((row: any, index: number) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <UserCard key={index} imgUrl={row.imgUrl} />
                 </SwiperSlide>
               );

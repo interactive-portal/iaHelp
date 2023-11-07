@@ -83,7 +83,7 @@ export default function CommunityProfileAboutInformation() {
 
   return (
     <BlockDiv
-      customClassName=""
+      customClassName="p-[20px] bg-white rounded-lg"
       divNumber="CommunityProfileAboutInformationOuter"
     >
       <BlockDiv
@@ -123,6 +123,9 @@ export default function CommunityProfileAboutInformation() {
                   renderType="icon"
                   item={{ value: item?.icon }}
                   customClassName="w-[40px] h-[40px] text-[#2F81E5] flex justify-center items-center bg-[#E1EBFD] rounded-full"
+                  customStyle={{
+                    display: "flex !important",
+                  }}
                 />
                 <BlockDiv
                   key={item?.id || index}
@@ -145,6 +148,16 @@ export default function CommunityProfileAboutInformation() {
           })}
         </BlockDiv>
       </BlockDiv>
+      <style>
+        {`
+        .fal {
+          display:flex !important
+        }
+        .fa-pen {
+          display:flex !important
+        }
+        `}
+      </style>
     </BlockDiv>
   );
 }
