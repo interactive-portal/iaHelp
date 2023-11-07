@@ -1,6 +1,7 @@
 import { FC } from "react";
 import SkeletonItemDefault from "./SkeletonItemDefault";
 import SkeletonItemLoading from "./SkeletonItemLoading";
+import SkeletonItemModern from "./SkeletonItemModern";
 
 type PropsType = {
   type?: "default" | "loading" | "modern" | "card" | "bigred";
@@ -15,7 +16,7 @@ const Skeleton: FC<PropsType> = ({
 }) => {
   switch (type) {
     case "modern":
-      return <SkeletonItemDefault />;
+      return <SkeletonItemModern />;
     case "card":
       return <SkeletonItemDefault />;
     case "loading":

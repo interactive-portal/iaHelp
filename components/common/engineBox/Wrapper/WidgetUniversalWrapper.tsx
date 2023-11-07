@@ -165,7 +165,7 @@ export const WidgetUniversalWrapper = ({
           // suspense: true,
           loading: () => (
             <div className="w-full">
-              <Skeleton type="card" />
+              <Skeleton type="modern" />
               {/* <div className="w-full h-[80px] ">
                 <div className=" rounded bg-blue-400 text-[#f3f4f6]">
                   {config.componentpath}
@@ -183,7 +183,7 @@ export const WidgetUniversalWrapper = ({
     []
   );
 
-  // const DynamicWidget = dynamic(
+  // const RenderComponent = dynamic(
   //   () =>
   //     import(
   //       `@/components/${config.componentpath.toLowerCase()}/${
@@ -192,13 +192,9 @@ export const WidgetUniversalWrapper = ({
   //     ),
   //   {
   //     loading: () => (
-  //       <p>
-  //         <span className="flex flex-col">
-  //           path:{config.componentpath.toLowerCase()}
-  //           <br />
-  //           name:{config.widgetcode}
-  //         </span>
-  //       </p>
+  //       <>
+  //         <Skeleton type="loading" />
+  //       </>
   //     ),
   //   }
   // );
@@ -244,6 +240,7 @@ export const WidgetUniversalWrapper = ({
       > */}
       {children}
       <RenderComponent />
+      {/* <Skeleton type="modern" /> */}
       {/* </WidgetBlocker> */}
     </WidgetWrapperContext.Provider>
   );
