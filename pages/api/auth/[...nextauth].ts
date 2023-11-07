@@ -16,7 +16,7 @@ import { read } from "fs";
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
-    maxAge: 2 * 60 * 60,
+    maxAge: 1 * 60 * 60,
     secret: process.env.NEXTAUTH_SECRET,
   },
 

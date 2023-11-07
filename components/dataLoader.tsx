@@ -42,7 +42,7 @@ const loadingCircleTransition = {
 };
 
 const Loader = () => (
-  <div className="absolute  top-0 left-0 bottom-0 right-0 flex items-start justify-center bg-gray-400/10 pt-20 min-h-[350px]">
+  <div className="absolute  top-0 left-0 bottom-0 right-0 flex items-start justify-center bg-gray-400/5 pt-20 min-h-[350px]">
     {/* <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div> */}
     {/* <div className="fixed  w-full min-h-screen z-50 bg-black opacity-30" /> */}
     <div className="flex fixed w-full justify-center items-center">
