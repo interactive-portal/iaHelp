@@ -127,7 +127,7 @@ const Leaders = () => {
                     }
                     renderType="image"
                     customClassName={
-                      "h-[90px] rounded-full w-[90px] relative -top-[10px]"
+                      "h-[90px] rounded-full w-[90px] relative -top-[10px] border-4 border-white"
                     }
                   />
                   <div className=" px-[20px] leading-6 py-[12px]">
