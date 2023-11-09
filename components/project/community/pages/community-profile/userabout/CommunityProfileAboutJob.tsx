@@ -29,7 +29,7 @@ export default function CommunityProfileAboutJob() {
       divNumber="CommunityProfileAboutJobOuter"
     >
       <BlockDiv
-        customClassName="w-full flex flex-col gap-5 pt-10"
+        customClassName="w-full flex flex-col gap-5"
         divNumber="CommunityProfileAboutJobInner"
       >
         <BlockDiv

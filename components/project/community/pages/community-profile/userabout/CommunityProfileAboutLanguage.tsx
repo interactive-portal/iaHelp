@@ -14,7 +14,7 @@ export default function CommunityProfileAboutLanguage() {
   return (
     <BlockDiv customClassName="" divNumber="CommunityProfileAboutLanguageOuter">
       <BlockDiv
-        customClassName="py-5"
+        customClassName=""
         divNumber="CommunityProfileAboutLanguageInner"
       >
         {/* <RenderMolecule

@@ -31,7 +31,7 @@ export default function CommunityProfileAboutFamily() {
       divNumber="CommunityProfileAboutFamilyOuter"
     >
       <BlockDiv
-        customClassName="w-full flex flex-col gap-5 pt-10"
+        customClassName="w-full flex flex-col gap-5"
         divNumber="CommunityProfileAboutFamilyInner"
       >
         <BlockDiv
