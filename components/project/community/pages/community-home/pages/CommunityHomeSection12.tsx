@@ -3,6 +3,7 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useState, useContext } from "react";
 import { Tabs, TabsProps } from "antd";
+import { motion } from "framer-motion";
 
 export default function CommunityHomeSection12() {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -26,7 +27,7 @@ export default function CommunityHomeSection12() {
       divNumber="ProlianceHero03Outer"
       customClassName="bg-[#F3F4F6] flex flex-col px-5"
     >
-      <BlockDiv customClassName="flex flex-col sm:mx-auto sm:container md:py-10 py-5 items-center gap-[20px]">
+      <motion.div className="flex flex-col sm:mx-auto sm:container md:py-10 py-5 items-center gap-[20px]">
         <RenderAtom
           item={{ value: "Байгууллагууд" }}
           renderType="text"
@@ -49,7 +50,7 @@ export default function CommunityHomeSection12() {
           items={items}
           className="border-none xs:px-2 float-left w-full"
         />
-        <BlockDiv customClassName="grid grid-cols-6 gap-[20px]">
+        <motion.div className="grid grid-cols-6 gap-[20px]">
           <MemberCard
             name="Оргил хүнсний сүлжээ"
             imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1694997926/sprite_1_ecqbg9.png"
@@ -75,7 +76,7 @@ export default function CommunityHomeSection12() {
             imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1698371010/Next_logo_3_1_oki95l.png"
           />
           {/* nemeh card */}
-        </BlockDiv>
+        </motion.div>
         <BlockDiv customClassName="flex py-5 w-full justify-center ">
           <BlockDiv customClassName="flex justify-center items-center px-[20px] py-[15px] bg-[#699BF7] rounded-[30px] space-x-3">
             <RenderAtom
@@ -95,16 +96,18 @@ export default function CommunityHomeSection12() {
             /> */}
           </BlockDiv>
         </BlockDiv>
-      </BlockDiv>
+      </motion.div>
     </BlockDiv>
   );
 }
 
 const MemberCard = ({ imgUrl, name }: { imgUrl: string; name: string }) => {
   return (
-    <BlockDiv
-      customClassName="flex flex-col bg-white rounded-[10px] gap-[10px] items-center justify-between p-[30px] h-[278px] cursor-pointer"
-      divNumber="UserCardOuter"
+    <motion.div
+      className="flex flex-col bg-white rounded-[10px] gap-[10px] items-center justify-between p-[30px] h-[278px] cursor-pointer"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
     >
       <div className="flex items-center justify-center min-h-[120px]">
         <RenderAtom
@@ -127,6 +130,6 @@ const MemberCard = ({ imgUrl, name }: { imgUrl: string; name: string }) => {
           "text-[#67748E] text-[16px] font-normal text-center justify-end"
         }
       />
-    </BlockDiv>
+    </motion.div>
   );
 };

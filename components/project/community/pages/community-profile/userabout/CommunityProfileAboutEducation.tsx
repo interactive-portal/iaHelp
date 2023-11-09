@@ -27,7 +27,7 @@ export default function CommunityProfileAboutEducation() {
     },
   });
 
-  console.log("readyData", readyDatasrc);
+  console.log("readyDatasrc", readyDatasrc);
 
   return (
     <BlockDiv
