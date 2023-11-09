@@ -48,11 +48,19 @@ body {
   min-height: calc(100vh - 220px);
 }
 
-.htmltext ul {
-  color: #585858 !important;
-  font-size: 16px !important;
-  /* list-style-type: disc; */
-  /* padding-left: 20px; */
+.htmltext table {
+  border-collapse: collapse;
+  border: 1px solid;
+}
+.htmltext table,
+th,
+td {
+  border: 1px solid;
+  padding: 8px 15px;
+}
+.htmltext table td img {
+  width: auto !important;
+  margin: 0;
 }
 .htmltext ol {
   /* color: #585858 !important; */
