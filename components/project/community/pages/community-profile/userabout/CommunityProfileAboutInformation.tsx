@@ -11,8 +11,6 @@ export default function CommunityProfileAboutInformation() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  console.log("widgetetyweqweqw", widgetnemgooReady?.options);
-
   const editProfile = widgetnemgooReady?.options?.edit;
 
   // if (!session) {
@@ -141,7 +139,7 @@ export default function CommunityProfileAboutInformation() {
                   <RenderAtom
                     renderType="text"
                     item={{ value: item?.title }}
-                    customClassName="{ProfileCardSpec1}"
+                    customClassName="{ProfileCardSpec1} min-w-[58px]"
                   />
                   <RenderAtom
                     renderType="title"

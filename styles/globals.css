@@ -68,6 +68,13 @@ td {
   padding-left: 20px;
 }
 
+.htmltext ul {
+  /* color: #585858 !important; */
+  list-style-type: revert-layer;
+  font-size: 16px !important;
+  padding-left: 20px;
+}
+
 .htmltext span p {
   font-size: 16px !important;
   font-family: "Roboto", sans-serif !important;
