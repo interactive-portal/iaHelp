@@ -16,14 +16,20 @@ export default function AtomHtmlText({
   id?: string;
 }) {
   const data = decode(item.value).replaceAll(
-    "storage/",
-    "https://cloudnew.veritech.mn/app/storage/"
+    "storage/uploads",
+    "https://cloudnew.veritech.mn/app/storage/uploads"
   );
+
+  const rr = data.replaceAll(
+    "https://cloudnew.veritech.mn/app/https://cloudnew.veritech.mn/app/",
+    "https://cloudnew.veritech.mn/app/"
+  );
+
   if (isEmpty(item)) return null;
 
   return (
     <span id={id} className={`htmltext ${customClassName}`}>
-      {parseHtml(data)}
+      {parseHtml(rr)}
     </span>
   );
 }

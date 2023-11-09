@@ -52,8 +52,7 @@ body {
   border-collapse: collapse;
   border: 1px solid;
 }
-.htmltext table,
-th,
+.htmltext table th,
 td {
   border: 1px solid;
   padding: 8px 15px;
@@ -100,15 +99,15 @@ td {
 }
 
 /* .submenu .submenu ul li div::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: #5c5c58;
-  border-radius: 86px;
-  position: relative;
-  left: -7px;
-  top: 0;
-} */
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #5c5c58;
+    border-radius: 86px;
+    position: relative;
+    left: -7px;
+    top: 0;
+  } */
 
 .submenu .submenu ul {
   padding-left: 15px;
