@@ -6,7 +6,9 @@ import { useContext } from "react";
 import _ from "lodash";
 
 export default function CommunityProfileAboutSkill() {
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
+
+  const editProfile = widgetnemgooReady?.options;
 
   return (
     <BlockDiv
@@ -21,13 +23,15 @@ export default function CommunityProfileAboutSkill() {
           customClassName="w-full flex justify-between items-start"
           divNumber="CommunityProfileAboutSkillInner"
         >
-          <BlockDiv customClassName="w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl">
-            <RenderAtom
-              renderType="icon"
-              item={{ value: "fa-regular fa-pen" }}
-              customClassName="text-[#A0A0A0] active:text-[#0165E0]"
-            />
-          </BlockDiv>
+          {editProfile && (
+            <BlockDiv customClassName="w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl">
+              <RenderAtom
+                renderType="icon"
+                item={{ value: "fa-regular fa-pen" }}
+                customClassName="text-[#A0A0A0] active:text-[#0165E0]"
+              />
+            </BlockDiv>
+          )}
         </BlockDiv>
         <BlockDiv customClassName="flex flex-wrap gap-3">
           {readyDatasrc.map((item: any, index: number) => {

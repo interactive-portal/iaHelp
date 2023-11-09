@@ -5,7 +5,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext, useEffect, useState } from "react";
 
 const UserIntrest = () => {
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
 
   const staticItem1 = readyDatasrc[0];
 
@@ -13,6 +13,8 @@ const UserIntrest = () => {
     new Array(staticItem1?.buttons.length).fill(false)
   );
   const [buttonIndex, setButtonIndex] = useState(999);
+
+  const editProfile = widgetnemgooReady?.options;
 
   useEffect(() => {
     let newArr = new Array(staticItem1?.buttons.length).fill(false);
@@ -28,13 +30,15 @@ const UserIntrest = () => {
           customClassName="text-[20px] font-medium text-[#585858] leading-[24px] "
           item={{ value: staticItem1?.header.title }}
         />
-        <BlockDiv customClassName="w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl">
-          <RenderAtom
-            renderType="icon"
-            item={{ value: staticItem1?.header.icon }}
-            customClassName="text-[#A0A0A0] active:text-[#0165E0]"
-          />
-        </BlockDiv>
+        {editProfile && (
+          <BlockDiv customClassName="w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl">
+            <RenderAtom
+              renderType="icon"
+              item={{ value: staticItem1?.header.icon }}
+              customClassName="text-[#A0A0A0] active:text-[#0165E0]"
+            />
+          </BlockDiv>
+        )}
       </BlockDiv>
       <BlockDiv customClassName="flex gap-[10px] items-center">
         {staticItem1?.buttons.map((item: any, index: number) => {

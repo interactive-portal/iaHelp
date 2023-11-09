@@ -43,41 +43,42 @@ export default function CommunitySingupModal({
       username: formData?.email,
       passwordHash: formData?.password,
       isOnlyCozyLogin: "0",
+      departmentCode: "cr001",
       ...formData,
       metaNameV2: "PROD",
-      KYC_DTL: [
-        {
-          email: formData?.email,
-          kycType: "Cozy",
-          kycKey: "Email",
-          kycValue: formData?.email,
-        },
-        {
-          email: formData?.email,
-          kycType: "Cozy",
-          kycKey: "Phone",
-          kycValue: formData?.phoneNumber,
-        },
-        {
-          email: formData?.email,
-          kycType: "Cozy",
-          kycKey: "Firstname",
-          kycValue: formData?.firstName,
-        },
-        {
-          email: formData?.email,
-          kycType: "Cozy",
-          kycKey: "Lastname",
-          kycValue: formData?.lastName,
-        },
-      ],
+      // KYC_DTL: [
+      //   {
+      //     email: formData?.email,
+      //     kycType: "Cozy",
+      //     kycKey: "Email",
+      //     kycValue: formData?.email,
+      //   },
+      //   {
+      //     email: formData?.email,
+      //     kycType: "Cozy",
+      //     kycKey: "Phone",
+      //     kycValue: formData?.phoneNumber,
+      //   },
+      //   {
+      //     email: formData?.email,
+      //     kycType: "Cozy",
+      //     kycKey: "Firstname",
+      //     kycValue: formData?.firstName,
+      //   },
+      //   {
+      //     email: formData?.email,
+      //     kycType: "Cozy",
+      //     kycKey: "Lastname",
+      //     kycValue: formData?.lastName,
+      //   },
+      // ],
     };
 
     console.log("Success! parameter: ", parameter);
     // return null;
 
     await callProcess({
-      command: "cozyLoginAndCreate",
+      command: "SSO_CREATE_CRM_USER",
       parameter: parameter,
       // metaNameV2: "PROD",
       moreRequest: null,
@@ -160,6 +161,20 @@ export default function CommunitySingupModal({
 }
 
 const fields = [
+  {
+    label: {
+      title: "Хэрэгллэгчийн нэр",
+    },
+    validation: {
+      required: {
+        value: true,
+        message: "Нэрээ оруулна уу",
+      },
+    },
+    showtype: "input",
+    fieldName: "userName",
+    defaultValue: "",
+  },
   {
     label: {
       title: "И-мэйл",
@@ -253,7 +268,7 @@ const fields = [
       },
     },
     showtype: "input",
-    fieldName: "passwordConfirm",
+    fieldName: "passwordHash",
     defaultValue: "",
   },
 ];

@@ -7,9 +7,13 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 
 export default function CommunityProfileAboutInformation() {
-  const { readyDatasrc } = useContext(WidgetWrapperContext);
+  const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  console.log("widgetetyweqweqw", widgetnemgooReady?.options);
+
+  const editProfile = widgetnemgooReady?.options?.edit;
 
   // if (!session) {
   //   router.push(`https://customer.veritech.mn/login`);
@@ -91,11 +95,13 @@ export default function CommunityProfileAboutInformation() {
         divNumber="CommunityProfileAboutInformationInner"
       >
         {/* Edit Icon */}
-        <RenderAtom
-          renderType="icon"
-          item={{ value: "fa-regular fa-pen" }}
-          customClassName="text-[#A0A0A0] active:text-[#0165E0] w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl"
-        />
+        {editProfile && (
+          <RenderAtom
+            renderType="icon"
+            item={{ value: "fa-regular fa-pen" }}
+            customClassName="text-[#A0A0A0] active:text-[#0165E0] w-7 h-7 rounded-full flex items-center justify-center shadow-md active:shadow-xl"
+          />
+        )}
 
         {/* Том текст */}
         <RenderAtom

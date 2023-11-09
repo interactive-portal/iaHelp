@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { Tabs, TabsProps } from "antd";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
+import { motion } from "framer-motion";
 
 const helpCategory = () => {
   const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
@@ -24,7 +25,7 @@ const helpCategory = () => {
     },
   ];
   return (
-    <div className="max-w-lpcontainer mx-auto">
+    <motion.div className="max-w-lpcontainer mx-auto">
       <Tabs
         defaultActiveKey="1"
         items={items}
@@ -33,7 +34,10 @@ const helpCategory = () => {
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 xs:px-2 md:px-1">
         {readyData?.slice(0, 4)?.map((obj: any, index: number) => {
           return (
-            <div
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
               key={index}
               className="col-span-1 w-auto h-[305px] rounded-lg p-5 cursor-pointer"
               style={{
@@ -55,7 +59,7 @@ const helpCategory = () => {
                 {obj?.name}
               </p>
               <p className="text-[18px] text-[#67748E]">{obj?.cnt} мэдлэг</p>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -79,7 +83,7 @@ const helpCategory = () => {
           }
           `}
       </style>
-    </div>
+    </motion.div>
   );
 };
 
