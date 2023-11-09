@@ -3,6 +3,7 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import { useContext, useEffect, useState } from "react";
+import _ from "lodash";
 
 const UserIntrest = () => {
   const { readyDatasrc, widgetnemgooReady } = useContext(WidgetWrapperContext);
@@ -21,6 +22,10 @@ const UserIntrest = () => {
     newArr[buttonIndex] = true;
     setButton(newArr);
   }, [buttonIndex]);
+
+  if (_.isEmpty(readyDatasrc)) {
+    return;
+  }
 
   return (
     <BlockDiv customClassName="flex flex-col gap-5 p-[20px] bg-white rounded-lg">

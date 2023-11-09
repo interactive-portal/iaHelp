@@ -3,9 +3,14 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import Link from "next/link";
 import { useContext } from "react";
+import _ from "lodash";
 
 export default function CommunityProfileSidebarFriends() {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
+
+  if (_.isEmpty(readyDatasrc)) {
+    return;
+  }
 
   return (
     <BlockDiv
