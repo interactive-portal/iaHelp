@@ -108,7 +108,7 @@ const Leaders = () => {
           <table className="w-full border-none">
             <thead>
               <tr className="border-b">
-                <th>Ерөнхий</th>
+                <th className="text-start">Ерөнхий</th>
                 <th>Байр</th>
                 <th>Санал</th>
               </tr>
@@ -171,6 +171,9 @@ const Leaders = () => {
             border-style: none;
             padding:20px 0px;
             border-bottom: 1px solid #E1E1E1;
+          }
+          table th:nth-child(even) {
+            text-align:center;
           }
           `}
       </style>
