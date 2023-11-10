@@ -3,7 +3,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext } from "react";
 
 const Leaders = () => {
-  const { widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const { widgetnemgooReady, readyDatasrc } = useContext(WidgetWrapperContext);
   const testData = [
     {
       name: "Б. Энхзул",
@@ -37,8 +37,6 @@ const Leaders = () => {
     },
   ];
 
-  const cardColor = ["", "#FF8E50", "#FEC345", "#39E0CF", "#48C7F4"];
-
   return (
     <div>
       <div className="">
@@ -63,7 +61,12 @@ const Leaders = () => {
       </div>
       <div className="grid grid-cols-3 gap-5 w-full px-[140px]">
         <div className="col-span-1">
-          <div className=" bg-white rounded-[20px] flex flex-col gap-[20px] items-center pt-[20px]">
+          <div
+            className=" bg-white rounded-[20px] flex flex-col gap-[20px] items-center pt-[20px]"
+            style={{
+              boxShadow: "0px 2px 20px 0px rgba(0, 0, 0, 0.08)",
+            }}
+          >
             <div className="bg-[#699BF726]  w-max mx-auto rounded-[22px] text-center px-[20px] py-[10px]">
               <RenderAtom
                 item={{ value: "Манлайлагч" }}

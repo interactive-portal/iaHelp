@@ -146,12 +146,6 @@ const CommentItem = ({
     }
   };
 
-  const checkLike = likeCount?.result?.userids?.filter(
-    (obj: any, index: number) => {
-      return obj?.crmuserid == session?.crmuserid;
-    }
-  );
-
   console.log("likeConut", likeCount);
 
   return (
@@ -357,7 +351,7 @@ const CommentItem = ({
       </div>
       <div className="flex items-center pl-[55px] text-[12px] text-[#585858]">
         <div className="flex items-center">
-          {likeCount?.result?.recordcount !== "0" &&
+          {likeCount?.result?.recordcount > "0" &&
           !_.isEmpty(likeCount?.result?.userids) ? (
             <p
               className="text-[#699BF7] cursor-pointer"
@@ -374,7 +368,7 @@ const CommentItem = ({
             </p>
           )}
 
-          {likeCount?.result?.recordcount !== "0" && likeCount?.result && (
+          {likeCount?.result?.recordcount > "0" && likeCount?.result && (
             <p className="pl-1">({likeCount?.result?.recordcount})</p>
           )}
         </div>
