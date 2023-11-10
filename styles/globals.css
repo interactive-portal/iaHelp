@@ -68,6 +68,13 @@ td {
   padding-left: 20px;
 }
 
+.htmltext ul {
+  /* color: #585858 !important; */
+  list-style-type: revert-layer;
+  font-size: 16px !important;
+  padding-left: 20px;
+}
+
 .htmltext span p {
   font-size: 16px !important;
   font-family: "Roboto", sans-serif !important;
@@ -96,6 +103,22 @@ td {
 
 .text-lg {
   font-size: 16px !important;
+}
+
+.htmltext,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.625rem;
 }
 
 /* .submenu .submenu ul li div::before {

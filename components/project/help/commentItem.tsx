@@ -6,6 +6,7 @@ import { useState } from "react";
 import _ from "lodash";
 import { Image, Dropdown, MenuProps } from "antd";
 import fetchJson from "@/util/helper";
+import useSWR from "swr";
 
 const CommentItem = ({
   item,
@@ -27,6 +28,20 @@ const CommentItem = ({
 
   const commentLenght: any = document.getElementById(`text${index}`)?.innerText
     .length;
+
+  const param = JSON.stringify({
+    filtertablename: "ECM_COMMENT",
+    filterrecordid: item?.id,
+    filteractionname: "LIKE",
+  });
+
+  let {
+    data: likeCount,
+    error,
+    mutate: likeMutate,
+  } = useSWR(
+    `/api/get-process?command=PRTL_MN_ACTIVITIES_COUNT_004&parameters=${param}`
+  );
 
   const items: MenuProps["items"] = [
     {
@@ -94,6 +109,50 @@ const CommentItem = ({
       editComment();
     }
   };
+
+  const addLike = async () => {
+    const command = "PRTL_MN_ACTIVITIES_001";
+    const param = JSON.stringify({
+      tableName: "ECM_COMMENT",
+      recordId: item?.id,
+      actionName: "LIKE",
+      createdCrmUserId: session?.crmuserid,
+      dbsessionid: session?.dbsessionid,
+    });
+    const result = await fetchJson(
+      `/api/post-comment?command=${command}&parameters=${param}`
+    );
+    if (result?.status == "success") {
+      likeMutate();
+    }
+  };
+
+  const unLike = async () => {
+    const command = "PRTL_MN_ACTIVITIES_001";
+    const param = JSON.stringify({
+      tableName: "ECM_COMMENT",
+      recordId: item?.id,
+      actionName: "DISLIKE",
+      createdCrmUserId: session?.crmuserid,
+      dbsessionid: session?.dbsessionid,
+    });
+    const result = await fetchJson(
+      `/api/post-comment?command=${command}&parameters=${param}`
+    );
+
+    console.log("result", result);
+    if (result?.status == "success") {
+      likeMutate();
+    }
+  };
+
+  const checkLike = likeCount?.result?.userids?.filter(
+    (obj: any, index: number) => {
+      return obj?.crmuserid == session?.crmuserid;
+    }
+  );
+
+  console.log("likeConut", likeCount);
 
   return (
     <BlockDiv
@@ -297,7 +356,28 @@ const CommentItem = ({
         </div>
       </div>
       <div className="flex items-center pl-[55px] text-[12px] text-[#585858]">
-        <p className="hover:text-[#699BF7] cursor-pointer">Like</p>
+        <div className="flex items-center">
+          {likeCount?.result?.recordcount !== "0" &&
+          !_.isEmpty(likeCount?.result?.userids) ? (
+            <p
+              className="text-[#699BF7] cursor-pointer"
+              onClick={() => unLike()}
+            >
+              disLike
+            </p>
+          ) : (
+            <p
+              className="hover:text-[#699BF7] cursor-pointer"
+              onClick={() => addLike()}
+            >
+              Like
+            </p>
+          )}
+
+          {likeCount?.result?.recordcount !== "0" && likeCount?.result && (
+            <p className="pl-1">({likeCount?.result?.recordcount})</p>
+          )}
+        </div>
         <p className="px-4">|</p>
         <p
           className="hover:text-[#699BF7] cursor-pointer"
