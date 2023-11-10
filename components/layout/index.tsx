@@ -54,12 +54,12 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>help.veritech.mn - Цахим сургалт </title>
+        <title>Help.veritech.mn - Цахим сургалт </title>
         <meta
           name="description"
           content="Veritech Help дэмжлэг үйлчилгээний портал ашигласанаар та систем ашиглахдаа өөрийн үнэтэй цаг хугацааг хэмнэхээс гадна, тухайн контентийг сайжруулах, зөв оновчтотй хувилбарыг санал болгох боломжтой."
         />
-        <meta property="og:image" content="./cover.png" />
+        <meta property="og:image" content="../../cover.png" />
         <meta property="og:image:alt" content="help.veritech.mn" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="810" />
