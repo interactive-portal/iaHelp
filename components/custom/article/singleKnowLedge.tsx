@@ -13,7 +13,9 @@ import { htmlDecode } from "@/util/helper";
 import SideBar from "./sidebar";
 import { useCloud } from "hooks/use-cloud";
 import fetchJson from "@/lib/fetchJson";
-import QRCode from "react-qr-code";
+// import QRCode from "react-qr-code";
+
+import { QRCode } from "react-qrcode-logo";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
@@ -478,17 +480,23 @@ const SingleKnowLedge = () => {
               </p>
             </a>
           </>
-          <BlockDiv customClassName="flex flex-col mt-[20px] justify-start bg-white ">
-            <RenderAtom
-              item={{ value: "Холбоос хуулах" }}
-              renderType="button"
-              customClassName={
-                "text-[#0C529D] w-full px-2 py-4 justify-start text-lg text-[#585858] font-semibold "
-              }
+          <BlockDiv customClassName="flex flex-col mt-[20px] justify-start border  px-6 pb-6 rounded text-center ">
+            <div
+              className="flex gap-2  hover:opacity-75 cursor-pointer "
               onClick={() => copyUrl()}
-            />
+            >
+              <RenderAtom
+                item={{ value: "Холбоос хуулах" }}
+                renderType="button"
+                customClassName={
+                  "text-[#0C529D] justify-start px-0 text-lg text-[#585858] font-semibold "
+                }
+              />
+              <i className="fa-regular fa-copy px-2 py-4 "></i>
+            </div>
+
             <QRCode
-              size={125}
+              size={130}
               style={{
                 height: "auto",
                 maxWidth: "70%",
@@ -496,8 +504,16 @@ const SingleKnowLedge = () => {
                 padding: "25px",
                 margin: "auto",
               }}
+              logoImage="/vlogo.png" // URL of the logo you want to use, make sure it is a dynamic url
+              logoHeight={40}
+              logoWidth={40}
+              logoOpacity={1}
+              enableCORS={true} // enabling CORS, this is the thing that will bypass that DOM check
+              qrStyle="dots" // type of qr code, wether you want dotted ones or the square ones
+              eyeRadius={10} // radius of the promocode eye
+              id={"QR"}
               value={location}
-              viewBox={`0 0 256 256`}
+              // viewBox={`0 0 256 256`}
             />
           </BlockDiv>
         </div>
