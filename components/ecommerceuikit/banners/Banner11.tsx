@@ -2,29 +2,29 @@ import { useContext } from "react";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import BlockDiv from "@/components/common/Block/BlockDiv";
+import Image from "next/image";
 
 const Banner4 = () => {
-  const {
-    config,
-    readyDatasrc,
-    positionConfig,
-    metaConfig,
-    gridJsonConfig,
-    pathConfig,
-    widgetnemgooReady,
-  } = useContext(WidgetWrapperContext);
+  const { config, readyDatasrc } = useContext(WidgetWrapperContext);
 
   const item = readyDatasrc[0];
   return (
     <>
       <div className="overflow-y-hidden w-full">
         <BlockDiv
-          customClassName=" flex justify-center items-center md:justify-start w-full lg:h-[650px] bg-cover md:h-[300px] object-cover md:py-10 lg:py-0 md:px-4 lg:px-0"
-          customStyle={{ backgroundImage: `url('${item?.mainimage}')` }}
+          customClassName=" flex justify-center items-center md:justify-start w-full lg:h-[650px] bg-cover md:h-[300px] object-cover relative md:py-10 lg:py-0 md:px-4 lg:px-0"
+          // customStyle={{ backgroundImage: `url('${item?.mainimage}')` }}
           divNumber="LandingBannerDiv"
         >
-          <div className="max-w-lpcontainer flex md:flex-col-reverse mx-auto h-full w-full">
-            <div className=" flex flex-col w-[630px] h-full pt-[80px] justify-between lg:mb-14 xs:mb-0">
+          <Image
+            src={item?.mainimage}
+            fill
+            style={{ objectFit: "cover" }}
+            alt="cover"
+          />
+
+          <div className="max-w-lpcontainer flex md:flex-col-reverse mx-auto h-full w-full relative z-10">
+            <div className=" flex flex-col w-[630px] h-full pt-[70px] justify-between lg:mb-14 xs:mb-0">
               <RenderAtom
                 item={item?.position1}
                 renderType="title"
