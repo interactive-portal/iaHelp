@@ -25,7 +25,7 @@ export default function CommunityHomeSection12() {
   return (
     <BlockDiv
       divNumber="ProlianceHero03Outer"
-      customClassName="bg-[#F3F4F6] flex flex-col px-5"
+      customClassName="bg-[#F3F4F6] flex flex-col px-4"
     >
       <motion.div className="flex flex-col sm:mx-auto sm:container md:py-10 py-5 items-center gap-[20px]">
         <RenderAtom
@@ -50,7 +50,7 @@ export default function CommunityHomeSection12() {
           items={items}
           className="border-none xs:px-2 float-left w-full"
         />
-        <motion.div className="grid grid-cols-6 gap-[20px]">
+        <motion.div className="lg:grid grid-cols-6 xs:flex  gap-[20px] lg:overflow-x-hidden xs:overflow-x-scroll w-full">
           <MemberCard
             name="Оргил хүнсний сүлжээ"
             imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1694997926/sprite_1_ecqbg9.png"
@@ -104,7 +104,7 @@ export default function CommunityHomeSection12() {
 const MemberCard = ({ imgUrl, name }: { imgUrl: string; name: string }) => {
   return (
     <motion.div
-      className="flex flex-col bg-white rounded-[10px] gap-[10px] items-center justify-between p-[30px] h-[278px] cursor-pointer"
+      className="flex flex-col bg-white rounded-[10px] gap-[10px] items-center justify-between p-[30px] h-[278px] cursor-pointer min-w-[200px]"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.8, opacity: 0 }}

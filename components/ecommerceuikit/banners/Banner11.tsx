@@ -19,12 +19,14 @@ const Banner4 = () => {
           <Image
             src={item?.mainimage}
             fill
+            // height={260}
             style={{ objectFit: "cover" }}
+            className="backgroundImage"
             alt="cover"
           />
 
           <div className="max-w-lpcontainer flex md:flex-col-reverse mx-auto h-full w-full relative z-10">
-            <div className=" flex flex-col w-[630px] h-full pt-[70px] justify-between lg:mb-14 xs:mb-0">
+            <div className=" flex flex-col w-[630px] h-full lg:pt-[70px] xs:pt-14 lg:py-0 xs:py-14 justify-between lg:mb-14 xs:mb-0 xs:px-4">
               <RenderAtom
                 item={item?.position1}
                 renderType="title"
@@ -57,6 +59,13 @@ const Banner4 = () => {
           </div>
         </BlockDiv>
       </div>
+      <style>
+        {`
+        .backgroundImage {
+          height: auto !important
+        }
+        `}
+      </style>
     </>
   );
 };

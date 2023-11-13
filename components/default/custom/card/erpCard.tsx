@@ -25,7 +25,7 @@ const ErpCard = () => {
           renderType="title"
           customClassName={"text-[#585858] font-medium text-[20px]"}
         />
-        <Tabs
+        {/* <Tabs
           className="z-10"
           defaultActiveKey="1"
           items={[
@@ -42,10 +42,10 @@ const ErpCard = () => {
               key: "3",
             },
           ]}
-        />
+        /> */}
       </div>
       <motion.div
-        className={`grid 2xl:grid-cols-6 xl:grid-cols-5  lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4 pt-2 pb-10`}
+        className={`grid 2xl:grid-cols-6 xl:grid-cols-5  lg:grid-cols-4 md:grid-cols-3 xs:grid-cols-2 gap-4 pt-2 pb-10`}
       >
         {readyDatasrc?.map((item: any, index: number) => {
           return cardContent(item, index);

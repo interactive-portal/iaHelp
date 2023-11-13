@@ -29,9 +29,9 @@ const helpCategory = () => {
       <Tabs
         defaultActiveKey="1"
         items={items}
-        className="border-none xs:px-2"
+        className="border-none xs:px-4"
       />
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 xs:px-2 md:px-1">
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 xs:px-4 md:px-1">
         {readyData?.slice(0, 4)?.map((obj: any, index: number) => {
           return (
             <motion.div
