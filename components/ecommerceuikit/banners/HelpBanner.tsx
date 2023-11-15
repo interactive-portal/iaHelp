@@ -47,12 +47,12 @@ const HelpBanner = () => {
         {readyDatasrc.map((item: any, index: number) => (
           <SwiperSlide key={index}>
             <BlockDiv
-              customClassName="relative w-full lg:h-[500px] xs:h-[400px] bg-no-repeat bg-cover lg:pt-0 xs:pt-24 lg:px-0 xs:px-4"
+              customClassName="relative w-full lg:h-[500px] xs:h-[400px] bg-no-repeat bg-cover lg:pt-0 xs:pt-0 lg:px-0 xs:px-4"
               customStyle={{ backgroundImage: `url('${item?.mainimage}')` }}
               divNumber="LandingPageDiv"
             >
               <BlockDiv
-                customClassName="max-w-lpcontainer lg:px-10 px-0 mx-auto flex my-auto items-center justify-between lg:mt-0 xs:mt-14 h-full"
+                customClassName="max-w-lpcontainer lg:px-10 px-0 mx-auto flex my-auto items-center justify-between lg:mt-0 xs:mt-0 h-full"
                 divNumber={"LandingPageBannerDiv"}
               >
                 <BlockDiv

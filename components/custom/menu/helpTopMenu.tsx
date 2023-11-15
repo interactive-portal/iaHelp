@@ -15,7 +15,7 @@ const HelpTopMenu: FC<PropsType> = ({ Menu }) => {
   const cloudContext = useCloud();
   let data = Menu || [];
   return (
-    <div className="h-full items-center md:flex sm:flex">
+    <div className="hidden h-full items-center md:flex sm:flex">
       <ul className="md:grid md:grid-flow-col md:auto-cols-max">
         {data?.map((item: any, index: number) => {
           return (

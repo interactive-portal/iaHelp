@@ -3,7 +3,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext } from "react";
 
 const Leaders = () => {
-  const { widgetnemgooReady } = useContext(WidgetWrapperContext);
+  const { widgetnemgooReady, readyDatasrc } = useContext(WidgetWrapperContext);
   const testData = [
     {
       name: "Б. Энхзул",
@@ -37,8 +37,6 @@ const Leaders = () => {
     },
   ];
 
-  const cardColor = ["", "#FF8E50", "#FEC345", "#39E0CF", "#48C7F4"];
-
   return (
     <div>
       <div className="">
@@ -63,8 +61,13 @@ const Leaders = () => {
       </div>
       <div className="grid grid-cols-3 gap-5 w-full px-[140px]">
         <div className="col-span-1">
-          <div className=" bg-white rounded-[20px] flex flex-col gap-[20px] items-center pt-[20px]">
-            <div className="bg-[#699BF726]  w-max mx-auto rounded-[22px] text-center px-[20px] py-[10px]">
+          <div
+            className=" bg-white rounded-[20px] flex flex-col gap-[20px] items-center pt-[20px]"
+            style={{
+              boxShadow: "0px 2px 20px 0px rgba(0, 0, 0, 0.08)",
+            }}
+          >
+            <div className="bg-[#699BF726]  w-max mx-auto rounded-[22px] text-center px-[20px] min-h-[40px]">
               <RenderAtom
                 item={{ value: "Манлайлагч" }}
                 renderType="text"
@@ -98,7 +101,7 @@ const Leaders = () => {
               <RenderAtom
                 item={{ value: "500" }}
                 renderType="text"
-                customClassName={"text-[30px] text-[#699BF7] font-black"}
+                customClassName={"text-[30px] text-[#699BF7] font-bold"}
               />
               <p className="text-[16px] font-medium text-[#699BF7]">санал</p>
             </div>
@@ -115,10 +118,10 @@ const Leaders = () => {
             </thead>
             <tbody className="border-none">
               {testData
-                .slice(1, testData.length)
+                ?.slice(1, testData?.length)
                 ?.map((obj: any, index: number) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td className="flex items-center gap-[20px]">
                         <RenderAtom
                           item={{
@@ -126,7 +129,7 @@ const Leaders = () => {
                               "https://res.cloudinary.com/dzih5nqhg/image/upload/v1673509721/image_44054_mqwegp.png",
                           }}
                           renderType="image"
-                          customClassName={"h-[70px] rounded-full w-[70px] "}
+                          customClassName={"h-[70px] rounded-full w-[70px]"}
                         />
                         <div>
                           <RenderAtom

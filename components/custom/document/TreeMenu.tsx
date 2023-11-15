@@ -23,6 +23,8 @@ export default function TreeMenu() {
     router.query?.[widgetnemgooReady?.listconfig?.fieldid || "item"]
   );
 
+  const [responseMenuOpen, setResponsiveMenuOpen] = useState<boolean>(false);
+
   const treeReadyDatasrc: any = listToTree(readyDatasrc, {
     idKey: "id",
     parentKey: "parentid",
@@ -57,7 +59,25 @@ export default function TreeMenu() {
   return (
     <>
       <BlockDiv
-        customClassName="p-0 rounded-[10px] px-2 py-2 w-full"
+        customClassName={`left-0 top-1/3 z-30 fixed lg:hidden xs:block px-2 py-1 rounded-r-lg bg-white duration-200 translate-x-0 font-medium shadow-xl
+        ${responseMenuOpen && "translate-x-[230px]"}
+        `}
+        onClick={() => setResponsiveMenuOpen(!responseMenuOpen)}
+      >
+        <p>{responseMenuOpen ? "<" : ">"}</p>
+      </BlockDiv>
+      <div
+        className={`${
+          responseMenuOpen &&
+          "fixed top-0 bottom-0 w-full left-0 bg-black/70 z-20"
+        }`}
+        onClick={() => setResponsiveMenuOpen(!responseMenuOpen)}
+      ></div>
+      <BlockDiv
+        customClassName={`p-0 rounded-[10px] px-2 py-2 w-full lg:-translate-x-0 xs:-translate-x-full duration-200  lg:block xs:hidden ${
+          responseMenuOpen &&
+          " xs:block xs:-translate-x-0  fixed top-[90px] rounded-none left-0 bottom-0 w-[230px] z-40"
+        }`}
         divNumber="TreeMenuDiv"
       >
         <div className="h-full ">

@@ -61,7 +61,7 @@ export default function Blog() {
             <RenderAtom
               item={{ value: settings?.sectionTitle }}
               renderType="title"
-              customClassName=" text-[#585858] xs:ml-2 lg:ml-0"
+              customClassName=" text-[#585858] xs:ml-4 lg:ml-0"
               customStyle={{ lineHeight: "40px" }}
               customProps={{
                 truncateRow: 3,
@@ -140,7 +140,7 @@ export default function Blog() {
             </p>
           )}
           <BlockDiv
-            customClassName="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 xs:px-2 md:px-1"
+            customClassName="grid xs:grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-4 xs:px-4 md:px-1"
             divNumber="DivGrid"
           >
             {dataSrc
