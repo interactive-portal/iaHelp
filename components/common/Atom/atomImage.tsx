@@ -75,8 +75,7 @@ export default function AtomImageV2({
       loading="lazy"
       onError={({ currentTarget }) => {
         currentTarget.onerror = null; // prevents looping
-        currentTarget.src =
-          "https://res.cloudinary.com/dzih5nqhg/image/upload/v1677751495/moto_mn/Banner/icon-no-image_tcse9o.svg";
+        currentTarget.src = "/noimage.png";
       }}
       className={twMergeUtil(
         theme,
