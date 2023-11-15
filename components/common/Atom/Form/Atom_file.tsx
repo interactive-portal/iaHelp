@@ -66,9 +66,9 @@ const Atom_file: FC<PropsType> = ({
         "content-type": "multipart/form-data",
         // "Access-Control-Allow-Origin": "*",
         // withCredentials: false,
-        // httpsAgent: new https.Agent({
-        //   rejectUnauthorized: false, // set to false
-        // }),
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false, // set to false
+        }),
       },
       onUploadProgress: (event: any) => {
         const percent = Math.floor((event.loaded / event.total) * 100);
