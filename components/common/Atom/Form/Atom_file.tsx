@@ -65,6 +65,9 @@ const Atom_file: FC<PropsType> = ({
       headers: {
         "content-type": "multipart/form-data",
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Access-Control-Allow-Headers, Content-Type",
+        "Access-Control-Allow-Methods": "*",
         // withCredentials: false,
         // httpsAgent: new https.Agent({
         //   rejectUnauthorized: false, // set to false
