@@ -13,6 +13,7 @@ export default async function middleware(
   if (
     url.pathname.includes("/404") || // exclude all files in the public folder
     url.pathname.startsWith("/api") || // exclude all API routes
+    url.pathname.startsWith("/new") || // exclude all API routes
     url.pathname.startsWith("/login") // page-ийг бас орхих хэрэгтэй.
   ) {
     return;

@@ -15,8 +15,10 @@
     "antd": "^5.10.0",
     "axios": "^1.5.1",
     "ckeditor4-react": "^5.0.0",
+    "concat-stream": "^2.0.0",
     "cookies-next": "^4.0.0",
     "crypto-js": "^4.1.1",
+    "formidable": "^3.5.1",
     "framer-motion": "^10.16.4",
     "html-entities": "^2.4.0",
     "html-react-parser": "^4.2.2",
@@ -31,6 +33,7 @@
     "postcss-preset-env": "^9.2.0",
     "pupa": "^3.1.0",
     "react": "^18",
+    "react-code-blocks": "^0.1.5",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-markdown": "^9.0.0",
@@ -53,6 +56,7 @@
     "yet-another-react-lightbox": "^3.14.0"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "@types/lodash": "^4.14.199",
     "@types/next": "^9.0.0",
     "@types/node": "^20.8.9",

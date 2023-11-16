@@ -1,0 +1,107 @@
+{
+  "page": {
+    "config": {
+      "hostObject": {
+        "domain": "newhelp",
+        "slug": "home"
+      },
+      "style": {
+        "fontFamily": "Arial"
+      }
+    },
+    "header": {
+      "style": {
+        "columnGrid": "row",
+        "marginBottom": "0",
+        "backgroundColor": "Colors.bgGray300"
+      },
+      "children": [
+        {
+          "meta": {
+            "metadataid": "1679971477585122",
+            "metadatacode": "HP_MAIN_MENU",
+            "metatypeid": "200101010000016"
+          },
+          "type": "list",
+          "body": {
+            "gap": "6"
+          },
+          "itemStyle": {
+            "borderRadius": "6"
+          },
+          "showFields": [
+            {
+              "position": "1",
+              "rendertype": "image",
+              "rowItemCount": "col-10",
+              "containerStyle": {},
+              "style": {
+                "color": "Colors.TEXT_COLOR",
+                "fontSize": "FontSize[12]",
+                "fontFamily": "Fonts.nunitoMedium"
+              }
+            },
+            {
+              "position": "1",
+              "rendertype": "text",
+              "side": "body",
+              "rowItemCount": "col-6",
+              "containerStyle": {},
+              "style": {
+                "color": "Colors.TEXT_COLOR",
+                "fontSize": "FontSize[12]",
+                "fontFamily": "Fonts.nunitoMedium"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "body": {
+      "children": [
+        {
+          "meta": {
+            "metadataid": "1679971477585122",
+            "metadatacode": "HP_MAIN_MENU",
+            "metatypeid": "200101010000016"
+          },
+          "type": "list",
+          "body": {
+            "gap": "6"
+          },
+          "itemStyle": {
+            "borderRadius": "6"
+          },
+          "showFields": [
+            {
+              "position": "1",
+              "rendertype": "image",
+              "rowItemCount": "col-10",
+              "containerStyle": {},
+              "style": {
+                "color": "Colors.TEXT_COLOR",
+                "fontSize": "FontSize[12]",
+                "fontFamily": "Fonts.nunitoMedium"
+              }
+            },
+            {
+              "position": "1",
+              "rendertype": "text",
+              "side": "body",
+              "rowItemCount": "col-6",
+              "containerStyle": {},
+              "style": {
+                "color": "Colors.TEXT_COLOR",
+                "fontSize": "FontSize[12]",
+                "fontFamily": "Fonts.nunitoMedium"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "children": []
+    }
+  }
+}

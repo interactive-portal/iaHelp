@@ -65,10 +65,7 @@ const Atom_file: FC<PropsType> = ({
       headers: {
         "content-type": "multipart/form-data",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers":
-          "Access-Control-Allow-Headers, Content-Type",
-        "Access-Control-Allow-Methods": "*",
-        // withCredentials: false,
+        withCredentials: true,
         // httpsAgent: new https.Agent({
         //   rejectUnauthorized: false, // set to false
         // }),
@@ -86,14 +83,21 @@ const Atom_file: FC<PropsType> = ({
     fmData.append(options.file.name, file, options.file.name);
     fmData.append("sessionId", session.dbsessionid);
     fmData.append("fileName", options.file.name);
-    // console.log("NEXT_FILE_URL :>> ", process.env.NEXT_PUBLIC_FILE_URL);
+
+    // console.log("NEXT_FILE_URL :>> ", fmData);
 
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_FILE_URL}`,
-        fmData,
-        config
-      );
+      // const res = await axios.post(
+      //   `${process.env.NEXT_PUBLIC_FILE_URL}`,
+      //   fmData,
+      //   config
+      // );
+      const res: any = fetch("/api/file-attach", {
+        method: "POST",
+        body: fmData,
+      });
+
+      // console.log("res :>> ", res);
       onSuccess("Ok");
       // handleChangeContext({
       //   name: filename,
