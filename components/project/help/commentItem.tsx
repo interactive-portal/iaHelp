@@ -146,8 +146,6 @@ const CommentItem = ({
     }
   };
 
-  console.log("likeConut", likeCount);
-
   return (
     <BlockDiv
       key={item?.id || index}

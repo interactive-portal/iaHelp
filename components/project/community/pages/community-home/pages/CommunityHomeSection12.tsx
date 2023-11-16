@@ -51,30 +51,12 @@ export default function CommunityHomeSection12() {
           className="border-none xs:px-2 float-left w-full"
         />
         <motion.div className="lg:grid grid-cols-6 xs:flex  gap-[20px] lg:overflow-x-hidden xs:overflow-x-scroll w-full">
-          <MemberCard
-            name="Оргил хүнсний сүлжээ"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1694997926/sprite_1_ecqbg9.png"
-          />
-          <MemberCard
-            name="Good Price"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1653451005/cloud/item/Good_price_cl8hfn.png"
-          />
-          <MemberCard
-            name="MSM ХХК"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1698371181/image_44188_pohqlu.png"
-          />
-          <MemberCard
-            name="Тоёото - Таван богд"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1661222348/cloud/item/image_44183_racu7d.png"
-          />
-          <MemberCard
-            name="Хас банк"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1698370973/%D0%A5%D0%B0%D1%81-%D0%B1%D0%B0%D0%BD%D0%BA_edgy76.png"
-          />
-          <MemberCard
-            name="Некст групп"
-            imgUrl="https://res.cloudinary.com/dzih5nqhg/image/upload/v1698371010/Next_logo_3_1_oki95l.png"
-          />
+          <MemberCard name="Оргил хүнсний сүлжээ" imgUrl="/images/orgil.png" />
+          <MemberCard name="Good Price" imgUrl="/images/Good.png" />
+          <MemberCard name="MSM ХХК" imgUrl="/images/msm.png" />
+          <MemberCard name="Тоёото - Таван богд" imgUrl="/images/tBogd.png" />
+          <MemberCard name="Хас банк" imgUrl="/images/has.png" />
+          <MemberCard name="Некст групп" imgUrl="/images/next.png" />
           {/* nemeh card */}
         </motion.div>
         <BlockDiv customClassName="flex py-5 w-full justify-center ">

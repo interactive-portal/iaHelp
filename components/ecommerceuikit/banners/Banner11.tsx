@@ -5,7 +5,8 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import Image from "next/image";
 
 const Banner4 = () => {
-  const { config, readyDatasrc } = useContext(WidgetWrapperContext);
+  const { config, readyDatasrc, widgetnemgooReady } =
+    useContext(WidgetWrapperContext);
 
   const item = readyDatasrc[0];
   return (
@@ -21,7 +22,7 @@ const Banner4 = () => {
             fill
             // height={260}
             style={{ objectFit: "cover" }}
-            className="backgroundImage"
+            className={`${widgetnemgooReady?.imageClassName}`}
             alt="cover"
           />
 

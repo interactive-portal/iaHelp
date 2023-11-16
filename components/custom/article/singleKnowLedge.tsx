@@ -163,24 +163,24 @@ const SingleKnowLedge = () => {
       {/* pageTitle test */}
       <div className="w-full h-[300px] overflow-hidden ">
         <BlockDiv
-          customClassName={` flex mx-auto p-10 bg-black/50 h-full relative`}
+          customClassName={` flex mx-auto py-10 lg:px-10 xs:px-4 bg-black/50 h-full relative`}
           // customStyle={{
           //   backgroundImage:
           //     "url(https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png)",
           // }}
         >
           <Image
-            src="https://res.cloudinary.com/dzih5nqhg/image/upload/v1692773379/cloud/item/unsplash_5EhN4wbfvBc_rffgdk_ds3xnz.png"
+            src="/images/banner23.png"
             layout="fill"
             // width={100}
             // height={100}
-            className="object-center object-cover pointer-events-none"
+            className="object-center object-cover pointer-events-none opacity-80 bg-black"
             quality={100}
             style={{ objectFit: "cover" }}
             alt="cover"
           />
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12 px-2">
-            <div className="text-white flex text-center sm:text-xs xs:text-[8px] md:text-base">
+            <div className="text-white flex text-center sm:text-xs xs:text-[10px] md:text-base">
               <span className="opacity-80 hover:text-white cursor-pointer">
                 Нүүр{" "}
               </span>
@@ -270,7 +270,7 @@ const SingleKnowLedge = () => {
           </BlockDiv>
         </BlockDiv>
       </div>
-      <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 mx-10 min-h-screen">
+      <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 lg:mx-10 xs:mx-4 min-h-screen">
         <SideBar options={widgetnemgooReady} />
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative">
           {(readyDatasrc[0]?.position22 && (
