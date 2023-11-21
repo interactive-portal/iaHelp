@@ -68,6 +68,9 @@ td {
   padding-left: 20px;
 }
 
+.htmltext {
+  display: inline-block;
+}
 .htmltext ul {
   /* color: #585858 !important; */
   list-style-type: revert-layer;
