@@ -87,15 +87,17 @@ const Atom_file: FC<PropsType> = ({
     // console.log("NEXT_FILE_URL :>> ", fmData);
 
     try {
-      // const res = await axios.post(
-      //   `${process.env.NEXT_PUBLIC_FILE_URL}`,
-      //   fmData,
-      //   config
-      // );
-      const res: any = fetch("/api/file-attach", {
-        method: "POST",
-        body: fmData,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_FILE_URL}`,
+        fmData,
+        config
+      );
+
+      console.log("res", res);
+      // const res: any = fetch("/api/file-attach", {
+      //   method: "POST",
+      //   body: fmData,
+      // });
 
       // console.log("res :>> ", res);
       onSuccess("Ok");
