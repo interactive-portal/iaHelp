@@ -50,7 +50,7 @@ const MegaHelpPopover: FC<PropsType> = ({
 
   return (
     <li
-      className={`cursor-pointer  text-black  py-2 hover:bg-white text-[14px]  flex items-center gap-2
+      className={`cursor-pointer  text-black  py-2 hover:bg-white lg:text-[14px] xs:text-[12px]  flex items-center gap-2
         ${customClass} ${activeIndex == index ? "bg-white" : "bg-transparent"}`}
       onMouseEnter={() => {
         if (submenu) {

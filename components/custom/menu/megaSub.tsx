@@ -22,24 +22,24 @@ const MegaSub: FC<PropsType> = ({
   const router = useRouter();
   return (
     <div
-      className="transform translate-x-0 transition duration-700 h-full max-h-[480px] scroll overflow-y-auto p-[20px] bg-white rounded-r-xl"
+      className="transform translate-x-0 transition duration-700 h-full lg:max-h-[480px] xs:max-h-full scroll overflow-y-auto p-[20px] bg-white rounded-r-xl"
       // style={{ width: "700px" }}
       // onMouseEnter={() => setShow(true)}
       // onMouseLeave={() => setShow(false)}
     >
       {/* {isEmpty(data) && <EmptyStore />} */}
-      <div className="columns-3 gap-6 h-full max-h-[480px]">
+      <div className="lg:columns-3 lg:block xs:flex flex-col lg:gap-6 xs:gap-2 h-full lg:max-h-[480px] xs:max-h-full">
         {data?.children?.map((item: any, index: string) => {
           return (
             <div
               key={item?.id || index}
-              className="cursor-pointer  mb-[20px] inline-block w-full"
+              className="cursor-pointer  lg:mb-[20px] xs:mb-3 inline-block w-full"
               // onMouseEnter={() => setShow(true)}
               // onMouseLeave={() => setShow(false)}
             >
               {item.icon && <i className={`${item.icon} mr-2`} />}
               <span
-                className="font-bold my-[10px]  hover:text-[#699BF7] text-[16px] text-[#3C3C3C]"
+                className="font-bold my-[10px]  hover:text-[#699BF7] lg:text-[16px] xs:text-[12px] text-[#3C3C3C]"
                 onClick={() => {
                   router.push({
                     pathname: `/lessons/content`,

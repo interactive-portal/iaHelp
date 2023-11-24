@@ -76,7 +76,7 @@ export default function TreeMenu() {
       <BlockDiv
         customClassName={`p-0 rounded-[10px] px-2 py-2 w-full lg:-translate-x-0 xs:-translate-x-full duration-200  lg:block xs:hidden ${
           responseMenuOpen &&
-          " xs:block xs:-translate-x-0  fixed top-[90px] rounded-none left-0 bottom-0 w-[230px] z-40"
+          " xs:block xs:-translate-x-0 bg-white fixed top-[90px] rounded-none left-0 bottom-0 w-[230px] z-40"
         }`}
         divNumber="TreeMenuDiv"
       >

@@ -120,8 +120,11 @@ const knowLedgeSingle = () => {
     <>
       <BlockDiv customClassName="h-auto" divNumber="div10">
         {/* <span className="w-56"></span> */}
-        <BlockDiv customClassName={`flex`} divNumber="divGridNumber">
-          <div className=" bg-white 2xl:w-3/4 md:w-[100%] px-6 py-2 min-h-screen">
+        <BlockDiv
+          customClassName={`flex lg:flex-row xs:flex-col`}
+          divNumber="divGridNumber"
+        >
+          <div className=" bg-white 2xl:w-3/4 md:w-[100%] px-6 py-2 lg:min-h-screen xs:min-h-auto">
             {" "}
             {
               session?.readyProfile?.clouderp?.positionname == "Менежер" &&

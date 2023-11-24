@@ -63,7 +63,7 @@ const MegaHelpMenu: FC<PropsType> = ({
         // centered
         open={open}
         wrapClassName="right-auto left-[16%] -top-[83px]"
-        className="bg-[#F3F4F6] p-0 rounded sm:top-0 sm:mx-1 sm-w-full md:top-1 md:mx-2 md:w-full lg:top-2 lg:mx-3 xl:top-4 xl:ml-[18rem]"
+        className="bg-[#F3F4F6] p-0 rounded sm:top-0 sm:mx-1 sm-w-full md:top-1 md:mx-2 md:w-full lg:top-2 xs:top-6 lg:mx-3 xl:top-4 xl:ml-[18rem]"
         onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         footer=""
@@ -103,11 +103,13 @@ const MegaMenuSub = (data: any, setOpen: any) => {
     <>
       <div
         className="grid grid-cols-12 bg-[#F3F4F6] rounded-[10px] min-h-[380px]"
-        style={{
-          gridTemplateColumns: "repeat(20, minmax(0, 1fr))",
-        }}
+        style={
+          {
+            // gridTemplateColumns: "repeat(20, minmax(0, 1fr))",
+          }
+        }
       >
-        <div className="col-span-6 max-h-[480px] py-2">
+        <div className="lg:col-span-3 xs:col-span-5 lg:max-h-[480px] xs:max-h-full py-2">
           <div
             className={`w-32 text-black flex gap-4 my-2 py-1 px-4 hover:cursor-pointer rounded-full font-semibold`}
           >
@@ -136,10 +138,12 @@ const MegaMenuSub = (data: any, setOpen: any) => {
           </ul>
         </div>
         <div
-          className="col-span-12"
-          style={{
-            gridColumn: "span 14 / span 14",
-          }}
+          className="lg:col-span-9 xs:col-span-7"
+          style={
+            {
+              // gridColumn: "span 14 / span 14",
+            }
+          }
         >
           <MegaSub
             setOpen={setOpen}
