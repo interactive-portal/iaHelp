@@ -181,7 +181,7 @@ const SingleKnowLedge = () => {
           />
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12 px-2">
             <div className="text-white flex text-center sm:text-xs xs:text-[10px] md:text-base">
-              <span className="opacity-80 hover:text-white cursor-pointer">
+              {/* <span className="opacity-80 hover:text-white cursor-pointer">
                 Нүүр{" "}
               </span>
               {srcTitle.map((item: any, index: number) => {
@@ -222,7 +222,7 @@ const SingleKnowLedge = () => {
                     </p>
                   </div>
                 );
-              })}
+              })} */}
             </div>
             <RenderAtom
               item={
@@ -272,8 +272,61 @@ const SingleKnowLedge = () => {
       </div>
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 lg:mx-10 xs:mx-4 min-h-screen">
         <SideBar options={widgetnemgooReady} />
-        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative">
-          {(readyDatasrc[0]?.position22 && (
+        <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative bg-white mb-10">
+          <div className="flex bg-white  text-blue-600  font-bold mx-6 flex text-center xs:text-[10px] md:text-[18px]  pb-2 pt-4 border-b-[6px] border-[#585858] justify-between  ">
+            <div className="flex">
+              <span className="opacity-80 hover:text-blue-800  cursor-pointer">
+                Нүүр{" "}
+              </span>
+              {srcTitle.map((item: any, index: number) => {
+                return (
+                  <div key={index}>
+                    <p
+                      className="ml-1 cursor-pointer hover:text-blue-800 relative font-bold text-[18px] "
+                      key={item?.id || index}
+                      onClick={() => {
+                        if (index > 0) {
+                          router.push(
+                            {
+                              pathname: pathname || "/lessons/content",
+                              query: {
+                                filterid: item?.id,
+                                lparentid: router.query?.lparentid,
+                              },
+                            },
+                            undefined,
+                            {
+                              shallow: false,
+                            }
+                          );
+                        } else {
+                          router.push({
+                            pathname: "/category",
+                            query: {
+                              fparentid: item?.id,
+                            },
+                          });
+                        }
+                      }}
+                    >
+                      {item?.name && (
+                        <span className=" px-0">
+                          {" "}
+                          <b className="text-[#585858]">&#62;</b>{" "}
+                        </span>
+                      )}
+                      <span className="opacity-80 hover:opacity-100 relative">
+                        {item?.name}
+                      </span>
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <span className="flex justify-items-end text-[#585858]">[ ]</span>
+          </div>
+
+          {readyDatasrc[0]?.position22 && (
             <motion.div className="bg-white px-6 py-4 relative min-h-[350px] ">
               <DataLoader />
               {openEdit ? (
@@ -334,25 +387,11 @@ const SingleKnowLedge = () => {
                 </MotionConfig>
               )}
             </motion.div>
-          )) ||
-            readyDatasrc.map((item: any, index: number) => {
-              return (
-                <div key={index}></div>
-                // <RenderMolecule
-                //   key={item?.id || index}
-                //   renderType="card"
-                //   item={{
-                //     item: {
-                //       title: item?.position1,
-                //       image: item?.position2,
-                //       description: item?.position3,
-                //       button: item?.position10,
-                //     },
-                //   }}
-                // />
-              );
-            })}
-          <div id="comment" className=" bg-white mt-6 px-4">
+          )}
+
+          <div className="h-8 bg-[#f3f4f6]"></div>
+
+          <div id="comment" className=" bg-white mt-6 px-4 ">
             <div className=" ">
               <HelpComment
                 setCommentCount={setCommentCount}
