@@ -170,6 +170,10 @@ const SingleKnowLedge = () => {
     localStorage.getItem("item1") &&
     JSON.parse(localStorage.getItem("item1") || "");
 
+  useEffect(() => {
+    localStorage.clear();
+  }, [parentid]);
+
   return (
     <>
       {/* pageTitle test */}
@@ -285,58 +289,60 @@ const SingleKnowLedge = () => {
       <div className="grid grid-flow-row-dense md:grid-cols-9 lg:grid-cols-12  xl:grid-cols-12 lg:mx-10 xs:mx-4 min-h-screen">
         <SideBar options={widgetnemgooReady} />
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative bg-white mb-10">
-          <div className="flex bg-white  text-blue-600 font-medium mx-6 flex text-center xs:text-[10px] md:text-[16px]  pb-2 pt-4 border-b-[3px] border-[#585858] justify-between  ">
-            <div className="flex">
-              <span
-                className="opacity-80  cursor-pointer"
-                onClick={() => {
-                  router.push({
-                    pathname: "/lessons/content",
-                    query: {
-                      filterid: parent?.id,
-                      lparentid: parentid,
-                    },
-                  });
-                  localStorage.removeItem("item");
-                  localStorage.removeItem("item1");
-                }}
-              >
-                {parent?.name}
-              </span>
-              {item && <span className="opacity-80 px-1">/ </span>}
-              <span
-                className="opacity-80  cursor-pointer"
-                onClick={() => {
-                  router.push({
-                    pathname: "/lessons/content",
-                    query: {
-                      filterid: item?.id,
-                      lparentid: parentid,
-                    },
-                  });
-                  localStorage.removeItem("item1");
-                }}
-              >
-                {item?.name}
-              </span>
-              {item1 && <span className="opacity-80 px-1">/ </span>}
-              <span
-                className="opacity-80  cursor-pointer"
-                onClick={() =>
-                  router.push({
-                    pathname: "/lessons/content",
-                    query: {
-                      filterid: item1?.id,
-                      lparentid: parentid,
-                    },
-                  })
-                }
-              >
-                {item1?.name}
-              </span>
+          {parent && (
+            <div className="flex bg-white  text-blue-600 font-medium mx-6 flex text-center xs:text-[10px] md:text-[16px]  pb-2 pt-4 border-b-[3px] border-[#585858] justify-between  ">
+              <div className="flex">
+                <span
+                  className="opacity-80  cursor-pointer"
+                  onClick={() => {
+                    router.push({
+                      pathname: "/lessons/content",
+                      query: {
+                        filterid: parent?.id,
+                        lparentid: parentid,
+                      },
+                    });
+                    localStorage.removeItem("item");
+                    localStorage.removeItem("item1");
+                  }}
+                >
+                  {parent?.name}
+                </span>
+                {item && <span className="opacity-80 px-1">/ </span>}
+                <span
+                  className="opacity-80  cursor-pointer"
+                  onClick={() => {
+                    router.push({
+                      pathname: "/lessons/content",
+                      query: {
+                        filterid: item?.id,
+                        lparentid: parentid,
+                      },
+                    });
+                    localStorage.removeItem("item1");
+                  }}
+                >
+                  {item?.name}
+                </span>
+                {item1 && <span className="opacity-80 px-1">/ </span>}
+                <span
+                  className="opacity-80  cursor-pointer"
+                  onClick={() =>
+                    router.push({
+                      pathname: "/lessons/content",
+                      query: {
+                        filterid: item1?.id,
+                        lparentid: parentid,
+                      },
+                    })
+                  }
+                >
+                  {item1?.name}
+                </span>
+              </div>
+              <span className="flex justify-items-end text-[#585858]">[ ]</span>
             </div>
-            <span className="flex justify-items-end text-[#585858]">[ ]</span>
-          </div>
+          )}
 
           {readyDatasrc[0]?.position22 && (
             <motion.div className="bg-white px-6 py-4 relative min-h-[350px] ">

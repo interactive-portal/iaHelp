@@ -55,8 +55,6 @@ const SideBar: FC<PropsType> = ({ options }) => {
     }
   }
 
-  // console.log("treeReadyDatasrc :>> ", treeReadyDatasrc);
-
   return (
     <div className="md:col-span-2 lg:col-span-3 xl:col-span-2 3xl:col-span-2  py-4 pl-4 pr-2 h-full singlesidebar">
       <h3 className="text-[20px] text-[#585858] font-medium"> Агуулга </h3>
