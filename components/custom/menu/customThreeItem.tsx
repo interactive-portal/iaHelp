@@ -41,7 +41,7 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
     setSelectedid(i?.id);
     let linkPaths = item?.position1?.positionnemgoo.url;
     let parentid = router.query.lparentid;
-    // console.log("router :>> ", router.query.filterid);
+
     const path = {
       pathname: "/lessons/content",
       query: {
@@ -50,16 +50,29 @@ const CustomThreeItem: FC<PropsTypeItem> = ({
       },
     };
     router.push({ ...path }, undefined, { shallow: false, scroll: false });
-    // console.log("path :>> ", path);
-    // console.log("s :>> ", i);
-    // if (withChildren) {
-    //   onArrowClickItem(item, itemIndex);
-    // } else {
-    //   // onClickItem(item);
-    // }
-  };
+    const parent = {
+      name: i?.name,
+      id: i.id,
+      parentid: i?.parentid,
+    };
+    const itemParent =
+      (localStorage.getItem("item") &&
+        JSON.parse(localStorage.getItem("item") || "")) ||
+      {};
 
-  // console.log("item :>> ", item);
+    if (parentid == i?.parentid) {
+      localStorage.setItem("parent", JSON.stringify(parent));
+      localStorage.removeItem("item");
+      localStorage.removeItem("item1");
+    } else {
+      if (itemParent) {
+        localStorage.setItem("item1", JSON.stringify(parent));
+      } else {
+        localStorage.setItem("item", JSON.stringify(parent));
+        localStorage.removeItem("item1");
+      }
+    }
+  };
 
   return (
     <div

@@ -158,6 +158,16 @@ const SingleKnowLedge = () => {
     );
   };
 
+  const parent = localStorage.getItem("parent")
+    ? JSON.parse(localStorage.getItem("parent") || "")
+    : JSON.parse(localStorage.getItem("item") || "");
+  const item =
+    localStorage.getItem("item") &&
+    JSON.parse(localStorage.getItem("item") || "");
+  const item1 =
+    localStorage.getItem("item1") &&
+    JSON.parse(localStorage.getItem("item1") || "");
+
   return (
     <>
       {/* pageTitle test */}
@@ -181,7 +191,7 @@ const SingleKnowLedge = () => {
           />
           <BlockDiv customClassName="md:col-span-1 flex flex-col justify-between h-full col-span-12 px-2">
             <div className="text-white flex text-center sm:text-xs xs:text-[10px] md:text-base">
-              {/* <span className="opacity-80 hover:text-white cursor-pointer">
+              <span className="opacity-80 hover:text-white cursor-pointer">
                 Нүүр{" "}
               </span>
               {srcTitle.map((item: any, index: number) => {
@@ -222,7 +232,7 @@ const SingleKnowLedge = () => {
                     </p>
                   </div>
                 );
-              })} */}
+              })}
             </div>
             <RenderAtom
               item={
@@ -275,53 +285,53 @@ const SingleKnowLedge = () => {
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-8 3xl:col-span-8 pb-10 relative bg-white mb-10">
           <div className="flex bg-white  text-blue-600  font-bold mx-6 flex text-center xs:text-[10px] md:text-[18px]  pb-2 pt-4 border-b-[6px] border-[#585858] justify-between  ">
             <div className="flex">
-              <span className="opacity-80 hover:text-blue-800  cursor-pointer">
-                Нүүр{" "}
+              <span
+                className="opacity-80  cursor-pointer"
+                onClick={() => {
+                  router.push({
+                    pathname: "/lessons/content",
+                    query: {
+                      filterid: parent?.id,
+                      lparentid: parentid,
+                    },
+                  });
+                  localStorage.removeItem("item");
+                  localStorage.removeItem("item1");
+                }}
+              >
+                {parent?.name}
               </span>
-              {srcTitle.map((item: any, index: number) => {
-                return (
-                  <div key={index}>
-                    <p
-                      className="ml-1 cursor-pointer hover:text-blue-800 relative font-bold text-[18px] "
-                      key={item?.id || index}
-                      onClick={() => {
-                        if (index > 0) {
-                          router.push(
-                            {
-                              pathname: pathname || "/lessons/content",
-                              query: {
-                                filterid: item?.id,
-                                lparentid: router.query?.lparentid,
-                              },
-                            },
-                            undefined,
-                            {
-                              shallow: false,
-                            }
-                          );
-                        } else {
-                          router.push({
-                            pathname: "/category",
-                            query: {
-                              fparentid: item?.id,
-                            },
-                          });
-                        }
-                      }}
-                    >
-                      {item?.name && (
-                        <span className=" px-0">
-                          {" "}
-                          <b className="text-[#585858]">&#62;</b>{" "}
-                        </span>
-                      )}
-                      <span className="opacity-80 hover:opacity-100 relative">
-                        {item?.name}
-                      </span>
-                    </p>
-                  </div>
-                );
-              })}
+              {item && <span className="opacity-80 px-1">/ </span>}
+              <span
+                className="opacity-80  cursor-pointer"
+                onClick={() => {
+                  router.push({
+                    pathname: "/lessons/content",
+                    query: {
+                      filterid: item?.id,
+                      lparentid: parentid,
+                    },
+                  });
+                  localStorage.removeItem("item1");
+                }}
+              >
+                {item?.name}
+              </span>
+              {item1 && <span className="opacity-80 px-1">/ </span>}
+              <span
+                className="opacity-80  cursor-pointer"
+                onClick={() =>
+                  router.push({
+                    pathname: "/lessons/content",
+                    query: {
+                      filterid: item1?.id,
+                      lparentid: parentid,
+                    },
+                  })
+                }
+              >
+                {item1?.name}
+              </span>
             </div>
             <span className="flex justify-items-end text-[#585858]">[ ]</span>
           </div>

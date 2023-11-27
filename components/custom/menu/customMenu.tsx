@@ -17,6 +17,7 @@ type PropsType = {
   onClickItem?: any;
   itemStyle?: any;
   subitem?: boolean;
+  item?: any;
 };
 
 const CustomMenu: FC<PropsType> = ({
@@ -28,6 +29,7 @@ const CustomMenu: FC<PropsType> = ({
   indent,
   itemStyle,
   subitem,
+  item,
   onClickItem = () => null,
 }) => {
   const {
@@ -84,6 +86,13 @@ const CustomMenu: FC<PropsType> = ({
     };
     setDatasrc([...tempArray]);
 
+    const parent = {
+      name: item?.name,
+      id: item.id,
+    };
+
+    // localStorage?.setItem("parent", JSON.stringify(parent));
+
     return null;
   };
 
@@ -94,14 +103,6 @@ const CustomMenu: FC<PropsType> = ({
   return (
     <ul className={`${customClassName} vmenu`} style={{ ...customStyle }}>
       {readyDatasrc.map((item: any, index: number) => {
-        // const selected = selectedId === item?.id;
-        let firstClass = "";
-
-        // if (Number(selectedId) === item?.id) {
-        //   if (item.children) {
-        //     item.isOpen = true;
-        //   }
-        // }
         return (
           <li
             key={item?.id || index}
@@ -143,6 +144,7 @@ const CustomMenu: FC<PropsType> = ({
                   onClickItem={onClickItem}
                   itemStyle={itemStyle}
                   subitem={true}
+                  item={item}
                 />
               </div>
             )}
