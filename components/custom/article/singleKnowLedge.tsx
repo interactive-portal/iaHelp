@@ -159,8 +159,10 @@ const SingleKnowLedge = () => {
   };
 
   const parent = localStorage.getItem("parent")
-    ? JSON.parse(localStorage.getItem("parent") || "")
-    : JSON.parse(localStorage.getItem("item") || "");
+    ? localStorage.getItem("parent") &&
+      JSON.parse(localStorage.getItem("parent") || "")
+    : localStorage.getItem("item") &&
+      JSON.parse(localStorage.getItem("item") || "");
   const item =
     localStorage.getItem("item") &&
     JSON.parse(localStorage.getItem("item") || "");
