@@ -14,6 +14,7 @@ const RiverClubV1HomeWelcome = () => {
     ? query.id.join("")
     : query.id || "mn";
   const [openModal, setOpenModal] = useState(false);
+  const [needSignUp, setNeedSignUp] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 
@@ -28,7 +29,6 @@ const RiverClubV1HomeWelcome = () => {
   const clickCamera = (e: any) => {
     setOpenModal(true);
     e.preventDefault();
-    // [camera].click() {
     var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
     ws.onopen = function () {
@@ -41,23 +41,12 @@ const RiverClubV1HomeWelcome = () => {
       var res = JSON.parse(event.data);
 
       if (res) {
-        console.log("res");
+        console.log("res", res);
       } else {
-        notification.info({
-          message: "Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.",
-        });
+        setNeedSignUp(true);
       }
 
       setOpenModal(false);
-
-      // if (res != null) {
-      //   setImageToken(res.image);
-      //   setOpenModal(false);
-      //   // [image] = res.image;
-      //   // [value] = res.value;
-      // } else {
-      //   alert(res.message);
-      // }
     };
 
     ws.onerror = function (event) {
@@ -66,6 +55,8 @@ const RiverClubV1HomeWelcome = () => {
 
     ws.onclose = function () {
       console.log("Connection is closed");
+      setNeedSignUp(true);
+
       // }
     };
   };
@@ -96,7 +87,12 @@ const RiverClubV1HomeWelcome = () => {
           );
         })}
       </BlockSlider>
-      <RiverLoginModal openModal={openModal} setOpenModal={setOpenModal} />
+      <RiverLoginModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        setNeedSignUp={setNeedSignUp}
+        needSignUp={needSignUp}
+      />
     </BlockDiv>
   );
 };
