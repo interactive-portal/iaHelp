@@ -14,11 +14,13 @@ import Date from "./atom/date";
 import Email from "./atom/email";
 import fetchJson from "@/util/helper";
 import axios from "axios";
+import { Modal } from "antd";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
     useContext(WidgetWrapperContext);
   const [imageToken, setImageToken] = useState<any>();
+  const [openModal, setOpenModal] = useState(false);
 
   const methods = useForm();
 
@@ -54,6 +56,7 @@ const RiverClubV1BioInputForm = () => {
   };
 
   const clickCamera = (e: any) => {
+    setOpenModal(true);
     e.preventDefault();
     // [camera].click() {
     var ws = new WebSocket("ws://localhost:5021/FaceClient");
@@ -69,6 +72,7 @@ const RiverClubV1BioInputForm = () => {
 
       if (res.image != null) {
         setImageToken(res.image);
+        setOpenModal(false);
         // [image] = res.image;
         // [value] = res.value;
       } else {
@@ -134,6 +138,36 @@ const RiverClubV1BioInputForm = () => {
           </div>
         </form>
       </FormProvider>
+      <Modal
+        open={openModal}
+        width={1080}
+        onCancel={() => setOpenModal(false)}
+        footer={false}
+      >
+        <div className="w-full h-full bg-black/50 pt-[150px]">
+          <div className="max-w-[640px] mx-auto h-[480px] bg-black rounded-lg"></div>
+        </div>
+      </Modal>
+      <style>
+        {`
+		:where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
+			padding:0px;
+			border-radius:0px;
+		}
+		.ant-modal, .ant-modal-content {
+			height: 100vh;
+			width: 1080px;
+			margin: 0;
+			top: 0;
+			bottom:0;
+			border:none;
+			padding:0px;
+		   }
+		   .ant-modal-body {
+			height: 100%;
+		   }
+		`}
+      </style>
     </BlockDiv>
   );
 };
