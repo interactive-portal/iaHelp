@@ -52,22 +52,13 @@ export default function Banner(fade: any) {
 
 const data = [
   {
-    image:
-      "https://res.cloudinary.com/dzih5nqhg/image/upload/v1639277334/weekly/login_aqzmew.png",
+    image: "/images/wall.jpg",
     title: "Welcome to",
-    description: "Veritech Customer Experience Portal",
+    description: "Veritech Erp Customer Experience Portal",
   },
   {
-    image:
-      "https://res.cloudinary.com/dzih5nqhg/image/upload/v1639277334/weekly/login_aqzmew.png",
+    image: "/images/wall2.jpg",
     title: "Welcome to ",
     description: "Veritech Customer Experience Portal",
-  },
-  {
-    image:
-      "https://ichef.bbci.co.uk/news/976/cpsprodpb/105A3/production/_119897966_gettyimages-946828612.jpg",
-    title: "Robot Future",
-    description:
-      "Would you let a robot lawyer defend you? - BBC News Visit Images may be subject to copyright. Learn More",
   },
 ];

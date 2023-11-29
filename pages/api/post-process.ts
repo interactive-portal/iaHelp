@@ -15,14 +15,14 @@ const postProcess = async (req: any, res: any) => {
   let parameter = req.body.parameters || jsonParse(req.query?.parameters);
   const debug = req.query?.debug || false;
 
-  console.log("object :>> ", processcode);
-  console.log("parameter :>> ", parameter);
+  // console.log("object :>> ", processcode);
+  // console.log("parameter :>> ", parameter);
 
   delete parameter.slug;
 
   const result = await getProcessData(processcode, parameter);
 
-  console.log("result", result);
+  // console.log("result", result);
   // if (result.status == "success") {
   //   res.status(200).json(result);
   // } else {

@@ -46,7 +46,7 @@ const RiverClubV1HomeAbout = () => {
           },
         }}
       >
-        {_.map(staticItem?.item, (item: any, index: number) => {
+        {/* {_.map(staticItem?.item, (item: any, index: number) => {
           return (
             <BlockDiv className="flex flex-col items-center justify-center   mb-24 bg-[#CACACA]">
               <RenderAtom
@@ -73,7 +73,7 @@ const RiverClubV1HomeAbout = () => {
               </BlockDiv>
             </BlockDiv>
           );
-        })}
+        })} */}
       </BlockSlider>
     </BlockDiv>
   );
