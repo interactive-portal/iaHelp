@@ -21,7 +21,7 @@ const RiverClubV1PlanHero = () => {
   }, [currentLanguage]);
   const { readyDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
-  const staticItem = readyDatasrc?.[0];
+  const staticItem = readyDatasrc?.[0]?.[0];
 
   return (
     <BlockDiv className="relative w-full h-[300px] flex items-center justify-center mt-24">
@@ -51,11 +51,11 @@ export default RiverClubV1PlanHero;
 const RiverPlanBanner = ({ item }: any) => {
   return (
     <BlockDiv className="h-max flex items-center justify-center relative bg-gray-200">
-      <BlockDiv className="h-full">
+      <BlockDiv className="h-full bg-black/30">
         <RenderAtom
           item={item?.mainimage[0]}
           renderType="image"
-          customClassName="w-[1080px] h-full absolute inset-0"
+          customClassName="w-[1080px] h-full absolute inset-0 bg-black/30"
         />
       </BlockDiv>
       <BlockDiv className="z-20 w-full mt-10 flex items-center justify-center flex-col h-max">
