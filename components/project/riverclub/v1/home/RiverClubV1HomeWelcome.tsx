@@ -24,6 +24,43 @@ const RiverClubV1HomeWelcome = () => {
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
+  const clickCamera = (e: any) => {
+    setOpenModal(true);
+    e.preventDefault();
+    // [camera].click() {
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    console.log("first", ws);
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+      setOpenModal(false);
+      console.log("res", res);
+
+      // if (res != null) {
+      //   setImageToken(res.image);
+      //   setOpenModal(false);
+      //   // [image] = res.image;
+      //   // [value] = res.value;
+      // } else {
+      //   alert(res.message);
+      // }
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed");
+      // }
+    };
+  };
+
   return (
     <BlockDiv className="arrowCustomStyle">
       <BlockSlider
@@ -45,6 +82,7 @@ const RiverClubV1HomeWelcome = () => {
               item={staticItem}
               openModal={openModal}
               setOpenModal={setOpenModal}
+              clickCamera={clickCamera}
             />
           );
         })}
@@ -56,7 +94,12 @@ const RiverClubV1HomeWelcome = () => {
 
 export default RiverClubV1HomeWelcome;
 
-const RiverHomeBanner = ({ item, openModal, setOpenModal }: any) => {
+const RiverHomeBanner = ({
+  item,
+  openModal,
+  setOpenModal,
+  clickCamera,
+}: any) => {
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       <RenderAtom
@@ -86,7 +129,7 @@ const RiverHomeBanner = ({ item, openModal, setOpenModal }: any) => {
           }}
           renderType="button"
           className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] mb-[30px]`}
-          onClick={() => setOpenModal(true)}
+          onClick={(e: any) => clickCamera(e)}
         />
         {/* <BlockDiv className="flex gap-[9px]">
           <BlockDiv className="w-[10px] h-[10px] rounded-full border border-white" />

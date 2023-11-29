@@ -14,13 +14,14 @@ import Date from "./atom/date";
 import Email from "./atom/email";
 import fetchJson from "@/util/helper";
 import axios from "axios";
-import { Modal } from "antd";
+import { Modal, notification } from "antd";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
     useContext(WidgetWrapperContext);
   const [imageToken, setImageToken] = useState<any>();
   const [openModal, setOpenModal] = useState(false);
+  const [dialog, setDialog] = useState(false);
 
   const methods = useForm();
 
@@ -50,7 +51,12 @@ const RiverClubV1BioInputForm = () => {
       parameters: param,
     });
 
-    console.log("result ", res);
+    if (res.data?.status == "success") {
+      notification.success({
+        message: "Бүртгэл амжилттай",
+      });
+      setDialog(true);
+    }
 
     // console.log("tabnamemseseses");
   };
@@ -69,6 +75,7 @@ const RiverClubV1BioInputForm = () => {
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
+      setOpenModal(false);
 
       if (res.image != null) {
         setImageToken(res.image);
@@ -144,9 +151,19 @@ const RiverClubV1BioInputForm = () => {
         onCancel={() => setOpenModal(false)}
         footer={false}
       >
-        <div className="w-full h-full bg-black/50 pt-[150px]">
-          <div className="max-w-[640px] mx-auto h-[480px] bg-black rounded-lg"></div>
+        <div className="w-full h-full pt-[150px]">
+          <div className="max-w-[640px] mx-auto h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
+            <img src="/images/Face_id_white.png" />
+          </div>
         </div>
+      </Modal>
+      <Modal
+        open={false}
+        width={650}
+        onCancel={() => setOpenModal(false)}
+        footer={false}
+      >
+        <div className=""></div>
       </Modal>
       <style>
         {`
@@ -162,6 +179,7 @@ const RiverClubV1BioInputForm = () => {
 			bottom:0;
 			border:none;
 			padding:0px;
+      background:#00000080 !important
 		   }
 		   .ant-modal-body {
 			height: 100%;

@@ -16,7 +16,9 @@ const RiverLoginModal: FC<PropsType> = ({ openModal, setOpenModal }) => {
         footer={false}
       >
         <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center">
-          <div className="w-[640px] h-[480px] bg-black rounded-lg"></div>
+          <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
+            <img src="/images/Face_id_white.png" />
+          </div>
           <div className="fixed bottom-4 max-w-[640px] mx-auto">
             <p className="uppercase text-[34px] underline text-start text-white">
               клубын бүртгэл?
@@ -57,6 +59,7 @@ const RiverLoginModal: FC<PropsType> = ({ openModal, setOpenModal }) => {
 			bottom:0;
 			border:none;
 			padding:0px;
+      background:#00000080 !important;
 		   }
 		   .ant-modal-body {
 			height: 100%;
