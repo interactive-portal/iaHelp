@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
 import { SWRConfig } from "swr";
-import { appWithTranslation } from "next-i18next";
+import { withTranslation } from "react-i18next";
 import Layout from "@/components/layout";
 import { CloudStore } from "@/components/common/engineBox/Context/CloudContext";
 import RouteLoader from "@/components/routeLoader";
@@ -52,4 +52,6 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(App);
+// export default appWithTranslation(App);
+
+export default withTranslation()(App);

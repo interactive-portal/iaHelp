@@ -2,7 +2,7 @@ import React, { FC, useContext, useState } from "react";
 import Atom_label from "./Atom_label";
 import FormMetaContext from "context/Meta/FormMetaContext";
 import { getAtomValue, fieldHideShow, fieldDisableEnable } from "@/util/helper";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 type PropsType = {
   config: any;
   className?: any;

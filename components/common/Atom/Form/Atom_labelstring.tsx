@@ -1,5 +1,5 @@
 import FormMetaContext from "context/Meta/FormMetaContext";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import { FC, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { fieldHideShow, getAtomValue } from "@/util/helper";

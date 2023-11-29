@@ -1,5 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import CloudBanner1 from "@/components/login/banner";
 import Link from "next/link";

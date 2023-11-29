@@ -1,6 +1,6 @@
 import Error from "next/error";
 import _ from "lodash";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import { preparePageObject } from "@/util/prepareDetect";
 import RenderBody from "@/middleware/components/renderBody";
 import { getSession } from "next-auth/react";
