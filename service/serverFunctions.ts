@@ -42,9 +42,10 @@ export async function getProcessData(command: any, param: any) {
 
   console.log("response", response);
 
-  if (response?.response?.status == "success") {
-    return response?.response;
-  }
+  // if (response?.response?.status == "success") {
+  //   return response?.response;
+  // }
+  return response?.response;
 }
 export async function getProcessCustom(command: any, param: any) {
   let parameters = {
