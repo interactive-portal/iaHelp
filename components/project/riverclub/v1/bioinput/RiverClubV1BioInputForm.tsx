@@ -37,11 +37,11 @@ const RiverClubV1BioInputForm = () => {
     // )}
     // `);
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
 
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitCrmCustomerKiosk_DV_001",
