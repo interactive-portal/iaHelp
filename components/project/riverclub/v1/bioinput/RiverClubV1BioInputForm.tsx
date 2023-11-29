@@ -20,6 +20,8 @@ const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
     useContext(WidgetWrapperContext);
   const [imageToken, setImageToken] = useState<any>();
+  const [value, setValue] = useState<any>();
+
   const [openModal, setOpenModal] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -32,7 +34,7 @@ const RiverClubV1BioInputForm = () => {
   };
 
   const onSubmit = async (data: any) => {
-    const param = { ...data, image: imageToken };
+    const param = { ...data, image: imageToken, value: value };
     console.log("parama", param);
     // const result = await fetch(`
     // /api/post-process?command=fitCrmCustomerKiosk_DV_001&parameters=${JSON.stringify(
@@ -81,6 +83,7 @@ const RiverClubV1BioInputForm = () => {
 
       if (res?.result.image != null) {
         setImageToken(res?.result.image);
+        setValue(res?.result?.value);
         setOpenModal(false);
         // [image] = res.image;
         // [value] = res.value;
