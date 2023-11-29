@@ -5,12 +5,13 @@ import { FormMetaContextProvider as MetaStore } from "context/Meta/FormMetaConte
 import _ from "lodash";
 import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
-import { jsonParse } from "@/util/helper";
+import fetchJson, { jsonParse } from "@/util/helper";
 import { processTransform } from "@/util/processTransform";
 import WidgetCustomRenderProcess from "@/components/WidgetStandartProcess/WidgetCustomRenderProcess";
 import FormWrapper from "./FormWrapper";
 import Header from "./Header/Header";
 import RenderField from "./RenderField";
+import useSWR from "swr";
 type PropsType = {
   listConfig: any;
   dialog?: any;
@@ -37,27 +38,29 @@ const RenderWidgetProcess: FC<PropsType> = ({
     id: listConfig?.metadataid,
   })}`;
 
-  //   console.log("----------new ------------", parameters);
+  // let { data, mutate, error } = useSWR(
+  //   `/api/get-process?command=META_BUSINESS_PROCESS_LINK_BP_GET_004${parameters}`
+  // );
+
+  // console.log("----------new ------------", parameters);
 
   const listConfigParse = {
     ...listConfig,
     otherattr: jsonParse(listConfig?.otherattr),
   };
 
-  // useEffect(() => {
-  //   if (!_.isEmpty(userData) || _.isNull(userData))
-  //     // runExpressionAsync(userData);
-  // }, [userData]);
+  useEffect(() => {
+    if (!_.isEmpty(userData) || _.isNull(userData))
+      runExpressionAsync(userData);
+  }, [userData]);
 
   const runExpressionAsync = async (userData: any) => {
     let processParamsvar: any = {},
       formDataInitDatavar: any = {};
 
-    const { data } = await axios.get(
-      `/api/get-config-process?processcode=META_BUSINESS_PROCESS_LINK_BP_GET_004${parameters}`
+    const data = await fetchJson(
+      `/api/get-process?command=META_BUSINESS_PROCESS_LINK_BP_GET_004${parameters}`
     );
-
-    // console.log("process Config", data);
 
     processParamsvar = await processTransform(data.result, userData);
     formDataInitDatavar = data.getData
@@ -70,6 +73,7 @@ const RenderWidgetProcess: FC<PropsType> = ({
       processParamsvar,
       formDataInitDatavar
     );
+    console.log("data", data);
 
     setProcessParams(processParamsvar);
     setFormDataInitDataState(expResult.data);
@@ -120,8 +124,9 @@ const RenderWidgetProcess: FC<PropsType> = ({
               );
             }
           })}
-          <Tabs>
+          <div>
             {header?.map((item: any, index: number) => {
+              // console.log("item", item);
               if (item.tabname) {
                 let isContent = _.filter(
                   groupByTabname[item.tabname],
@@ -131,17 +136,17 @@ const RenderWidgetProcess: FC<PropsType> = ({
                 );
                 if (isContent.length)
                   return (
-                    <TabPane tab={item.tabname} key={index}>
-                      <RenderField
-                        field={item}
-                        attr={processParams.details}
-                        sectionConfig={listConfigParse}
-                      />
-                    </TabPane>
+                    // <TabPane tab={item.tabname} key={index}>
+                    <RenderField
+                      field={item}
+                      attr={processParams.details}
+                      sectionConfig={listConfigParse}
+                    />
+                    // </TabPane>
                   );
               }
             })}
-          </Tabs>
+          </div>
         </FormWrapper>
       );
     }

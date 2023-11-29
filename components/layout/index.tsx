@@ -70,9 +70,9 @@ export default function Layout({ children }: LayoutProps) {
         />
         <link rel="icon" href="https://www.interactive.mn/images/favicon.ico" />
       </Head>
-      {/* <Navbar options={props} /> */}
+      <Navbar options={props} />
       {/* <Header /> */}
-      {headerWidget && <HelpHeader data={dataSrc} options={optionsWidget} />}
+      {/* {headerWidget && <HelpHeader data={dataSrc} options={optionsWidget} />} */}
       {children}
       <Footer options={props} />
     </>

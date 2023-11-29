@@ -20,7 +20,7 @@ const FormWrapper: FC<PropsType> = ({ children, title, dialog, settings }) => {
     <div
       className={`processRender ${
         dialog ? `px-3` : `pt-1 p-4 my-1.5`
-      } bg-white rounded-lg`}
+      } bg-[#CACACA] rounded-lg`}
     >
       <form onSubmit={handleSubmitContext}>
         {!dialog && (

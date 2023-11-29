@@ -4,6 +4,8 @@ import formidable, { Formidable } from "formidable";
 async function saveFormData(fields: any, files: any) {
   // save to persistent data store
 
+  // console.log("formData", fields);
+
   const formData = new FormData();
 
   const config = {

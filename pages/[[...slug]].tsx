@@ -53,14 +53,14 @@ export async function getServerSideProps(context: any) {
 
   const isUser = await getSession(context);
 
-  if (!isUser) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
+  // if (!isUser) {
+  //   return {
+  //     redirect: {
+  //       destination: "/login",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   // console.log("pageObject :>> ", isUser);
 

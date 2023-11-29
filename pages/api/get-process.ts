@@ -14,6 +14,8 @@ const getProcess = async (req: any, res: any) => {
 
   const readyParameters = prepareApiStandard(parameters, standard);
 
+  console.log("readyParameters", readyParameters);
+
   const result = await getProcessData(processcode, readyParameters);
 
   res.status(200).json(result);

@@ -19,10 +19,10 @@ export const runService = async (
       command: pCommand,
       languageCode: lang || "mn",
       // userToken: process.env.USER_TOKEN,
-      username: "admin",
+      username: "togtokhsuren.ts",
       // username:""
-      password: "Pass789*456",
-      returnByStandartJson: "1",
+      password: "89",
+      returnByStandartJson: "0",
       parameters: bodys,
     },
   };
@@ -45,7 +45,8 @@ export const runService = async (
   //   .then((res) => res.data)
   //   .catch((err) => console.log(`err: `, err));
 
-  const res = await fetch(pUrl, requestOptions);
+  let res: any = await fetch(pUrl, requestOptions);
+
   const response = await res.json();
 
   if (!res.ok) {
