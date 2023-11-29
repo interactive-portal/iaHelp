@@ -59,13 +59,13 @@ const RiverClubV1BioInputForm = () => {
     setOpenModal(true);
     e.preventDefault();
     // [camera].click() {
-    var ws = new WebSocket("ws://localhost:5021/FaceClient");
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
     ws.onopen = function () {
       ws.send('{"action":"GetImage"}');
     };
 
-    // console.log("first", ws);
+    console.log("first", ws);
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
