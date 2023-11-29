@@ -14,7 +14,7 @@ const RiverClubV1HomeWelcome = () => {
     ? query.id.join("")
     : query.id || "mn";
   const [openModal, setOpenModal] = useState(false);
-  const [needSignUp, setNeedSignUp] = useState(false);
+  // const [needSignUp, setNeedSignUp] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 
@@ -43,7 +43,7 @@ const RiverClubV1HomeWelcome = () => {
       if (res) {
         console.log("res", res);
       } else {
-        setNeedSignUp(true);
+        // setNeedSignUp(true);
       }
 
       setOpenModal(false);
@@ -55,7 +55,7 @@ const RiverClubV1HomeWelcome = () => {
 
     ws.onclose = function () {
       console.log("Connection is closed");
-      setNeedSignUp(true);
+      // setNeedSignUp(true);
 
       // }
     };
@@ -90,8 +90,8 @@ const RiverClubV1HomeWelcome = () => {
       <RiverLoginModal
         openModal={openModal}
         setOpenModal={setOpenModal}
-        setNeedSignUp={setNeedSignUp}
-        needSignUp={needSignUp}
+        // setNeedSignUp={setNeedSignUp}
+        // needSignUp={needSignUp}
       />
     </BlockDiv>
   );

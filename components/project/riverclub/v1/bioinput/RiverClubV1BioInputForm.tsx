@@ -34,7 +34,13 @@ const RiverClubV1BioInputForm = () => {
   };
 
   const onSubmit = async (data: any) => {
-    const param = { ...data, image: imageToken, value: value };
+    console.log("data", data?.phoneNumber);
+    const param = {
+      ...data,
+      image: imageToken,
+      value: value,
+      // phoneNumber: Number(data?.phoneNumber),
+    };
     console.log("parama", param);
     // const result = await fetch(`
     // /api/post-process?command=fitCrmCustomerKiosk_DV_001&parameters=${JSON.stringify(

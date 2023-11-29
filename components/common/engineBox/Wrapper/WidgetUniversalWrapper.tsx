@@ -81,8 +81,6 @@ export const WidgetUniversalWrapper = ({
   /*                  CUSTOMER БЭЛДЭХ ХЭСЭГ                 */
   /* ------------------------------------------------------ */
 
-  console.log("themeConfigs", widgetnemgooReady);
-
   const customerReady = cloudContext?.customerReady; //яваандаа хэрэггүй болно.
   const customerReady2 = cloudContext?.customerReady2;
   const customerReadyFull = cloudContext?.customerReadyFull;
