@@ -88,11 +88,11 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
   const title = _.keys(item)[0];
   const readyData = _.values(item)[0];
 
-  const kFormatter = (num: number) => {
-    return Math.abs(num) > 999
-      ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-      : Math.sign(num) * Math.abs(num);
-  };
+  // const kFormatter = (num: number) => {
+  //   return Math.abs(num) > 999
+  //     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+  //     : Math.sign(num) * Math.abs(num);
+  // };
 
   // const
 
@@ -113,14 +113,14 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
         }`}
       />
       <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
-        <CardItem
+        {/* <CardItem
           readyData={readyData}
           // obj={obj}
           dark={dark}
           // key={index}
           kFormatter={kFormatter}
           // index={index}
-        />
+        /> */}
       </BlockDiv>
       {/* Includes */}
       <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
