@@ -37,9 +37,9 @@ const RiverClubV1HomeWelcome = () => {
           arrowClassName: "bg-transparent",
         }}
       >
-        {_.map(staticItem?.mainimage, (item: any, index: number) => {
+        {/* {_.map(staticItem?.mainimage, (item: any, index: number) => {
           return <RiverHomeBanner item={staticItem} />;
-        })}
+        })} */}
       </BlockSlider>
     </BlockDiv>
   );
