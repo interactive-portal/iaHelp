@@ -20,7 +20,7 @@ const RiverClubV1HomeExpand = () => {
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
   const staticItem = data[0];
   return (
-    <BlockDiv className="mx-[26px] my-[44px] px-[23px] py-[44px] flex flex-row gap-x-[53px] bg-[#CACACA]">
+    <BlockDiv className="mx-[26px] my-[44px] py-3 flex flex-row gap-x-[53px] bg-white">
       <Paragraph item={staticItem} />
       <RightSection item={staticItem} />
     </BlockDiv>
@@ -29,7 +29,7 @@ const RiverClubV1HomeExpand = () => {
 
 const Paragraph = ({ item }: any) => {
   return (
-    <BlockDiv className="flex flex-col gap-y-[6px]">
+    <BlockDiv className="flex flex-col gap-y-[6px] pl-[79px]">
       <RenderAtom
         item={item?.title}
         renderType="title"
@@ -46,11 +46,11 @@ const Paragraph = ({ item }: any) => {
 
 const RightSection = ({ item }: any) => {
   return (
-    <BlockDiv className="rounded-[12px] bg-[linear-gradient(180deg,_#00B0AB_0%,_#BAD405_100%)] leading-[0px] w-[400px] h-[108px] flex flex-col items-start">
+    <BlockDiv className="rounded-[12px] mr-[79px] bg-[linear-gradient(180deg,_#00B0AB_0%,_#BAD405_100%)] leading-[17px] px-10 h-[108px] flex flex-col items-start">
       <RenderAtom
         item={`+1 CLASS`}
         renderType="text"
-        className={`text-black font-[400] text-[12px] leading-[0px] mt-5 mb-0 pb-0`}
+        className={`text-black font-[400] text-[12px] mt-5 mb-0 pb-0`}
       />
       <RenderAtom
         item={item?.button}

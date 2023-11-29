@@ -40,9 +40,9 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
     <BlockDiv
       customClassName={`${widgetnemgooReady?.design?.className} z-[99]`}
     >
-      <BlockDiv className="bg-[#202020] pl-[11px] w-[1080px] h-max flex flex-col items-end">
+      <BlockDiv className="bg-black  w-[1080px] h-max flex flex-col items-end">
         <LanguageSetting item={language} />
-        <BlockDiv className="flex bg-[#202020] w-full h-max items-center justify-between">
+        <BlockDiv className="flex bg-[#202020] w-full h-max items-center justify-between pl-[57px]">
           <RenderAtom
             item={{
               value: logo?.mainimage,
@@ -118,7 +118,7 @@ const LanguageSetting = ({ item }: any) => {
 
 const Menu = ({ item }: any) => {
   return (
-    <BlockDiv className="flex justify-between w-full mr-[30px]">
+    <BlockDiv className="flex justify-between w-full mr-[30px] px-8">
       {_.map(item, (item: any, index: number) => {
         return (
           <RenderAtom

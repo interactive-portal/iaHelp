@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 import BlockSlider from "@/components/common/Block/BlockSlider";
 import RiverLoginModal from "./RiverLoginModal";
+import { notification } from "antd";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
@@ -38,8 +39,16 @@ const RiverClubV1HomeWelcome = () => {
 
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
+
+      if (res) {
+        console.log("res");
+      } else {
+        notification.info({
+          message: "Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.",
+        });
+      }
+
       setOpenModal(false);
-      console.log("res", res);
 
       // if (res != null) {
       //   setImageToken(res.image);
@@ -107,7 +116,7 @@ const RiverHomeBanner = ({
         renderType="image"
         customClassName="w-[1080px] h-full absolute top-0 left-0"
       />
-      <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max">
+      <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max px-[216px]">
         <RenderAtom
           item={item?.title}
           renderType="title"

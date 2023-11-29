@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import { listToTree } from "@/util/helper";
 import index from "@/pages/nation";
+import RiverLoginModal from "../home/RiverLoginModal";
+import { notification } from "antd";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -48,18 +50,70 @@ const RiverClubV1PlanPrice = () => {
   React.useEffect(() => {
     setLanguage(currentLanguage);
   }, [currentLanguage]);
+
+  const [activeItem, setActiveItem] = useState<any>();
+  const [openLogin, setOpenLogin] = useState(false);
+
+  console.log("activeItem", activeItem);
+
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
   const staticItem = data?.[0];
+
+  const clickCamera = (e: any) => {
+    setOpenLogin(true);
+    e.preventDefault();
+    // [camera].click() {
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    console.log("first", ws);
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+
+      if (res) {
+        ws.send('{"action":"Close"}');
+      } else {
+        notification.info({
+          message: "Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.",
+        });
+      }
+
+      setOpenLogin(false);
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed");
+      // }
+    };
+  };
+
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
-      <UpperSection item={upperData} dark={true} />
-      <BottomSection item={bottomData} dark={false} />
+      <UpperSection
+        item={upperData}
+        dark={true}
+        setActiveItem={setActiveItem}
+      />
+      <BottomSection
+        item={bottomData}
+        dark={false}
+        setActiveItem={setActiveItem}
+      />
+      <RiverLoginModal openModal={openLogin} setOpenModal={setOpenLogin} />
     </BlockDiv>
   );
 };
 
-const UpperSection = ({ item, dark }: any) => {
+const UpperSection = ({ item, dark, setActiveItem }: any) => {
   return (
     <BlockDiv className="bg-black w-full flex flex-col items-center justify-center mb-[28px]">
       <RenderAtom
@@ -72,19 +126,21 @@ const UpperSection = ({ item, dark }: any) => {
       />
       <BlockDiv className="my-[63px] mx-[85px] grid grid-cols-3 items-center gap-x-[88px]">
         {_.values(item)?.map((obj: any, index: number) => {
-          return <Card item={obj} dark={dark} key={index} />;
+          return (
+            <Card
+              item={obj}
+              dark={dark}
+              key={index}
+              setActiveItem={setActiveItem}
+            />
+          );
         })}
       </BlockDiv>
     </BlockDiv>
   );
 };
 
-const Card = ({ item, callProcess, myResult, dark }: any) => {
-  const [isPriceActiveMonth, setIsPriceActiveMonth] = useState(false);
-  const [isPriceActiveSeason, setIsPriceActiveSeasons] = useState(false);
-  const [isPriceActiveHalfYear, setIsPriceActiveHalfYear] = useState(false);
-  const [isPriceActivePerClass, setIsPriceActivePerClass] = useState(false);
-
+const Card = ({ item, callProcess, myResult, dark, setActiveItem }: any) => {
   const title = _.keys(item)[0];
   const readyData = _.values(item)[0];
 
@@ -113,14 +169,11 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
         }`}
       />
       <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
-        {/* <CardItem
+        <CardItem
           readyData={readyData}
-          // obj={obj}
           dark={dark}
-          // key={index}
-          kFormatter={kFormatter}
-          // index={index}
-        /> */}
+          setActiveItem={setActiveItem}
+        />
       </BlockDiv>
       {/* Includes */}
       <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
@@ -137,16 +190,6 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
                   }}
                 />
               </div>
-              {/* <RenderAtom
-                item={`fa-solid fa-check`}
-                renderType="icon"
-                className={`w-[18px] h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full ${
-                  dark ? "text-black bg-white" : "bg-[#B3B3B3] text-black"
-                }`}
-                customStyle={{
-                  display: "flex !important",
-                }}
-              /> */}
               <RenderAtom
                 item={{ value: "ФИТНЕСС" }}
                 renderType="text"
@@ -178,23 +221,16 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
       <RenderAtom
         item={{
           value: "Багц сонгох",
-          // positionnemgoo: {
-          //   url: {
-          //     path: "/product",
-          //     query: {
-          //       id: item?.position0?.value,
-          //     },
-          //   },
-          // },
         }}
         renderType="button"
         className={`font-[700] text-[16px] text-black py-[23px] px-[54px] bg-[#BAD405] uppercase mt-[16px] rounded-[8px]`}
+        // onClick={() => {}}
       />
     </BlockDiv>
   );
 };
 
-const CardItem = ({ readyData, dark, kFormatter }: any) => {
+const CardItem = ({ readyData, dark, kFormatter, setActiveItem }: any) => {
   const [active, setActive] = useState(0);
 
   return (
@@ -202,8 +238,8 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
       {readyData?.map((obj: any, index: number) => {
         return (
           <RenderAtom
-            item={`<sup className="text-[16px] font-normal">₮</sup>${kFormatter(
-              Number(obj?.saleprice)
+            item={`<sup className="text-[16px] font-normal">₮</sup>${Number(
+              obj?.saleprice
             )} <span className="text-[16px]"> / ${obj?.monthname}</span>`}
             renderType="title"
             className={`text-[36px] cursor-pointer font-medium flex items-center leading-[24px] ${
@@ -219,6 +255,7 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
       `}
             onClick={() => {
               setActive(index);
+              setActiveItem(obj);
             }}
           />
         );
@@ -227,12 +264,19 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
   );
 };
 
-const BottomSection = ({ item, dark }: any) => {
+const BottomSection = ({ item, dark, setActiveItem }: any) => {
   return (
     <BlockDiv className="bg-white px-[25px] p-4 mb-36">
       <BlockDiv className="grid grid-cols-4 gap-[4px] items-center">
         {_.values(item).map((item: any, index: number) => {
-          return <Card item={item} key={index} dark={dark} />;
+          return (
+            <Card
+              item={item}
+              key={index}
+              dark={dark}
+              setActiveItem={setActiveItem}
+            />
+          );
         })}
       </BlockDiv>
     </BlockDiv>

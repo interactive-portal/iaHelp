@@ -181,7 +181,9 @@ export default function BlockSlider({
           .slick-track .slick-track {
             display: none;
           }
-
+          .fas {
+            display:flex !important
+          }
 
         `}
       </style>
