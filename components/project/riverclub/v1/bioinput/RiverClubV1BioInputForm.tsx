@@ -82,8 +82,8 @@ const RiverClubV1BioInputForm = () => {
       console.log("response", res);
 
       if (res?.result.image != null) {
-        setImageToken(res?.result.image);
-        setValue(res?.result?.value);
+        setImageToken(res?.result.Image);
+        setValue(res?.result?.Value);
         setOpenModal(false);
         // [image] = res.image;
         // [value] = res.value;
