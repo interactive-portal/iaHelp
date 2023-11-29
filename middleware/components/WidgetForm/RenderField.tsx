@@ -18,7 +18,6 @@ import {
   Atom_password,
   Atom_labelstring,
   Atom_range_slider_maxmin,
-  Atom_camera,
 } from "@/components/common/Atom/Form";
 import { getRowItems, dtlToSectionDtl, isEmpty } from "@/util/helper";
 import RenderDetail from "@/middleware/components/WidgetForm/RenderDetail";
@@ -44,15 +43,6 @@ const RenderField: FC<PropsType> = ({
   sectionConfig,
 }) => {
   if (isEmpty(field)) return null;
-  if (field["parampath"] == "camera") {
-    <Atom_camera
-      config={field}
-      rowIndex={rowIndex}
-      style={style}
-      className={className}
-      labelClassName={labelClassName}
-    />;
-  }
 
   if (field["isshow"] === "0") {
     return (

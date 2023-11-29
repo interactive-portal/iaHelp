@@ -4,8 +4,6 @@ import BlockDiv from "@/components/common/Block/BlockDiv";
 import RenderAtom from "@/components/common/Atom/RenderAtom";
 import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUniversalWrapper";
 import RiverClubV1BecomeMember01 from "./RiverClubV1BecomeMember01";
-import RiverClubV1BecomeMemberRegister from "./RiverClubV1BecomeMemberRegister";
-import RiverClubV1PlanChoose from "../Plan/RiverClubV1PlanChoose";
 import RiverClubV1HomePurchase from "../home/RiverClubV1HomePurchase";
 import { useRouter } from "next/router";
 

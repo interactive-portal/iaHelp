@@ -18,11 +18,8 @@ export const runService = async (
     request: {
       command: pCommand,
       languageCode: lang || "mn",
-      // userToken: process.env.USER_TOKEN,
-      username: "togtokhsuren.ts",
-      // username:""
-      password: "89",
-      returnByStandartJson: "0",
+      userToken: process.env.USER_TOKEN,
+      returnByStandartJson: "1",
       parameters: bodys,
     },
   };

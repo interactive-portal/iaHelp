@@ -13,6 +13,7 @@ import Number from "./atom/number";
 import Date from "./atom/date";
 import Email from "./atom/email";
 import fetchJson from "@/util/helper";
+import axios from "axios";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
@@ -30,13 +31,24 @@ const RiverClubV1BioInputForm = () => {
   const onSubmit = async (data: any) => {
     const param = { ...data, image: imageToken };
     console.log("parama", param);
-    const result = await fetch(`
-    /api/post-process?command=fitCrmCustomerKiosk_DV_001&parameters=${JSON.stringify(
-      param
-    )}
-    `);
+    // const result = await fetch(`
+    // /api/post-process?command=fitCrmCustomerKiosk_DV_001&parameters=${JSON.stringify(
+    //   param
+    // )}
+    // `);
 
-    console.log("result ", result);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitCrmCustomerKiosk_DV_001",
+      parameters: param,
+    });
+
+    console.log("result ", res);
 
     // console.log("tabnamemseseses");
   };

@@ -122,15 +122,6 @@ const EachCard = ({ item, lockerItem, withdrawItem }: any) => {
             />
           </BlockDiv>
         </BlockDiv>
-        <BlockModal2
-          isShowModal={showWithdrawModal}
-          setIsShowModal={setShowWidthdrawModal}
-        >
-          <RiverClubV1Withdraw
-            item={withdrawItem}
-            payment={withdrawItem?.Payment}
-          />
-        </BlockModal2>
       </BlockDiv>
       {/* card 4 */}
       <BlockDiv className="bg-[#BAD405] rounded-[12px] pt-[16px] px-[14px]">
