@@ -40,7 +40,7 @@ export async function getProcessData(command: any, param: any) {
 
   let response = await runService(command, parameters, "");
 
-  console.log("response", response);
+  // console.log("response", response);
 
   // if (response?.response?.status == "success") {
   //   return response?.response;
