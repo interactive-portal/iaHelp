@@ -5,17 +5,15 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useRouter } from "next/router";
 import _ from "lodash";
 import BlockSlider from "@/components/common/Block/BlockSlider";
-<<<<<<< HEAD
 import RiverLoginModal from "./RiverLoginModal";
 import { notification } from "antd";
-=======
->>>>>>> 6e34a3be2978abe8d7b10e02d9fdf2079c7909ea
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
   const currentLanguage = Array.isArray(query.id)
     ? query.id.join("")
     : query.id || "mn";
+  const [openModal, setOpenModal] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 
@@ -27,7 +25,6 @@ const RiverClubV1HomeWelcome = () => {
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
-<<<<<<< HEAD
   const clickCamera = (e: any) => {
     setOpenModal(true);
     e.preventDefault();
@@ -73,8 +70,6 @@ const RiverClubV1HomeWelcome = () => {
     };
   };
 
-=======
->>>>>>> 6e34a3be2978abe8d7b10e02d9fdf2079c7909ea
   return (
     <BlockDiv className="arrowCustomStyle">
       <BlockSlider
@@ -90,17 +85,30 @@ const RiverClubV1HomeWelcome = () => {
           arrowClassName: "bg-transparent",
         }}
       >
-        {/* {_.map(staticItem?.mainimage, (item: any, index: number) => {
-          return <RiverHomeBanner item={staticItem} />;
-        })} */}
+        {_.map(staticItem?.mainimage, (item: any, index: number) => {
+          return (
+            <RiverHomeBanner
+              item={staticItem}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              clickCamera={clickCamera}
+            />
+          );
+        })}
       </BlockSlider>
+      <RiverLoginModal openModal={openModal} setOpenModal={setOpenModal} />
     </BlockDiv>
   );
 };
 
 export default RiverClubV1HomeWelcome;
 
-const RiverHomeBanner = ({ item }: any) => {
+const RiverHomeBanner = ({
+  item,
+  openModal,
+  setOpenModal,
+  clickCamera,
+}: any) => {
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       <RenderAtom
@@ -122,14 +130,15 @@ const RiverHomeBanner = ({ item }: any) => {
         <RenderAtom
           item={{
             value: item?.button,
-            positionnemgoo: {
-              url: {
-                path: `/bioinput`,
-              },
-            },
+            // positionnemgoo: {
+            //   url: {
+            //     path: `/bioinput`,
+            //   },
+            // },
           }}
           renderType="button"
           className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] mb-[30px]`}
+          onClick={(e: any) => clickCamera(e)}
         />
         {/* <BlockDiv className="flex gap-[9px]">
           <BlockDiv className="w-[10px] h-[10px] rounded-full border border-white" />

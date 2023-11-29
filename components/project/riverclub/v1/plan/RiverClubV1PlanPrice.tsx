@@ -63,7 +63,6 @@ const RiverClubV1PlanPrice = () => {
   const clickCamera = (e: any) => {
     setOpenLogin(true);
     e.preventDefault();
-    // [camera].click() {
     var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
     ws.onopen = function () {
