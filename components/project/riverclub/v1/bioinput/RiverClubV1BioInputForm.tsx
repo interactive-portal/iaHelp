@@ -53,6 +53,8 @@ const RiverClubV1BioInputForm = () => {
       parameters: param,
     });
 
+    console.log("response login", res);
+
     if (res.data?.status == "success") {
       notification.success({
         message: "Бүртгэл амжилттай",
