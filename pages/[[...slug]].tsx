@@ -52,14 +52,15 @@ export async function getServerSideProps(context: any) {
   const pageObject: any = await preparePageObject(hostObjectV2);
 
   const isUser = await getSession(context);
-
-  if (!isUser) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
+  if (!process.env.NEXT_PUBLIC_IS_LOGIN) {
+    if (!isUser) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
   }
 
   // console.log("pageObject :>> ", isUser);

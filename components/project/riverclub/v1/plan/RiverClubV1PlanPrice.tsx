@@ -7,8 +7,12 @@ import _, { set } from "lodash";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
-import { listToTree } from "@/util/helper";
-import index from "@/pages/nation";
+import RiverLoginModal from "../home/RiverLoginModal";
+import { notification } from "antd";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { Modal, DatePicker, DatePickerProps } from "antd";
+import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -16,6 +20,11 @@ const RiverClubV1PlanPrice = () => {
   // console.log("readydata", readyDatasrc);
 
   const { callProcess, isProcessWorking } = useCallProcess();
+  const [selectDateModal, setSelectDateModal] = useState(false);
+
+  Cookies.set("customer", { CustomerId: "170130843295810" });
+
+  const customer = Cookies.getJSON("customer");
 
   const groupByData = _.chain(readyDatasrc)
     .groupBy("classificationname")
@@ -48,18 +57,313 @@ const RiverClubV1PlanPrice = () => {
   React.useEffect(() => {
     setLanguage(currentLanguage);
   }, [currentLanguage]);
+
+  const [activeIndex, setactiveIndex] = useState<any>(0);
+  const [openLogin, setOpenLogin] = useState(false);
+  const [datePicker, setDatePicker] = useState(true);
+  const [startDate, setStartDate] = useState<any>();
+  const [selectedItem, setSelectItem] = useState<any>();
+  const [templateId, setTemplateId] = useState<any>();
+  const [contractId, setContractId] = useState<any>();
+
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
-  const staticItem = data?.[0];
+
+  const dateFormat = "YYYY-MM-DD";
+
+  //login camera нээх command
+  const clickCamera = (e: any) => {
+    setOpenLogin(true);
+    e.preventDefault();
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    console.log("first", ws);
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+
+      if (res) {
+        ws.send('{"action":"Close"}');
+      } else {
+        notification.info({
+          message: "Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.",
+        });
+      }
+
+      setOpenLogin(false);
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed");
+      // }
+    };
+  };
+
+  // багцыг select хийх эсвэл login хийх
+  const selectItem = async (e: any, item: any) => {
+    setSelectItem(_.values(item)?.[0]?.[activeIndex]);
+    console.log("first", _.values(item)?.[0]?.[activeIndex]);
+    if (customer) {
+      setSelectDateModal(true);
+      setDatePicker(true);
+    } else {
+      clickCamera(e);
+    }
+  };
+
+  // эхлэх өдөр сонгох
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    setStartDate(dateString);
+  };
+
+  // гэрээ байгуулах
+  const createContract = async () => {
+    const item = selectedItem;
+    var inputDate = item?.enddate;
+
+    var inputDate: any = item?.enddate;
+
+    var dateParts = inputDate.split("-");
+
+    // Extract the year, month, and day
+    var year = parseInt("20" + dateParts[2], 10);
+    var month: any = parseInt(dateParts[1], 10) - 1; // Subtracting 1 because months are zero-based
+    var day: any = parseInt(dateParts[0], 10);
+
+    var convertedDate = new Date(year, month, day);
+
+    year = convertedDate.getFullYear();
+    month = ("0" + (convertedDate.getMonth() + 1)).slice(-2); // Adding 1 because months are zero-based
+    day = ("0" + convertedDate.getDate()).slice(-2);
+
+    var result = year + "-" + month + "-" + day;
+
+    const param = {
+      contentTypeId: item?.contracttypeid,
+      contractTotalAmount: item?.saleprice,
+      customerId: customer?.CustomerId,
+      durationTypeId: item?.monthid,
+      startDate: startDate,
+      endDate: result,
+      itemId: item?.id,
+      price: item?.saleprice,
+      amount: item?.saleprice,
+    };
+
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskCreateContract_DV_001",
+      parameters: param,
+    });
+    console.log("res", res);
+
+    if (res?.data?.status == "success") {
+      setTemplateId(res?.data?.result?.templateId);
+      setContractId(res?.data?.result?.id);
+    }
+  };
+
+  // reportTemplate дуудах
+  const printOptions = {
+    lang: {
+      mn: "",
+      en: "",
+    },
+    ishtml: 1,
+    print_options: {
+      numberOfCopies: "1",
+      isPrintNewPage: "1",
+      isSettingsDialog: "0",
+      isShowPreview: "1",
+      isPrintPageBottom: "0",
+      isPrintPageRight: "0",
+      pageOrientation: "portrait",
+      isPrintSaveTemplate: "1",
+      paperInput: "portrait",
+      pageSize: "a4",
+      printType: "1col",
+      templatemetaid: templateId,
+      templateIds: templateId,
+    },
+  };
+  const [activeCheck, setActiveCheck] = useState(false);
+
+  const template = (
+    <div>
+      <ReportTemplate
+        options={printOptions}
+        data={{ contractId: contractId }}
+      />
+    </div>
+  );
+
+  // гэрээний нөхцөлийг шалгах
+  const checkContract = async () => {
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskContractIsConfirm_DV_001",
+      parameters: {
+        id: contractId,
+        isComfirm: activeCheck ? "1" : "0",
+      },
+    });
+    if (res?.data?.status == "success") {
+      setSelectDateModal(false);
+    }
+
+    console.log("res", res);
+  };
+
+  const templateContent = (
+    <div className="flex items-center justify-center h-full mx-auto relative max-w-[960px] overflow-hidden">
+      <div
+        className=" h-[900px]  overflow-y-scroll "
+        style={{
+          background: "white",
+        }}
+      >
+        {template}
+      </div>
+      <div></div>
+      <div className="absolute bottom-10 right-0 w-full ">
+        <div
+          className="px-[64px] flex items-center mb-8"
+          onClick={() => setActiveCheck(!activeCheck)}
+        >
+          <div
+            className={`w-[30px] h-[30px] rounded-lg flex items-center justify-center ${
+              activeCheck ? "bg-blue-300" : "bg-white"
+            } `}
+          >
+            {activeCheck ? (
+              <i className="fa-solid fa-check fa-xl text-white"></i>
+            ) : (
+              ""
+            )}
+          </div>
+          <p className="text-white text-[20px] ml-4">
+            Үйлчилгээний нөхцөлийг хүлээн зөвшөөрч байна
+          </p>
+        </div>
+        <div className="flex justify-between gap-[16px] px-[64px]">
+          <div
+            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+            onClick={() => setSelectDateModal(false)}
+          >
+            Болих
+          </div>
+          <div
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            style={{
+              color: "var(--202020, #202020)",
+              background: "var(--green-main, #BAD405)",
+            }}
+            onClick={() => checkContract()}
+          >
+            Цааш
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Огноо сонгох modal
+  const ModalContent = (
+    <div className="flex items-center justify-center h-full mx-auto">
+      <div
+        className="w-[424px] h-[600px] box-border relative"
+        style={{
+          background: "var(--202020, #202020)",
+        }}
+      >
+        <div className="p-[64px]">
+          <DatePicker
+            className="w-full"
+            // placement="bottomLeft"
+            format={dateFormat}
+            open={datePicker}
+            onSelect={() => setDatePicker(false)}
+            onOpenChange={() => setDatePicker(!datePicker)}
+            onChange={onChange}
+            style={{
+              color: "white",
+              background: "var(--202020, #202020)",
+            }}
+            popupStyle={{
+              inset: "837.5px auto auto 400px !important",
+              background: "var(--202020, #202020)",
+            }}
+          />
+        </div>
+        <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
+          <div
+            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+            onClick={() => setSelectDateModal(false)}
+          >
+            Болих
+          </div>
+          <div
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            style={{
+              color: "var(--202020, #202020)",
+              background: "var(--green-main, #BAD405)",
+            }}
+            onClick={() => createContract()}
+          >
+            Цааш
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
-      <UpperSection item={upperData} dark={true} />
-      <BottomSection item={bottomData} dark={false} />
+      <UpperSection
+        item={upperData}
+        dark={true}
+        setactiveIndex={setactiveIndex}
+        selectItem={selectItem}
+      />
+      <BottomSection
+        item={bottomData}
+        dark={false}
+        setactiveIndex={setactiveIndex}
+        selectItem={selectItem}
+      />
+      <RiverLoginModal openModal={openLogin} setOpenModal={setOpenLogin} />
+      <Modal
+        open={selectDateModal}
+        footer={false}
+        onCancel={() => setSelectDateModal(false)}
+        destroyOnClose
+      >
+        {templateId ? templateContent : ModalContent}
+      </Modal>
+      <style>
+        {`
+          .ant-picker-input >input{
+            color:white !important;
+          }
+            .checkbox-round {
+              border-radius:10px
+          }
+          .ant-modal-body {
+            overflow:hidden;
+          }
+          `}
+      </style>
     </BlockDiv>
   );
 };
 
-const UpperSection = ({ item, dark }: any) => {
+const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="bg-black w-full flex flex-col items-center justify-center mb-[28px]">
       <RenderAtom
@@ -72,19 +376,29 @@ const UpperSection = ({ item, dark }: any) => {
       />
       <BlockDiv className="my-[63px] mx-[85px] grid grid-cols-3 items-center gap-x-[88px]">
         {_.values(item)?.map((obj: any, index: number) => {
-          return <Card item={obj} dark={dark} key={index} />;
+          return (
+            <Card
+              item={obj}
+              dark={dark}
+              key={index}
+              setactiveIndex={setactiveIndex}
+              selectItem={selectItem}
+            />
+          );
         })}
       </BlockDiv>
     </BlockDiv>
   );
 };
 
-const Card = ({ item, callProcess, myResult, dark }: any) => {
-  const [isPriceActiveMonth, setIsPriceActiveMonth] = useState(false);
-  const [isPriceActiveSeason, setIsPriceActiveSeasons] = useState(false);
-  const [isPriceActiveHalfYear, setIsPriceActiveHalfYear] = useState(false);
-  const [isPriceActivePerClass, setIsPriceActivePerClass] = useState(false);
-
+const Card = ({
+  item,
+  callProcess,
+  myResult,
+  dark,
+  setactiveIndex,
+  selectItem,
+}: any) => {
   const title = _.keys(item)[0];
   const readyData = _.values(item)[0];
 
@@ -113,14 +427,11 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
         }`}
       />
       <BlockDiv className="flex flex-col items-start justify-center mt-[10px] min-h-[120px]">
-        {/* <CardItem
+        <CardItem
           readyData={readyData}
-          // obj={obj}
           dark={dark}
-          // key={index}
-          kFormatter={kFormatter}
-          // index={index}
-        /> */}
+          setactiveIndex={setactiveIndex}
+        />
       </BlockDiv>
       {/* Includes */}
       <BlockDiv className="flex flex-col gap-y-[4px] h-[70px] justify-end mt-[30px] align-text-top">
@@ -137,16 +448,6 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
                   }}
                 />
               </div>
-              {/* <RenderAtom
-                item={`fa-solid fa-check`}
-                renderType="icon"
-                className={`w-[18px] h-[18px] mr-[8px] p-[3px] flex items-center justify-center  rounded-full ${
-                  dark ? "text-black bg-white" : "bg-[#B3B3B3] text-black"
-                }`}
-                customStyle={{
-                  display: "flex !important",
-                }}
-              /> */}
               <RenderAtom
                 item={{ value: "ФИТНЕСС" }}
                 renderType="text"
@@ -178,23 +479,16 @@ const Card = ({ item, callProcess, myResult, dark }: any) => {
       <RenderAtom
         item={{
           value: "Багц сонгох",
-          // positionnemgoo: {
-          //   url: {
-          //     path: "/product",
-          //     query: {
-          //       id: item?.position0?.value,
-          //     },
-          //   },
-          // },
         }}
         renderType="button"
         className={`font-[700] text-[16px] text-black py-[23px] px-[54px] bg-[#BAD405] uppercase mt-[16px] rounded-[8px]`}
+        onClick={(e: any) => selectItem(e, item)}
       />
     </BlockDiv>
   );
 };
 
-const CardItem = ({ readyData, dark, kFormatter }: any) => {
+const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
   const [active, setActive] = useState(0);
 
   return (
@@ -202,8 +496,8 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
       {readyData?.map((obj: any, index: number) => {
         return (
           <RenderAtom
-            item={`<sup className="text-[16px] font-normal">₮</sup>${kFormatter(
-              Number(obj?.saleprice)
+            item={`<sup className="text-[16px] font-normal">₮</sup>${Number(
+              obj?.saleprice
             )} <span className="text-[16px]"> / ${obj?.monthname}</span>`}
             renderType="title"
             className={`text-[36px] cursor-pointer font-medium flex items-center leading-[24px] ${
@@ -219,6 +513,7 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
       `}
             onClick={() => {
               setActive(index);
+              setactiveIndex(index);
             }}
           />
         );
@@ -227,12 +522,20 @@ const CardItem = ({ readyData, dark, kFormatter }: any) => {
   );
 };
 
-const BottomSection = ({ item, dark }: any) => {
+const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="bg-white px-[25px] p-4 mb-36">
       <BlockDiv className="grid grid-cols-4 gap-[4px] items-center">
         {_.values(item).map((item: any, index: number) => {
-          return <Card item={item} key={index} dark={dark} />;
+          return (
+            <Card
+              item={item}
+              key={index}
+              dark={dark}
+              setactiveIndex={setactiveIndex}
+              selectItem={selectItem}
+            />
+          );
         })}
       </BlockDiv>
     </BlockDiv>

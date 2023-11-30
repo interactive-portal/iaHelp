@@ -15,13 +15,19 @@ import Email from "./atom/email";
 import fetchJson from "@/util/helper";
 import axios from "axios";
 import { Modal, notification } from "antd";
+import Cookies from "js-cookie";
+import RiverLoginModal from "../home/RiverLoginModal";
 
 const RiverClubV1BioInputForm = () => {
   const { config, headerData, positionConfig, metaConfig } =
     useContext(WidgetWrapperContext);
   const [imageToken, setImageToken] = useState<any>();
+  const [value, setValue] = useState<any>();
+
   const [openModal, setOpenModal] = useState(false);
   const [dialog, setDialog] = useState(false);
+
+  const [openLogin, setOpenLogin] = useState(false);
 
   const methods = useForm();
 
@@ -32,19 +38,11 @@ const RiverClubV1BioInputForm = () => {
   };
 
   const onSubmit = async (data: any) => {
-    const param = { ...data, image: imageToken };
-    console.log("parama", param);
-    // const result = await fetch(`
-    // /api/post-process?command=fitCrmCustomerKiosk_DV_001&parameters=${JSON.stringify(
-    //   param
-    // )}
-    // `);
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
+    const param = {
+      ...data,
+      image: imageToken,
+      value: value,
+    };
 
     const res = await axios.post(`/api/post-process`, {
       processcode: "fitCrmCustomerKiosk_DV_001",
@@ -52,9 +50,6 @@ const RiverClubV1BioInputForm = () => {
     });
 
     if (res.data?.status == "success") {
-      notification.success({
-        message: "Бүртгэл амжилттай",
-      });
       setDialog(true);
     }
 
@@ -64,26 +59,27 @@ const RiverClubV1BioInputForm = () => {
   const clickCamera = (e: any) => {
     setOpenModal(true);
     e.preventDefault();
-    // [camera].click() {
     var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
     ws.onopen = function () {
       ws.send('{"action":"GetImage"}');
     };
 
-    console.log("first", ws);
-
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
       setOpenModal(false);
 
-      if (res.image != null) {
-        setImageToken(res.image);
+      console.log("response", res);
+
+      if (res?.result.Image != null) {
+        setImageToken(res?.result.Image);
+        setValue(res?.result?.Value);
         setOpenModal(false);
+        ws.send('{"action":"Close"}');
         // [image] = res.image;
         // [value] = res.value;
       } else {
-        alert(res.message);
+        // alert(res.message);
       }
     };
 
@@ -92,7 +88,47 @@ const RiverClubV1BioInputForm = () => {
     };
 
     ws.onclose = function () {
+      // console.log("Connection is closed");
+      // }
+    };
+  };
+
+  const loginCameraFunction = (e: any) => {
+    setOpenModal(true);
+    e.preventDefault();
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+
+      if (res?.result) {
+        ws.send('{"action":"Close"}');
+        Cookies.set("customer", JSON.stringify(res?.result));
+        notification.success({
+          message: "Амжилттай нэвтэрлээ",
+        });
+
+        console.log("res", res);
+      } else {
+        ws.send('{"action":"Close"}');
+        // setNeedSignUp(true);
+      }
+
+      setOpenModal(false);
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
       console.log("Connection is closed");
+      // setNeedSignUp(true);
+
       // }
     };
   };
@@ -158,13 +194,44 @@ const RiverClubV1BioInputForm = () => {
         </div>
       </Modal>
       <Modal
-        open={false}
+        open={dialog}
         width={650}
-        onCancel={() => setOpenModal(false)}
+        onCancel={() => setDialog(false)}
         footer={false}
       >
-        <div className=""></div>
+        <div className="flex flex-col justify-center items-center w-full h-full gap-[10px]">
+          <div
+            className="w-[600px] h-auto bg-white rounded-lg p-[40px]"
+            style={{
+              background: "var(--202020, #202020)",
+            }}
+          >
+            <p className="text-[30px] font-semibold text-[#BAD405]">
+              Бүртгэл амжилттай
+            </p>
+            <div className="p-[32px] border border-[#DEDEDE] rounded-lg my-[20px]">
+              <p className="text-[24px] font-semibold text-[#BAD405]">
+                Санамж:
+              </p>
+              <p className="text-[#FFFFFF] text-[18px]">
+                Хэрэглэгчээр нэвтэрч үргэлжлүүлнэ үү
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <div
+                className="w-[210px] h-[60px] bg-[#BAD405] cursor-pointer flex items-center justify-center rounded-[8px] font-semibold text-[20px]"
+                onClick={() => {
+                  setDialog(false);
+                  setOpenLogin(true);
+                }}
+              >
+                Нэвтрэх
+              </div>
+            </div>
+          </div>
+        </div>
       </Modal>
+      <RiverLoginModal openModal={openLogin} setOpenModal={setOpenLogin} />
       <style>
         {`
 		:where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {

@@ -18,19 +18,18 @@ const ReportTemplate: FC<PropsType> = ({ data, options }) => {
       ...options,
       datarow: [
         {
-          id: 16796777640113,
+          id: data?.contractId,
         },
       ],
     },
   })}`;
 
   const datas = useSWR(
-    `/api/get-process?processcode=getReportTemplate${parameters}`
+    `/api/get-process?command=getReportTemplate${parameters}`
   );
-  const rawData = parseHtml(decode(datas?.data));
-  //   console.log("rawDa", datas?.data);
+  // const rawData = parseHtml(decode(datas?.data));
 
-  return <>{parseHtml(decode(datas?.data))} </>;
+  return <> {parseHtml(decode(datas?.data?.result))}</>;
 };
 
 export default ReportTemplate;

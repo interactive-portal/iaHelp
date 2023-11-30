@@ -48,13 +48,13 @@ const RiverClubV1HomeAbout = () => {
       >
         {/* {_.map(staticItem?.item, (item: any, index: number) => {
           return (
-            <BlockDiv className="flex flex-col items-center justify-center mb-24 bg-white">
+            <BlockDiv className="flex flex-col items-center justify-center   mb-24 bg-[#CACACA]">
               <RenderAtom
                 item={item?.mainimage}
                 renderType="image"
                 className={`w-full h-full`}
               />
-              <BlockDiv className="mt-[26px] flex flex-col items-center justify-center">
+              <BlockDiv className="mt-[26px] flex flex-col items-center justify-center px-[170px]">
                 <RenderAtom
                   item={item?.title}
                   renderType="title"

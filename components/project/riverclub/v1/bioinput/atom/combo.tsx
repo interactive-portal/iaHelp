@@ -61,6 +61,7 @@ const Combo: FC<PropsType> = ({ obj }) => {
         render={({ field }) => (
           <Select
             onChange={onchange}
+            className=""
             options={options?.map((item: any, index: number) => {
               return {
                 value: item?.id,

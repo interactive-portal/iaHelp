@@ -23,7 +23,7 @@ const RiverClubV1HomeCards = () => {
 
   const staticItem = data[0];
   return (
-    <BlockDiv className="mb-[39px]">
+    <BlockDiv className="mb-[39px] px-[43px]">
       <BlockDiv>
         <Card item={staticItem} />
       </BlockDiv>

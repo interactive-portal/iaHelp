@@ -1,12 +1,52 @@
 import { FC } from "react";
 import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 type PropsType = {
   openModal: any;
   setOpenModal: any;
+  setNeedSignUp?: any;
+  needSignUp?: any;
 };
 
-const RiverLoginModal: FC<PropsType> = ({ openModal, setOpenModal }) => {
+const RiverLoginModal: FC<PropsType> = ({
+  openModal,
+  setOpenModal,
+  setNeedSignUp,
+  needSignUp,
+}) => {
+  const router = useRouter();
+  const needSignUpModal = () => {
+    return (
+      <div className="">
+        <p className="uppercase text-[34px] underline text-start text-white">
+          Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.
+        </p>
+        <div className="bg-white px-[40px] py-[27px] flex mt-[20px] ">
+          <div>
+            <p className="text-[20px] text-black uppercase leading-[29px]">
+              Ривер клубт тавтай морил
+            </p>
+            <p className="text-[16px] leading-[22px] text-black mt-[20px] mr-[50px]">
+              Манай клубын олон төрлийн фитнесс, кардио, иог, бассейний
+              хичээлүүдээс сонгон өөрийн төлөвлөгөөг гаргаарай.
+            </p>
+          </div>
+          <div
+            className="bg-[#BAD405] p-[10px] rounded-[10px] cursor-pointer"
+            onClick={() => router.push("/bioinput")}
+          >
+            <p className="uppercase text-black font-bold text-[30px] leading-[28px]">
+              гишүүн болох
+            </p>
+            <p className="text-[15px] leading-[35px] text-black text-right">
+              онлайн бүртгэл
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <>
       <Modal
@@ -19,7 +59,14 @@ const RiverLoginModal: FC<PropsType> = ({ openModal, setOpenModal }) => {
           <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
             <img src="/images/Face_id_white.png" />
           </div>
-          <div className="fixed bottom-4 max-w-[640px] mx-auto">
+          <div
+            className={`fixed ${
+              needSignUp ? "top-[350px]" : "-top-[400px]"
+            }  max-w-[640px] mx-auto duration-75`}
+          >
+            {needSignUpModal()}
+          </div>
+          <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
             <p className="uppercase text-[34px] underline text-start text-white">
               клубын бүртгэл?
             </p>

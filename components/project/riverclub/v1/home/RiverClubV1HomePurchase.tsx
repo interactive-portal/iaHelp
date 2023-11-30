@@ -42,7 +42,7 @@ const RiverClubV1HomePurchase = ({
   const [showModal, setShowModal] = useToggle(false);
 
   return (
-    <BlockDiv className="flex items-center justify-center w-max">
+    <BlockDiv className="flex items-center justify-center w-max bg-black">
       <BlockDiv className="mx-[112px] my-[26px] bg-white py-[25px] px-[40px] flex items-center justify-between gap-x-[120px]">
         <BlockDiv className="flex flex-col gap-y-[18px]">
           <RenderAtom

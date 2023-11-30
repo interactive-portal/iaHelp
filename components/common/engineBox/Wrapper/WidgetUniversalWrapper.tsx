@@ -151,6 +151,8 @@ export const WidgetUniversalWrapper = ({
   /*                   WIDGET ДУУДАХ ХЭСЭГ                  */
   /* ------------------------------------------------------ */
 
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+
   const RenderComponent: any = useMemo(
     () =>
       dynamic(
@@ -165,7 +167,8 @@ export const WidgetUniversalWrapper = ({
           // suspense: true,
           loading: () => (
             <div className="w-full">
-              <Skeleton type="modern" />
+              <Skeleton type="card" />
+              {/* {domain !== "river" && <Skeleton type="modern" />} */}
               {/* <div className="w-full h-[80px] ">
                 <div className=" rounded bg-blue-400 text-[#f3f4f6]">
                   {config.componentpath}

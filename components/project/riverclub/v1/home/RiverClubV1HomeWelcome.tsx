@@ -5,12 +5,17 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useRouter } from "next/router";
 import _ from "lodash";
 import BlockSlider from "@/components/common/Block/BlockSlider";
+import RiverLoginModal from "./RiverLoginModal";
+import { notification } from "antd";
+import Cookies from "js-cookie";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
   const currentLanguage = Array.isArray(query.id)
     ? query.id.join("")
     : query.id || "mn";
+  const [openModal, setOpenModal] = useState(false);
+  const [needSignUp, setNeedSignUp] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 
@@ -21,6 +26,47 @@ const RiverClubV1HomeWelcome = () => {
   }, [currentLanguage]);
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
+
+  const clickCamera = (e: any) => {
+    setOpenModal(true);
+    e.preventDefault();
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+
+      if (res?.result) {
+        ws.send('{"action":"Close"}');
+        Cookies.set("customer", res?.result);
+        notification.success({
+          message: "Амжилттай нэвтэрлээ",
+        });
+        setOpenModal(false);
+
+        console.log("res", res);
+      } else {
+        ws.send('{"action":"Close"}');
+        setNeedSignUp(true);
+      }
+
+      setOpenModal(false);
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed");
+      // setNeedSignUp(true);
+
+      // }
+    };
+  };
 
   return (
     <BlockDiv className="arrowCustomStyle">
@@ -37,17 +83,35 @@ const RiverClubV1HomeWelcome = () => {
           arrowClassName: "bg-transparent",
         }}
       >
-        {/* {_.map(staticItem?.mainimage, (item: any, index: number) => {
-          return <RiverHomeBanner item={staticItem} />;
-        })} */}
+        {_.map(staticItem?.mainimage, (item: any, index: number) => {
+          return (
+            <RiverHomeBanner
+              item={staticItem}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              clickCamera={clickCamera}
+            />
+          );
+        })}
       </BlockSlider>
+      <RiverLoginModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        setNeedSignUp={setNeedSignUp}
+        needSignUp={needSignUp}
+      />
     </BlockDiv>
   );
 };
 
 export default RiverClubV1HomeWelcome;
 
-const RiverHomeBanner = ({ item }: any) => {
+const RiverHomeBanner = ({
+  item,
+  openModal,
+  setOpenModal,
+  clickCamera,
+}: any) => {
   return (
     <BlockDiv className="h-[570px] flex items-center justify-center relative bg-gray-200">
       <RenderAtom
@@ -55,7 +119,7 @@ const RiverHomeBanner = ({ item }: any) => {
         renderType="image"
         customClassName="w-[1080px] h-full absolute top-0 left-0"
       />
-      <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max">
+      <BlockDiv className="z-20 w-full flex items-center justify-center flex-col h-max px-[216px]">
         <RenderAtom
           item={item?.title}
           renderType="title"
@@ -69,14 +133,15 @@ const RiverHomeBanner = ({ item }: any) => {
         <RenderAtom
           item={{
             value: item?.button,
-            positionnemgoo: {
-              url: {
-                path: `/bioinput`,
-              },
-            },
+            // positionnemgoo: {
+            //   url: {
+            //     path: `/bioinput`,
+            //   },
+            // },
           }}
           renderType="button"
           className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] mb-[30px]`}
+          onClick={(e: any) => clickCamera(e)}
         />
         {/* <BlockDiv className="flex gap-[9px]">
           <BlockDiv className="w-[10px] h-[10px] rounded-full border border-white" />
