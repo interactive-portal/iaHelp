@@ -80,7 +80,7 @@ const SingleKnowLedge = () => {
     if (_.isEmpty(srcTitle)) fetchDataHeader();
   }, []);
 
-  // console.log("srcTitle :>> ", readyDatasrc);
+  console.log("srcTitle :>> ", readyDatasrc);
 
   const Submit = async () => {
     // const result = await callProcess({
