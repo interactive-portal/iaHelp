@@ -7,6 +7,7 @@ import _ from "lodash";
 import BlockSlider from "@/components/common/Block/BlockSlider";
 import RiverLoginModal from "./RiverLoginModal";
 import { notification } from "antd";
+import Cookies from "js-cookie";
 
 const RiverClubV1HomeWelcome = () => {
   const { query } = useRouter();
@@ -14,7 +15,7 @@ const RiverClubV1HomeWelcome = () => {
     ? query.id.join("")
     : query.id || "mn";
   const [openModal, setOpenModal] = useState(false);
-  // const [needSignUp, setNeedSignUp] = useState(false);
+  const [needSignUp, setNeedSignUp] = useState(false);
 
   const [language, setLanguage] = useState(currentLanguage);
 
@@ -35,15 +36,21 @@ const RiverClubV1HomeWelcome = () => {
       ws.send('{"action":"GetPerson"}');
     };
 
-    console.log("first", ws);
-
     ws.onmessage = function (event) {
       var res = JSON.parse(event.data);
 
-      if (res) {
+      if (res?.result) {
+        ws.send('{"action":"Close"}');
+        Cookies.set("customer", JSON.stringify(res?.result));
+        notification.success({
+          message: "Амжилттай нэвтэрлээ",
+        });
+        setOpenModal(false);
+
         console.log("res", res);
       } else {
-        // setNeedSignUp(true);
+        ws.send('{"action":"Close"}');
+        setNeedSignUp(true);
       }
 
       setOpenModal(false);
@@ -90,8 +97,8 @@ const RiverClubV1HomeWelcome = () => {
       <RiverLoginModal
         openModal={openModal}
         setOpenModal={setOpenModal}
-        // setNeedSignUp={setNeedSignUp}
-        // needSignUp={needSignUp}
+        setNeedSignUp={setNeedSignUp}
+        needSignUp={needSignUp}
       />
     </BlockDiv>
   );

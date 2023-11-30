@@ -5,15 +5,15 @@ import { useRouter } from "next/router";
 type PropsType = {
   openModal: any;
   setOpenModal: any;
-  // setNeedSignUp?: any;
-  // needSignUp?: any;
+  setNeedSignUp?: any;
+  needSignUp?: any;
 };
 
 const RiverLoginModal: FC<PropsType> = ({
   openModal,
   setOpenModal,
-  // setNeedSignUp,
-  // needSignUp,
+  setNeedSignUp,
+  needSignUp,
 }) => {
   const router = useRouter();
   const needSignUpModal = () => {
@@ -59,7 +59,11 @@ const RiverLoginModal: FC<PropsType> = ({
           <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
             <img src="/images/Face_id_white.png" />
           </div>
-          <div className={`fixed top-4 max-w-[640px] mx-auto duration-75 } `}>
+          <div
+            className={`fixed ${
+              needSignUp ? "top-[350px]" : "-top-[400px]"
+            }  max-w-[640px] mx-auto duration-75`}
+          >
             {needSignUpModal()}
           </div>
           <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
