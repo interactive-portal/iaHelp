@@ -11,6 +11,9 @@ import { listToTree } from "@/util/helper";
 import index from "@/pages/nation";
 import RiverLoginModal from "../home/RiverLoginModal";
 import { notification } from "antd";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { Modal, DatePicker, DatePickerProps } from "antd";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -18,6 +21,9 @@ const RiverClubV1PlanPrice = () => {
   // console.log("readydata", readyDatasrc);
 
   const { callProcess, isProcessWorking } = useCallProcess();
+  const [selectDateModal, setSelectDateModal] = useState(false);
+
+  const customer = Cookies.getJSON("customer");
 
   const groupByData = _.chain(readyDatasrc)
     .groupBy("classificationname")
@@ -51,14 +57,17 @@ const RiverClubV1PlanPrice = () => {
     setLanguage(currentLanguage);
   }, [currentLanguage]);
 
-  const [activeItem, setActiveItem] = useState<any>();
+  const [activeIndex, setactiveIndex] = useState<any>(0);
   const [openLogin, setOpenLogin] = useState(false);
-
-  console.log("activeItem", activeItem);
+  const [datePicker, setDatePicker] = useState(true);
+  const [startDate, setStartDate] = useState<any>();
+  const [selectedItem, setSelectItem] = useState<any>();
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
   const staticItem = data?.[0];
+
+  const dateFormat = "YYYY-MM-DD";
 
   const clickCamera = (e: any) => {
     setOpenLogin(true);
@@ -95,24 +104,139 @@ const RiverClubV1PlanPrice = () => {
     };
   };
 
+  const selectItem = async (item: any) => {
+    setSelectItem(_.values(item)?.[0]?.[activeIndex]);
+    if (customer) {
+      setSelectDateModal(true);
+      setDatePicker(true);
+    }
+  };
+
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    setStartDate(dateString);
+  };
+
+  const createContract = async () => {
+    const item = selectedItem;
+    var inputDate = item?.enddate;
+
+    var inputDate: any = item?.enddate;
+
+    var dateParts = inputDate.split("-");
+
+    // Extract the year, month, and day
+    var year = parseInt("20" + dateParts[2], 10);
+    var month: any = parseInt(dateParts[1], 10) - 1; // Subtracting 1 because months are zero-based
+    var day: any = parseInt(dateParts[0], 10);
+
+    var convertedDate = new Date(year, month, day);
+
+    year = convertedDate.getFullYear();
+    month = ("0" + (convertedDate.getMonth() + 1)).slice(-2); // Adding 1 because months are zero-based
+    day = ("0" + convertedDate.getDate()).slice(-2);
+
+    var result = year + "-" + month + "-" + day;
+
+    const param = {
+      contentTypeId: item?.contracttypeid,
+      contractTotalAmount: item?.saleprice,
+      customerId: customer?.CustomerId,
+      durationTypeId: item?.monthid,
+      startDate: startDate,
+      endDate: result,
+      itemId: item?.id,
+      price: item?.saleprice,
+      amount: item?.saleprice,
+    };
+
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskCreateContract_DV_001",
+      parameters: param,
+    });
+
+    console.log("res", res);
+  };
+
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
       <UpperSection
         item={upperData}
         dark={true}
-        setActiveItem={setActiveItem}
+        setactiveIndex={setactiveIndex}
+        selectItem={selectItem}
       />
       <BottomSection
         item={bottomData}
         dark={false}
-        setActiveItem={setActiveItem}
+        setactiveIndex={setactiveIndex}
+        selectItem={selectItem}
       />
       <RiverLoginModal openModal={openLogin} setOpenModal={setOpenLogin} />
+      <Modal
+        open={selectDateModal}
+        footer={false}
+        onCancel={() => setSelectDateModal(false)}
+        destroyOnClose
+      >
+        <div className="flex items-center justify-center  h-full">
+          <div
+            className="w-[424px] h-[600px] box-border relative"
+            style={{
+              background: "var(--202020, #202020)",
+            }}
+          >
+            <div className="p-[64px]">
+              <DatePicker
+                className="w-full"
+                // placement="bottomLeft"
+                format={dateFormat}
+                open={datePicker}
+                onSelect={() => setDatePicker(false)}
+                onOpenChange={() => setDatePicker(!datePicker)}
+                onChange={onChange}
+                style={{
+                  color: "white",
+                  background: "var(--202020, #202020)",
+                }}
+                popupStyle={{
+                  inset: "837.5px auto auto 400px !important",
+                  background: "var(--202020, #202020)",
+                }}
+              />
+            </div>
+            <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
+              <div
+                className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+                onClick={() => setSelectDateModal(false)}
+              >
+                Болих
+              </div>
+              <div
+                className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+                style={{
+                  color: "var(--202020, #202020)",
+                  background: "var(--green-main, #BAD405)",
+                }}
+                onClick={() => createContract()}
+              >
+                Цааш
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <style>
+        {`
+          .ant-picker-input >input{
+            color:white !important;
+          }
+          `}
+      </style>
     </BlockDiv>
   );
 };
 
-const UpperSection = ({ item, dark, setActiveItem }: any) => {
+const UpperSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="bg-black w-full flex flex-col items-center justify-center mb-[28px]">
       <RenderAtom
@@ -130,7 +254,8 @@ const UpperSection = ({ item, dark, setActiveItem }: any) => {
               item={obj}
               dark={dark}
               key={index}
-              setActiveItem={setActiveItem}
+              setactiveIndex={setactiveIndex}
+              selectItem={selectItem}
             />
           );
         })}
@@ -139,7 +264,14 @@ const UpperSection = ({ item, dark, setActiveItem }: any) => {
   );
 };
 
-const Card = ({ item, callProcess, myResult, dark, setActiveItem }: any) => {
+const Card = ({
+  item,
+  callProcess,
+  myResult,
+  dark,
+  setactiveIndex,
+  selectItem,
+}: any) => {
   const title = _.keys(item)[0];
   const readyData = _.values(item)[0];
 
@@ -171,7 +303,7 @@ const Card = ({ item, callProcess, myResult, dark, setActiveItem }: any) => {
         <CardItem
           readyData={readyData}
           dark={dark}
-          setActiveItem={setActiveItem}
+          setactiveIndex={setactiveIndex}
         />
       </BlockDiv>
       {/* Includes */}
@@ -223,13 +355,13 @@ const Card = ({ item, callProcess, myResult, dark, setActiveItem }: any) => {
         }}
         renderType="button"
         className={`font-[700] text-[16px] text-black py-[23px] px-[54px] bg-[#BAD405] uppercase mt-[16px] rounded-[8px]`}
-        // onClick={() => {}}
+        onClick={() => selectItem(item)}
       />
     </BlockDiv>
   );
 };
 
-const CardItem = ({ readyData, dark, kFormatter, setActiveItem }: any) => {
+const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
   const [active, setActive] = useState(0);
 
   return (
@@ -254,7 +386,7 @@ const CardItem = ({ readyData, dark, kFormatter, setActiveItem }: any) => {
       `}
             onClick={() => {
               setActive(index);
-              setActiveItem(obj);
+              setactiveIndex(index);
             }}
           />
         );
@@ -263,7 +395,7 @@ const CardItem = ({ readyData, dark, kFormatter, setActiveItem }: any) => {
   );
 };
 
-const BottomSection = ({ item, dark, setActiveItem }: any) => {
+const BottomSection = ({ item, dark, setactiveIndex, selectItem }: any) => {
   return (
     <BlockDiv className="bg-white px-[25px] p-4 mb-36">
       <BlockDiv className="grid grid-cols-4 gap-[4px] items-center">
@@ -273,7 +405,8 @@ const BottomSection = ({ item, dark, setActiveItem }: any) => {
               item={item}
               key={index}
               dark={dark}
-              setActiveItem={setActiveItem}
+              setactiveIndex={setactiveIndex}
+              selectItem={selectItem}
             />
           );
         })}

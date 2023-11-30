@@ -5,6 +5,7 @@ import WidgetWrapperContext from "@/components/common/engineBox/Wrapper/WidgetUn
 import { useContext, FC } from "react";
 import _ from "lodash";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 type PropsType = {
   data?: any;
@@ -36,6 +37,8 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
 
   // console.log("optios", options);
 
+  const customer = Cookies.get("customer");
+
   return (
     <BlockDiv
       customClassName={`${widgetnemgooReady?.design?.className} z-[99]`}
@@ -56,7 +59,11 @@ const RiverClubV1MasterHeader: FC<PropsType> = ({ data, options, mutate }) => {
             className={`w-[142px] cursor-pointer h-[36px] my-[10px] mr-[45px]`}
           />
           <Menu item={menu} />
-          <MemberButton item={button} />
+          {customer ? (
+            <i className="fa-solid fa-user fa-xl mr-6 text-[#BAD405]"></i>
+          ) : (
+            <MemberButton item={button} />
+          )}
         </BlockDiv>
       </BlockDiv>
     </BlockDiv>

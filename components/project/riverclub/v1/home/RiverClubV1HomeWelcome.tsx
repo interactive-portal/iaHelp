@@ -41,7 +41,7 @@ const RiverClubV1HomeWelcome = () => {
 
       if (res?.result) {
         ws.send('{"action":"Close"}');
-        Cookies.set("customer", JSON.stringify(res?.result));
+        Cookies.set("customer", res?.result);
         notification.success({
           message: "Амжилттай нэвтэрлээ",
         });
