@@ -80,7 +80,8 @@ const SingleKnowLedge = () => {
     if (_.isEmpty(srcTitle)) fetchDataHeader();
   }, []);
 
-  // console.log("srcTitle :>> ", srcTitle);
+  // console.log("srcTitle :>> ", readyDatasrc);
+
   const Submit = async () => {
     // const result = await callProcess({
     //   command: "createKnowledgeDV_001",
@@ -344,68 +345,75 @@ const SingleKnowLedge = () => {
             </div>
           )}
 
-          {readyDatasrc[0]?.position22 && (
-            <motion.div className="bg-white px-6 py-4 relative min-h-[350px] ">
-              <DataLoader />
-              {openEdit ? (
-                <>
-                  <input
-                    className="font-semibold text-[16px] rounded-lg mb-6 mt-2 w-full border-[#E1E1E1] text-[#585858] focus:outline-none focus:border-[#E1E1E1] focus:ring-0"
-                    type="text"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                  />
-                  <CKEditor
-                    // className="min-h-[400px]"
-                    initData={htmlDecode(readyDatasrc[0]?.description)}
-                    config={{
-                      // enterMode: ENTER_P,
-                      // shiftEnterMode: ENTER_BR,
-                      stylesSet: addStyles,
-                      extraPlugins: "colorbutton,colordialog,font",
-                      removeButtons: "exportpdf,save,smiley,about,language",
-                    }}
-                    onChange={(event) => setGetData(event.editor.getData())}
-                  />
-                  <button
-                    className="p-2 bg-[#699BF7] text-[16px] font-medium text-white cursor-pointer float-right mt-[30px] rounded-[20px] px-4"
-                    onClick={() => Submit()}
-                  >
-                    Хадгалах
-                  </button>
-                </>
-              ) : (
-                <MotionConfig transition={{ duration: 1 }}>
+          <motion.div className="bg-white px-6 py-4 relative min-h-[350px] ">
+            <DataLoader />
+            {openEdit ? (
+              <>
+                <input
+                  className="font-semibold text-[16px] rounded-lg mb-6 mt-2 w-full border-[#E1E1E1] text-[#585858] focus:outline-none focus:border-[#E1E1E1] focus:ring-0"
+                  type="text"
+                  value={title}
+                  onChange={(event) => setTitle(event.target.value)}
+                />
+                <CKEditor
+                  // className="min-h-[400px]"
+                  initData={htmlDecode(readyDatasrc[0]?.description)}
+                  config={{
+                    // enterMode: ENTER_P,
+                    // shiftEnterMode: ENTER_BR,
+                    stylesSet: addStyles,
+                    extraPlugins: "colorbutton,colordialog,font",
+                    removeButtons: "exportpdf,save,smiley,about,language",
+                  }}
+                  onChange={(event) => setGetData(event.editor.getData())}
+                />
+                <button
+                  className="p-2 bg-[#699BF7] text-[16px] font-medium text-white cursor-pointer float-right mt-[30px] rounded-[20px] px-4"
+                  onClick={() => Submit()}
+                >
+                  Хадгалах
+                </button>
+              </>
+            ) : (
+              <MotionConfig transition={{ duration: 1 }}>
+                <RenderAtom
+                  item={
+                    readyDatasrc[0]?.position1 || {
+                      value: readyDatasrc[0]?.name,
+                    }
+                  }
+                  renderType="text"
+                  customClassName={
+                    "xl:text-[30px] lg:text-2xl xs:text-xl pb-6 pt-2 text-[#585858] font-medium mb-4"
+                  }
+                />
+                <motion.div
+                  layout
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    opacity: { ease: "linear" },
+                    layout: { duration: 0.3 },
+                  }}
+                  className="py-4"
+                >
                   <RenderAtom
-                    item={
-                      readyDatasrc[0]?.position1 || {
-                        value: readyDatasrc[0]?.name,
-                      }
-                    }
-                    renderType="text"
-                    customClassName={
-                      "xl:text-[30px] lg:text-2xl xs:text-xl pb-6 pt-2 text-[#585858] font-medium mb-4"
-                    }
+                    item={readyDatasrc[0]?.position22}
+                    renderType="htmltext"
+                    customClassName={"my-4"}
                   />
-                  <motion.div
-                    layout
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      opacity: { ease: "linear" },
-                      layout: { duration: 0.3 },
-                    }}
-                    className="py-4"
-                  >
-                    <RenderAtom
-                      item={readyDatasrc[0]?.position22}
-                      renderType="htmltext"
-                      customClassName={"my-4"}
-                    />
-                  </motion.div>
-                </MotionConfig>
-              )}
-            </motion.div>
-          )}
+                  {readyDatasrc[0].physicalpath && (
+                    <>
+                      <RenderAtom
+                        item={{ value: readyDatasrc[0]?.physicalpath }}
+                        renderType="video"
+                        customClassName={"my-4"}
+                      />
+                    </>
+                  )}
+                </motion.div>
+              </MotionConfig>
+            )}
+          </motion.div>
 
           <div className="h-8 bg-[#f3f4f6]"></div>
 

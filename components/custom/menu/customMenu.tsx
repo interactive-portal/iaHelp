@@ -101,7 +101,11 @@ const CustomMenu: FC<PropsType> = ({
   // }, [selectedId]);
 
   return (
-    <ul className={`${customClassName} vmenu`} style={{ ...customStyle }}>
+    <ul
+      className={`${customClassName} vmenu`}
+      style={{ ...customStyle }}
+      data-attr="CustomMenu"
+    >
       {readyDatasrc.map((item: any, index: number) => {
         return (
           <li

@@ -35,7 +35,6 @@ const Atom_file: FC<PropsType> = ({
     useContext(FormMetaContext);
   const { data: session, status }: any = useSession();
 
-  console.log("session", session);
   const uploadButton = (
     <i className="fa-light fa-image text-[#67748E] fa-lg cursor-pointer"></i>
     // <div>
@@ -93,7 +92,6 @@ const Atom_file: FC<PropsType> = ({
         config
       );
 
-      console.log("res", res);
       // const res: any = fetch("/api/file-attach", {
       //   method: "POST",
       //   body: fmData,

@@ -82,7 +82,8 @@ export default function RenderAtom({
     | "search"
     | "htmltext"
     | "date"
-    | "clob";
+    | "clob"
+    | "video";
   customClassName?: any;
   className?: any;
   style?: React.CSSProperties;
@@ -197,6 +198,7 @@ export default function RenderAtom({
     image: "atomImage",
     htmltext: "atomHtmlText",
     button: "atomButton",
+    video: "atomVideo",
     icon: "atomIcon",
   };
 
