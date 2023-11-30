@@ -214,6 +214,7 @@ const RiverClubV1PlanPrice = () => {
       },
     });
     if (res?.data?.status == "success") {
+      setSelectDateModal(false);
     }
 
     console.log("res", res);
