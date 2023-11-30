@@ -7,13 +7,12 @@ import _, { set } from "lodash";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useCallProcess from "@/middleware/dataHook/useCallProcess";
-import { listToTree } from "@/util/helper";
-import index from "@/pages/nation";
 import RiverLoginModal from "../home/RiverLoginModal";
 import { notification } from "antd";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { Modal, DatePicker, DatePickerProps } from "antd";
+import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -22,6 +21,8 @@ const RiverClubV1PlanPrice = () => {
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
+
+  Cookies.set("customer", { CustomerId: "170130843295810" });
 
   const customer = Cookies.getJSON("customer");
 
@@ -62,13 +63,14 @@ const RiverClubV1PlanPrice = () => {
   const [datePicker, setDatePicker] = useState(true);
   const [startDate, setStartDate] = useState<any>();
   const [selectedItem, setSelectItem] = useState<any>();
+  const [templateId, setTemplateId] = useState<any>();
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
-  const staticItem = data?.[0];
 
   const dateFormat = "YYYY-MM-DD";
 
+  //login camera нээх command
   const clickCamera = (e: any) => {
     setOpenLogin(true);
     e.preventDefault();
@@ -104,18 +106,24 @@ const RiverClubV1PlanPrice = () => {
     };
   };
 
-  const selectItem = async (item: any) => {
+  // багцыг select хийх эсвэл login хийх
+  const selectItem = async (e: any, item: any) => {
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
+    console.log("first", _.values(item)?.[0]?.[activeIndex]);
     if (customer) {
       setSelectDateModal(true);
       setDatePicker(true);
+    } else {
+      clickCamera(e);
     }
   };
 
+  // эхлэх өдөр сонгох
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     setStartDate(dateString);
   };
 
+  // гэрээ байгуулах
   const createContract = async () => {
     const item = selectedItem;
     var inputDate = item?.enddate;
@@ -153,9 +161,44 @@ const RiverClubV1PlanPrice = () => {
       processcode: "fitKioskCreateContract_DV_001",
       parameters: param,
     });
-
     console.log("res", res);
+
+    if (res?.data?.status == "success") {
+      setTemplateId(res?.data?.result?.templateId);
+    }
   };
+
+  // reportTemplate дуудах
+  const printOptions = {
+    lang: {
+      mn: "",
+      en: "",
+    },
+    ishtml: 1,
+    print_options: {
+      numberOfCopies: "1",
+      isPrintNewPage: "1",
+      isSettingsDialog: "0",
+      isShowPreview: "1",
+      isPrintPageBottom: "0",
+      isPrintPageRight: "0",
+      pageOrientation: "portrait",
+      isPrintSaveTemplate: "1",
+      paperInput: "portrait",
+      pageSize: "a4",
+      printType: "1col",
+      templatemetaid: "1663908042127021",
+      templateIds: "1663908042127021",
+    },
+  };
+
+  console.log("template", templateId);
+
+  const template = (
+    <div>
+      <ReportTemplate options={printOptions} />
+    </div>
+  );
 
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
@@ -176,33 +219,41 @@ const RiverClubV1PlanPrice = () => {
         open={selectDateModal}
         footer={false}
         onCancel={() => setSelectDateModal(false)}
+        // style={{
+        //   height: "600px",
+        // }}
         destroyOnClose
       >
-        <div className="flex items-center justify-center  h-full">
+        <div className="flex items-center justify-center w-[960px] mx-auto ">
           <div
-            className="w-[424px] h-[600px] box-border relative"
+            className="box-border relative "
             style={{
-              background: "var(--202020, #202020)",
+              background: "white",
             }}
           >
             <div className="p-[64px]">
-              <DatePicker
-                className="w-full"
-                // placement="bottomLeft"
-                format={dateFormat}
-                open={datePicker}
-                onSelect={() => setDatePicker(false)}
-                onOpenChange={() => setDatePicker(!datePicker)}
-                onChange={onChange}
-                style={{
-                  color: "white",
-                  background: "var(--202020, #202020)",
-                }}
-                popupStyle={{
-                  inset: "837.5px auto auto 400px !important",
-                  background: "var(--202020, #202020)",
-                }}
-              />
+              {template}
+              {/* {templateId ? (
+                template
+              ) : (
+                <DatePicker
+                  className="w-full"
+                  // placement="bottomLeft"
+                  format={dateFormat}
+                  open={datePicker}
+                  onSelect={() => setDatePicker(false)}
+                  onOpenChange={() => setDatePicker(!datePicker)}
+                  onChange={onChange}
+                  style={{
+                    color: "white",
+                    background: "var(--202020, #202020)",
+                  }}
+                  popupStyle={{
+                    inset: "837.5px auto auto 400px !important",
+                    background: "var(--202020, #202020)",
+                  }}
+                />
+              )} */}
             </div>
             <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
               <div
@@ -355,7 +406,7 @@ const Card = ({
         }}
         renderType="button"
         className={`font-[700] text-[16px] text-black py-[23px] px-[54px] bg-[#BAD405] uppercase mt-[16px] rounded-[8px]`}
-        onClick={() => selectItem(item)}
+        onClick={(e: any) => selectItem(e, item)}
       />
     </BlockDiv>
   );
