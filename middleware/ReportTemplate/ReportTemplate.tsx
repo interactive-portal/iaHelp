@@ -18,7 +18,7 @@ const ReportTemplate: FC<PropsType> = ({ data, options }) => {
       ...options,
       datarow: [
         {
-          id: 170130861771410,
+          id: data?.contractId,
         },
       ],
     },
@@ -28,7 +28,6 @@ const ReportTemplate: FC<PropsType> = ({ data, options }) => {
     `/api/get-process?command=getReportTemplate${parameters}`
   );
   // const rawData = parseHtml(decode(datas?.data));
-  console.log("rawDa", datas?.data?.result);
 
   return <> {parseHtml(decode(datas?.data?.result))}</>;
 };

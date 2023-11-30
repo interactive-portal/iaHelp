@@ -64,6 +64,7 @@ const RiverClubV1PlanPrice = () => {
   const [startDate, setStartDate] = useState<any>();
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
+  const [contractId, setContractId] = useState<any>();
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
@@ -165,6 +166,7 @@ const RiverClubV1PlanPrice = () => {
 
     if (res?.data?.status == "success") {
       setTemplateId(res?.data?.result?.templateId);
+      setContractId(res?.data?.result?.id);
     }
   };
 
@@ -187,16 +189,136 @@ const RiverClubV1PlanPrice = () => {
       paperInput: "portrait",
       pageSize: "a4",
       printType: "1col",
-      templatemetaid: "1663908042127021",
-      templateIds: "1663908042127021",
+      templatemetaid: templateId,
+      templateIds: templateId,
     },
   };
-
-  console.log("template", templateId);
+  const [activeCheck, setActiveCheck] = useState(false);
 
   const template = (
     <div>
-      <ReportTemplate options={printOptions} />
+      <ReportTemplate
+        options={printOptions}
+        data={{ contractId: contractId }}
+      />
+    </div>
+  );
+
+  // гэрээний нөхцөлийг шалгах
+  const checkContract = async () => {
+    const res = await axios.post(`/api/post-process`, {
+      processcode: "fitKioskContractIsConfirm_DV_001",
+      parameters: {
+        id: contractId,
+        isComfirm: activeCheck ? "1" : "0",
+      },
+    });
+    if (res?.data?.status == "success") {
+    }
+
+    console.log("res", res);
+  };
+
+  const templateContent = (
+    <div className="flex items-center justify-center h-full mx-auto relative max-w-[960px] overflow-hidden">
+      <div
+        className=" h-[900px]  overflow-y-scroll "
+        style={{
+          background: "white",
+        }}
+      >
+        {template}
+      </div>
+      <div></div>
+      <div className="absolute bottom-10 right-0 w-full ">
+        <div
+          className="px-[64px] flex items-center mb-8"
+          onClick={() => setActiveCheck(!activeCheck)}
+        >
+          <div
+            className={`w-[30px] h-[30px] rounded-lg flex items-center justify-center ${
+              activeCheck ? "bg-blue-300" : "bg-white"
+            } `}
+          >
+            {activeCheck ? (
+              <i className="fa-solid fa-check fa-xl text-white"></i>
+            ) : (
+              ""
+            )}
+          </div>
+          <p className="text-white text-[20px] ml-4">
+            Үйлчилгээний нөхцөлийг хүлээн зөвшөөрч байна
+          </p>
+        </div>
+        <div className="flex justify-between gap-[16px] px-[64px]">
+          <div
+            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+            onClick={() => setSelectDateModal(false)}
+          >
+            Болих
+          </div>
+          <div
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            style={{
+              color: "var(--202020, #202020)",
+              background: "var(--green-main, #BAD405)",
+            }}
+            onClick={() => checkContract()}
+          >
+            Цааш
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Огноо сонгох modal
+  const ModalContent = (
+    <div className="flex items-center justify-center h-full mx-auto">
+      <div
+        className="w-[424px] h-[600px] box-border relative"
+        style={{
+          background: "var(--202020, #202020)",
+        }}
+      >
+        <div className="p-[64px]">
+          <DatePicker
+            className="w-full"
+            // placement="bottomLeft"
+            format={dateFormat}
+            open={datePicker}
+            onSelect={() => setDatePicker(false)}
+            onOpenChange={() => setDatePicker(!datePicker)}
+            onChange={onChange}
+            style={{
+              color: "white",
+              background: "var(--202020, #202020)",
+            }}
+            popupStyle={{
+              inset: "837.5px auto auto 400px !important",
+              background: "var(--202020, #202020)",
+            }}
+          />
+        </div>
+        <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
+          <div
+            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+            onClick={() => setSelectDateModal(false)}
+          >
+            Болих
+          </div>
+          <div
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            style={{
+              color: "var(--202020, #202020)",
+              background: "var(--green-main, #BAD405)",
+            }}
+            onClick={() => createContract()}
+          >
+            Цааш
+          </div>
+        </div>
+      </div>
     </div>
   );
 
@@ -219,67 +341,20 @@ const RiverClubV1PlanPrice = () => {
         open={selectDateModal}
         footer={false}
         onCancel={() => setSelectDateModal(false)}
-        // style={{
-        //   height: "600px",
-        // }}
         destroyOnClose
       >
-        <div className="flex items-center justify-center w-[960px] mx-auto ">
-          <div
-            className="box-border relative "
-            style={{
-              background: "white",
-            }}
-          >
-            <div className="p-[64px]">
-              {template}
-              {/* {templateId ? (
-                template
-              ) : (
-                <DatePicker
-                  className="w-full"
-                  // placement="bottomLeft"
-                  format={dateFormat}
-                  open={datePicker}
-                  onSelect={() => setDatePicker(false)}
-                  onOpenChange={() => setDatePicker(!datePicker)}
-                  onChange={onChange}
-                  style={{
-                    color: "white",
-                    background: "var(--202020, #202020)",
-                  }}
-                  popupStyle={{
-                    inset: "837.5px auto auto 400px !important",
-                    background: "var(--202020, #202020)",
-                  }}
-                />
-              )} */}
-            </div>
-            <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
-              <div
-                className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
-                onClick={() => setSelectDateModal(false)}
-              >
-                Болих
-              </div>
-              <div
-                className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
-                style={{
-                  color: "var(--202020, #202020)",
-                  background: "var(--green-main, #BAD405)",
-                }}
-                onClick={() => createContract()}
-              >
-                Цааш
-              </div>
-            </div>
-          </div>
-        </div>
+        {templateId ? templateContent : ModalContent}
       </Modal>
       <style>
         {`
           .ant-picker-input >input{
             color:white !important;
+          }
+            .checkbox-round {
+              border-radius:10px
+          }
+          .ant-modal-body {
+            overflow:hidden;
           }
           `}
       </style>
