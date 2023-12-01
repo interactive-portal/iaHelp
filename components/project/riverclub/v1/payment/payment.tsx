@@ -17,6 +17,9 @@ export default function bankIpTerminalTransfer(
     if (deviceType == "khanbank") {
       dvctype = "databank";
     }
+    bankCheckIpTerminal(terminalId, deviceType, function () {
+      //   console.log("as");
+    });
     // else if (deviceType == "golomtbank") {
     //   dvctype = "glmt";
     // } else if (deviceType == "xacbank") {
@@ -86,7 +89,7 @@ export default function bankIpTerminalTransfer(
         var getParse = JSON.parse(jsonData.details[0].value);
         var resultIpTerminal: any = { status: "success" };
 
-        console.log("resultIpTerminal", getParse);
+        // console.log("resultIpTerminal", getParse);
 
         if (dvctype === "databank") {
           if (
@@ -179,6 +182,115 @@ export default function bankIpTerminalTransfer(
       Status: "Error",
       Error: "WebSocket NOT supported by your Browser!",
     };
+    console.log(JSON.stringify(resultJson));
+  }
+}
+
+function bankCheckIpTerminal(terminalId: any, deviceType: any, callback: any) {
+  if ("WebSocket" in window) {
+    var dvctype = "";
+
+    if (deviceType == "khanbank") {
+      dvctype = "databank";
+    } else if (deviceType == "golomtbank") {
+      dvctype = "glmt";
+    } else if (deviceType == "xacbank") {
+      dvctype = "khas_paxA35";
+      terminalId = "123";
+      callback({
+        status: "success",
+        text: "IPPOS terminal холболт амжилттай хийгдлээ. [" + deviceType + "]",
+      });
+      return;
+    } else if (deviceType == "tdbank") {
+      dvctype = "tdb_paxs300";
+      callback({
+        status: "success",
+        text: "IPPOS terminal холболт амжилттай хийгдлээ. [" + deviceType + "]",
+      });
+    }
+
+    if (typeof callback === "undefined") {
+      return { status: "error", text: "Not found callback function!" };
+    }
+
+    if (!terminalId) {
+      callback({ status: "error", text: "TerminalId хоосон байна!" });
+      return;
+    }
+
+    if (!dvctype) {
+      callback({ status: "error", text: "Банкны төрөл хоосон байна!" });
+      return;
+    }
+
+    console.log("WebSocket is supported by your Browser!");
+    // Let us open a web socket
+    var ws = new WebSocket("ws://localhost:58324/socket");
+
+    ws.onopen = function () {
+      var currentDateTime = moment.now();
+      ws.send(
+        '{"command":"bank_terminal_pos_connect", "dateTime":"' +
+          currentDateTime +
+          '", details: [{"key": "devicetype", "value": "' +
+          dvctype +
+          '"},{"key": "terminalid", "value": "' +
+          terminalId +
+          '"}]}'
+      );
+    };
+
+    ws.onmessage = function (evt) {
+      // Core.unblockUI();
+      var received_msg = evt.data;
+      var jsonData = JSON.parse(received_msg);
+
+      console.log("received_msg", evt);
+
+      if (jsonData.status == "success") {
+        callback({
+          status: "success",
+          text:
+            "IPPOS terminal холболт амжилттай хийгдлээ. [" + deviceType + "]",
+        });
+        return;
+      } else {
+        callback({
+          status: "error",
+          text:
+            "Bank terminal error [" + deviceType + "]: " + jsonData.description,
+        });
+        return;
+      }
+    };
+
+    ws.onerror = function (event: any) {
+      var resultJson = {
+        Status: "Error",
+        Error: event.code,
+      };
+
+      //   Core.unblockUI();
+      callback({
+        status: "error",
+        text:
+          "Bank terminal error [" +
+          deviceType +
+          "]: Veritech Client асаагүй байна!!!",
+      });
+      return;
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed...");
+    };
+  } else {
+    var resultJson = {
+      Status: "Error",
+      Error: "WebSocket NOT supported by your Browser!",
+    };
+
     console.log(JSON.stringify(resultJson));
   }
 }

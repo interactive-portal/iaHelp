@@ -20,7 +20,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  // Cookies.set("customer", { CustomerId: "170130843295810" });
+  Cookies.set("customer", { CustomerId: "170130843295810" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -194,7 +194,7 @@ const RiverClubV1PlanPrice = () => {
 
   const checkPayment = () => {
     Payment(100, 70105432, "khanbank", function (item: any) {
-      console.log("item", item);
+      // console.log("item", item);
     });
   };
 
@@ -242,7 +242,7 @@ const RiverClubV1PlanPrice = () => {
               color: "var(--202020, #202020)",
               background: "var(--green-main, #BAD405)",
             }}
-            onClick={() => checkPayment()}
+            onClick={() => checkContract()}
           >
             Цааш
           </div>
@@ -305,6 +305,10 @@ const RiverClubV1PlanPrice = () => {
 
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
+      <button onClick={() => checkPayment()} className="bg-red-600">
+        ettsettstst
+      </button>
+
       <UpperSection
         item={upperData}
         dark={true}
