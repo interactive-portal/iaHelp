@@ -182,7 +182,6 @@ export default function bankIpTerminalTransfer(
       Status: "Error",
       Error: "WebSocket NOT supported by your Browser!",
     };
-    console.log(JSON.stringify(resultJson));
   }
 }
 

@@ -14,6 +14,7 @@ import axios from "axios";
 import { Modal, DatePicker, DatePickerProps } from "antd";
 import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
 import Payment from "../payment/payment";
+import PaymentModal from "./paymentModal";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
@@ -66,6 +67,7 @@ const RiverClubV1PlanPrice = () => {
   const [selectedItem, setSelectItem] = useState<any>();
   const [templateId, setTemplateId] = useState<any>();
   const [contractId, setContractId] = useState<any>();
+  const [modal, setModal] = useState("date");
 
   const { nemgooDatasrc } = useContext(WidgetWrapperContext);
   const data = language === "mn" ? nemgooDatasrc[1] : nemgooDatasrc[0];
@@ -128,9 +130,12 @@ const RiverClubV1PlanPrice = () => {
       parameters: param,
     });
 
+    console.log("create contract result", res?.data);
+
     if (res?.data?.status == "success") {
       setTemplateId(res?.data?.result?.templateId);
       setContractId(res?.data?.result?.id);
+      setModal("template");
     }
   };
 
@@ -181,21 +186,14 @@ const RiverClubV1PlanPrice = () => {
       if (res?.data?.status == "success") {
         if (res?.data?.result?.isComfirm == "0") {
         } else {
-          setSelectDateModal(false);
+          setModal("payment");
         }
       }
-      console.log("res", res);
     } else {
       notification.info({
         message: "Үйлчилгээний нөхөцлийг зөвшөөрч гэрээ байгуулах боломжтой",
       });
     }
-  };
-
-  const checkPayment = () => {
-    Payment(100, 70105432, "khanbank", function (item: any) {
-      // console.log("item", item);
-    });
   };
 
   const templateContent = (
@@ -252,7 +250,7 @@ const RiverClubV1PlanPrice = () => {
   );
 
   // Огноо сонгох modal
-  const ModalContent = (
+  const datePickerContent = (
     <div className="flex items-center justify-center h-full mx-auto">
       <div
         className="w-[424px] h-[600px] box-border relative"
@@ -303,12 +301,24 @@ const RiverClubV1PlanPrice = () => {
     </div>
   );
 
+  const modalContent = () => {
+    switch (modal) {
+      case "date":
+        return datePickerContent;
+      case "template":
+        return templateContent;
+      case "payment":
+        return (
+          <PaymentModal
+            item={selectedItem}
+            setSelectDateModal={setSelectDateModal}
+          />
+        );
+    }
+  };
+
   return (
     <BlockDiv className="mx-[20px] flex flex-col mb-[30px]">
-      <button onClick={() => checkPayment()} className="bg-red-600">
-        ettsettstst
-      </button>
-
       <UpperSection
         item={upperData}
         dark={true}
@@ -328,7 +338,7 @@ const RiverClubV1PlanPrice = () => {
         onCancel={() => setSelectDateModal(false)}
         destroyOnClose
       >
-        {templateId ? templateContent : ModalContent}
+        {modalContent()}
       </Modal>
       <style>
         {`
