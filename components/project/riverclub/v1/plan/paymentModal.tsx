@@ -66,7 +66,7 @@ const PaymentModal: FC<PropsType> = ({ item, setSelectDateModal }) => {
             </div>
             <div className="flex items-center justify-between text-white text-[16px] mx-[25px] py-[20px]">
               <p className="">Үнийн дүн </p>
-              <p className="font-bold">{item?.monthname}</p>
+              <p className="font-bold">{item?.saleprice}</p>
             </div>
           </div>
         </div>
