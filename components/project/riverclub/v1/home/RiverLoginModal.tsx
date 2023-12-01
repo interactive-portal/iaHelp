@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { Modal } from "antd";
+import { FC, useEffect } from "react";
+import { Modal, notification } from "antd";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 type PropsType = {
   openModal: any;
@@ -15,6 +16,49 @@ const RiverLoginModal: FC<PropsType> = ({
   setNeedSignUp,
   needSignUp,
 }) => {
+  useEffect(() => {
+    clickCamera();
+  }, [openModal]);
+
+  const clickCamera = () => {
+    // setOpenModal(true);
+    // e.preventDefault();
+    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+
+    ws.onopen = function () {
+      ws.send('{"action":"GetPerson"}');
+    };
+
+    ws.onmessage = function (event) {
+      var res = JSON.parse(event.data);
+
+      if (res?.result) {
+        ws.send('{"action":"Close"}');
+        Cookies.set("customer", res?.result);
+        notification.success({
+          message: "Амжилттай нэвтэрлээ",
+        });
+        setOpenModal(false);
+      } else {
+        ws.send('{"action":"Close"}');
+        setNeedSignUp(true);
+      }
+
+      setOpenModal(false);
+    };
+
+    ws.onerror = function (event) {
+      // alert(event.data);
+    };
+
+    ws.onclose = function () {
+      console.log("Connection is closed");
+      // setNeedSignUp(true);
+
+      // }
+    };
+  };
+
   const router = useRouter();
   const needSignUpModal = () => {
     return (

@@ -72,8 +72,8 @@ const RiverClubV1BioInputForm = () => {
       console.log("response", res);
 
       if (res?.result.Image != null) {
-        setImageToken(res?.result.Image);
-        setValue(res?.result?.Value);
+        setImageToken(res?.result.image);
+        setValue(res?.result?.value);
         setOpenModal(false);
         ws.send('{"action":"Close"}');
         // [image] = res.image;
@@ -93,45 +93,45 @@ const RiverClubV1BioInputForm = () => {
     };
   };
 
-  const loginCameraFunction = (e: any) => {
-    setOpenModal(true);
-    e.preventDefault();
-    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+  // const loginCameraFunction = (e: any) => {
+  //   setOpenModal(true);
+  //   e.preventDefault();
+  //   var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
-    ws.onopen = function () {
-      ws.send('{"action":"GetPerson"}');
-    };
+  //   ws.onopen = function () {
+  //     ws.send('{"action":"GetPerson"}');
+  //   };
 
-    ws.onmessage = function (event) {
-      var res = JSON.parse(event.data);
+  //   ws.onmessage = function (event) {
+  //     var res = JSON.parse(event.data);
 
-      if (res?.result) {
-        ws.send('{"action":"Close"}');
-        Cookies.set("customer", JSON.stringify(res?.result));
-        notification.success({
-          message: "Амжилттай нэвтэрлээ",
-        });
+  //     if (res?.result) {
+  //       ws.send('{"action":"Close"}');
+  //       Cookies.set("customer", JSON.stringify(res?.result));
+  //       notification.success({
+  //         message: "Амжилттай нэвтэрлээ",
+  //       });
 
-        console.log("res", res);
-      } else {
-        ws.send('{"action":"Close"}');
-        // setNeedSignUp(true);
-      }
+  //       console.log("res", res);
+  //     } else {
+  //       ws.send('{"action":"Close"}');
+  //       // setNeedSignUp(true);
+  //     }
 
-      setOpenModal(false);
-    };
+  //     setOpenModal(false);
+  //   };
 
-    ws.onerror = function (event) {
-      // alert(event.data);
-    };
+  //   ws.onerror = function (event) {
+  //     // alert(event.data);
+  //   };
 
-    ws.onclose = function () {
-      console.log("Connection is closed");
-      // setNeedSignUp(true);
+  //   ws.onclose = function () {
+  //     console.log("Connection is closed");
+  //     // setNeedSignUp(true);
 
-      // }
-    };
-  };
+  //     // }
+  //   };
+  // };
 
   return (
     <BlockDiv className="bg-[#CACACA] px-8  py-2">

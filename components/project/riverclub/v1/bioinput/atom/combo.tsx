@@ -52,7 +52,7 @@ const Combo: FC<PropsType> = ({ obj }) => {
 
   return (
     <div className="flex flex-col ">
-      <label className="text-[16px] font-medium  text-[#2A2A2A]">
+      <label className="text-[16px] font-medium  text-[#2A2A2A] mb-[8px]">
         {obj?.labelname}
       </label>
       <Controller
@@ -61,7 +61,7 @@ const Combo: FC<PropsType> = ({ obj }) => {
         render={({ field }) => (
           <Select
             onChange={onchange}
-            className=""
+            className="text-[16px]"
             options={options?.map((item: any, index: number) => {
               return {
                 value: item?.id,
@@ -95,6 +95,13 @@ const Combo: FC<PropsType> = ({ obj }) => {
           };
         })}
       /> */}
+      {/* <style>
+        {`
+          ant-select-selection-placeholder {
+            padding:8px 16px;
+          }
+        `}
+      </style> */}
     </div>
   );
 };

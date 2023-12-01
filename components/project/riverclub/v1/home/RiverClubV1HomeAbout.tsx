@@ -23,8 +23,6 @@ const RiverClubV1HomeAbout = () => {
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
   const staticItem = data[0];
 
-  console.log("staticitem", staticItem);
-
   return (
     <BlockDiv>
       <BlockSlider

@@ -13,16 +13,17 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { Modal, DatePicker, DatePickerProps } from "antd";
 import ReportTemplate from "@/middleware/ReportTemplate/ReportTemplate";
+import Payment from "../payment/payment";
 
 const RiverClubV1PlanPrice = () => {
   const { readyDatasrc } = useContext(WidgetWrapperContext);
 
   // console.log("readydata", readyDatasrc);
 
+  Cookies.set("customer", { CustomerId: "170130843295810" });
+
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
-
-  Cookies.set("customer", { CustomerId: "170130843295810" });
 
   const customer = Cookies.getJSON("customer");
 
@@ -71,51 +72,15 @@ const RiverClubV1PlanPrice = () => {
 
   const dateFormat = "YYYY-MM-DD";
 
-  //login camera нээх command
-  const clickCamera = (e: any) => {
-    setOpenLogin(true);
-    e.preventDefault();
-    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
-
-    ws.onopen = function () {
-      ws.send('{"action":"GetPerson"}');
-    };
-
-    console.log("first", ws);
-
-    ws.onmessage = function (event) {
-      var res = JSON.parse(event.data);
-
-      if (res) {
-        ws.send('{"action":"Close"}');
-      } else {
-        notification.info({
-          message: "Та бүртгэлгүй байгаа тул бүртгэлээ хийнэ үү.",
-        });
-      }
-
-      setOpenLogin(false);
-    };
-
-    ws.onerror = function (event) {
-      // alert(event.data);
-    };
-
-    ws.onclose = function () {
-      console.log("Connection is closed");
-      // }
-    };
-  };
-
   // багцыг select хийх эсвэл login хийх
   const selectItem = async (e: any, item: any) => {
+    setTemplateId(null);
     setSelectItem(_.values(item)?.[0]?.[activeIndex]);
-    console.log("first", _.values(item)?.[0]?.[activeIndex]);
     if (customer) {
       setSelectDateModal(true);
       setDatePicker(true);
     } else {
-      clickCamera(e);
+      setOpenLogin(true);
     }
   };
 
@@ -162,7 +127,6 @@ const RiverClubV1PlanPrice = () => {
       processcode: "fitKioskCreateContract_DV_001",
       parameters: param,
     });
-    console.log("res", res);
 
     if (res?.data?.status == "success") {
       setTemplateId(res?.data?.result?.templateId);
@@ -206,18 +170,32 @@ const RiverClubV1PlanPrice = () => {
 
   // гэрээний нөхцөлийг шалгах
   const checkContract = async () => {
-    const res = await axios.post(`/api/post-process`, {
-      processcode: "fitKioskContractIsConfirm_DV_001",
-      parameters: {
-        id: contractId,
-        isComfirm: activeCheck ? "1" : "0",
-      },
-    });
-    if (res?.data?.status == "success") {
-      setSelectDateModal(false);
+    if (activeCheck) {
+      const res = await axios.post(`/api/post-process`, {
+        processcode: "fitKioskContractIsConfirm_DV_001",
+        parameters: {
+          id: contractId,
+          isComfirm: activeCheck ? "1" : "0",
+        },
+      });
+      if (res?.data?.status == "success") {
+        if (res?.data?.result?.isComfirm == "0") {
+        } else {
+          setSelectDateModal(false);
+        }
+      }
+      console.log("res", res);
+    } else {
+      notification.info({
+        message: "Үйлчилгээний нөхөцлийг зөвшөөрч гэрээ байгуулах боломжтой",
+      });
     }
+  };
 
-    console.log("res", res);
+  const checkPayment = () => {
+    Payment(100, 70105432, "khanbank", function (item: any) {
+      console.log("item", item);
+    });
   };
 
   const templateContent = (
@@ -264,7 +242,7 @@ const RiverClubV1PlanPrice = () => {
               color: "var(--202020, #202020)",
               background: "var(--green-main, #BAD405)",
             }}
-            onClick={() => checkContract()}
+            onClick={() => checkPayment()}
           >
             Цааш
           </div>
@@ -304,7 +282,9 @@ const RiverClubV1PlanPrice = () => {
         <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
           <div
             className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
-            onClick={() => setSelectDateModal(false)}
+            onClick={() => {
+              setSelectDateModal(false), Cookies.remove("customer");
+            }}
           >
             Болих
           </div>
@@ -496,6 +476,7 @@ const CardItem = ({ readyData, dark, kFormatter, setactiveIndex }: any) => {
       {readyData?.map((obj: any, index: number) => {
         return (
           <RenderAtom
+            key={index}
             item={`<sup className="text-[16px] font-normal">₮</sup>${Number(
               obj?.saleprice
             )} <span className="text-[16px]"> / ${obj?.monthname}</span>`}

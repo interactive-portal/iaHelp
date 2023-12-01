@@ -35,7 +35,10 @@ const Card = ({ item }: any) => {
       <BlockDiv className="flex flex-col gap-y-[4px]">
         {_.map(item, (item: any, index: number) => {
           return (
-            <BlockDiv className="grid grid-cols-12 odd:bg-[#DDDDDD] even:bg-[#CACACA] w-full items-center">
+            <BlockDiv
+              className="grid grid-cols-12 odd:bg-[#DDDDDD] even:bg-[#CACACA] w-full items-center"
+              key={index}
+            >
               <RenderAtom
                 item={item?.mainimage}
                 renderType="image"
@@ -79,6 +82,7 @@ const MiddleText = ({ item, language }: any) => {
           {_.map(item?.exerciseType, (item: any, index: number) => {
             return (
               <RenderAtom
+                key={index}
                 item={item}
                 renderType="text"
                 className={`text-[#414141] font-[400] mr-2 text-[18px] lowercase w-max`}
@@ -103,6 +107,7 @@ const ScheduleTable = ({ item }: any) => {
         {_.map(item?.classSchedule, (item: any, index: number) => {
           return (
             <RenderAtom
+              key={index}
               item={item?.classTitle}
               renderType="title"
               className={`${item?.className} float-right right-0 left-auto w-max rounded-[4px] text-[10px] font-[700] text-black px-[7px] py-[5px]`}

@@ -49,7 +49,10 @@ const RiverClubV1MyPlanGX = () => {
         <BlockDiv className="flex gap-x-[12px] mt-2">
           {_.map(staticItem?.cards, (item: any, index: number) => {
             return (
-              <BlockDiv className="bg-[#BAD405] w-[130px] h-[62px] rounded-[12px] cursor-pointer">
+              <BlockDiv
+                className="bg-[#BAD405] w-[130px] h-[62px] rounded-[12px] cursor-pointer"
+                key={index}
+              >
                 <RenderAtom
                   item={item?.title}
                   renderType="button"
@@ -82,7 +85,7 @@ const EachCard = ({ item }: any) => {
       >
         {_.map(item?.cards, (item: any, index: number) => {
           return (
-            <BlockDiv className="flex items-center justify-between">
+            <BlockDiv className="flex items-center justify-between" key={index}>
               <BlockDiv
                 className={`${
                   item?.isActive

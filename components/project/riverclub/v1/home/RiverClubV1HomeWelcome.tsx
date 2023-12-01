@@ -27,46 +27,46 @@ const RiverClubV1HomeWelcome = () => {
 
   const staticItem = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
 
-  const clickCamera = (e: any) => {
-    setOpenModal(true);
-    e.preventDefault();
-    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+  // const clickCamera = (e: any) => {
+  //   setOpenModal(true);
+  //   e.preventDefault();
+  //   var ws = new WebSocket("ws://localhost:5021/FaceCamera");
 
-    ws.onopen = function () {
-      ws.send('{"action":"GetPerson"}');
-    };
+  //   ws.onopen = function () {
+  //     ws.send('{"action":"GetPerson"}');
+  //   };
 
-    ws.onmessage = function (event) {
-      var res = JSON.parse(event.data);
+  //   ws.onmessage = function (event) {
+  //     var res = JSON.parse(event.data);
 
-      if (res?.result) {
-        ws.send('{"action":"Close"}');
-        Cookies.set("customer", res?.result);
-        notification.success({
-          message: "Амжилттай нэвтэрлээ",
-        });
-        setOpenModal(false);
+  //     if (res?.result) {
+  //       ws.send('{"action":"Close"}');
+  //       Cookies.set("customer", res?.result);
+  //       notification.success({
+  //         message: "Амжилттай нэвтэрлээ",
+  //       });
+  //       setOpenModal(false);
 
-        console.log("res", res);
-      } else {
-        ws.send('{"action":"Close"}');
-        setNeedSignUp(true);
-      }
+  //       console.log("res", res);
+  //     } else {
+  //       ws.send('{"action":"Close"}');
+  //       setNeedSignUp(true);
+  //     }
 
-      setOpenModal(false);
-    };
+  //     setOpenModal(false);
+  //   };
 
-    ws.onerror = function (event) {
-      // alert(event.data);
-    };
+  //   ws.onerror = function (event) {
+  //     // alert(event.data);
+  //   };
 
-    ws.onclose = function () {
-      console.log("Connection is closed");
-      // setNeedSignUp(true);
+  //   ws.onclose = function () {
+  //     console.log("Connection is closed");
+  //     // setNeedSignUp(true);
 
-      // }
-    };
-  };
+  //     // }
+  //   };
+  // };
 
   return (
     <BlockDiv className="arrowCustomStyle">
@@ -86,10 +86,11 @@ const RiverClubV1HomeWelcome = () => {
         {_.map(staticItem?.mainimage, (item: any, index: number) => {
           return (
             <RiverHomeBanner
+              key={index}
               item={staticItem}
               openModal={openModal}
               setOpenModal={setOpenModal}
-              clickCamera={clickCamera}
+              // clickCamera={clickCamera}
             />
           );
         })}
@@ -141,7 +142,7 @@ const RiverHomeBanner = ({
           }}
           renderType="button"
           className={`bg-[#BAD405] rounded-[8px] px-[42px] py-[35px] text-black uppercase text-[16px] font-[700] mb-[30px]`}
-          onClick={(e: any) => clickCamera(e)}
+          onClick={(e: any) => setOpenModal(true)}
         />
         {/* <BlockDiv className="flex gap-[9px]">
           <BlockDiv className="w-[10px] h-[10px] rounded-full border border-white" />

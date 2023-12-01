@@ -15,8 +15,6 @@ const RiverClubV1ProfileSchedule = () => {
   const staticItem2 = readyDatasrc[1];
   const staticItem3 = readyDatasrc[2];
 
-  console.log(`${staticItem} item1 here staticItem`);
-
   return (
     <BlockDiv className="mx-[20px] my-[25px] bg-black w-[1040px] px-[36px] py-[33px]">
       <BlockDiv className="flex gap-x-[44px] items-center justify-between">
