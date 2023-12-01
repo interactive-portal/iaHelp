@@ -17,7 +17,7 @@ const RiverLoginModal: FC<PropsType> = ({
   needSignUp,
 }) => {
   useEffect(() => {
-    clickCamera();
+    if (openModal) clickCamera();
   }, [openModal]);
 
   const clickCamera = () => {
