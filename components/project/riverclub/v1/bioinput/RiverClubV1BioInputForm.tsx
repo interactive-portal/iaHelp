@@ -24,8 +24,6 @@ const RiverClubV1BioInputForm = () => {
 
   // const { getValues } = useFormContext();
 
-  console.log(process.env.NEXT_PUBLIC_FACECAMERA_URL);
-
   const [imageToken, setImageToken] = useState<any>();
   const [value, setValue] = useState<any>();
 
@@ -157,7 +155,10 @@ const RiverClubV1BioInputForm = () => {
         onCancel={() => setOpenModal(false)}
         footer={false}
       >
-        <div className="w-full h-full pt-[150px]">
+        <div className="w-full h-full pt-[150px] relative">
+          <div className="absolute top-8 left-[20%] text-[50px] font-medium text-[#BAD405]">
+            <p className="">Та камер луу харна уу !</p>
+          </div>
           <div className="max-w-[640px] mx-auto h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
             <img src="/images/Face_id_white.png" />
           </div>

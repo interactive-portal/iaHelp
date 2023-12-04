@@ -102,7 +102,10 @@ const RiverLoginModal: FC<PropsType> = ({
         onCancel={() => setOpenModal(false)}
         footer={false}
       >
-        <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center">
+        <div className="w-full h-full bg-black/50 pt-[150px] flex justify-center relative">
+          <div className="absolute top-8 left-[20%] text-[50px] font-medium text-[#BAD405]">
+            <p className="">Та камер луу харна уу !</p>
+          </div>
           <div className="w-[640px] h-[480px] bg-black/70 rounded-lg flex items-center justify-center">
             <img src="/images/Face_id_white.png" />
           </div>
@@ -113,7 +116,7 @@ const RiverLoginModal: FC<PropsType> = ({
           >
             {needSignUpModal()}
           </div>
-          <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
+          {/* <div className="fixed bottom-4 max-w-[640px] mx-auto translate-y-[100%]">
             <p className="uppercase text-[34px] underline text-start text-white">
               клубын бүртгэл?
             </p>
@@ -136,7 +139,7 @@ const RiverLoginModal: FC<PropsType> = ({
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </Modal>
       <style>

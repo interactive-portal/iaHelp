@@ -23,8 +23,6 @@ const RiverClubV1PlanHero = () => {
   const data = language === "mn" ? readyDatasrc[1] : readyDatasrc[0];
   const staticItem = readyDatasrc?.[0]?.[0];
 
-  console.log("statuc", staticItem);
-
   return (
     <BlockDiv className="relative w-full h-[300px] flex items-center justify-center mt-24">
       <BlockSlider
