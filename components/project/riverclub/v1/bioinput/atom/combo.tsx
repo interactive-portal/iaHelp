@@ -6,9 +6,10 @@ import useSWR from "swr";
 
 type PropsType = {
   obj?: any;
+  criteria?: any;
 };
 
-const Combo: FC<PropsType> = ({ obj }) => {
+const Combo: FC<PropsType> = ({ obj, criteria }) => {
   const {
     register,
     formState: { errors },
@@ -19,14 +20,14 @@ const Combo: FC<PropsType> = ({ obj }) => {
 
   const [formValue, setformValue] = useState(getValues());
 
-  const criteria = {
-    [obj?.criteriaPath]: [
-      {
-        operator: "=",
-        operand: formValue[obj?.criteriaPath] || "",
-      },
-    ],
-  };
+  // const criteria = {
+  //   [obj?.criteriaPath]: [
+  //     {
+  //       operator: "=",
+  //       operand: formValue[obj?.criteriaPath] || "",
+  //     },
+  //   ],
+  // };
 
   let {
     data: readyData,

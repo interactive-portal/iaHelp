@@ -4,20 +4,25 @@ import { FC, useState } from "react";
 type PropsType = {
   item?: any;
   setSelectDateModal?: any;
+  setModal?: any;
 };
 
-const PaymentModal: FC<PropsType> = ({ item, setSelectDateModal }) => {
-  console.log("item", item);
+const PaymentModal: FC<PropsType> = ({
+  item,
+  setSelectDateModal,
+  setModal,
+}) => {
   const [loading, setLoading] = useState(false);
   const checkPayment = () => {
     setLoading(true);
     Payment(
       Number(item?.saleprice),
-      70105432,
-      "khanbank",
+      process.env.NEXT_PUBLIC_TERMINAL_ID,
+      process.env.NEXT_PUBLIC_DEVICE_TYPE,
       function (item: any) {
-        console.log("item", item);
+        console.log("payment result back", item);
         setSelectDateModal(false);
+        setModal("date");
       }
     );
   };

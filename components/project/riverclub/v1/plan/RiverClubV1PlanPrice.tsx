@@ -21,7 +21,7 @@ const RiverClubV1PlanPrice = () => {
 
   // console.log("readydata", readyDatasrc);
 
-  Cookies.set("customer", { CustomerId: "170130843295810" });
+  // Cookies.set("customer", { CustomerId: "170130843295810" });
 
   const { callProcess, isProcessWorking } = useCallProcess();
   const [selectDateModal, setSelectDateModal] = useState(false);
@@ -116,7 +116,7 @@ const RiverClubV1PlanPrice = () => {
     const param = {
       contentTypeId: item?.contracttypeid,
       contractTotalAmount: item?.saleprice,
-      customerId: customer?.CustomerId,
+      customerId: customer?.customerId,
       durationTypeId: item?.monthid,
       startDate: startDate,
       endDate: result,
@@ -196,6 +196,7 @@ const RiverClubV1PlanPrice = () => {
     }
   };
 
+  // гэрээний template дуудсан Modal content
   const templateContent = (
     <div className="flex items-center justify-center h-full mx-auto relative max-w-[960px] overflow-hidden">
       <div
@@ -209,7 +210,7 @@ const RiverClubV1PlanPrice = () => {
       <div></div>
       <div className="absolute bottom-10 right-0 w-full ">
         <div
-          className="px-[64px] flex items-center mb-8"
+          className="px-[64px] flex items-center mb-8 cursor-pointer"
           onClick={() => setActiveCheck(!activeCheck)}
         >
           <div
@@ -227,15 +228,17 @@ const RiverClubV1PlanPrice = () => {
             Үйлчилгээний нөхцөлийг хүлээн зөвшөөрч байна
           </p>
         </div>
-        <div className="flex justify-between gap-[16px] px-[64px]">
+        <div className="flex justify-between gap-[16px] px-[64px] cursor-pointer">
           <div
             className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
-            onClick={() => setSelectDateModal(false)}
+            onClick={() => {
+              setSelectDateModal(false), setModal("date");
+            }}
           >
             Болих
           </div>
           <div
-            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer"
             style={{
               color: "var(--202020, #202020)",
               background: "var(--green-main, #BAD405)",
@@ -279,7 +282,7 @@ const RiverClubV1PlanPrice = () => {
         </div>
         <div className="absolute bottom-10 right-0 w-full flex gap-[16px] px-[64px]">
           <div
-            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2"
+            className="w-full bg-[#272A32] text-[#C4C4C4] text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer"
             onClick={() => {
               setSelectDateModal(false), Cookies.remove("customer");
             }}
@@ -287,7 +290,7 @@ const RiverClubV1PlanPrice = () => {
             Болих
           </div>
           <div
-            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2"
+            className="w-full  text-[20px] text-center uppercase rounded font-medium py-2 cursor-pointer"
             style={{
               color: "var(--202020, #202020)",
               background: "var(--green-main, #BAD405)",
@@ -312,6 +315,7 @@ const RiverClubV1PlanPrice = () => {
           <PaymentModal
             item={selectedItem}
             setSelectDateModal={setSelectDateModal}
+            setModal={setModal}
           />
         );
     }

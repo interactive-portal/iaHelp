@@ -20,10 +20,13 @@ const RiverLoginModal: FC<PropsType> = ({
     if (openModal) clickCamera();
   }, [openModal]);
 
+  // console.log(
+  //   "process.env.NEXT_PUBLIC_FACECAMERA_URL",
+  //   process.env.NEXT_PUBLIC_FACECAMERA_URL
+  // );
+
   const clickCamera = () => {
-    // setOpenModal(true);
-    // e.preventDefault();
-    var ws = new WebSocket("ws://localhost:5021/FaceCamera");
+    var ws = new WebSocket(`${process.env.NEXT_PUBLIC_FACECAMERA_URL}`);
 
     ws.onopen = function () {
       ws.send('{"action":"GetPerson"}');
