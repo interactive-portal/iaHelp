@@ -156,7 +156,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
           );
         })}
       </BlockDiv>
-      <Modal
+      {/* <Modal
         open={visibleModal2}
         width={1200}
         title="Файл харах"
@@ -165,7 +165,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
         onCancel={onClose}
       >
         {content}
-      </Modal>
+      </Modal> */}
     </>
   );
 };
