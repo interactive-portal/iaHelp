@@ -16,9 +16,10 @@ import useCallProcess from "@/middleware/dataHook/useCallProcess";
 import BlockDiv from "@/components/common/Block/BlockDiv";
 type PropsType = {
   dataItem?: any;
+  widgetnemgoo?: any;
 };
 
-const fileViewType: FC<PropsType> = ({ dataItem }) => {
+const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
   const { data: session, status }: any = useSession();
   const {
     config,
@@ -41,11 +42,12 @@ const fileViewType: FC<PropsType> = ({ dataItem }) => {
   function onDocumentLoadSuccess({ numPages }: any) {
     setNumPages(numPages);
   }
+
   const parameters = {
     filterrecordid: selectedId,
-    filterstructureid: widgetnemgooReady?.listconfig?.filterstructureid,
+    filterstructureid:
+      widgetnemgoo?.listconfig?.filterstructureid || "1479204227214",
   };
-  // console.log(selectedId);
 
   const getFile = async () => {
     const data = await callProcess({
@@ -55,6 +57,7 @@ const fileViewType: FC<PropsType> = ({ dataItem }) => {
       moreRequest: null,
       resultConfig: null,
     });
+
     setFileList(data?.result);
   };
 

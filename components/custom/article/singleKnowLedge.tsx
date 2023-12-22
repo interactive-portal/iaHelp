@@ -525,7 +525,7 @@ const SingleKnowLedge = () => {
               )}
             </div>
             {show == true && (
-              <FileViewType />
+              <FileViewType widgetnemgoo={widgetnemgooReady} />
               // <>{/* <WidgetWithId widgetId={widgetnemgooReady?.fileId} /> */}</>
             )}
           </>
