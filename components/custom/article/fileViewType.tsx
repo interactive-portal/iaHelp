@@ -44,31 +44,47 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
   }
 
   const parameters = {
-    filterrecordid: selectedId,
-    filterstructureid:
+    filterrecordid: router.query?.filterid,
+    filterStructureId:
       widgetnemgoo?.listconfig?.filterstructureid || "1479204227214",
   };
 
-  const getFile = async () => {
-    const data = await callProcess({
-      command: "getFile_004",
-      parameter: parameters,
-      silent: true,
-      moreRequest: null,
-      resultConfig: null,
-    });
+  const {
+    data: resultFile,
+    error,
+    mutate,
+  } = useSWR(
+    `/api/get-process?command=getFile_004&parameters=${JSON.stringify(
+      parameters
+    )}`
+  );
 
-    setFileList(data?.result);
-  };
+  // console.log("file", file);
 
-  useEffect(() => {
-    getFile();
-  }, []);
+  // const getFile = async () => {
+  //   const data = await callProcess({
+  //     command: "getFile_004",
+  //     parameter: parameters,
+  //     silent: true,
+  //     moreRequest: null,
+  //     resultConfig: null,
+  //   });
 
-  const fileSrc = _.values(fileList?.filedtl);
+  //   setFileList(data?.result);
+  // };
+
+  // useEffect(() => {
+  //   getFile();
+  // }, [router.query]);
+
+  // router.events.on("hashChangeComplete", getFile);
+
+  const fileSrc = _.values(resultFile?.result?.filedtl);
+
   const onClose = () => {
     setVisibleModal2(false);
   };
+
   function formatBytes(bytes: any, decimals = 2) {
     if (bytes === 0) return "0 Bytes";
     const k = 1024;
@@ -77,22 +93,20 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
+
   const onClickOpenFdf = (item: any) => {
-    if (item?.fileextension === "png") {
-      window.open(`https://cloudnew.veritech.mn/app/${item?.physicalpath}`);
-    } else {
+    if (
+      item?.fileextension !== "png" &&
+      item?.fileextension !== "jpg" &&
+      item?.fileextension !== "jpeg" &&
+      item?.fileextension !== "svg"
+    ) {
       setContent(
         <div className="container mx-auto min-h-[600px]">
           <iframe
             className="w-full h-[600px]"
             src={`https://cloudnew.veritech.mn/app/${item?.physicalpath}`}
           />
-          {/* <Document
-            file={`https://cloudnew.veritech.mn/app/${item?.physicalpath}`}
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <Page pageNumber={1} scale={1.6} />
-          </Document> */}
         </div>
       );
       setVisibleModal2(true);
@@ -107,7 +121,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
         </div>
       )}
       <BlockDiv customClassName=" mt-6 " divNumber={"FileDiv"}>
-        {fileSrc.map((item: any, index: number) => {
+        {fileSrc?.map((item: any, index: number) => {
           const type = item?.fileextension || "";
           let imgSrc = item?.physicalpath;
           const contentItem = () => {
@@ -115,7 +129,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
               case "pdf":
                 return (
                   <img
-                    src="https://res.cloudinary.com/dzih5nqhg/image/upload/v1649641911/cloud/icons/Group_7134_4_iujlmx.png"
+                    src="/images/pdf.png"
                     alt="icon"
                     className=""
                     width={40}
@@ -156,7 +170,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
           );
         })}
       </BlockDiv>
-      {/* <Modal
+      <Modal
         open={visibleModal2}
         width={1200}
         title="Файл харах"
@@ -165,7 +179,7 @@ const fileViewType: FC<PropsType> = ({ dataItem, widgetnemgoo }) => {
         onCancel={onClose}
       >
         {content}
-      </Modal> */}
+      </Modal>
     </>
   );
 };
